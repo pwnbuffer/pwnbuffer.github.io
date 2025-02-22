@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Memory on pwnbuff3r</title>
+    <link>https://pwnbuffer.github.io/pt-br/tags/memory/</link>
+    <description>Recent content in Memory on pwnbuff3r</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.github.io/pt-br/tags/memory/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows Architecture</title>
+      <link>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Pré-requisitos:&lt;/strong&gt;&#xA;Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&lt;/p&gt;&#xA;&lt;p&gt;Então, o que é realmente &lt;strong&gt;Arquitetura do Windows&lt;/strong&gt;?&#xA;É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
