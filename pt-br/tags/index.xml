@@ -6,6 +6,56 @@
     <description>Recent content in Tags on pwnbuff3r</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
+    <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.github.io/pt-br/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Architecture</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/architecture/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Maldev</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/maldev/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/maldev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/malware/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/malware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Memory</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/memory/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/memory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/windows/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/windows/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Buffer Overflow</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/buffer-overflow/</link>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/buffer-overflow/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Low Level</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/low-level/</link>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/low-level/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
