@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slayer on pwnbuffer</title>
+    <link>https://pwnbuffer.github.io/authors/slayer/</link>
+    <description>Recent content in Slayer on pwnbuffer</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.github.io/authors/slayer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rootkits in Firmware</title>
+      <link>https://pwnbuffer.github.io/posts/slayer/rootkits-firmware/</link>
+      <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/posts/slayer/rootkits-firmware/</guid>
+      <description>What is a Rootkit? Link to heading A rootkit is a type of malware designed to gain and maintain privileged access to a system while hiding its presence. The term comes from the combination of &amp;ldquo;root&amp;rdquo;, which refers to the user with maximum privileges on Linux systems, and &amp;ldquo;kit&amp;rdquo; which represents a set of tools used to control the compromised system&#xA;The main purpose of a rootkit is to ensure persistence, allowing an attacker to continue accessing the system even after reboots or removal attempts.</description>
+    </item>
+    <item>
+      <title>Windows Architecture</title>
+      <link>https://pwnbuffer.github.io/posts/tteuw/windows_architecture/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/posts/tteuw/windows_architecture/</guid>
+      <description>Prerequisites: Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.&#xA;So what is actually Windows Architecture? It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</description>
+    </item>
+    <item>
+      <title>buffer overflow in practice</title>
+      <link>https://pwnbuffer.github.io/posts/slayer/bof/</link>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/posts/slayer/bof/</guid>
+      <description>What is buffer overflow? Link to heading Buffer overflow (BOF) is one of the most wellknown and historically significant vulnerabilities in the world of cybersecurity. It occurs when a program writes more data to a buffer than it can hold, causing memory corruption. This flaw can be exploited by pentesters to execute arbitrary code, modify program behavior, or cause a crash.&#xA;Despite the introduction of modern security mechanisms such as ASLR and stack canaries, buffer overflow remains a critical topic in exploit development and pentesting.</description>
+    </item>
+  </channel>
+</rss>

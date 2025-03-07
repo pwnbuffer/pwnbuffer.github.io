@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pwnbuff3r</title>
+    <link>https://pwnbuffer.github.io/pt-br/</link>
+    <description>Recent content on pwnbuff3r</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.github.io/pt-br/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rootkits em Firmware</title>
+      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/rootkits-firmware/</link>
+      <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/rootkits-firmware/</guid>
+      <description>O que é um Rootkit? Link para o cabeçalho Um rootkit é um tipo de malware projetado para obter e manter acesso privilegiado a um sistema, ao mesmo tempo em que oculta sua presença. O termo vem da junção de &amp;ldquo;root&amp;rdquo;, que se refere ao usuário com privilégios máximos em sistemas linux, e &amp;ldquo;kit&amp;rdquo; que representa um conjunto de ferramentas utilizadas para controlar o sistema comprometido&#xA;O principal objetivo de um rootkit é garantir persistência, permitindo que um atacante continue acessando o sistema mesmo após reinicializações ou tentativas de remoção.</description>
+    </item>
+    <item>
+      <title>Windows Architecture</title>
+      <link>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</guid>
+      <description>Pré-requisitos: Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&#xA;Então, o que é realmente Arquitetura do Windows? É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</description>
+    </item>
+    <item>
+      <title>buffer overflow in practice</title>
+      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/bof/</link>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/bof/</guid>
+      <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
+    </item>
+    <item>
+      <title>Sobre</title>
+      <link>https://pwnbuffer.github.io/pt-br/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/about/</guid>
+      <description>🇧🇷 Somos uma equipe brasileira de entusiastas de tecnologia e hacking.&#xA;Discord: server&#xA;&amp;ldquo;Acreditamos que o conhecimento deve ser livre&amp;rdquo; Link para o cabeçalho </description>
+    </item>
+    <item>
+      <title>86daemon</title>
+      <link>https://pwnbuffer.github.io/pt-br/members/daemon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/members/daemon/</guid>
+      <description> github: 86daemon&#xA;Angel of i386 Link para o cabeçalho Dica _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
+    </item>
+    <item>
+      <title>kz0x</title>
+      <link>https://pwnbuffer.github.io/pt-br/members/kz0x/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/members/kz0x/</guid>
+      <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Dica Web hacking, exploit developer and Maldev </description>
+    </item>
+    <item>
+      <title>Membros</title>
+      <link>https://pwnbuffer.github.io/pt-br/members/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/members/</guid>
+      <description> daemon tteuw愛 slayer kz0x </description>
+    </item>
+    <item>
+      <title>sl4yer</title>
+      <link>https://pwnbuffer.github.io/pt-br/members/slayer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/members/slayer/</guid>
+      <description> github: slayerkkkk&#xA;Olá, me chamo slayer. Estou na área de segurança cibernética há 3 anos e atualmente estou estudando mais sobre low level Link para o cabeçalho Dica Low Level ⚙️ </description>
+    </item>
+    <item>
+      <title>tteuw愛</title>
+      <link>https://pwnbuffer.github.io/pt-br/members/tteuw/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/members/tteuw/</guid>
+      <description> github: tteuw00111111&#xA;Dica software dev, maldev e analysis, curto engenharia reversa também. E um pouco de web (não o suficiente) </description>
+    </item>
+  </channel>
+</rss>

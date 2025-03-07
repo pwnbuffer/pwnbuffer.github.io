@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on pwnbuff3r</title>
+    <link>https://pwnbuffer.github.io/pt-br/tags/</link>
+    <description>Recent content in Tags on pwnbuff3r</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.github.io/pt-br/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Low Level</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/low-level/</link>
+      <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/low-level/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware Analysis</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/malware-analysis/</link>
+      <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/malware-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rootkit</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/rootkit/</link>
+      <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/rootkit/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Architecture</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/architecture/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Maldev</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/maldev/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/maldev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Malware</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/malware/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/malware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Memory</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/memory/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/memory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/windows/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/windows/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Buffer Overflow</title>
+      <link>https://pwnbuffer.github.io/pt-br/tags/buffer-overflow/</link>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/tags/buffer-overflow/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
