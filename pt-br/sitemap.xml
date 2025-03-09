@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://pwnbuffer.github.io/pt-br/authors/</loc>
-    <lastmod>2025-03-05T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -16,7 +16,7 @@
                 />
   </url><url>
     <loc>https://pwnbuffer.github.io/pt-br/categories/</loc>
-    <lastmod>2025-03-05T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -26,6 +26,149 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.github.io/pt-br/categories/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/categories/hacking/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/categories/hacking/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/categories/hacking/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/posts/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/posts/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/authors/slayer/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/authors/slayer/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/authors/slayer/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/tags/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/tags/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/tags/tryhackme/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/tags/tryhackme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/tags/tryhackme/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/tags/walkthrough/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/tags/walkthrough/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/tags/walkthrough/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/categories/web/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/categories/web/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/categories/web/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/tags/web-hacking/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/tags/web-hacking/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/tags/web-hacking/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/tags/witreup/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/tags/witreup/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/tags/witreup/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.github.io/pt-br/posts/slayer/witreup-dragonbyte/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/posts/slayer/witreup-dragonbyte/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/posts/slayer/witreup-dragonbyte/"
                 />
   </url><url>
     <loc>https://pwnbuffer.github.io/pt-br/tags/low-level/</loc>
@@ -67,32 +210,6 @@
                 href="https://pwnbuffer.github.io/pt-br/tags/malware-analysis/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.github.io/pt-br/posts/</loc>
-    <lastmod>2025-03-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.github.io/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.github.io/pt-br/posts/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.github.io/pt-br/</loc>
-    <lastmod>2025-03-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.github.io/pt-br/"
-                />
-  </url><url>
     <loc>https://pwnbuffer.github.io/pt-br/tags/rootkit/</loc>
     <lastmod>2025-03-05T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -117,32 +234,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.github.io/pt-br/posts/slayer/rootkits-firmware/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.github.io/pt-br/authors/slayer/</loc>
-    <lastmod>2025-03-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.github.io/authors/slayer/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.github.io/pt-br/authors/slayer/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.github.io/pt-br/tags/</loc>
-    <lastmod>2025-03-05T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.github.io/pt-br/tags/"
                 />
   </url><url>
     <loc>https://pwnbuffer.github.io/pt-br/tags/architecture/</loc>
