@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Witreup on pwnbuffer</title>
+    <link>https://pwnbuffer.github.io/tags/witreup/</link>
+    <description>Recent content in Witreup on pwnbuffer</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 09 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.github.io/tags/witreup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Witreup THM - Dragon Byte</title>
+      <link>https://pwnbuffer.github.io/posts/slayer/witreup-dragonbyte/</link>
+      <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/posts/slayer/witreup-dragonbyte/</guid>
+      <description>https://tryhackme.com/room/dragonbyte&#xA;In this paper, I&amp;rsquo;m going to take you step by step through the Dragon Byte room, made by brother NullByte! From recon to root!&#xA;Reconnaissance Link to heading After starting the machine and obtaining the IP, the first thing we have to do is port scanning. In this CTF I used the RustScan tool to do the port scanning:&#xA;This scan revealed that we have 3 open ports, namely:</description>
+    </item>
+  </channel>
+</rss>
