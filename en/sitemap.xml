@@ -492,6 +492,18 @@
                 href="https://pwnbuffer.github.io/members/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.github.io/members/mount/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.github.io/pt-br/members/mount/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.github.io/members/mount/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.github.io/members/slayer/</loc>
     <xhtml:link
                 rel="alternate"
