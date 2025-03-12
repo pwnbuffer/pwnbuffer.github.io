@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Networks on pwnbuff3r</title>
+    <link>https://pwnbuffer.github.io/pt-br/tags/networks/</link>
+    <description>Recent content in Networks on pwnbuff3r</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.github.io/pt-br/tags/networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Explorando o Active Directory</title>
+      <link>https://pwnbuffer.github.io/pt-br/posts/mount/adxpl/</link>
+      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/pt-br/posts/mount/adxpl/</guid>
+      <description>1. Introdução Link para o cabeçalho O Active Directory (AD) é uma ferramenta para administradores de redes, permitindo a criação e gerenciamento de domínios, usuários e objetos dentro de uma rede corporativa. Por meio do AD, é possível conectar todas as maquinas em um servidor DC (Domain Controler) ele que autentifica os usuários por meio do protocolo kerberos.&#xA;Por exemplo, um administrador pode criar um grupo de usuários dentro do domínio corp.</description>
+    </item>
+  </channel>
+</rss>

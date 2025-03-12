@@ -6,8 +6,29 @@
     <description>Recent content in Categories on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 09 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Networks</title>
+      <link>https://pwnbuffer.github.io/categories/networks/</link>
+      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/categories/networks/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Protocols</title>
+      <link>https://pwnbuffer.github.io/categories/protocols/</link>
+      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/categories/protocols/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>https://pwnbuffer.github.io/categories/windows/</link>
+      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/categories/windows/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Hacking</title>
       <link>https://pwnbuffer.github.io/categories/hacking/</link>
@@ -34,13 +55,6 @@
       <link>https://pwnbuffer.github.io/categories/low-level/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.github.io/categories/low-level/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows</title>
-      <link>https://pwnbuffer.github.io/categories/windows/</link>
-      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/categories/windows/</guid>
       <description></description>
     </item>
     <item>
