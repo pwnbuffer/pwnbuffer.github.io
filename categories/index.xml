@@ -6,8 +6,29 @@
     <description>Recent content in Categories on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hacking</title>
+      <link>https://pwnbuffer.github.io/categories/hacking/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/categories/hacking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://pwnbuffer.github.io/categories/linux/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vulnerability-Exploitation</title>
+      <link>https://pwnbuffer.github.io/categories/vulnerability-exploitation/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.github.io/categories/vulnerability-exploitation/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Networks</title>
       <link>https://pwnbuffer.github.io/categories/networks/</link>
@@ -27,13 +48,6 @@
       <link>https://pwnbuffer.github.io/categories/windows/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.github.io/categories/windows/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hacking</title>
-      <link>https://pwnbuffer.github.io/categories/hacking/</link>
-      <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/categories/hacking/</guid>
       <description></description>
     </item>
     <item>
