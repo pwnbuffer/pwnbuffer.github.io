@@ -59,16 +59,16 @@
     </item>
     <item>
       <title>86daemon</title>
-      <link>https://pwnbuffer.org/members/daemon/</link>
+      <link>https://pwnbuffer.org/m/daemon/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/members/daemon/</guid>
+      <guid>https://pwnbuffer.org/m/daemon/</guid>
       <description> github: 86daemon&#xA;Angel of i386 Link to heading Note _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
     </item>
     <item>
       <title>kz0x</title>
-      <link>https://pwnbuffer.org/members/kz0x/</link>
+      <link>https://pwnbuffer.org/m/kz0x/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/members/kz0x/</guid>
+      <guid>https://pwnbuffer.org/m/kz0x/</guid>
       <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Note Web hacking, exploit developer and Maldev </description>
     </item>
     <item>
@@ -76,27 +76,34 @@
       <link>https://pwnbuffer.org/members/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/members/</guid>
-      <description> daemon tteuw愛 slayer kz0x mount </description>
+      <description> daemon tteuw愛 slayer kz0x mount nullbyte </description>
     </item>
     <item>
       <title>mount</title>
-      <link>https://pwnbuffer.org/members/mount/</link>
+      <link>https://pwnbuffer.org/m/mount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/members/mount/</guid>
+      <guid>https://pwnbuffer.org/m/mount/</guid>
       <description> Note malware developer, windows internals, active directory, low-level lover </description>
     </item>
     <item>
-      <title>sl4yer</title>
-      <link>https://pwnbuffer.org/members/slayer/</link>
+      <title>nullbyte</title>
+      <link>https://pwnbuffer.org/m/nullbyte/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/members/slayer/</guid>
-      <description> github: slayerkkkk&#xA;Hello, my name is Slayer. I have been in the cybersecurity area for 3 years and I am currently studying more about low level Link to heading Note Low Level ⚙️ </description>
+      <guid>https://pwnbuffer.org/m/nullbyte/</guid>
+      <description> github: NullByte-7w7&#xA;Note Codename NullByte, short program at dawn cyber projects, short web, infra, low level. I really like maldev and love to understand how windows sysinternal works. </description>
+    </item>
+    <item>
+      <title>sl4yer</title>
+      <link>https://pwnbuffer.org/m/slayer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/m/slayer/</guid>
+      <description>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢤⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠿⢿⡀⠀⠀⠀⠀⣠⣶⣿⣷⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣦⣴⣿⡋⠀⠀⠈⢳⡄⠀⢠⣾⣿⠁⠈⣿⡆⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⠿⠛⠉⠉⠁⠀⠀⠀⠹⡄⣿⣿⣿⠀⠀⢹⡇⠀⠀⠀ ⠀⠀⠀⠀⠀⣠⣾⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⣰⣏⢻⣿⣿⡆⠀⠸⣿⠀⠀⠀ ⠀⠀⠀⢀⣴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣆⠹⣿⣷⠀⢘⣿⠀⠀⠀ ⠀⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⠋⠉⠛⠂⠹⠿⣲⣿⣿⣧⠀⠀ ⠀⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣿⣿⣿⣷⣾⣿⡇⢀⠀⣼⣿⣿⣿⣧⠀ ⠰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⡘⢿⣿⣿⣿⠀ ⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣷⡈⠿⢿⣿⡆ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠁⢙⠛⣿⣿⣿⣿⡟⠀⡿⠀⠀⢀⣿⡇ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣶⣤⣉⣛⠻⠇⢠⣿⣾⣿⡄⢻⡇ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣦⣤⣾⣿⣿⣿⣿⣆⠁ github: slayerkkkk&#xA;Note Hello, my name is Slayer. I have been in the cybersecurity area for 3 years and I am currently studying more about low level </description>
     </item>
     <item>
       <title>tteuw愛</title>
-      <link>https://pwnbuffer.org/members/tteuw/</link>
+      <link>https://pwnbuffer.org/m/tteuw/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/members/tteuw/</guid>
+      <guid>https://pwnbuffer.org/m/tteuw/</guid>
       <description> github: tteuw00111111&#xA;Note Software Dev, Maldev and Analysis, short reverse engineering as well. And a little bit of web (not enough) </description>
     </item>
   </channel>
