@@ -638,28 +638,28 @@
                 href="https://pwnbuffer.org/authors/86daemon/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/members/daemon/</loc>
+    <loc>https://pwnbuffer.org/m/daemon/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/pt-br/members/daemon/"
+                href="https://pwnbuffer.org/pt-br/m/daemon/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/members/daemon/"
+                href="https://pwnbuffer.org/m/daemon/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/members/kz0x/</loc>
+    <loc>https://pwnbuffer.org/m/kz0x/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/pt-br/members/kz0x/"
+                href="https://pwnbuffer.org/pt-br/m/kz0x/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/members/kz0x/"
+                href="https://pwnbuffer.org/m/kz0x/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/members/</loc>
@@ -674,40 +674,64 @@
                 href="https://pwnbuffer.org/members/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/members/mount/</loc>
+    <loc>https://pwnbuffer.org/m/mount/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/pt-br/members/mount/"
+                href="https://pwnbuffer.org/pt-br/m/mount/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/members/mount/"
+                href="https://pwnbuffer.org/m/mount/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/members/slayer/</loc>
+    <loc>https://pwnbuffer.org/m/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/pt-br/members/slayer/"
+                href="https://pwnbuffer.org/pt-br/m/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/members/slayer/"
+                href="https://pwnbuffer.org/m/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/members/tteuw/</loc>
+    <loc>https://pwnbuffer.org/m/nullbyte/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/pt-br/members/tteuw/"
+                href="https://pwnbuffer.org/pt-br/m/nullbyte/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/members/tteuw/"
+                href="https://pwnbuffer.org/m/nullbyte/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/m/slayer/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/pt-br/m/slayer/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/m/slayer/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/m/tteuw/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/pt-br/m/tteuw/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/m/tteuw/"
                 />
   </url>
 </urlset>
