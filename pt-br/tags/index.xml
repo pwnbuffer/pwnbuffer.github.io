@@ -2,150 +2,150 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on pwnbuff3r</title>
-    <link>https://pwnbuffer.github.io/pt-br/tags/</link>
+    <link>https://pwnbuffer.org/pt-br/tags/</link>
     <description>Recent content in Tags on pwnbuff3r</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
     <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://pwnbuffer.github.io/pt-br/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pwnbuffer.org/pt-br/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploitation</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/exploitation/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/exploitation/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/exploitation/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/exploitation/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/linux/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/linux/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/linux/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>Post-Exploitation</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/post-exploitation/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/post-exploitation/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/post-exploitation/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/post-exploitation/</guid>
       <description></description>
     </item>
     <item>
       <title>Privilege Escalation</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/privilege-escalation/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/privilege-escalation/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/privilege-escalation/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/privilege-escalation/</guid>
       <description></description>
     </item>
     <item>
       <title>Activedirectory</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/activedirectory/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/activedirectory/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/activedirectory/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/activedirectory/</guid>
       <description></description>
     </item>
     <item>
       <title>Networks</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/networks/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/networks/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/networks/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/networks/</guid>
       <description></description>
     </item>
     <item>
       <title>Vulnerability-Exploitation</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/vulnerability-exploitation/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/vulnerability-exploitation/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/vulnerability-exploitation/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/vulnerability-exploitation/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/windows/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/windows/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/windows/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/windows/</guid>
       <description></description>
     </item>
     <item>
       <title>Tryhackme</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/tryhackme/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/tryhackme/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/tryhackme/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/tryhackme/</guid>
       <description></description>
     </item>
     <item>
       <title>Walkthrough</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/walkthrough/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/walkthrough/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/walkthrough/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/walkthrough/</guid>
       <description></description>
     </item>
     <item>
       <title>Web-Hacking</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/web-hacking/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/web-hacking/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/web-hacking/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/web-hacking/</guid>
       <description></description>
     </item>
     <item>
       <title>Writeup</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/writeup/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/writeup/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/writeup/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/writeup/</guid>
       <description></description>
     </item>
     <item>
       <title>Low Level</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/low-level/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/low-level/</link>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/low-level/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/low-level/</guid>
       <description></description>
     </item>
     <item>
       <title>Malware Analysis</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/malware-analysis/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/malware-analysis/</link>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/malware-analysis/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/malware-analysis/</guid>
       <description></description>
     </item>
     <item>
       <title>Rootkit</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/rootkit/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/rootkit/</link>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/rootkit/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/rootkit/</guid>
       <description></description>
     </item>
     <item>
       <title>Architecture</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/architecture/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/architecture/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Maldev</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/maldev/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/maldev/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/maldev/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/maldev/</guid>
       <description></description>
     </item>
     <item>
       <title>Malware</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/malware/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/malware/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/malware/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/malware/</guid>
       <description></description>
     </item>
     <item>
       <title>Memory</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/memory/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/memory/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/memory/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/memory/</guid>
       <description></description>
     </item>
     <item>
       <title>Buffer Overflow</title>
-      <link>https://pwnbuffer.github.io/pt-br/tags/buffer-overflow/</link>
+      <link>https://pwnbuffer.org/pt-br/tags/buffer-overflow/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/tags/buffer-overflow/</guid>
+      <guid>https://pwnbuffer.org/pt-br/tags/buffer-overflow/</guid>
       <description></description>
     </item>
   </channel>

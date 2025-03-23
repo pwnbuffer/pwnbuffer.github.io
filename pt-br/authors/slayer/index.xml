@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Slayer on pwnbuff3r</title>
-    <link>https://pwnbuffer.github.io/pt-br/authors/slayer/</link>
+    <link>https://pwnbuffer.org/pt-br/authors/slayer/</link>
     <description>Recent content in Slayer on pwnbuff3r</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
     <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://pwnbuffer.github.io/pt-br/authors/slayer/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pwnbuffer.org/pt-br/authors/slayer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Privilege Escalation in Linux</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/privesc-linux/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/privesc-linux/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/privesc-linux/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/privesc-linux/</guid>
       <description>Olá, eu sou o Slayer. Neste paper, irei falar sobre a escalada de privilégios no Linux. Recomendo que, enquanto lê este paper, também vá testando as técnicas na prática, pois isso ajudará a entender melhor os conceitos e a aplicar os conhecimentos adquiridos de forma mais eficaz.&#xA;Introdução Link para o cabeçalho Escalação de privilégios é o processo de obter níveis mais altos de acesso ou controle em um sistema do que o originalmente permitido.</description>
     </item>
     <item>
       <title>Writeup THM - Dragon Byte</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/writeup-dragonbyte/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/writeup-dragonbyte/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/writeup-dragonbyte/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/writeup-dragonbyte/</guid>
       <description>https://tryhackme.com/room/dragonbyte&#xA;Neste paper, irei fazer o passo a passo para a room Dragon Byte, feita pelo mano NullByte! Desde o recon até o root!&#xA;Reconhecimento Link para o cabeçalho Após iniciar a maquina e obter o IP, a primeira coisa que devemos fazer é o port scanning. Neste CTF utilizei a ferramenta RustScan para fazer o port scanning:&#xA;Esse scan revelou que temos 3 portas abertas, sendo elas:&#xA;9000 - http 6048 - x11 65200 - ?</description>
     </item>
     <item>
       <title>Rootkits em Firmware</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/rootkits-firmware/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/rootkits-firmware/</link>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/rootkits-firmware/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/rootkits-firmware/</guid>
       <description>O que é um Rootkit? Link para o cabeçalho Um rootkit é um tipo de malware projetado para obter e manter acesso privilegiado a um sistema, ao mesmo tempo em que oculta sua presença. O termo vem da junção de &amp;ldquo;root&amp;rdquo;, que se refere ao usuário com privilégios máximos em sistemas linux, e &amp;ldquo;kit&amp;rdquo; que representa um conjunto de ferramentas utilizadas para controlar o sistema comprometido&#xA;O principal objetivo de um rootkit é garantir persistência, permitindo que um atacante continue acessando o sistema mesmo após reinicializações ou tentativas de remoção.</description>
     </item>
     <item>
       <title>Windows Architecture</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</guid>
       <description>Pré-requisitos: Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&#xA;Então, o que é realmente Arquitetura do Windows? É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</description>
     </item>
     <item>
       <title>buffer overflow in practice</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/bof/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/bof/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/bof/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/bof/</guid>
       <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
     </item>
   </channel>

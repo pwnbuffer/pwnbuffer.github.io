@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows on pwnbuffer</title>
-    <link>https://pwnbuffer.github.io/categories/windows/</link>
+    <link>https://pwnbuffer.org/categories/windows/</link>
     <description>Recent content in Windows on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://pwnbuffer.github.io/categories/windows/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pwnbuffer.org/categories/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploring Active Directory</title>
-      <link>https://pwnbuffer.github.io/posts/mount/adxpl/</link>
+      <link>https://pwnbuffer.org/posts/mount/adxpl/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/posts/mount/adxpl/</guid>
+      <guid>https://pwnbuffer.org/posts/mount/adxpl/</guid>
       <description>1. introduction Link to heading Active Directory (AD) is a tool for network administrators, enabling the creation and management of domains, users and objects within a corporate network. Through AD, it is possible to connect all machines to a DC (Domain Controler) server. to a DC (Domain Controler) server which authenticates users using the kerberos protocol.&#xA;For example, an administrator can create a group of users within the corp.local domain and grant them specific privileges to access folders or internal systems.</description>
     </item>
     <item>
       <title>Windows Architecture</title>
-      <link>https://pwnbuffer.github.io/posts/tteuw/windows_architecture/</link>
+      <link>https://pwnbuffer.org/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/posts/tteuw/windows_architecture/</guid>
+      <guid>https://pwnbuffer.org/posts/tteuw/windows_architecture/</guid>
       <description>Prerequisites: Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.&#xA;So what is actually Windows Architecture? It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</description>
     </item>
   </channel>
