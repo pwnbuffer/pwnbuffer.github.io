@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pwnbuff3r</title>
-    <link>https://pwnbuffer.github.io/pt-br/</link>
+    <link>https://pwnbuffer.org/pt-br/</link>
     <description>Recent content on pwnbuff3r</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
     <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://pwnbuffer.github.io/pt-br/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pwnbuffer.org/pt-br/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Privilege Escalation in Linux</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/privesc-linux/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/privesc-linux/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/privesc-linux/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/privesc-linux/</guid>
       <description>Olá, eu sou o Slayer. Neste paper, irei falar sobre a escalada de privilégios no Linux. Recomendo que, enquanto lê este paper, também vá testando as técnicas na prática, pois isso ajudará a entender melhor os conceitos e a aplicar os conhecimentos adquiridos de forma mais eficaz.&#xA;Introdução Link para o cabeçalho Escalação de privilégios é o processo de obter níveis mais altos de acesso ou controle em um sistema do que o originalmente permitido.</description>
     </item>
     <item>
       <title>Explorando o Active Directory</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/mount/adxpl/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/mount/adxpl/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/mount/adxpl/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/mount/adxpl/</guid>
       <description>1. Introdução Link para o cabeçalho O Active Directory (AD) é uma ferramenta para administradores de redes, permitindo a criação e gerenciamento de domínios, usuários e objetos dentro de uma rede corporativa. Por meio do AD, é possível conectar todas as maquinas em um servidor DC (Domain Controler) ele que autentifica os usuários por meio do protocolo kerberos.&#xA;Por exemplo, um administrador pode criar um grupo de usuários dentro do domínio corp.</description>
     </item>
     <item>
       <title>Writeup THM - Dragon Byte</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/writeup-dragonbyte/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/writeup-dragonbyte/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/writeup-dragonbyte/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/writeup-dragonbyte/</guid>
       <description>https://tryhackme.com/room/dragonbyte&#xA;Neste paper, irei fazer o passo a passo para a room Dragon Byte, feita pelo mano NullByte! Desde o recon até o root!&#xA;Reconhecimento Link para o cabeçalho Após iniciar a maquina e obter o IP, a primeira coisa que devemos fazer é o port scanning. Neste CTF utilizei a ferramenta RustScan para fazer o port scanning:&#xA;Esse scan revelou que temos 3 portas abertas, sendo elas:&#xA;9000 - http 6048 - x11 65200 - ?</description>
     </item>
     <item>
       <title>Rootkits em Firmware</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/rootkits-firmware/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/rootkits-firmware/</link>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/rootkits-firmware/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/rootkits-firmware/</guid>
       <description>O que é um Rootkit? Link para o cabeçalho Um rootkit é um tipo de malware projetado para obter e manter acesso privilegiado a um sistema, ao mesmo tempo em que oculta sua presença. O termo vem da junção de &amp;ldquo;root&amp;rdquo;, que se refere ao usuário com privilégios máximos em sistemas linux, e &amp;ldquo;kit&amp;rdquo; que representa um conjunto de ferramentas utilizadas para controlar o sistema comprometido&#xA;O principal objetivo de um rootkit é garantir persistência, permitindo que um atacante continue acessando o sistema mesmo após reinicializações ou tentativas de remoção.</description>
     </item>
     <item>
       <title>Windows Architecture</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/tteuw/windows_architecture/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</guid>
       <description>Pré-requisitos: Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&#xA;Então, o que é realmente Arquitetura do Windows? É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</description>
     </item>
     <item>
       <title>buffer overflow in practice</title>
-      <link>https://pwnbuffer.github.io/pt-br/posts/slayer/bof/</link>
+      <link>https://pwnbuffer.org/pt-br/posts/slayer/bof/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/posts/slayer/bof/</guid>
+      <guid>https://pwnbuffer.org/pt-br/posts/slayer/bof/</guid>
       <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
     </item>
     <item>
       <title>Sobre</title>
-      <link>https://pwnbuffer.github.io/pt-br/about/</link>
+      <link>https://pwnbuffer.org/pt-br/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/about/</guid>
+      <guid>https://pwnbuffer.org/pt-br/about/</guid>
       <description>🇧🇷 Somos uma equipe brasileira de entusiastas de tecnologia e hacking.&#xA;Discord: server&#xA;&amp;ldquo;Acreditamos que o conhecimento deve ser livre&amp;rdquo; Link para o cabeçalho </description>
     </item>
     <item>
       <title>86daemon</title>
-      <link>https://pwnbuffer.github.io/pt-br/members/daemon/</link>
+      <link>https://pwnbuffer.org/pt-br/members/daemon/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/members/daemon/</guid>
+      <guid>https://pwnbuffer.org/pt-br/members/daemon/</guid>
       <description> github: 86daemon&#xA;Angel of i386 Link para o cabeçalho Nota _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
     </item>
     <item>
       <title>kz0x</title>
-      <link>https://pwnbuffer.github.io/pt-br/members/kz0x/</link>
+      <link>https://pwnbuffer.org/pt-br/members/kz0x/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/members/kz0x/</guid>
+      <guid>https://pwnbuffer.org/pt-br/members/kz0x/</guid>
       <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Nota Web hacking, exploit developer and Maldev </description>
     </item>
     <item>
       <title>Membros</title>
-      <link>https://pwnbuffer.github.io/pt-br/members/</link>
+      <link>https://pwnbuffer.org/pt-br/members/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/members/</guid>
+      <guid>https://pwnbuffer.org/pt-br/members/</guid>
       <description> daemon tteuw愛 slayer kz0x mount </description>
     </item>
     <item>
       <title>mount</title>
-      <link>https://pwnbuffer.github.io/pt-br/members/mount/</link>
+      <link>https://pwnbuffer.org/pt-br/members/mount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/members/mount/</guid>
+      <guid>https://pwnbuffer.org/pt-br/members/mount/</guid>
       <description> Nota malware developer, windows internals, active directory, low-level lover </description>
     </item>
     <item>
       <title>sl4yer</title>
-      <link>https://pwnbuffer.github.io/pt-br/members/slayer/</link>
+      <link>https://pwnbuffer.org/pt-br/members/slayer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/members/slayer/</guid>
+      <guid>https://pwnbuffer.org/pt-br/members/slayer/</guid>
       <description> github: slayerkkkk&#xA;Olá, me chamo slayer. Estou na área de segurança cibernética há 3 anos e atualmente estou estudando mais sobre low level Link para o cabeçalho Nota Low Level ⚙️ </description>
     </item>
     <item>
       <title>tteuw愛</title>
-      <link>https://pwnbuffer.github.io/pt-br/members/tteuw/</link>
+      <link>https://pwnbuffer.org/pt-br/members/tteuw/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/pt-br/members/tteuw/</guid>
+      <guid>https://pwnbuffer.org/pt-br/members/tteuw/</guid>
       <description> github: tteuw00111111&#xA;Nota software dev, maldev e analysis, curto engenharia reversa também. E um pouco de web (não o suficiente) </description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Maldev-Tteuw-Slayer on pwnbuffer</title>
-    <link>https://pwnbuffer.github.io/series/maldev-tteuw-slayer/</link>
+    <link>https://pwnbuffer.org/series/maldev-tteuw-slayer/</link>
     <description>Recent content in Maldev-Tteuw-Slayer on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://pwnbuffer.github.io/series/maldev-tteuw-slayer/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pwnbuffer.org/series/maldev-tteuw-slayer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows Architecture</title>
-      <link>https://pwnbuffer.github.io/posts/tteuw/windows_architecture/</link>
+      <link>https://pwnbuffer.org/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.github.io/posts/tteuw/windows_architecture/</guid>
+      <guid>https://pwnbuffer.org/posts/tteuw/windows_architecture/</guid>
       <description>Prerequisites: Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.&#xA;So what is actually Windows Architecture? It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</description>
     </item>
   </channel>
