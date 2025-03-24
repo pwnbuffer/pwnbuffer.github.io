@@ -735,5 +735,15 @@
                 />
   </url><url>
     <loc>https://pwnbuffer.org/wallpapers/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/pt-br/wallpapers/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/wallpapers/"
+                />
   </url>
 </urlset>

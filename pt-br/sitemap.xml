@@ -733,5 +733,17 @@
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/pt-br/m/tteuw/"
                 />
+  </url><url>
+    <loc>https://pwnbuffer.org/pt-br/wallpapers/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/wallpapers/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/pt-br/wallpapers/"
+                />
   </url>
 </urlset>
