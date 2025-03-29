@@ -30,7 +30,7 @@
       <description>https://tryhackme.com/room/dragonbyte&#xA;In this paper, I&amp;rsquo;m going to take you step by step through the Dragon Byte room, made by brother NullByte! From recon to root!&#xA;Reconnaissance Link to heading After starting the machine and obtaining the IP, the first thing we have to do is port scanning. In this CTF I used the RustScan tool to do the port scanning:&#xA;This scan revealed that we have 3 open ports, namely:</description>
     </item>
     <item>
-      <title>Rootkits em Firmware</title>
+      <title>Rootkits in Firmware</title>
       <link>https://pwnbuffer.org/posts/slayer/rootkits-firmware/</link>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/rootkits-firmware/</guid>
@@ -55,7 +55,7 @@
       <link>https://pwnbuffer.org/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/about/</guid>
-      <description>🇧🇷 We are a Brazilian team of technology and hacking enthusiasts.&#xA;Discord: server&#xA;&amp;ldquo;We believe that knowledge should be free&amp;rdquo; Link to heading </description>
+      <description>🇧🇷 We are a Brazilian team of technology and hacking enthusiasts.&#xA;Discord: server&#xA;Youtube: youtube channel&#xA;&amp;ldquo;We believe that knowledge should be free&amp;rdquo; Link to heading </description>
     </item>
     <item>
       <title>86daemon</title>
@@ -76,21 +76,28 @@
       <link>https://pwnbuffer.org/members/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/members/</guid>
-      <description> daemon tteuw愛 slayer kz0x mount nullbyte </description>
+      <description> daemon slayer kz0x raidboy nullbyte tteuw愛 mount </description>
     </item>
     <item>
       <title>mount</title>
       <link>https://pwnbuffer.org/m/mount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/m/mount/</guid>
-      <description> Note malware developer, windows internals, active directory, low-level lover </description>
+      <description> Note Malware developer, windows internals, active directory, low-level lover </description>
     </item>
     <item>
       <title>nullbyte</title>
       <link>https://pwnbuffer.org/m/nullbyte/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/m/nullbyte/</guid>
-      <description> github: NullByte-7w7&#xA;Note Codename NullByte, short program at dawn cyber projects, short web, infra, low level. I really like maldev and love to understand how windows sysinternal works. </description>
+      <description> github: NullByte-7w7&#xA;Note Codename NullByte, web, infra, low level. I really like maldev and love to understand how windows sysinternal works. </description>
+    </item>
+    <item>
+      <title>raidboy</title>
+      <link>https://pwnbuffer.org/m/raidboy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/m/raidboy/</guid>
+      <description> github: 0xb0y426&#xA;Note Hello, my name is RAIDBOY and I have been in the programming and cyber security field for 4 years. I like low-level programming, operating systems, physics and Pokémon. </description>
     </item>
     <item>
       <title>sl4yer</title>

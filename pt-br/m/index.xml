@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ms on pwnbuff3r</title>
+    <title>Ms on pwnbuffer</title>
     <link>https://pwnbuffer.org/pt-br/m/</link>
-    <description>Recent content in Ms on pwnbuff3r</description>
+    <description>Recent content in Ms on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
     <atom:link href="https://pwnbuffer.org/pt-br/m/index.xml" rel="self" type="application/rss+xml" />
@@ -19,21 +19,28 @@
       <link>https://pwnbuffer.org/pt-br/m/kz0x/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/m/kz0x/</guid>
-      <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Nota Web hacking, exploit developer and Maldev </description>
+      <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Nota Web hacking, desenvolvedor de exploit e Maldev </description>
     </item>
     <item>
       <title>mount</title>
       <link>https://pwnbuffer.org/pt-br/m/mount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/m/mount/</guid>
-      <description> Nota malware developer, windows internals, active directory, low-level lover </description>
+      <description> Nota Desenvolvedor de malware, windows internals, active directory, low-level lover </description>
     </item>
     <item>
       <title>nullbyte</title>
       <link>https://pwnbuffer.org/pt-br/m/nullbyte/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/m/nullbyte/</guid>
-      <description> github: NullByte-7w7&#xA;Nota Codename NullByte, short program at dawn cyber projects, short web, infra, low level. I really like maldev and love to understand how windows sysinternal works. </description>
+      <description> github: NullByte-7w7&#xA;Nota Codenome NullByte, web, infra, baixo nível. Eu realmente gosto de maldev e adoro entender como o windows sysinternal funciona. </description>
+    </item>
+    <item>
+      <title>raidboy</title>
+      <link>https://pwnbuffer.org/pt-br/m/raidboy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/pt-br/m/raidboy/</guid>
+      <description> github: 0xb0y426&#xA;Nota Olá, meu nome é RAIDBOY e estou na área de programação e segurança cibernética há 4 anos. Gosto de programação de baixo nível, sistemas operacionais, física e Pokémon. </description>
     </item>
     <item>
       <title>sl4yer</title>

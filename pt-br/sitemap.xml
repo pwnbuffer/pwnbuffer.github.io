@@ -457,6 +457,19 @@
                 href="https://pwnbuffer.org/pt-br/tags/architecture/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</loc>
+    <lastmod>2025-02-08T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/posts/tteuw/windows_architecture/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.org/pt-br/categories/low-level/</loc>
     <lastmod>2025-02-08T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -546,19 +559,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/pt-br/authors/tteuw/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</loc>
-    <lastmod>2025-02-08T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/posts/tteuw/windows_architecture/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/pt-br/tags/buffer-overflow/</loc>
@@ -708,6 +708,18 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/pt-br/m/nullbyte/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/pt-br/m/raidboy/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/m/raidboy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/pt-br/m/raidboy/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/pt-br/m/slayer/</loc>
