@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Memory on pwnbuff3r</title>
+    <title>Memory on pwnbuffer</title>
     <link>https://pwnbuffer.org/pt-br/tags/memory/</link>
-    <description>Recent content in Memory on pwnbuff3r</description>
+    <description>Recent content in Memory on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
     <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/pt-br/tags/memory/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Windows Architecture</title>
+      <title>Arquitetura do Windows</title>
       <link>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</guid>

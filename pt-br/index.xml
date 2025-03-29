@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>pwnbuff3r</title>
+    <title>pwnbuffer</title>
     <link>https://pwnbuffer.org/pt-br/</link>
-    <description>Recent content on pwnbuff3r</description>
+    <description>Recent content on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
     <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/pt-br/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Privilege Escalation in Linux</title>
+      <title>Privilege Escalation no Linux</title>
       <link>https://pwnbuffer.org/pt-br/posts/slayer/privesc-linux/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/posts/slayer/privesc-linux/</guid>
@@ -37,14 +37,14 @@
       <description>O que é um Rootkit? Link para o cabeçalho Um rootkit é um tipo de malware projetado para obter e manter acesso privilegiado a um sistema, ao mesmo tempo em que oculta sua presença. O termo vem da junção de &amp;ldquo;root&amp;rdquo;, que se refere ao usuário com privilégios máximos em sistemas linux, e &amp;ldquo;kit&amp;rdquo; que representa um conjunto de ferramentas utilizadas para controlar o sistema comprometido&#xA;O principal objetivo de um rootkit é garantir persistência, permitindo que um atacante continue acessando o sistema mesmo após reinicializações ou tentativas de remoção.</description>
     </item>
     <item>
-      <title>Windows Architecture</title>
+      <title>Arquitetura do Windows</title>
       <link>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/</guid>
       <description>Pré-requisitos: Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&#xA;Então, o que é realmente Arquitetura do Windows? É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</description>
     </item>
     <item>
-      <title>buffer overflow in practice</title>
+      <title>buffer overflow na prática</title>
       <link>https://pwnbuffer.org/pt-br/posts/slayer/bof/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/posts/slayer/bof/</guid>
@@ -55,7 +55,7 @@
       <link>https://pwnbuffer.org/pt-br/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/about/</guid>
-      <description>🇧🇷 Somos uma equipe brasileira de entusiastas de tecnologia e hacking.&#xA;Discord: server&#xA;&amp;ldquo;Acreditamos que o conhecimento deve ser livre&amp;rdquo; Link para o cabeçalho </description>
+      <description>🇧🇷 Somos uma equipe brasileira de entusiastas de tecnologia e hacking.&#xA;Discord: server&#xA;Youtube: youtube channel&#xA;&amp;ldquo;Acreditamos que o conhecimento deve ser livre&amp;rdquo; Link para o cabeçalho </description>
     </item>
     <item>
       <title>86daemon</title>
@@ -69,28 +69,35 @@
       <link>https://pwnbuffer.org/pt-br/m/kz0x/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/m/kz0x/</guid>
-      <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Nota Web hacking, exploit developer and Maldev </description>
+      <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Nota Web hacking, desenvolvedor de exploit e Maldev </description>
     </item>
     <item>
       <title>Membros</title>
       <link>https://pwnbuffer.org/pt-br/members/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/members/</guid>
-      <description> daemon tteuw愛 slayer kz0x mount nullbyte </description>
+      <description> daemon slayer kz0x raidboy nullbyte tteuw愛 mount </description>
     </item>
     <item>
       <title>mount</title>
       <link>https://pwnbuffer.org/pt-br/m/mount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/m/mount/</guid>
-      <description> Nota malware developer, windows internals, active directory, low-level lover </description>
+      <description> Nota Desenvolvedor de malware, windows internals, active directory, low-level lover </description>
     </item>
     <item>
       <title>nullbyte</title>
       <link>https://pwnbuffer.org/pt-br/m/nullbyte/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/pt-br/m/nullbyte/</guid>
-      <description> github: NullByte-7w7&#xA;Nota Codename NullByte, short program at dawn cyber projects, short web, infra, low level. I really like maldev and love to understand how windows sysinternal works. </description>
+      <description> github: NullByte-7w7&#xA;Nota Codenome NullByte, web, infra, baixo nível. Eu realmente gosto de maldev e adoro entender como o windows sysinternal funciona. </description>
+    </item>
+    <item>
+      <title>raidboy</title>
+      <link>https://pwnbuffer.org/pt-br/m/raidboy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/pt-br/m/raidboy/</guid>
+      <description> github: 0xb0y426&#xA;Nota Olá, meu nome é RAIDBOY e estou na área de programação e segurança cibernética há 4 anos. Gosto de programação de baixo nível, sistemas operacionais, física e Pokémon. </description>
     </item>
     <item>
       <title>sl4yer</title>
