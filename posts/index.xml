@@ -6,8 +6,15 @@
     <description>Recent content in Posts on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Defense Evasion</title>
+      <link>https://pwnbuffer.org/posts/mount/edr-bypass/</link>
+      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/posts/mount/edr-bypass/</guid>
+      <description>1. Introduction Link to heading EDR solutions a.k.a (Endpoint Detection and Response) are an evolution of the security software we know as antivirus. Modern EDRs use advanced techniques to detect threats, hooking APIs, isolating the host from the internet, analyzing behavior, and classifying detections based on Indicator of Compromise (IOC) rules classified by MITRE ATT&amp;amp;CK.&#xA;In this article, I will demonstrate how to bypass EDRs using evasive techniques.&#xA;2. Technical Analysis Link to heading In a real attack, it is common to use &amp;ldquo;Loaders&amp;rdquo; and &amp;ldquo;Droppers&amp;rdquo; that load the main malware, going through stages.</description>
+    </item>
     <item>
       <title>Privilege Escalation in Linux</title>
       <link>https://pwnbuffer.org/posts/slayer/privesc-linux/</link>
