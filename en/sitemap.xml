@@ -754,6 +754,18 @@
                 href="https://pwnbuffer.org/m/daemon/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.org/m/blackout/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/pt-br/m/blackout/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/m/blackout/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.org/m/kz0x/</loc>
     <xhtml:link
                 rel="alternate"
