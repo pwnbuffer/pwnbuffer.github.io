@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <title>
-  buffer overflow in practice · pwnbuffer
+  buffer overflow na prática · pwnbuffer
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +13,20 @@
 
 
 <meta name="author" content="pwnbuffer">
-<meta name="description" content="buffer overflow in practice">
+<meta name="description" content="buffer overflow na prática">
 <meta name="keywords" content="team brazuca!">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="buffer overflow in practice">
-  <meta name="twitter:description" content="buffer overflow in practice">
+  <meta name="twitter:title" content="buffer overflow na prática">
+  <meta name="twitter:description" content="buffer overflow na prática">
 
 <meta property="og:url" content="https://pwnbuffer.org/posts/slayer/bof/">
   <meta property="og:site_name" content="pwnbuffer">
-  <meta property="og:title" content="buffer overflow in practice">
-  <meta property="og:description" content="buffer overflow in practice">
-  <meta property="og:locale" content="en">
+  <meta property="og:title" content="buffer overflow na prática">
+  <meta property="og:description" content="buffer overflow na prática">
+  <meta property="og:locale" content="pt_br">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-02-07T00:00:00+00:00">
@@ -112,19 +112,19 @@
         
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/about/">About</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Posts</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categories</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/members/">Members</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
             </li>
           
             <li class="navigation-item">
@@ -144,7 +144,7 @@
                 
               
               <li class="navigation-item">
-                <a href="https://pwnbuffer.org/pt-br/posts/slayer/bof/">🇧🇷</a>
+                <a href="https://pwnbuffer.org/en/posts/slayer/bof/">🇺🇸</a>
               </li>
             
           
@@ -163,7 +163,7 @@
         <div class="post-title">
           <h1 class="title">
             <a class="title-link" href="https://pwnbuffer.org/posts/slayer/bof/">
-              buffer overflow in practice
+              buffer overflow na prática
             </a>
           </h1>
         </div>
@@ -172,12 +172,12 @@
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2025-02-07T00:00:00Z">
-                February 7, 2025
+                fevereiro 7, 2025
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              4-minute read
+              4 minutos de leitura
             </span>
           </div>
           <div class="authors">
@@ -207,24 +207,24 @@
 
       <div class="post-content">
         
-        <h1 id="what-is-buffer-overflow">
-  What is buffer overflow?
-  <a class="heading-link" href="#what-is-buffer-overflow">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+        <h1 id="o-que-é-buffer-overflow">
+  O que é buffer overflow?
+  <a class="heading-link" href="#o-que-%c3%a9-buffer-overflow">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p><strong>Buffer overflow (BOF) is one of the most wellknown and historically significant vulnerabilities in the world of cybersecurity. It occurs when a program writes more data to a buffer than it can hold, causing memory corruption. This flaw can be exploited by pentesters to execute arbitrary code, modify program behavior, or cause a crash.</strong></p>
-<p><strong>Despite the introduction of modern security mechanisms such as ASLR and stack canaries, buffer overflow remains a critical topic in exploit development and pentesting. Understanding how BOF works, how to detect it, and how to exploit it is essential.</strong></p>
-<p><strong>In this article, we will create a simple C program, which is intentionally vulnerable and an exploit in python.</strong></p>
-<h1 id="hands-on">
-  hands on!
-  <a class="heading-link" href="#hands-on">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p><strong>Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.</strong></p>
+<p><strong>Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting. Compreender como o BOF funciona, como detectá-lo e explorá-lo é essencial.</strong></p>
+<p><strong>Neste artigo, criaremos um programa simples em C, propositalmente vulnerável, e um exploit em Python.</strong></p>
+<h1 id="mãos-à-obra">
+  Mãos à obra!
+  <a class="heading-link" href="#m%c3%a3os-%c3%a0-obra">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p><strong>Lets go! For this simple paper i created a code in C for us to practice:</strong></p>
+<p><strong>Vamos lá! Para este artigo simples, criei um código em C para praticarmos:</strong></p>
 
 
 
@@ -274,27 +274,27 @@
 
 
 
-<p><strong>This code is vulnerable to BOF due to the use of the <code>gets()</code> function, which does not perform bounds checking on the input provided. The <code>gets()</code> reads input from the user and stores it into the buffer <code>char buffer[64]</code>. However, it doesn&rsquo;t check the size of the input. If the input exceeds the allocated size of 64 bytes, it will overwrite adjacent memory locations, which can lead to unpredictable behavior, including the ability to overwrite the return address of the <code>funcvuln()</code> function. If the user inputs more than 64 characters, the extra characters will overflow the <code>buffer</code> and may overwrite the saved return address in the stack. This could potentially allow an attacker to control the flow of the program by redirecting the execution to the <code>secret()</code> function, which prints <code>BOF explorado</code>!</strong></p>
-<p><strong>To compile code so that it is vulnerable to BOF, we need to ensure that modern compiler protections such as SSP, DEP, and ASLR are disabled: <code>gcc -fno-stack-protector -z noexecstack -std=gnu99 -o bof bof.c</code></strong></p>
-<p><strong>After compiling the binary, we can see that a warning message appears!</strong></p>
-<p><img alt="Error gcc" src="https://pwnbuffer.org/images/slayer/bof/error_gcc.png"></p>
-<p><strong>We must also disable ASLR for our current session: <code>echo 0 | sudo tee /proc/sys/kernel/randomize_va_space</code></strong></p>
-<p><strong>Now, lets finally explore BOF!</strong></p>
-<h1 id="exploitation">
-  Exploitation!
-  <a class="heading-link" href="#exploitation">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p><strong>Este código é vulnerável a BOF devido ao uso da função <code>gets()</code>, que não realiza verificações de limite sobre a entrada fornecida. A função <code>gets()</code> lê a entrada do usuário e a armazena no buffer <code>char buffer[64]</code>. No entanto, ela não verifica o tamanho da entrada. Se o input exceder os 64 bytes alocados, ele sobrescreverá locais adjacentes da memória, o que pode levar a um comportamento imprevisível, incluindo a capacidade de sobrescrever o endereço de retorno da função <code>funcvuln()</code>. Se o usuário inserir mais de 64 caracteres, os caracteres extras transbordarão o <code>buffer</code> e poderão sobrescrever o endereço de retorno salvo na pilha. Isso pode permitir que um invasor controle o fluxo do programa, redirecionando a execução para a função <code>secret()</code>, que imprime <code>BOF explorado</code>!</strong></p>
+<p><strong>Para compilar o código de forma que ele permaneça vulnerável ao BOF, precisamos garantir que as proteções modernas do compilador, como SSP, DEP e ASLR, estejam desativadas: <code>gcc -fno-stack-protector -z noexecstack -std=gnu99 -o bof bof.c</code></strong></p>
+<p><strong>Após compilar o binário, podemos ver que uma mensagem de aviso aparece!</strong></p>
+<p><img alt="Erro gcc" src="https://pwnbuffer.org/images/slayer/bof/error_gcc.png"></p>
+<p><strong>Também devemos desativar o ASLR para nossa sessão atual: <code>echo 0 | sudo tee /proc/sys/kernel/randomize_va_space</code></strong></p>
+<p><strong>Agora, vamos finalmente explorar o BOF!</strong></p>
+<h1 id="exploração">
+  Exploração!
+  <a class="heading-link" href="#explora%c3%a7%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p><strong>Get to work! Lets use gdb to analyze the binary and better understand how it behaves in memory. This will help us find the correct offset to override the function return: <code>gdb ./bof</code></strong></p>
-<p><strong>The first thing I did when starting gdb was to use <code>info functions</code> to list the functions present in the binary:</strong></p>
-<p><img alt="Command" src="https://pwnbuffer.org/images/slayer/bof/info_command.png"></p>
-<p><strong>Now that we have found the function addresses, lets pop the BOF and see if there are any changes:</strong></p>
-<p><img alt="Command" src="https://pwnbuffer.org/images/slayer/bof/BOOM.png"></p>
-<p><strong>eee&hellip; BOOM! We overflowed the buffer and received a <code>Segmentation fault.</code>! After that, we list the function again&hellip;</strong></p>
-<p><img alt="Command" src="https://pwnbuffer.org/images/slayer/bof/secret.png"></p>
-<p><strong>BOOYHA! The function address that was previously <code>0x0000000000001159</code> has now become <code>0x555555555159</code>! We will use this new address to explore! To do this, we will create an exploit where a payload will be sent that exceeds the buffer size, overwriting the return address of the <code>funcvuln()</code> function:</strong></p>
+<p><strong>Mãos à obra! Vamos usar o gdb para analisar o binário e entender melhor como ele se comporta na memória. Isso nos ajudará a encontrar o deslocamento correto para sobrescrever a função de retorno: <code>gdb ./bof</code></strong></p>
+<p><strong>A primeira coisa que fiz ao iniciar o gdb foi usar <code>info functions</code> para listar as funções presentes no binário:</strong></p>
+<p><img alt="Comando" src="https://pwnbuffer.org/images/slayer/bof/info_command.png"></p>
+<p><strong>Agora que encontramos os endereços das funções, vamos disparar o BOF e ver se há alguma alteração:</strong></p>
+<p><img alt="Comando" src="https://pwnbuffer.org/images/slayer/bof/BOOM.png"></p>
+<p><strong>eee&hellip; BOOM! Transbordamos o buffer e recebemos um <code>Segmentation fault.</code>! Depois disso, listamos as funções novamente&hellip;</strong></p>
+<p><img alt="Comando" src="https://pwnbuffer.org/images/slayer/bof/secret.png"></p>
+<p><strong>BOOYHA! O endereço da função que antes era <code>0x0000000000001159</code> agora se tornou <code>0x555555555159</code>! Usaremos esse novo endereço para explorar! Para isso, criaremos um exploit onde um payload será enviado, ultrapassando o tamanho do buffer e sobrescrevendo o endereço de retorno da função <code>funcvuln()</code>:</strong></p>
 
 
 
@@ -332,11 +332,11 @@
 
 
 
-<p><strong>And theres the exploit. But lets understand how it works! First, it imports the pwntools functions, and sets the address of the <code>secret()</code> function, <code>p64()</code> converts the address to 64 bit format, because on 64 bit systems, memory addresses are 8 bytes.</strong></p>
-<p><strong>After setting and converting the address, we create the payload. <code>b&quot;A&quot; * 72</code> creates a 72 byte string of <code>'A'</code> to fill the stack to the point where the return address of the <code>funcvuln()</code> function is stored, and the <code>+ address</code> adds the address of the <code>secret()</code> function to the end, replacing the return address of <code>funcvuln()</code></strong></p>
-<p><strong>Now that the exploit has been explained, LET&rsquo;S EXPLOIT!</strong></p>
-<p><img alt="Command" src="https://pwnbuffer.org/images/slayer/bof/exploited.png"></p>
-<p><strong>And as expected, we managed to explore this BOF! This is a very basic example, just to demonstrate the practical logic of how a buffer overflow attack can happen ;)</strong></p>
+<p><strong>E aí está o exploit. Mas vamos entender como ele funciona! Primeiro, ele importa as funções do pwntools e define o endereço da função <code>secret()</code>. A função <code>p64()</code> converte o endereço para o formato de 64 bits, pois em sistemas de 64 bits, os endereços de memória têm 8 bytes.</strong></p>
+<p><strong>Após definir e converter o endereço, criamos o payload. <code>b&quot;A&quot; * 72</code> cria uma string de 72 bytes contendo <code>'A'</code> para preencher a pilha até o ponto onde o endereço de retorno da função <code>funcvuln()</code> está armazenado, e <code>+ address</code> adiciona o endereço da função <code>secret()</code> no final, substituindo o endereço de retorno de <code>funcvuln()</code>.</strong></p>
+<p><strong>Agora que o exploit foi explicado, VAMOS EXPLORAR!</strong></p>
+<p><img alt="Comando" src="https://pwnbuffer.org/images/slayer/bof/exploited.png"></p>
+<p><strong>E como esperado, conseguimos explorar este BOF! Este é um exemplo bem básico, apenas para demonstrar a lógica prática de como um ataque de buffer overflow pode acontecer ;)</strong></p>
 
       </div>
 
@@ -384,7 +384,7 @@
      pwnbuffer 
     ·
     
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
     
   </section>
 </footer>

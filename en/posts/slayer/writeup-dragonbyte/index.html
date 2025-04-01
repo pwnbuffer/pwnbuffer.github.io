@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Writeup THM - Dragon Byte · pwnbuffer
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="pwnbuffer">
+<meta name="description" content="Dragonbyte ctf walkthrough">
+<meta name="keywords" content="team brazuca!">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Writeup THM - Dragon Byte">
+  <meta name="twitter:description" content="Dragonbyte ctf walkthrough">
+
+<meta property="og:url" content="https://pwnbuffer.org/en/posts/slayer/writeup-dragonbyte/">
+  <meta property="og:site_name" content="pwnbuffer">
+  <meta property="og:title" content="Writeup THM - Dragon Byte">
+  <meta property="og:description" content="Dragonbyte ctf walkthrough">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-09T00:00:00+00:00">
+    <meta property="article:tag" content="Tryhackme">
+    <meta property="article:tag" content="Web-Hacking">
+    <meta property="article:tag" content="Writeup">
+    <meta property="article:tag" content="Walkthrough">
+
+
+
+
+<link rel="canonical" href="https://pwnbuffer.org/en/posts/slayer/writeup-dragonbyte/">
+
+
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="https://pwnbuffer.org/css/coder.min.b886fe0d9034709648f91f4ce178f51dd367d9350f82dd1132d54fd69bfca66f.css" integrity="sha256-uIb&#43;DZA0cJZI&#43;R9M4Xj1HdNn2TUPgt0RMtVP1pv8pm8=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="https://pwnbuffer.org/css/coder-dark.min.165f5fe7c98269a5cfc54f81472e0f84ebc32d92bbe6c9db1f06962b0817bda1.css" integrity="sha256-Fl9f58mCaaXPxU&#43;BRy4PhOvDLZK75snbHwaWKwgXvaE=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://pwnbuffer.org/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-32x32.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-16x16.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+
+<link rel="manifest" href="https://pwnbuffer.org/site.webmanifest">
+<link rel="mask-icon" href="https://pwnbuffer.org/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://pwnbuffer.org/en/">
+      pwnbuffer
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/categories/">Categories</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/members/">Members</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/wallpapers/">Wallpapers</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://pwnbuffer.org/posts/slayer/writeup-dragonbyte/">🇧🇷</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://pwnbuffer.org/en/posts/slayer/writeup-dragonbyte/">
+              Writeup THM - Dragon Byte
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-03-09T00:00:00Z">
+                March 9, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              9-minute read
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/en/authors/slayer/">Slayer</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/en/categories/web/">Web</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/en/categories/hacking/">Hacking</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/tryhackme/">Tryhackme</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/web-hacking/">Web-Hacking</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/writeup/">Writeup</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/walkthrough/">Walkthrough</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p><a href="https://tryhackme.com/room/dragonbyte"  class="external-link" target="_blank" rel="noopener">https://tryhackme.com/room/dragonbyte</a></p>
+<p><strong>In this paper, I&rsquo;m going to take you step by step through the Dragon Byte room, made by brother NullByte! From recon to root!</strong></p>
+<h1 id="reconnaissance">
+  Reconnaissance
+  <a class="heading-link" href="#reconnaissance">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p><strong>After starting the machine and obtaining the IP, the first thing we have to do is port scanning. In this CTF I used the RustScan tool to do the port scanning:</strong></p>
+<p><img alt="1" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/rustscan.png"></p>
+<p><strong>This scan revealed that we have 3 open ports, namely:</strong></p>
+<ul>
+<li><strong>9000 - http</strong></li>
+<li><strong>6048 - x11</strong></li>
+<li><strong>65200 - ???</strong></li>
+</ul>
+<p><strong>We discovered that instead of using the standard port 80, the HTTP service is running on port 9000! With this information in hand, let&rsquo;s open the address in the browser and check the content provided.</strong></p>
+<p><img alt="2" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/port9000.png"></p>
+<p><strong>As soon as we access the URL, we see the standard Nginx page, which indicates that the web server is active, but doesn&rsquo;t reveal much else. For the time being, there are no visible applications or custom content being served, just the default index.</strong></p>
+<p><strong>Given this, an interesting approach is to perform directory fuzzing, with the aim of finding out if there are other directories or files accessible beyond this default home page. Here we&rsquo;ll use gobuster to do this directory fuzzing</strong></p>
+<p><img alt="3" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/gobuster.png"></p>
+<p><strong>After brute-forcing directories with gobuster, we were able to identify the existence of a directory called <code>/corp</code> on the server. With this discovery, the next step is to access this directory via the browser to view the content it provides!</strong></p>
+<p><img alt="4" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/corp-http.png"></p>
+<p><strong>When we access the /corp directory, we come across a deface displaying the message “OWN3D BY Dragon Byte”. This indicates that someone has been here before us and compromised this server! The attacker probably left this mark as a kind of “signature”, common in intrusions where the aim is to demonstrate that the system has been breached!</strong></p>
+<p><strong>Anyway, now that we know about the existence of the /corp directory and that this target has been compromised before (as we saw in the deface left by “Dragon Byte”), it&rsquo;s a good indication that there may be other hidden files or directories there. Often, after an invasion, attackers leave behind backdoors, tools or sensitive files that can be useful for further analysis or even to facilitate access to the system. Therefore, we are going to carry out a new directory fuzzing specifically within the /corp directory, using Gobuster, to try to identify possible hidden resources that could provide us with more information or open up new possibilities for exploitation.</strong></p>
+<p><img alt="5" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/gobuster-corp.png"></p>
+<p><strong>And voilà! During directory fuzzing in the <code>/corp</code> directory, we found an interesting new path, <code>/images</code>. Upon accessing it, we noticed that there is an index listing enabled, the famous index of, allowing direct viewing of the files present in this directory without any type of restriction or authentication.</strong></p>
+<p><strong>In addition, we were able to identify that the server is running Nginx version 1.18.0, which can be useful for checking for known vulnerabilities or exploits specific to this version.</strong></p>
+<p><strong>With index listing enabled and this information in hand, let&rsquo;s take a closer look at this directory in search of misconfigurations that could help us move forward with exploiting the target.</strong></p>
+<p><img alt="6" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/images.png"></p>
+<p><strong>In version 1.18.0 of Nginx, one of the most famous misconfigurations is the path traversal, where the attacker can access files, directories and the like that are outside the website, being able to access files such as /etc/passwd and so on. In the case of Nginx, imagine that Nginx was configured like this in <code>nginx.conf</code>:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-0-0:checked ~ .tab-content-0-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-0" id="tab-0-0" checked/>
+<label for="tab-0-0" class="tab-label">nginx.conf</label>
+<div class="tab-content tab-content-0-0">
+  <pre tabindex="0"><code class="language-conf" data-lang="conf">server {
+    listen 80;
+    server_name pwnbuffer.org;
+
+    location /images/ {
+        root /var/www/public/;
+        autoindex on;
+    }
+}
+</code></pre>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>What happens here is quite simple, the URL <code>http://pwnbuffer.org/images/foo.png</code> fetches the file from the path: <code>/var/www/public/images/foo.png</code>. But&hellip; this configuration is vulnerable because root has been used, and location automatically adds the prefix /images/ to the root path. So, if we put a colon after “images”, like this: <code>/images../</code> we&rsquo;ll fall straight to the root of the system!</strong></p>
+<p><img alt="7" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/images-traversal.png"></p>
+<p><strong>We were able to successfully exploit the traversal path, which allowed us to access files outside the originally allowed directory. Now, with access to restricted locations on the system, let&rsquo;s go one step further and investigate the home of the “corp” user. Let&rsquo;s check which files he is storing there, as they may contain useful information, such as settings, credentials or even scripts left behind.</strong></p>
+<p><img alt="8" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/home-corp.png"></p>
+<p><strong>And here we have two notable files, user.txt and note.txt, when I tried to open user.txt, I got a 403, but note.txt revealed that there is a gdbserver running on port 6048!</strong></p>
+<p><img alt="9" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/home-corp-note.txt.png"></p>
+<p><strong>Now, with this information, we can access the target through gdb! So, I started gdb by literally running <code>gdb</code> in the terminal and used the target to connect.</strong></p>
+<p><img alt="10" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/gdb-target.png"></p>
+<p><strong>Now that we are connected to the machine, the next step was to access the <code>.bash_history</code> file to check the commands that were executed in the terminal. This file stores a history of the commands typed, which can provide us with valuable information about what was previously done on the machine. The idea is to see if any sensitive data has been leaked, such as passwords, tokens or file paths that could help us advance in the exploration. If we don&rsquo;t find anything interesting there, we can continue our investigation in other ways, but <code>.bash_history</code> is always a good starting point for discovering past activities or uncovering flaws.</strong></p>
+<p><img alt="11" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/get-password.png"></p>
+<p><strong>Inside the <code>.bash_history</code> file, we found a password <code>corp2020</code>. This can be a major breakthrough in exploitation, as we now have credentials that can grant us access to other areas of the system or even protected services. With this information, we can try to log in to other parts of the machine or try to abuse permissions to escalate privileges, if necessary. This type of discovery is a great example of how a simple history file can reveal secrets that facilitate exploitation.</strong></p>
+<p><img alt="12" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/cat-password.png"></p>
+<p><strong>Now that we have the username and password, let&rsquo;s try logging in via SSH to gain full access to the machine. However, as we saw earlier, port 22, which is the default port for the SSH service, is not open. We know that an HTTP service is running on port 9000 and the GDB server is active on port 6048, but we still have a question&hellip; Which service is running on port 65200? So, let&rsquo;s check with netcat:</strong></p>
+<p><img alt="13" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/ssh-port.png"></p>
+<p><strong>And there it is! Port 65200 is running the SSH service. Now, with the correct port identified, let&rsquo;s try logging in to SSH using the user “corp” and the password corp2020 that we found earlier. This will give us full access to the machine and we can explore the system further, checking settings, files and possibly escalating privileges to get root.</strong></p>
+<p><img alt="14" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/get-ssh.png"></p>
+<p><strong>Let&rsquo;s take the opportunity to get the flag!</strong></p>
+<p><img alt="15" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/get-flag-user.png"></p>
+<p><strong>Boom&hellip; Login successful! Now that we&rsquo;re inside the system via SSH, the next step is to check that we have sudo privileges. To do this, let&rsquo;s run the <code>sudo -l</code> command, which lists the commands that the user is allowed to run with root privileges. This helps us to understand if there are any privilege escalation vulnerabilities or if we can execute critical commands on the system without needing an additional password.</strong></p>
+<p><img alt="16" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/privesc-sudo-l.png"></p>
+<p><strong>Well, the result of <code>sudo -l</code> revealed something quite interesting (and unusual): we have permission to execute the kill command as root, without needing a password. This already draws attention, as it&rsquo;s not at all common to grant root privileges for a command like kill. So, let&rsquo;s take a look at the kill binary&rsquo;s shared libs and see if we can find anything strange&hellip;</strong></p>
+<p><img alt="17" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/ldd-kill.png"></p>
+<p><strong>A shared lib called <code>libcz.so</code>, loaded along with other system libraries. What struck me was that, normally, we expect to see standard libraries such as libc, libpthread, libm, among others that are essential for the system to work. However, this libcz.so deviates from the standard and raises suspicions.</strong></p>
+<p><strong>Let&rsquo;s take a closer look at this library. It could be a malicious library, some kind of backdoor or, perhaps, part of a custom configuration that can be exploited to our advantage. Time to investigate the contents of this libcz.so and understand its role in the system.</strong></p>
+<p><strong>Let&rsquo;s take the libcz.so file from the target machine and transfer it to our local machine, where we can analyze it more calmly and safely. The idea is to reverse engineer this library to understand exactly what it does, especially in the context of the <code>kill</code> command, since it was the only binary listed in <code>sudo -l</code> that we can run as root.</strong></p>
+<p><strong>To do this, we can use tools like scp to transfer the file via SSH, or even use a simple HTTP server with <code>python -m http.server 1337</code> on the target to download it directly. With <code>libcz.so</code> in hand, let&rsquo;s inspect its contents using utilities such as strings, objdump, readelf or even open it in Ghidra or IDA for a more in-depth analysis.</strong></p>
+<p><strong>Our goal is to identify if this library is being used by a kill wrapper or if there is any malicious or privileged code execution that we can take advantage of to gain root access.</strong></p>
+<p><img alt="18" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/disas-kill.png"></p>
+<p><strong>We disassembled the <code>libcz.so</code> library using the command <code>objdump -d -M intel libcz.so</code>, and right away we found something interesting. At address <code>1363</code>, the value <code>0x539</code> is being saved on the stack. Later in the execution, we realize that this value is used as an argument for the <code>kill</code> call. So far, it might seem like an ordinary call, but the behavior of this function goes much further.</strong></p>
+<p><strong>When analyzing the <code>kill</code> function implemented in this library, we noticed several suspicious operations. It reads user input, compares strings, executes commands via the <code>system</code> function, opens sockets and even redirects data input and output. This behavior is not at all typical of a simple kill function&hellip; On the contrary, it smells strongly of a backdoor!</strong></p>
+<p><strong>The pattern of these actions indicates that the library may be listening for specific commands or manipulating data to provide remote access to the system, possibly granting elevated privileges or creating a reverse shell, when passed the <code>1337</code> argument.</strong></p>
+<p><img alt="19" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/kill-1337.png"></p>
+<p><strong>As expected, we managed to execute the backdoor embedded in <code>libcz.so</code>. When we activated it, it asked for an authentication password, which was to be expected considering the suspicious behavior we saw during the disassembly analysis. However, protection was not an obstacle; with a simple <code>strings libcz.so</code> command, we were able to easily find the password embedded in the library itself. The password is <code>dragon</code>!</strong></p>
+<p><strong>With the dragon password inserted into the backdoor, we were able to open a hidden control panel, which offers us some interesting options, including the possibility of receiving a reverse shell directly from the target machine.</strong></p>
+<p><strong>When we run the <code>kill 1337</code> command, we get a reverse shell, but it connects with permissions from the corp user. However, if we run the same command with sudo, i.e. <code>sudo kill 1337</code>, the reverse shell we receive is with root privileges!</strong></p>
+<p><img alt="20" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/revshell-set.png"></p>
+<p><strong>So we set the port and IP to receive the reverse shell and&hellip;</strong></p>
+<p><img alt="21" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/get-root.png"></p>
+<p><strong>BOOOOOOOM! We&rsquo;ve rooted the machine! Now just be happy and get your root flag :)</strong></p>
+<p><img alt="22" src="https://pwnbuffer.org/images/slayer/writeup-dragonbyte/get-root-flag.png"></p>
+<p><strong>Thanks for reading this far &amp; happy hacking!</strong></p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     pwnbuffer 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="https://pwnbuffer.org/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

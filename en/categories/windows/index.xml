@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on pwnbuffer</title>
+    <link>https://pwnbuffer.org/en/categories/windows/</link>
+    <description>Recent content in Windows on pwnbuffer</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.org/en/categories/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Defense Evasion</title>
+      <link>https://pwnbuffer.org/en/posts/mount/edr-bypass/</link>
+      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/posts/mount/edr-bypass/</guid>
+      <description>1. Introduction Link to heading EDR solutions a.k.a (Endpoint Detection and Response) are an evolution of the security software we know as antivirus. Modern EDRs use advanced techniques to detect threats, hooking APIs, isolating the host from the internet, analyzing behavior, and classifying detections based on Indicator of Compromise (IOC) rules classified by MITRE ATT&amp;amp;CK.&#xA;In this article, I will demonstrate how to bypass EDRs using evasive techniques.&#xA;2. Technical Analysis Link to heading In a real attack, it is common to use &amp;ldquo;Loaders&amp;rdquo; and &amp;ldquo;Droppers&amp;rdquo; that load the main malware, going through stages.</description>
+    </item>
+    <item>
+      <title>Exploring Active Directory</title>
+      <link>https://pwnbuffer.org/en/posts/mount/adxpl/</link>
+      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/posts/mount/adxpl/</guid>
+      <description>1. introduction Link to heading Active Directory (AD) is a tool for network administrators, enabling the creation and management of domains, users and objects within a corporate network. Through AD, it is possible to connect all machines to a DC (Domain Controler) server. to a DC (Domain Controler) server which authenticates users using the kerberos protocol.&#xA;For example, an administrator can create a group of users within the corp.local domain and grant them specific privileges to access folders or internal systems.</description>
+    </item>
+    <item>
+      <title>Windows Architecture</title>
+      <link>https://pwnbuffer.org/en/posts/tteuw/windows_architecture/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/posts/tteuw/windows_architecture/</guid>
+      <description>Prerequisites: Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.&#xA;So what is actually Windows Architecture? It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</description>
+    </item>
+  </channel>
+</rss>

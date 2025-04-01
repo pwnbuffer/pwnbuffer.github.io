@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <title>
-  Windows Architecture · pwnbuffer
+  Arquitetura do Windows · pwnbuffer
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +13,20 @@
 
 
 <meta name="author" content="pwnbuffer">
-<meta name="description" content="Windows Architecute for malware development">
+<meta name="description" content="Arquitetura do Windows para desenvolvimento de malware">
 <meta name="keywords" content="team brazuca!">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Windows Architecture">
-  <meta name="twitter:description" content="Windows Architecute for malware development">
+  <meta name="twitter:title" content="Arquitetura do Windows">
+  <meta name="twitter:description" content="Arquitetura do Windows para desenvolvimento de malware">
 
 <meta property="og:url" content="https://pwnbuffer.org/posts/tteuw/windows_architecture/">
   <meta property="og:site_name" content="pwnbuffer">
-  <meta property="og:title" content="Windows Architecture">
-  <meta property="og:description" content="Windows Architecute for malware development">
-  <meta property="og:locale" content="en">
+  <meta property="og:title" content="Arquitetura do Windows">
+  <meta property="og:description" content="Arquitetura do Windows para desenvolvimento de malware">
+  <meta property="og:locale" content="pt_br">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-02-08T00:00:00+00:00">
@@ -115,19 +115,19 @@
         
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/about/">About</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Posts</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categories</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/members/">Members</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
             </li>
           
             <li class="navigation-item">
@@ -147,7 +147,7 @@
                 
               
               <li class="navigation-item">
-                <a href="https://pwnbuffer.org/pt-br/posts/tteuw/windows_architecture/">🇧🇷</a>
+                <a href="https://pwnbuffer.org/en/posts/tteuw/windows_architecture/">🇺🇸</a>
               </li>
             
           
@@ -166,7 +166,7 @@
         <div class="post-title">
           <h1 class="title">
             <a class="title-link" href="https://pwnbuffer.org/posts/tteuw/windows_architecture/">
-              Windows Architecture
+              Arquitetura do Windows
             </a>
           </h1>
         </div>
@@ -175,12 +175,12 @@
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2025-02-08T00:00:00Z">
-                February 8, 2025
+                fevereiro 8, 2025
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              11-minute read
+              13 minutos de leitura
             </span>
           </div>
           <div class="authors">
@@ -224,213 +224,208 @@
 
       <div class="post-content">
         
-        <p><strong>Prerequisites:</strong>
-Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.</p>
-<p>So what is actually <strong>Windows Architecture</strong>?
-It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</p>
-<h1 id="windows-architecture">
-  Windows Architecture
-  <a class="heading-link" href="#windows-architecture">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+        <p><strong>Pré-requisitos:</strong>
+Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.</p>
+<p>Então, o que é realmente <strong>Arquitetura do Windows</strong>?
+É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</p>
+<h1 id="arquitetura-do-windows">
+  Arquitetura do Windows
+  <a class="heading-link" href="#arquitetura-do-windows">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p>First things firts, let&rsquo;s clear out a few terms:</p>
-<p>What is a <strong>processor</strong>?</p>
-<p>The processor is the CPU, the hardware that performs instructions.
-It <strong>fetches</strong>, <strong>decodes</strong>, and <strong>executes</strong> machine instructions, perform <strong>arithmetic</strong> and <strong>logical operations</strong>, also manages the flow of control between various programs (or processes) running on the machine.</p>
-<p>What is an <strong>application</strong>?</p>
-<p>An application is a program that runs on the operating system, usi its resources to function.
-Is stored on disk as an executable <strong>file</strong>(or set of files), when run, Windows loads the application into memory as one or more <strong>processes</strong>.
-The application&rsquo;s code along with its resources (<strong>data</strong>, <strong>libraries</strong>, <strong>etc</strong>), then runs under the direction of the operating system and is executed by the <strong>processor</strong>.
-There is a separtion that you must get it, between the <strong>program</strong> <strong>file</strong> (the code) and its <strong>process</strong> (the running instance).</p>
+<p>Primeiro, vamos esclarecer alguns termos:</p>
+<p>O que é um <strong>processador</strong>?</p>
+<p>O processador é a CPU, o hardware que executa as instruções.
+Ele <strong>busca</strong>, <strong>decodifica</strong> e <strong>executa</strong> instruções de máquina, realiza <strong>operações aritméticas</strong> e <strong>lógicas</strong>, além de gerenciar o fluxo de controle entre os diversos programas (ou processos) que estão em execução na máquina.</p>
+<p>O que é um <strong>aplicativo</strong>?</p>
+<p>Um aplicativo é um programa que roda no sistema operacional, utilizando seus recursos para funcionar.
+Ele é armazenado no disco como um <strong>arquivo</strong> executável (ou conjunto de arquivos) e, quando executado, o Windows carrega o aplicativo na memória como um ou mais <strong>processos</strong>.
+O código do aplicativo, juntamente com seus recursos (<strong>dados</strong>, <strong>bibliotecas</strong>, <strong>etc</strong>), então é executado sob a direção do sistema operacional e é processado pelo <strong>processador</strong>.
+Há uma separação que você deve entender entre o <strong>arquivo</strong> do <strong>programa</strong> (o código) e seu <strong>processo</strong> (a instância em execução).</p>
 <p><strong>Subsystem DLLs:</strong></p>
-<p>Subsystem DLLs are dynamic link libraries that implement the user-mode subsystems of Windows (explained down below). In Windows, much of the functionality provided to applications isn’t built into the kernel—it’s offered via these modular DLLs. Examples include libraries like <strong><code>kernel32.dll</code></strong>, <strong>user32.dll</strong>, <strong>gdi32.dll</strong>, and others. Each of these is designed to provide a specific set of services like <strong><code>kernel32.dll</code></strong> that offers ore functions for memory management, process creation, and file I/O, <strong>user32.dll</strong> that implements user interface components (windows, messages, input handling) or <strong>gdi32.dll</strong> that deals with graphics device interface functions for drawing and font management.</p>
-<p>Bridge the gap between high-level application code and the Windows kernel. When an application makes an API call to perform a task (like opening a window or reading from a file), it typically calls a function in one of these subsystem DLLs. The DLL then translates that request into lower-level system calls that the kernel can process. This layered, modular design keeps the system efficient and easier to update.</p>
-<p><strong><strong>Windows API</strong>:</strong></p>
-<p>The <strong><strong>Windows API</strong></strong> (A<strong>pplication Programming Interface</strong>) is the complete set of functions, data structures, and conventions that Microsoft exposes to allow applications to interact with Windows. Informally known as <strong>Win32</strong> (for the 32-bit version) or simply <strong><strong>Windows API</strong></strong>, it is the standard way for developers to request services from the operating system.</p>
-<p>The API is vast, covering functions for:</p>
+<p>As DLLs de subsistema são bibliotecas de link dinâmico que implementam os subsistemas em modo de usuário do Windows (explicados abaixo). No Windows, grande parte da funcionalidade fornecida para os aplicativos não está embutida no kernel—ela é oferecida por meio dessas DLLs modulares. Exemplos incluem bibliotecas como <strong><code>kernel32.dll</code></strong>, <strong>user32.dll</strong>, <strong>gdi32.dll</strong>, e outras. Cada uma delas é projetada para fornecer um conjunto específico de serviços, como <strong><code>kernel32.dll</code></strong>, que oferece funções para gerenciamento de memória, criação de processos e entrada/saída de arquivos, <strong>user32.dll</strong>, que implementa componentes de interface do usuário (janelas, mensagens, manipulação de entrada), ou <strong>gdi32.dll</strong>, que lida com funções de interface de dispositivo gráfico para desenho e gerenciamento de fontes.</p>
+<p>Essas DLLs fazem a ponte entre o código de aplicativo de alto nível e o kernel do Windows. Quando um aplicativo faz uma chamada de API para realizar uma tarefa (como abrir uma janela ou ler de um arquivo), normalmente ele chama uma função em uma dessas DLLs de subsistema. A DLL então traduz essa solicitação em chamadas de sistema de nível inferior que o kernel pode processar. Esse design modular e em camadas mantém o sistema eficiente e mais fácil de atualizar.</p>
+<p><strong>Windows API</strong>:</p>
+<p>A <strong>Windows API</strong> (Interface de Programação de Aplicações) é o conjunto completo de funções, estruturas de dados e convenções que a Microsoft expõe para permitir que os aplicativos interajam com o Windows. Informalmente conhecida como <strong>Win32</strong> (para a versão de 32 bits) ou simplesmente <strong>Windows API</strong>, é a forma padrão para os desenvolvedores solicitarem serviços do sistema operacional.</p>
+<p>A API é vasta, cobrindo funções para:</p>
 <ul>
-<li>Process management, file I/O, memory allocation (e.g., <strong><code>CreateProcess</code></strong>, <strong><code>ReadFile</code></strong>).</li>
-<li>Creating and managing windows, processing messages, drawing graphics (like <strong><code>CreateWindow</code></strong>, <strong><code>MessageBox</code></strong>).</li>
-<li><strong>GDI/GDI+</strong> for drawing text and images.</li>
+<li>Gerenciamento de processos, entrada/saída de arquivos, alocação de memória (por exemplo, <strong><code>CreateProcess</code></strong>, <strong><code>ReadFile</code></strong>).</li>
+<li>Criação e gerenciamento de janelas, processamento de mensagens, desenho de gráficos (como <strong><code>CreateWindow</code></strong>, <strong><code>MessageBox</code></strong>).</li>
+<li><strong>GDI/GDI+</strong> para desenhar texto e imagens.</li>
 </ul>
-<p><strong>How It Works:</strong><br>
-When you write a Windows application, you include header files (<strong>windows.h</strong>) that declare these functions and types. At runtime, your application’s calls are routed through the Windows loader to the appropriate subsystem DLL, which then communicates with the kernel. This call flow from the application, through the DLL (using functions like <strong><code>LoadLibrary</code></strong> and <strong><code>GetProcAddress</code></strong> if needed), and finally to the kernel is the backbone of how Windows maintains control while allowing third-party programs to perform complex tasks.</p>
-<p>So basically the Subsystem DLLs are the modular libraries that provides Windows core services to applications, isolating them from directly hardware interactions and the <strong>Windows API</strong> is the full set of functions and conventions that let applications request and use Windows services, enabling tasks from file operations to GUI management.</p>
-<p>So after this has been cleared out, let&rsquo;s actually understand the Windows Architecture.
-A processor inside a machine running the <strong>Windows OS</strong> can operate under two different modes:</p>
-<p><strong>User Mode</strong> and <strong>Kernel Mode</strong>, <strong>Applications</strong> run in <strong>user mode</strong>, and <strong>operating system components</strong> run in <strong>kernel mode</strong>. When an application wants to accomplish a task, such as creating a file, it cannot do so on its own. The only entity that can complete the task is the <strong>Kernel</strong>, so instead applications must follow a specific <strong>call flow</strong>.</p>
-<p><strong>What all of that means?</strong></p>
-<p><strong>User mode</strong> is where regular apps run with <strong>limited privileges</strong>, while <strong>kernel mode</strong> is where the <strong>system&rsquo;s core functions</strong>, like device drivers, operate with full access to hardware</p>
-<p><strong>User Mode vs Kernel Mode</strong></p>
-<p><strong>User Mode:</strong></p>
-<p>Regular applications and most noncritical processes run, the code is executed with limited privileges, why this isolation occurs?</p>
-<p>This isolation prevents a faulty or malicious application from directly tampering with system hardware or core services, but as we will see in the future, it has its work arounds.
-Each application running in <strong>user mode</strong> is isolated in its own virtual address space, so for example a crash or error in one process won&rsquo;t necessarily bring down the entire system.
-So the applications utilize high-level APIs provided by the subsystem DLLs (like, <strong><code>kernel32.dll</code></strong>, <strong><code>user32.dll</code></strong>) to perform tasks, these handle the necessary preliminary processing and then request services from the operating system.</p>
-<p><strong>Kernel Mode:</strong></p>
-<p>The kernel mode is the highly privilege layer of the Windows OS, is where the Windows Kernel, device drivers, and core system services run, the code that runs in kernel mode can directly access hardware and system memory.</p>
-<p>Kernel mode has unrestricted access, critical for performing essential operations like hardware management, memory allocation, and I/O operations(input/output), a failure here can bring the whole system down.</p>
-<p><strong>System Calls:</strong></p>
-<p>When a <strong>user mode</strong> program needs to access hardware or perform privileged operations, it makes a system call. This essentially triggers a request that gets processed by <strong>kernel mode</strong>.</p>
-<p>For better understanding, let&rsquo;s breakdown:</p>
+<p><strong>Como Funciona:</strong><br>
+Quando você escreve um aplicativo Windows, inclui arquivos de cabeçalho (<strong>windows.h</strong>) que declaram essas funções e tipos. Em tempo de execução, as chamadas do seu aplicativo são encaminhadas através do carregador do Windows para a DLL de subsistema apropriada, que então se comunica com o kernel. Esse fluxo de chamadas do aplicativo, passando pela DLL (usando funções como <strong><code>LoadLibrary</code></strong> e <strong><code>GetProcAddress</code></strong>, se necessário) e finalmente até o kernel, é a espinha dorsal de como o Windows mantém o controle enquanto permite que programas de terceiros executem tarefas complexas.</p>
+<p>Basicamente, as DLLs de subsistema são as bibliotecas modulares que fornecem os serviços principais do Windows para os aplicativos, isolando-os das interações diretas com o hardware, e a <strong>Windows API</strong> é o conjunto completo de funções e convenções que permitem que os aplicativos solicitem e usem os serviços do Windows, habilitando tarefas desde operações de arquivos até o gerenciamento da interface gráfica.</p>
+<p>Agora que isso está claro, vamos entender de fato a Arquitetura do Windows.
+Um processador em uma máquina rodando o <strong>Windows OS</strong> pode operar em dois modos diferentes:</p>
+<p><strong>Modo de Usuário</strong> e <strong>Modo Kernel</strong>, <strong>Aplicativos</strong> rodam em <strong>modo de usuário</strong>, e <strong>componentes do sistema operacional</strong> rodam em <strong>modo kernel</strong>. Quando um aplicativo quer realizar uma tarefa, como criar um arquivo, ele não pode fazê-lo sozinho. A única entidade que pode completar a tarefa é o <strong>Kernel</strong>, então, em vez disso, os aplicativos devem seguir um <strong>fluxo de chamadas</strong> específico.</p>
+<p><strong>O que tudo isso significa?</strong></p>
+<p><strong>Modo de usuário</strong> é onde os aplicativos regulares rodam com <strong>privilégios limitados</strong>, enquanto <strong>modo kernel</strong> é onde as <strong>funções centrais do sistema</strong>, como drivers de dispositivo, operam com acesso total ao hardware.</p>
+<p><strong>Modo de Usuário vs Modo Kernel</strong></p>
+<p><strong>Modo de Usuário:</strong></p>
+<p>Aplicativos regulares e a maioria dos processos não críticos rodam, e o código é executado com privilégios limitados. Por que essa isolação ocorre?</p>
+<p>Essa isolação impede que um aplicativo com falha ou malicioso interfira diretamente no hardware do sistema ou nos serviços centrais, mas, como veremos no futuro, existem formas de contornar isso.
+Cada aplicativo rodando em <strong>modo de usuário</strong> é isolado em seu próprio espaço de endereço virtual, então, por exemplo, uma falha ou erro em um processo não necessariamente derrubará o sistema inteiro.
+Os aplicativos utilizam APIs de alto nível fornecidas pelas DLLs de subsistema (como <strong><code>kernel32.dll</code></strong>, <strong><code>user32.dll</code></strong>) para realizar tarefas, e estas lidam com o processamento preliminar necessário e então solicitam serviços ao sistema operacional.</p>
+<p><strong>Modo Kernel:</strong></p>
+<p>O modo kernel é a camada de privilégios elevados do sistema operacional Windows, onde o Kernel do Windows, drivers de dispositivo e serviços centrais do sistema rodam. O código que roda em modo kernel pode acessar diretamente o hardware e a memória do sistema.</p>
+<p>O modo kernel tem acesso irrestrito, o que é crucial para realizar operações essenciais como gerenciamento de hardware, alocação de memória e operações de entrada/saída (I/O). Uma falha aqui pode derrubar o sistema inteiro.</p>
+<p><strong>Chamadas de Sistema:</strong></p>
+<p>Quando um programa em <strong>modo de usuário</strong> precisa acessar o hardware ou realizar operações privilegiadas, ele faz uma chamada de sistema. Isso essencialmente dispara uma solicitação que é processada pelo <strong>modo kernel</strong>.</p>
+<p>Para um melhor entendimento, vamos detalhar:</p>
 <p><img alt="Windows Architecture" src="https://pwnbuffer.org/images/tteuw/windows_architecture/windows_arch.png"></p>
-<p>So the <strong>User Processes</strong> (program/application executed by the user) calls <strong>Subsystem DLLs</strong> (DLLs that contain API functions that are called by <strong>User Processes</strong>, like <strong><code>kernel32.dll</code></strong> exporting <code>CreateFile</code> <strong>Windows API</strong>) then calls <strong><code>Ntdll.dll</code></strong> (A system-wide DLL which is the lowest layer available in <strong>user mode</strong>. This is a special DLL that creates the transition from <strong>user mode</strong> to <strong>kernel mode</strong>. This is often referred to as the <strong><strong>Native API</strong></strong> or <strong>NTAPI</strong>.) after that <strong>Executive Kernel</strong> (This is what is known as the <strong>Windows Kernel</strong> and it calls other
-drivers and modules available within <strong>kernel mode</strong> to complete tasks. The Windows
-kernel is partially stored in a file called <strong>ntoskrnl.exe</strong> under <code>&quot;C:\Windows\System32&quot;</code>.)</p>
-<p>How this transition works from <strong>user mode</strong> to <strong>kernel mode</strong>?</p>
-<p>This transition is part of what is know as <strong>Function Call Flow</strong>:</p>
-<p>Essentially, when a program in <strong>user mode</strong> makes a system call (like reading a file), the CPU needs to switch to <strong>kernel mode</strong> to access protected resources. The transition typically happens through an interrupt or system call mechanism. This allows the operating system to safely manage privileged actions, ensuring user programs don’t directly interfere with the system&rsquo;s low-level operations.</p>
-<p>Step by step:</p>
-<p><strong>User Process:</strong>
-A <strong>user mode</strong> process (an application) starts in <strong>user mode</strong> and calls a high-level <strong>Windows API</strong> function. For example, when your application calls <code>CreateFile</code> (from <strong><code>kernel32.dll</code></strong>), it’s invoking a function provided by a subsystem DLL.</p>
-<p><strong>Subsystem DLLs:</strong><br>
-The subsystem DLLs (such as <strong><code>kernel32.dll</code></strong>, <strong>user32.dll</strong>, etc.) provide the API functions that the application uses. These DLLs contain wrappers that set up the call and then invoke lower-level routines as needed. In the case of functions like <code>CreateFile</code>, the DLL wraps the call and then delegates to a lower layer.</p>
+<p>Então, os <strong>Processos de Usuário</strong> (programas/aplicativos executados pelo usuário) chamam as <strong>DLLs de Subsistema</strong> (DLLs que contêm funções de API chamadas pelos <strong>Processos de Usuário</strong>, como <strong><code>kernel32.dll</code></strong> exportando <strong>CreateFile</strong> da <strong>Windows API</strong>), que então chamam <strong><code>Ntdll.dll</code></strong> (uma DLL de sistema que é a camada mais baixa disponível em <strong>modo de usuário</strong>. Esta é uma DLL especial que cria a transição do <strong>modo de usuário</strong> para o <strong>modo kernel</strong>. Isso é frequentemente referido como a <strong>Native API</strong> ou <strong>NTAPI</strong>), depois chama o <strong>Kernel Executivo</strong> (Isso é o que é conhecido como o <strong>Kernel do Windows</strong> e ele chama outros drivers e módulos disponíveis dentro do <strong>modo kernel</strong> para completar as tarefas. O kernel do Windows está parcialmente armazenado em um arquivo chamado <strong>ntoskrnl.exe</strong> sob <strong>&ldquo;C:\Windows\System32&rdquo;</strong>).</p>
+<p>Como essa transição de <strong>modo de usuário</strong> para <strong>modo kernel</strong> funciona?</p>
+<p>Essa transição faz parte do que é conhecido como <strong>Fluxo de Chamadas de Funções</strong>:</p>
+<p>Essencialmente, quando um programa em <strong>modo de usuário</strong> faz uma chamada de sistema (como ler um arquivo), a CPU precisa mudar para o <strong>modo kernel</strong> para acessar recursos protegidos. A transição normalmente acontece por meio de uma interrupção ou mecanismo de chamada de sistema. Isso permite que o sistema operacional gerencie ações privilegiadas com segurança, garantindo que os programas de usuário não interfiram diretamente nas operações de baixo nível do sistema.</p>
+<p>Passo a passo:</p>
+<p><strong>Processos de Usuário:</strong><br>
+Um processo em <strong>modo de usuário</strong> (um aplicativo) começa em <strong>modo de usuário</strong> e chama uma função de <strong>Windows API</strong> de alto nível. Por exemplo, quando seu aplicativo chama <strong>CreateFile</strong> (de <strong><code>kernel32.dll</code></strong>), ele está invocando uma função fornecida por uma DLL de subsistema.</p>
+<p><strong>DLLs de Subsistema:</strong><br>
+As DLLs de subsistema (como <strong><code>kernel32.dll</code></strong>, <strong>user32.dll</strong>, etc.) fornecem as funções de API que o aplicativo usa. Essas DLLs contêm &ldquo;wrappers&rdquo; que configuram a chamada e depois invocam rotinas de nível inferior conforme necessário. No caso de funções como <strong>CreateFile</strong>, a DLL faz o &ldquo;wrapper&rdquo; da chamada e depois delega para uma camada inferior.</p>
 <p><strong><code>Ntdll.dll</code> (<strong>Native API</strong>):</strong><br>
-The next step involves <strong><code>ntdll.dll</code></strong>. This special system-wide DLL sits at the bottom of the <strong>user mode</strong> layer and contains the system call stubs(part of) these are the routines (often referred to as the <strong><strong>Native API</strong></strong> or <strong>NTAPI</strong>) that prepare the transition from <strong>user mode</strong> to <strong>kernel mode</strong>. Essentially, when a <strong>subsystem DLL</strong> calls into <code>ntdll.dll</code>, it’s setting up a system call that the CPU can execute to switch to kernel mode.</p>
-<p><strong>Executive Kernel (ntoskrnl.exe and drivers):</strong><br>
-Once the system call is issued (using instructions like syscall or sysenter), the CPU switches to kernel mode. The request is then handled by the Windows kernel (primarily in <strong>ntoskrnl.exe</strong>, which is part of the Executive Kernel). The kernel executes the requested operation by calling the appropriate drivers and kernel modules to complete the task.</p>
-<p><strong>Return Path:</strong><br>
-After the kernel completes the operation, the result is passed back through <code>ntdll.dll</code> to the <strong>subsystem DLLs</strong>, which in turn return the result to the original <strong>user mode</strong> process.</p>
-<p>So again, for consolidating, it begins with the user application calling the <code>CreateFile</code> WinAPI function which is available in <code>kernel32.dll</code> . <code>Kernel32.dll</code> is a critical DLL that exposes applications to the WinAPI and is therefore can be seen loaded by most applications. Next, <code>CreateFile</code> calls its equivalent <strong>NTAPI</strong> function, <code>NtCreateFile</code> , which is provided through <code>ntdll.dll</code> . <code>Ntdll.dll</code> then executes an assembly <strong>sysenter (x86)</strong> or <strong>syscall (x64)</strong> instruction, which transfers execution to <strong>kernel mode</strong>. The kernel <code>NtCreateFile</code> function is then used which calls kernel drivers and modules to perform the requested task.</p>
-<p><strong>Directly Invoking The <strong>Native API</strong> (NTAPI)</strong><br>
-It&rsquo;s important to note that applications can invoke syscalls (<code>NTDLL</code> functions) directly
-without having to go through the <strong>Windows API</strong>. The <strong>Windows API</strong> simply acts as a
-wrapper for the <strong>Native API</strong>. With that being said, the <strong>Native API</strong> is more difficult to use
-because it is not officially documented by Microsoft.</p>
-<p>Normally, applications use the <strong>Windows API</strong> (like <code>CreateFile</code>, <code>WriteFile</code>), which is provided by DLLs like <code>kernel32.dll</code>.</p>
-<p>Directly calling native functions from <code>ntdll.dll</code> (<strong>NTAPI</strong> functions) is possible.</p>
-<p>The <strong>Windows API</strong> is a stable, documented interface, used by most apps it&rsquo;s built on top of the <strong>Native API</strong> (<strong>NTAPI</strong>, in <code>ntdll.dll</code>). <strong>NTAPI</strong> functions are the system call stubs that handle system-level tasks, transitioning to kernel mode.</p>
-<p><strong>How the wrapping works:</strong><br>
-When you call a function like <code>CreateFile</code> from <code>kernel32.dll</code>, you&rsquo;re not directly invoking the lowest-level system routines. Instead, <code>CreateFile</code> prepares the parameters and calls a corresponding function in <code>ntdll.dll</code> (such as <code>NtCreateFile</code>).</p>
+O próximo passo envolve <strong><code>ntdll.dll</code></strong>. Esta DLL especial de sistema global fica na parte inferior da camada de <strong>modo de usuário</strong> e contém os &ldquo;stubs&rdquo; de chamadas de sistema (parte disso) que são as rotinas (frequentemente chamadas de <strong>Native API</strong> ou <strong>NTAPI</strong>) que preparam a transição de <strong>modo de usuário</strong> para <strong>modo kernel</strong>. Essencialmente, quando uma <strong>DLL de subsistema</strong> chama <strong>ntdll.dll</strong>, ela está configurando uma chamada de sistema que a CPU pode executar para mudar para o modo kernel.</p>
+<p><strong>Kernel Executivo (ntoskrnl.exe e drivers):</strong><br>
+Uma vez que a chamada de sistema é emitida (usando instruções como <strong>syscall</strong> ou <strong>sysenter</strong>), a CPU muda para o modo kernel. A solicitação é então processada pelo kernel do Windows (principalmente em <strong>ntoskrnl.exe</strong>, que faz parte do Kernel Executivo). O kernel executa a operação solicitada chamando os drivers e módulos do kernel apropriados para completar a tarefa.</p>
+<p><strong>Caminho de Retorno:</strong><br>
+Após o kernel completar a operação, o resultado é passado de volta através do <strong>ntdll.dll</strong> para as <strong>DLLs de subsistema</strong>, que por sua vez retornam o resultado para o processo original em <strong>modo de usuário</strong>.</p>
+<p>Então, para consolidar, começa com o aplicativo de usuário chamando a função <strong>WinAPI CreateFile</strong>, que está disponível em <strong>kernel32.dll</strong>. <strong>Kernel32.dll</strong> é uma DLL crítica que expõe as aplicações à WinAPI e, portanto, pode ser vista carregada pela maioria das aplicações. Em seguida, <strong>CreateFile</strong> chama sua função equivalente <strong>NTAPI</strong>, <strong>NtCreateFile</strong>, que é fornecida através de <strong>ntdll.dll</strong>. <strong>Ntdll.dll</strong> então executa uma instrução de assembly <strong>sysenter (x86)</strong> ou <strong>syscall (x64)</strong>, que transfere a execução para o <strong>modo kernel</strong>. A função kernel <strong>NtCreateFile</strong> é então utilizada, chamando drivers e módulos do kernel para realizar a tarefa solicitada.</p>
+<p><strong>Invocando Diretamente a <strong>Native API</strong> (NTAPI)</strong><br>
+É importante observar que as aplicações podem invocar syscalls (funções <strong>NTDLL</strong>) diretamente, sem precisar passar pela <strong>Windows API</strong>. A <strong>Windows API</strong> simplesmente atua como um &ldquo;wrapper&rdquo; para a <strong>Native API</strong>. Dito isso, a <strong>Native API</strong> é mais difícil de usar porque não é oficialmente documentada pela Microsoft.</p>
+<p>Normalmente, as aplicações usam a <strong>Windows API</strong> (como <strong>CreateFile</strong>, <strong>WriteFile</strong>), que é fornecida por DLLs como <strong>kernel32.dll</strong>.</p>
+<p>Chamar diretamente funções nativas de <strong>ntdll.dll</strong> (funções <strong>NTAPI</strong>) é possível.</p>
+<p>A <strong>Windows API</strong> é uma interface estável e documentada, usada pela maioria dos aplicativos e construída em cima da <strong>Native API</strong> (<strong>NTAPI</strong>, em <strong>ntdll.dll</strong>). Funções <strong>NTAPI</strong> são os &ldquo;stubs&rdquo; de chamadas de sistema que lidam com tarefas em nível de sistema, fazendo a transição para o modo kernel.</p>
+<p><strong>Como o empacotamento funciona:</strong><br>
+Quando você chama uma função como <code>CreateFile</code> de <code>kernel32.dll</code>, você não está invocando diretamente as rotinas de sistema de nível mais baixo. Em vez disso, <code>CreateFile</code> prepara os parâmetros e chama uma função correspondente em <code>ntdll.dll</code> (como <code>NtCreateFile</code>).</p>
 <p><img alt="Function Call Flow" src="https://pwnbuffer.org/images/tteuw/windows_architecture/func_call_flow.png"></p>
-<p>The transitions flow works as follow:</p>
+<p>O fluxo de transições funciona da seguinte maneira:</p>
 <ol>
-<li><strong>User Process:</strong> Your application calls <code>CreateFile</code> in <code>kernel32.dll</code>.</li>
-<li><strong><code>Kernel32.dll</code>:</strong> This function performs any parameter checking, error translation, or compatibility work and then calls the native function (<code>NtCreateFile</code>) in <code>ntdll.dll</code>.</li>
-<li><strong><code>Ntdll.dll</code> (NTAPI):</strong> Here, the function issues the actual system call (using CPU instructions like <code>syscall</code> or <code>sysenter</code>) that transitions execution from <strong>user mode</strong> to <strong>kernel mode</strong>.</li>
-<li><strong>Kernel Mode:</strong> The Windows kernel (<code>ntoskrnl.exe</code>) processes the request, interacts with drivers, and completes the operation.</li>
-<li><strong>Return Path:</strong> The result flows back the same way, eventually returning to your application.</li>
+<li><strong>Processo do Usuário:</strong> Seu aplicativo chama <code>CreateFile</code> em <code>kernel32.dll</code>.</li>
+<li><strong><code>Kernel32.dll</code>:</strong> Esta função realiza qualquer verificação de parâmetros, tradução de erros ou trabalho de compatibilidade e, em seguida, chama a função nativa (<code>NtCreateFile</code>) em <code>ntdll.dll</code>.</li>
+<li><strong><code>Ntdll.dll</code> (NTAPI):</strong> Aqui, a função emite a chamada de sistema real (usando instruções da CPU como <code>syscall</code> ou <code>sysenter</code>) que faz a transição da execução de <strong>modo de usuário</strong> para <strong>modo kernel</strong>.</li>
+<li><strong>Modo Kernel:</strong> O kernel do Windows (<code>ntoskrnl.exe</code>) processa a solicitação, interage com os drivers e completa a operação.</li>
+<li><strong>Caminho de Retorno:</strong> O resultado flui de volta da mesma forma, eventualmente retornando ao seu aplicativo.</li>
 </ol>
-<p>May sound kinda repetitive, but it&rsquo;s really important for you to get this.</p>
-<h1 id="memory-management-in-windows">
-  Memory Management in Windows
-  <a class="heading-link" href="#memory-management-in-windows">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>Pode soar um pouco repetitivo, mas é realmente importante para você entender isso.</p>
+<h1 id="gerenciamento-de-memória-no-windows">
+  Gerenciamento de Memória no Windows
+  <a class="heading-link" href="#gerenciamento-de-mem%c3%b3ria-no-windows">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p>Memory management is a critical component of any operating system, and Windows is no exception. The Windows memory manager is responsible for handling memory allocation, virtual memory, paging, and other low level operations that ensure efficient and memory usage by both user mode applications and the kernel.</p>
-<h2 id="virtual-memory">
-  Virtual Memory
-  <a class="heading-link" href="#virtual-memory">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>O gerenciamento de memória é um componente crítico de qualquer sistema operacional, e o Windows não é exceção. O gerenciador de memória do Windows é responsável por lidar com a alocação de memória, memória virtual, paginação e outras operações de baixo nível que garantem o uso eficiente da memória por aplicativos em modo de usuário e pelo kernel.</p>
+<h2 id="memória-virtual">
+  Memória Virtual
+  <a class="heading-link" href="#mem%c3%b3ria-virtual">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>Windows employs a <strong>virtual memory</strong> system that provides each process with its own virtual address space. This abstraction allows applications to operate as if they have a contiguous block of memory, even if the actual physical memory is fragmented or even partially stored on disk.</p>
+<p>O Windows emprega um sistema de <strong>memória virtual</strong> que fornece a cada processo seu próprio espaço de endereçamento virtual. Essa abstração permite que os aplicativos operem como se tivessem um bloco contíguo de memória, mesmo que a memória física real esteja fragmentada ou mesmo parcialmente armazenada no disco.</p>
 <ul>
-<li>Each process in <strong>user mode</strong> has a <strong>virtual address space</strong> of 4GB (for 32-bit systems) or significantly larger on 64-bit systems.</li>
-<li>The lower half of the address space (0x00000000 to 0x7FFFFFFF in 32-bit) is reserved for the application, while the upper half (0x80000000 to 0xFFFFFFFF) is reserved for the kernel.</li>
-<li>The <strong>Memory Manager</strong> is responsible for translating virtual addresses to physical addresses using <strong>page tables</strong>.</li>
+<li>Cada processo em <strong>modo de usuário</strong> possui um <strong>espaço de endereçamento virtual</strong> de 4GB (para sistemas de 32 bits) ou significativamente maior em sistemas de 64 bits.</li>
+<li>A metade inferior do espaço de endereçamento (0x00000000 a 0x7FFFFFFF em 32 bits) é reservada para o aplicativo, enquanto a metade superior (0x80000000 a 0xFFFFFFFF) é reservada para o kernel.</li>
+<li>O <strong>Gerenciador de Memória</strong> é responsável por traduzir endereços virtuais em endereços físicos usando <strong>tabelas de páginas</strong>.</li>
 </ul>
-<h2 id="paging-and-page-faults">
-  Paging and Page Faults
-  <a class="heading-link" href="#paging-and-page-faults">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="paginação-e-falhas-de-página">
+  Paginação e Falhas de Página
+  <a class="heading-link" href="#pagina%c3%a7%c3%a3o-e-falhas-de-p%c3%a1gina">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>The <strong>Windows memory manager</strong> uses a technique called <strong>paging</strong> to manage memory efficiently:</p>
+<p>O <strong>gerenciador de memória do Windows</strong> utiliza uma técnica chamada <strong>paginação</strong> para gerenciar a memória de forma eficiente:</p>
 <ul>
-<li>The system divides memory into fixed-size <strong>pages</strong> (usually 4KB).</li>
-<li>When an application requests memory, it is assigned pages from <strong>physical memory (RAM)</strong>.</li>
-<li>If a requested page is not in RAM, a <strong>page fault</strong> occurs, and Windows loads the page from disk (paging file or another storage source).</li>
-<li>The <strong>paging file</strong> (<code>pagefile.sys</code>) is used when RAM is insufficient, allowing memory pages to be temporarily stored on disk.</li>
+<li>O sistema divide a memória em <strong>páginas</strong> de tamanho fixo (geralmente 4KB).</li>
+<li>Quando um aplicativo solicita memória, são atribuídas páginas da <strong>memória física (RAM)</strong>.</li>
+<li>Se uma página solicitada não estiver na RAM, ocorre uma <strong>falha de página</strong>, e o Windows carrega a página do disco (arquivo de paginação ou outra fonte de armazenamento).</li>
+<li>O <strong>arquivo de paginação</strong> (<code>pagefile.sys</code>) é utilizado quando a RAM é insuficiente, permitindo que as páginas de memória sejam temporariamente armazenadas no disco.</li>
 </ul>
-<p><strong>Page fault handling:</strong></p>
+<p><strong>Tratamento de Falhas de Página:</strong></p>
 <ol>
-<li>The CPU attempts to access a memory page.</li>
-<li>If the page is not in physical memory, a <strong>page fault</strong> occurs.</li>
-<li>The memory manager retrieves the page from disk and maps it to physical memory.</li>
-<li>The process resumes execution once the page is available.</li>
+<li>A CPU tenta acessar uma página de memória.</li>
+<li>Se a página não estiver na memória física, ocorre uma <strong>falha de página</strong>.</li>
+<li>O gerenciador de memória recupera a página do disco e a mapeia para a memória física.</li>
+<li>O processo retoma a execução assim que a página estiver disponível.</li>
 </ol>
-<h2 id="address-space-layout-randomization-aslr">
-  Address Space Layout Randomization (ASLR)
-  <a class="heading-link" href="#address-space-layout-randomization-aslr">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="randomização-de-layout-de-espaço-de-endereçamento-aslr">
+  Randomização de Layout de Espaço de Endereçamento (ASLR)
+  <a class="heading-link" href="#randomiza%c3%a7%c3%a3o-de-layout-de-espa%c3%a7o-de-endere%c3%a7amento-aslr">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>ASLR</strong> is a security feature that randomizes the memory addresses used by system and application components to make it harder for attackers to predict addresses in memory.</p>
+<p><strong>ASLR</strong> é um recurso de segurança que randomiza os endereços de memória usados por componentes do sistema e aplicativos para dificultar que atacantes prevejam endereços na memória.</p>
 <ul>
-<li><strong>Executable images</strong> (e.g., <code>ntdll.dll</code>, <code>kernel32.dll</code>) are loaded at randomized locations.</li>
-<li><strong>Stack and heap</strong> allocations are randomized.</li>
-<li>This prevents predictable memory layouts, making it difficult for exploits like <strong>buffer overflows</strong> and <strong>return-oriented programming (ROP) attacks</strong> to succeed.</li>
+<li><strong>Imagens executáveis</strong> (por exemplo, <code>ntdll.dll</code>, <code>kernel32.dll</code>) são carregadas em locais aleatórios.</li>
+<li><strong>Alocações de pilha e heap</strong> são randomizadas.</li>
+<li>Isso impede layouts de memória previsíveis, dificultando que exploits como <strong>buffer overflows</strong> e <strong>ataques de programação orientada a retorno (ROP)</strong> tenham sucesso.</li>
 </ul>
-<h2 id="heap-and-stack-management">
-  Heap and Stack Management
-  <a class="heading-link" href="#heap-and-stack-management">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="gerenciamento-de-heap-e-pilha">
+  Gerenciamento de Heap e Pilha
+  <a class="heading-link" href="#gerenciamento-de-heap-e-pilha">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>Windows manages memory using two primary structures:</p>
-<h3 id="the-stack">
-  The Stack
-  <a class="heading-link" href="#the-stack">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>O Windows gerencia a memória usando duas estruturas principais:</p>
+<h3 id="a-pilha">
+  A Pilha
+  <a class="heading-link" href="#a-pilha">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
 <ul>
-<li>Used for function calls and local variables.</li>
-<li>Managed automatically by the CPU and OS.</li>
-<li>Has a fixed size, typically 1MB in Windows.</li>
-<li><strong>Stack Overflow</strong> occurs when too much memory is used, often due to recursive function calls.</li>
+<li>Usada para chamadas de funções e variáveis locais.</li>
+<li>Gerida automaticamente pela CPU e pelo sistema operacional.</li>
+<li>Tem um tamanho fixo, tipicamente 1MB no Windows.</li>
+<li><strong>Overflow de Pilha</strong> ocorre quando muita memória é usada, frequentemente devido a chamadas de funções recursivas.</li>
 </ul>
-<h3 id="the-heap">
-  The Heap
-  <a class="heading-link" href="#the-heap">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="o-heap">
+  O Heap
+  <a class="heading-link" href="#o-heap">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
 <ul>
-<li>Used for dynamic memory allocation (<code>malloc</code>, <code>HeapAlloc</code>, <code>VirtualAlloc</code>).</li>
-<li>Managed by the Windows heap manager.</li>
-<li>Can grow as needed.</li>
-<li>Applications are responsible for freeing heap memory (<code>free</code>, <code>HeapFree</code>).</li>
+<li>Usado para alocação dinâmica de memória (<code>malloc</code>, <code>HeapAlloc</code>, <code>VirtualAlloc</code>).</li>
+<li>Gerido pelo gerenciador de heap do Windows.</li>
+<li>Pode crescer conforme necessário.</li>
+<li>Aplicações são responsáveis por liberar a memória do heap (<code>free</code>, <code>HeapFree</code>).</li>
 </ul>
-<h2 id="windows-memory-apis">
-  Windows Memory APIs
-  <a class="heading-link" href="#windows-memory-apis">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="apis-de-memória-do-windows">
+  APIs de Memória do Windows
+  <a class="heading-link" href="#apis-de-mem%c3%b3ria-do-windows">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>Windows provides several APIs for memory management:</p>
+<p>O Windows oferece várias APIs para gerenciamento de memória:</p>
 <ul>
-<li><strong>VirtualAlloc/VirtualFree</strong> – Allocates and frees memory pages directly.</li>
-<li><strong>HeapAlloc/HeapFree</strong> – Manages dynamic memory in the process heap.</li>
-<li><strong>GlobalAlloc/LocalAlloc</strong> – Legacy functions for allocating memory.</li>
-<li><strong>MapViewOfFile</strong> – Used for memory-mapped files.</li>
+<li><strong>VirtualAlloc/VirtualFree</strong> – Aloca e libera páginas de memória diretamente.</li>
+<li><strong>HeapAlloc/HeapFree</strong> – Gerencia a memória dinâmica no heap do processo.</li>
+<li><strong>GlobalAlloc/LocalAlloc</strong> – Funções legadas para alocar memória.</li>
+<li><strong>MapViewOfFile</strong> – Usado para arquivos mapeados na memória.</li>
 </ul>
-<h2 id="kernel-mode-memory-management">
-  Kernel Mode Memory Management
-  <a class="heading-link" href="#kernel-mode-memory-management">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="gerenciamento-de-memória-em-modo-kernel">
+  Gerenciamento de Memória em Modo Kernel
+  <a class="heading-link" href="#gerenciamento-de-mem%c3%b3ria-em-modo-kernel">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>Kernel mode memory management is more privileged and operates differently:</p>
+<p>O gerenciamento de memória em modo kernel é mais privilegiado e opera de forma diferente:</p>
 <ul>
-<li>The kernel uses <strong>paged pool</strong> and <strong>nonpaged pool</strong> memory.</li>
-<li><strong>Paged Pool</strong> – Can be swapped to disk.</li>
-<li><strong>Nonpaged Pool</strong> – Stays in RAM, used for critical components like drivers.</li>
-<li>The kernel uses <strong>Memory Descriptor Lists (MDLs)</strong> to track memory regions.</li>
-<li>Windows uses <strong>IRQLs (Interrupt Request Levels)</strong> to manage priority access to memory.</li>
+<li>O kernel usa memória de <strong>pool de páginas</strong> e <strong>pool não paginado</strong>.</li>
+<li><strong>Pool de Páginas</strong> – Pode ser trocado para o disco.</li>
+<li><strong>Pool Não Paginado</strong> – Permanece na RAM, usado para componentes críticos como drivers.</li>
+<li>O kernel usa <strong>Listas de Descritores de Memória (MDLs)</strong> para rastrear regiões de memória.</li>
+<li>O Windows usa <strong>IRQLs (Níveis de Solicitação de Interrupção)</strong> para gerenciar o acesso prioritário à memória.</li>
 </ul>
 
       </div>
@@ -487,7 +482,7 @@ When you call a function like <code>CreateFile</code> from <code>kernel32.dll</c
      pwnbuffer 
     ·
     
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
     
   </section>
 </footer>
