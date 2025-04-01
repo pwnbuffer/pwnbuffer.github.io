@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <title>
@@ -13,20 +13,20 @@
 
 
 <meta name="author" content="pwnbuffer">
-<meta name="description" content="The article describes the architecture of the 32-bit x86 CPU, highlighting its main components, such as registers, buses, and the control unit, as well as how it executes instructions and manages memory.">
+<meta name="description" content="O artigo descreve a arquitetura da CPU x86 de 32 bits, destacando seus principais componentes, como registradores, barramentos e a unidade de controle, além de como executa instruções e gerencia a memória.">
 <meta name="keywords" content="team brazuca!">
 
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="x86 Part. 1 — CPU">
-  <meta name="twitter:description" content="The article describes the architecture of the 32-bit x86 CPU, highlighting its main components, such as registers, buses, and the control unit, as well as how it executes instructions and manages memory.">
+  <meta name="twitter:description" content="O artigo descreve a arquitetura da CPU x86 de 32 bits, destacando seus principais componentes, como registradores, barramentos e a unidade de controle, além de como executa instruções e gerencia a memória.">
 
 <meta property="og:url" content="https://pwnbuffer.org/posts/daemon/x86/">
   <meta property="og:site_name" content="pwnbuffer">
   <meta property="og:title" content="x86 Part. 1 — CPU">
-  <meta property="og:description" content="The article describes the architecture of the 32-bit x86 CPU, highlighting its main components, such as registers, buses, and the control unit, as well as how it executes instructions and manages memory.">
-  <meta property="og:locale" content="en">
+  <meta property="og:description" content="O artigo descreve a arquitetura da CPU x86 de 32 bits, destacando seus principais componentes, como registradores, barramentos e a unidade de controle, além de como executa instruções e gerencia a memória.">
+  <meta property="og:locale" content="pt_br">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-03-30T00:00:00+00:00">
@@ -111,19 +111,19 @@
         
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/about/">About</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Posts</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categories</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/members/">Members</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
             </li>
           
             <li class="navigation-item">
@@ -143,7 +143,7 @@
                 
               
               <li class="navigation-item">
-                <a href="https://pwnbuffer.org/pt-br/posts/daemon/x86/">🇧🇷</a>
+                <a href="https://pwnbuffer.org/en/posts/daemon/x86/">🇺🇸</a>
               </li>
             
           
@@ -171,12 +171,12 @@
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2025-03-30T00:00:00Z">
-                March 30, 2025
+                março 30, 2025
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              13-minute read
+              14 minutos de leitura
             </span>
           </div>
           <div class="authors">
@@ -200,26 +200,26 @@
 
       <div class="post-content">
         
-        <p>This series of articles covers basic low-level concepts in computers, with a specific focus on exploring binaries and reverse engineering.
-Some points may seem confusing at first, but remember: everything follows a definition. Don’t get stuck in an endless loop of &ldquo;why!?!&rdquo; — just understand each concept and its purpose. <strong>You will use these concepts in reverse engineering, binary exploitation, and even malware development in the future</strong>.</p>
-<h1 id="what-is-a-cpu">
-  What is a CPU?
-  <a class="heading-link" href="#what-is-a-cpu">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+        <p>Essa série de artigos aborda conceitos básicos de baixo nível em computadores, com foco específico na exploração de binários e engenharia reversa.
+Alguns pontos podem parecer confusos à primeira vista, mas lembre-se: tudo segue uma definição. Não se prenda a uma sequência infinita de &ldquo;porquês!?&rdquo; — apenas compreenda cada conceito e seu propósito. <strong>Você vai usar esses conceitos em engenharia reversa, exploração de binários e até no desenvolvimento de malware no futuro.</strong></p>
+<h1 id="o-que-é-uma-cpu">
+  O que é uma CPU?
+  <a class="heading-link" href="#o-que-%c3%a9-uma-cpu">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <div style="text-align: center;">
 <img src="https://pwnbuffer.org/images/daemon/x86/1.svg" alt="intel-gen">
 </div>
-<p>The <strong>Central Processing Unit</strong> (CPU) is the &ldquo;brain&rdquo; of a computer, responsible for processing information and managing data stored in memory. It performs essential functions such as processing, storage, and input/output operations, making it crucial for the functioning of computer systems, including operating systems, mobile devices, and embedded systems.</p>
-<p>A computer, in a simplified way, can be seen as a set of instructions stored in memory that are processed by the CPU. The basic architecture of a computer consists of three main components: the CPU, memory, and input/output devices, all connected through a bus (<em>BUS</em>) <strong>(see the image above)</strong>.</p>
-<p>The foundation of this architecture was proposed by <strong>John Von Neumann</strong>, whose concepts still influence the design of modern processors. However, contemporary CPUs often do not strictly follow Von Neumann’s original architecture, although many of its principles remain fundamental. Additionally, CPUs may adopt different internal management models, such as <strong>CISC</strong> (Complex Instruction Set Computing) and <strong>RISC</strong> (Reduced Instruction Set Computing), which will be explained later.</p>
-<h1 id="components-of-a-computer">
-  Components of a Computer
-  <a class="heading-link" href="#components-of-a-computer">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>A <strong>Unidade Central de Processamento</strong> (CPU, do inglês <em>Central Processing Unit</em>) é o &ldquo;cérebro&rdquo; de um computador, responsável por processar informações e gerenciar os dados armazenados na memória. Ela executa funções essenciais como processamento, armazenamento e operações de entrada/saída, sendo crucial para o funcionamento de sistemas de computador, incluindo sistemas operacionais, dispositivos móveis e sistemas embarcados.</p>
+<p>Um computador, de maneira simplificada, pode ser visto como um conjunto de instruções armazenadas na memória, que são processadas pela CPU. A arquitetura básica de um computador é composta por três componentes principais: a CPU, a memória e os dispositivos de entrada e saída, todos conectados através de um barramento(<em>BUS</em>) <strong>(veja a imagem acima)</strong>.</p>
+<p>A fundação dessa arquitetura foi proposta por <strong>John Von Neumann</strong>, cujos conceitos ainda influenciam os projetos de processadores modernos. No entanto, as CPUs contemporâneas frequentemente não seguem de forma rígida a arquitetura original de Von Neumann, embora muitos de seus princípios permaneçam fundamentais. Além disso, as CPUs podem adotar diferentes modelos de gerenciamento interno, como <strong>CISC</strong> (Complex Instruction Set Computing) e <strong>RISC</strong> (Reduced Instruction Set Computing), que serão explicados mais adiante.</p>
+<h1 id="componentes-de-um-computador">
+  Componentes de um Computador
+  <a class="heading-link" href="#componentes-de-um-computador">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <div style="text-align: center;">
@@ -229,337 +229,330 @@ Some points may seem confusing at first, but remember: everything follows a defi
 <h2 id="cpu-internal-components">
   CPU internal components
   <a class="heading-link" href="#cpu-internal-components">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
 <hr>
-<h4 id="registers">
-  <strong>Registers</strong>
-  <a class="heading-link" href="#registers">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h4 id="registradores">
+  <strong>Registradores</strong>
+  <a class="heading-link" href="#registradores">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
-<p><strong>Registers</strong> are internal storage areas of the CPU, designed to process data quickly. Unlike RAM, where data stays for a longer period, data in registers is temporary and used in high-speed operations. Before being processed, all data must be stored in a register. (This concept will be better understood when we cover Assembly language).</p>
+<p>Os <strong>registradores</strong> são áreas de armazenamento interno da CPU, projetadas para processar dados de maneira rápida. Ao contrário da memória RAM, onde os dados permanecem por um período mais longo, os dados nos registradores são temporários e usados em operações de alta velocidade. Antes de serem processados, todos os dados precisam ser armazenados em um registrador. (Este conceito será melhor compreendido quando abordarmos a linguagem de Assembly).</p>
 <hr>
-<h3 id="arithmetic-and-logic-unit-alu">
-  <strong>Arithmetic and Logic Unit (ALU)</strong>
-  <a class="heading-link" href="#arithmetic-and-logic-unit-alu">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="unidade-aritmética-e-lógica-alu">
+  <strong>Unidade Aritmética e Lógica (ALU)</strong>
+  <a class="heading-link" href="#unidade-aritm%c3%a9tica-e-l%c3%b3gica-alu">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p>The <strong>ALU</strong> (Arithmetic and Logic Unit) is responsible for performing arithmetic calculations (such as addition and subtraction) and logical operations (such as AND, OR, NOT) that have been decoded by the <strong>Control Unit</strong> (CU).</p>
-<p>Some of the most common processes executed by the ALU include:</p>
+<p>A <strong>ALU</strong> (Unidade Aritmética e Lógica) é responsável por realizar os cálculos aritméticos (como adição e subtração) e operações lógicas (como AND, OR, NOT) que foram decodificados pela <strong>Unidade de Controle</strong> (CU).</p>
+<p>Entre os processos mais comuns executados pela ALU, estão:</p>
 <ul>
-<li>Addition</li>
-<li>Subtraction</li>
-<li>Division</li>
-<li>Multiplication</li>
-<li>Selection / Branching</li>
-<li>Repetition / Looping</li>
+<li>Adição</li>
+<li>Subtração</li>
+<li>Divisão</li>
+<li>Multiplicação</li>
+<li>Seleção / Ramificação</li>
+<li>Repetição / Looping</li>
 </ul>
 <hr>
-<h3 id="control-unit-cu">
-  <strong>Control Unit (CU)</strong>
-  <a class="heading-link" href="#control-unit-cu">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="unidade-de-controle-control-unit">
+  <strong>Unidade de Controle (Control Unit)</strong>
+  <a class="heading-link" href="#unidade-de-controle-control-unit">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p>The <strong>Control Unit</strong> (CU) is the part of the CPU responsible for coordinating and managing the system&rsquo;s operations. It controls <strong>input and output (I/O)</strong> operations, <strong>ALU</strong> (Arithmetic and Logic Unit) operations, memory access, and interaction with <strong>peripheral devices</strong>. The CU interprets the program instructions and ensures that each component of the CPU performs its tasks in an orderly and efficient manner, guaranteeing the correct functioning of the system.</p>
+<p>A <strong>Unidade de Controle</strong> (UC) é a parte da CPU responsável por coordenar e gerenciar as operações do sistema. Ela controla as operações de <strong>entrada e saída (E/S)</strong>, as operações da <strong>ALU</strong> (Unidade Aritmética e Lógica), o acesso à <strong>memória</strong> e a interação com os <strong>dispositivos periféricos</strong>. A UC interpreta as instruções do programa e assegura que cada componente da CPU execute suas tarefas de forma ordenada e eficiente, garantindo o correto funcionamento do sistema.</p>
 <hr>
 <h2 id="cache">
   <strong>Cache</strong>
   <a class="heading-link" href="#cache">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>The <strong>cache</strong> is a high-speed memory located close to the CPU that helps accelerate operations.</p>
-<h3 id="types-of-cache">
-  <strong>Types of Cache:</strong>
-  <a class="heading-link" href="#types-of-cache">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>O <strong>cache</strong> é uma memória de acesso rápido, localizada próxima à CPU, que auxilia na aceleração das operações.</p>
+<h3 id="tipos-de-cache">
+  <strong>Tipos de Cache:</strong>
+  <a class="heading-link" href="#tipos-de-cache">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
 <div style="text-align: center;">
   <img src="https://pwnbuffer.org/images/daemon/x86/3.svg" alt="intel-gen">
 </div>
-<h3 id="types-of-cache-1">
-  <strong>Types of Cache:</strong>
-  <a class="heading-link" href="#types-of-cache-1">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
-  </a>
-</h3>
 <ul>
-<li><strong>L1 Cache:</strong>
+<li><strong>Cache L1:</strong>
 <ul>
-<li>Integrated into the processor or close to it.</li>
-<li>Smaller capacity but faster.</li>
-<li>Stores frequently accessed data (e.g., registers).</li>
-<li>Size: 2 KB to 64 KB.</li>
+<li>Integrado ao processador ou próximo a ele.</li>
+<li>Menor capacidade, mas mais rápido.</li>
+<li>Armazena dados de acesso frequente (ex.: registradores).</li>
+<li>Tamanho: 2 KB a 64 KB.</li>
 </ul>
 </li>
-<li><strong>L2 Cache:</strong>
+<li><strong>Cache L2:</strong>
 <ul>
-<li>Can be integrated into the processor or located close to it.</li>
-<li>Larger capacity than L1.</li>
-<li>Acts as an intermediary between L1 and the rest of the memory.</li>
-<li>Size: 256 KB to 512 KB.</li>
+<li>Pode ser integrado ao processador ou localizado próximo a ele.</li>
+<li>Maior capacidade que o L1.</li>
+<li>Serve de intermediário entre L1 e o restante da memória.</li>
+<li>Tamanho: 256 KB a 512 KB.</li>
 </ul>
 </li>
-<li><strong>L3 Cache:</strong>
+<li><strong>Cache L3:</strong>
 <ul>
-<li>Located outside the processor.</li>
-<li>Increases the performance of L1 and L2.</li>
-<li>Larger capacity than L1 and L2.</li>
-<li>Size: 1 MB to 8 MB.</li>
+<li>Fica fora do processador.</li>
+<li>Aumenta o desempenho do L1 e L2.</li>
+<li>Maior capacidade que L1 e L2.</li>
+<li>Tamanho: 1 MB a 8 MB.</li>
 </ul>
 </li>
 </ul>
-<p>In summary, each cache level stores data hierarchically, optimizing CPU performance.</p>
+<p>Em resumo, cada nível de cache armazena dados de forma hierárquica, otimizando o desempenho da CPU.</p>
 <hr>
-<h3 id="memory-management-unit-mmu">
-  <strong>Memory Management Unit (MMU)</strong>
-  <a class="heading-link" href="#memory-management-unit-mmu">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="unidade-de-gerenciamento-de-memória-memory-management-unit---mmu">
+  <strong>Unidade de Gerenciamento de Memória (Memory Management Unit - MMU)</strong>
+  <a class="heading-link" href="#unidade-de-gerenciamento-de-mem%c3%b3ria-memory-management-unit---mmu">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p>The <strong>Memory Management Unit</strong> (MMU) is responsible for assisting the operating system in managing memory resources efficiently. It controls the allocation and release of memory, as well as translating virtual addresses to physical addresses, allowing the operating system to access and manipulate data securely and optimally. The MMU is also essential for managing <strong>virtual memory</strong>, ensuring that processes are isolated and memory is used effectively.</p>
+<p>A <strong>Unidade de Gerenciamento de Memória</strong> (MMU) é responsável por ajudar o sistema operacional a gerenciar os recursos de memória de forma eficiente. Ela controla a alocação e a liberação de memória, além de traduzir endereços virtuais para endereços físicos, permitindo que o sistema operacional acesse e manipule dados de forma segura e otimizada. A MMU também é essencial para o gerenciamento de <strong>memória virtual</strong>, garantindo que os processos sejam isolados e que a memória seja utilizada de maneira eficaz.</p>
 <hr>
 <h3 id="firmware">
   <strong>Firmware</strong>
   <a class="heading-link" href="#firmware">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Firmware</strong> is a type of fixed, specialized program embedded directly into a device&rsquo;s hardware, responsible for the initialization and basic configuration of the system. It provides the necessary instructions for the hardware to function correctly and starts the process of loading the operating system. Firmware is essential for the initial operation of devices such as computers, printers, and routers.</p>
+<p>O <strong>firmware</strong> é um tipo de programa fixo e especializado, incorporado diretamente ao hardware de um dispositivo, responsável pela inicialização e configuração básica do sistema. Ele fornece as instruções necessárias para que o hardware funcione corretamente e inicia o processo de carregamento do sistema operacional. O firmware é essencial para o funcionamento inicial de dispositivos, como computadores, impressoras e roteadores.</p>
 <hr>
-<h1 id="external-cpu">
-  External CPU
-  <a class="heading-link" href="#external-cpu">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h1 id="cpu-external">
+  CPU External
+  <a class="heading-link" href="#cpu-external">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <hr>
-<h3 id="main-memory-ram">
-  <strong>Main Memory (RAM)</strong>
-  <a class="heading-link" href="#main-memory-ram">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="memória-principal-ram">
+  <strong>Memória Principal (RAM)</strong>
+  <a class="heading-link" href="#mem%c3%b3ria-principal-ram">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>RAM</strong> (Random Access Memory) is a volatile memory that stores temporary data while the system is running. It organizes this data in sequences of bytes, with each byte having a unique address used for quick access. The amount of available RAM determines the physical memory of a device or computer. Currently, RAM capacities can range from gigabytes (GB) and are used to store temporary data, such as the operating system and specific areas for <strong>buffers</strong> and <strong>input/output (I/O)</strong> devices.</p>
-<p>The image below illustrates how a 16 GB RAM operates in a modern system:</p>
+<p>A <strong>memória RAM</strong> (Random Access Memory) é uma memória volátil que armazena dados temporários enquanto o sistema está em funcionamento. Ela organiza esses dados em sequência de bytes, com cada byte possuindo um endereço único que é utilizado para acessá-lo rapidamente. A quantidade de memória RAM disponível determina a memória física de um dispositivo ou computador. Atualmente, as memórias RAM podem ter capacidades que variam de gigabytes (GB), sendo usadas para armazenar dados temporários, como o sistema operacional e áreas específicas para <strong>buffers</strong> e dispositivos de <strong>entrada/saída</strong> (E/S).</p>
+<p>A imagem abaixo exemplifica o funcionamento de uma memória RAM de 16 GB em um sistema moderno:</p>
 <div style="text-align: center;">
   <img src="https://pwnbuffer.org/images/daemon/x86/memory.png" alt="memory">
 </div>
 <ul>
-<li><strong>Free:</strong> Refers to the memory spaces available for the operating system and for managing running processes.<br>
-The other memory spaces are used for hardware management, <strong>input/output (I/O)</strong> operations, and the operating system.</li>
+<li><strong>Livre (Free):</strong> Refere-se aos espaços de memória disponíveis para o sistema operacional e para o gerenciamento de processos em execução.<br>
+Os demais espaços de memória são utilizados para o gerenciamento de hardware, operações de <strong>entrada/saída</strong> (E/S) e para o sistema operacional.</li>
 </ul>
-<p>Currently, physical memory is not accessed directly by processes. Instead, it is mapped through <strong>address spaces</strong> and <strong>virtual memory</strong>, allowing the operating system to manage and allocate memory efficiently, isolating processes and maximizing the use of available resources.</p>
+<p>Atualmente, a memória física não é acessada diretamente pelos processos. Em vez disso, ela é mapeada por meio de <strong>espaços de endereçamento</strong> e <strong>memória virtual</strong>, permitindo que o sistema operacional gerencie e aloque a memória de forma eficiente, isolando os processos e maximizando o uso dos recursos disponíveis.</p>
 <hr>
-<h3 id="external-storage-eg-hard-drives-usb-drives-etc">
-  <strong>External Storage (e.g., Hard Drives, USB Drives, etc.)</strong>
-  <a class="heading-link" href="#external-storage-eg-hard-drives-usb-drives-etc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="armazenamento-externo-external-storage---ex-discos-rígidos-drives-usb-etc">
+  <strong>Armazenamento Externo (External Storage) - (ex.: Discos Rígidos, Drives USB, etc.)</strong>
+  <a class="heading-link" href="#armazenamento-externo-external-storage---ex-discos-r%c3%adgidos-drives-usb-etc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>External storage devices</strong> are <strong>non-volatile</strong> memories, meaning they retain data even when the system is turned off. They offer much larger storage capacities compared to <strong>RAM</strong>, but, in contrast, tend to be slower in terms of access speed. These devices are used to store large volumes of data permanently, such as files, programs, and operating systems.</p>
+<p>Os <strong>dispositivos de armazenamento externo</strong> são memórias <strong>não voláteis</strong>, ou seja, retêm os dados mesmo quando o sistema é desligado. Eles oferecem capacidades de armazenamento muito maiores em comparação à <strong>memória RAM</strong>, mas, em contrapartida, tendem a ser mais lentos em relação à velocidade de acesso. Esses dispositivos são utilizados para armazenar grandes volumes de dados de forma permanente, como arquivos, programas e sistemas operacionais.</p>
 <hr>
-<h3 id="ports">
-  <strong>Ports</strong>
-  <a class="heading-link" href="#ports">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="portas">
+  <strong>Portas</strong>
+  <a class="heading-link" href="#portas">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Ports</strong> are the physical or logical access points that allow peripherals to be connected to the computer. Devices such as printers, keyboards, mice, and other accessories are connected through these ports. <strong>Drivers</strong> are specific programs that manage communication between the operating system and the peripherals, controlling how these devices are handled and interacting with the computer.</p>
+<p>As <strong>portas</strong> são os pontos de acesso físicos ou lógicos que permitem a conexão de periféricos ao computador. Dispositivos como impressoras, teclados, mouses e outros acessórios são conectados através dessas portas. Os <strong>drivers</strong> são programas específicos que gerenciam a comunicação entre o sistema operacional e os periféricos, controlando como esses dispositivos são manipulados e interagindo com o computador.</p>
 <hr>
-<h3 id="bus">
-  <strong>Bus</strong>
-  <a class="heading-link" href="#bus">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="barramento-bus">
+  <strong>Barramento (Bus)</strong>
+  <a class="heading-link" href="#barramento-bus">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p>The <strong>bus</strong> is a set of physical or logical pathways in a system that allows data transfer between the different components of the computer. It facilitates communication between the <strong>CPU</strong>, <strong>memory</strong>, and <strong>peripherals</strong>.</p>
+<p>O <strong>barramento</strong> é um conjunto de caminhos físicos ou lógicos em um sistema que permite a transferência de dados entre os diferentes componentes do computador. Ele facilita a comunicação entre a <strong>CPU</strong>, <strong>memória</strong> e <strong>periféricos</strong>.</p>
 <div style="text-align: center;">
   <img src="https://pwnbuffer.org/images/daemon/x86/bus.jpg" alt="bus">
 </div>
-<p>The three main types of lines in a bus are:</p>
+<p>Os três principais tipos de linhas em um barramento são:</p>
 <ul>
-<li><strong>Control line:</strong> Responsible for managing control and synchronization operations between components.</li>
-<li><strong>Address line:</strong> Carries memory or device addresses to specify where data should be read or written.</li>
-<li><strong>Data line:</strong> Transfers the actual data between components.</li>
+<li><strong>Linha de controle:</strong> Responsável por gerenciar as operações de controle e sincronização entre os componentes.</li>
+<li><strong>Linha de endereçamento:</strong> Transporta os endereços de memória ou de dispositivos para especificar onde os dados devem ser lidos ou gravados.</li>
+<li><strong>Linha de dados:</strong> Transfere os dados propriamente ditos entre os componentes.</li>
 </ul>
 <hr>
-<h3 id="how-is-a-program-executed">
-  <strong>How is a program executed?</strong>
-  <a class="heading-link" href="#how-is-a-program-executed">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="como-um-programa-é-executado">
+  <strong>Como um programa é executado?</strong>
+  <a class="heading-link" href="#como-um-programa-%c3%a9-executado">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p>When we open a program, it is loaded into the computer’s memory. A program is simply a set of instructions in <strong>machine code</strong> that the CPU must execute.</p>
-<p>In a 32-bit CPU (like the x86 architecture), it reads small blocks of data called <em>doublewords</em> (which are 4 bytes or 32 bits). When it encounters an address in memory, the CPU takes that data block and temporarily stores it in one of its registers, which are like quick drawers. Then, the CPU reads the content of this data and executes the instruction contained within.</p>
-<p>After executing each instruction, the CPU fetches the next instruction from memory.</p>
+<p>Quando abrimos um programa, ele é carregado na memória do computador. Um programa nada mais é do que um conjunto de instruções em <strong>código de máquina</strong> que a CPU deve executar.</p>
+<p>Em uma CPU de 32 bits (como a arquitetura x86), ela lê pequenos blocos de dados chamados <em>doublewords</em> (que têm 4 bytes ou 32 bits). Ao encontrar um endereço na memória, a CPU pega esse bloco de dados e o armazena temporariamente em um de seus registradores, que são como gavetas rápidas. Depois, a CPU lê o conteúdo desses dados e executa a instrução contida ali.</p>
+<p>Após a execução de cada instrução, a CPU busca a próxima instrução na memória.</p>
 <blockquote>
-<p>The CPU has a register called the <strong>Instruction Pointer</strong> (<strong>IP</strong>), or <strong>EIP</strong> (Extended Instruction Pointer) / <strong>RIP</strong> (Register Instruction Pointer), which points to the address of the next instruction to be executed.</p>
+<p>A CPU possui um registrador chamado <strong>Instruction Pointer</strong> (<strong>IP</strong>), ou <strong>EIP</strong> (Extended Instruction Pointer) / <strong>RIP</strong> (Register Instruction Pointer), que aponta para o endereço da próxima instrução a ser executada.</p>
 </blockquote>
-<p>This register can be manipulated, altering the flow of the program. This is exploited by <strong>malwares</strong> to modify the system&rsquo;s behavior.</p>
+<p>Esse registrador pode ser manipulado, alterando o fluxo do programa. Isso é explorado por <strong>malwares</strong> para modificar o comportamento do sistema.</p>
 <hr>
 <h1 id="risc-vs-cisc">
   Risc vs. Cisc
   <a class="heading-link" href="#risc-vs-cisc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <div style="text-align: center;">
   <img src="https://pwnbuffer.org/images/daemon/x86/cr.png" alt="bus">
 </div>
 <h1 id="cisc">
-  CISC
+  Cisc
   <a class="heading-link" href="#cisc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p>CISC (<strong>Complex Instruction Set Computer</strong>) is a processor architecture that prioritizes powerful instructions with multiple steps or functionalities. It was designed to minimize the number of instructions the programmer needs to write by offering commands with various functionalities. This architecture is very common in personal computers and servers, being used by companies like Intel and AMD.</p>
-<h3 id="key-features-of-cisc">
-  Key Features of CISC:
-  <a class="heading-link" href="#key-features-of-cisc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>CISC (<strong>Complex Instruction Set Computer</strong>, em português, &ldquo;<strong>Computador com Conjunto Complexo de Instruções</strong>&rdquo;) é uma arquitetura de processador que prioriza instruções poderosas, com múltiplas etapas ou funcionalidades. Foi projetada para minimizar a quantidade de instruções que o programador precisa escrever, oferecendo comandos com diversas funcionalidades. Essa arquitetura é muito comum em computadores pessoais e servidores, sendo utilizada por empresas como Intel e AMD.</p>
+<h3 id="principais-características-do-cisc">
+  Principais características do CISC:
+  <a class="heading-link" href="#principais-caracter%c3%adsticas-do-cisc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
 <ol>
-<li><strong>Complex and multi-step instructions</strong>: Many CISC instructions perform multiple operations at once, reducing the number of instructions needed, but it also decreases the operation speed.</li>
-<li><strong>Variable instruction lengths</strong>: Instructions can be of different sizes.</li>
-<li><strong>Direct memory access</strong>: CISC instructions can access memory directly, which simplifies programming, but increases data access time.</li>
-<li><strong>Advanced addressing modes</strong>: CISC has many forms of addressing, resulting in flexibility to manage data structures&hellip;</li>
+<li><strong>Instruções complexas e de várias etapas</strong>: Muitas instruções CISC executam várias operações de uma só vez, isso reduz a quantidade de instruções nescessarias, porém diminui a velocidade da operação.</li>
+<li><strong>Instruções de comprimento variável</strong>: As instruções podem ser de diferentes tamanhos</li>
+<li><strong>Acesso direto á memória</strong>: As instruções CISC podem acessar a memória diretamente, isso simplifica a programação, porém aumenta o tempo de acesso aos dados.</li>
+<li><strong>Modos de endereçamento avançados</strong>: O CISC possui muitas formas de endereçamento, isso resulta em flexibilidade para gerenciar estrutura de dados&hellip;</li>
 </ol>
-<h1 id="example-of-a-cisc-instruction">
-  Example of a CISC instruction
-  <a class="heading-link" href="#example-of-a-cisc-instruction">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h1 id="exemplo-de-uma-instrução-cisc">
+  Exemplo de uma instrução CISC
+  <a class="heading-link" href="#exemplo-de-uma-instru%c3%a7%c3%a3o-cisc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p>In x86 assembly, a single instruction can combine:</p>
+<p>No assembly x86, uma única instrução pode combinar:</p>
 <ul>
-<li>Data loading</li>
-<li>Arithmetic (calculations)<br>
-See:</li>
+<li>Carregamento de dados</li>
+<li>Aritmética (cálculos)
+Veja:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#447fcf">mov</span> <span style="color:#40ffff">eax</span>, [<span style="color:#40ffff">ebx</span>]
-</span></span></code></pre></div><p>This single line moves (loads) the value from the memory address contained in <code>ebx</code> to the <code>eax</code> register.</p>
-<h3 id="components">
-  Components:
-  <a class="heading-link" href="#components">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+</span></span></code></pre></div><p>Essa única linha move (carrega) o valor do endereço de memória contido em <code>ebx</code> para o registrador <code>eax</code>.</p>
+<h3 id="componentes">
+  Componentes:
+  <a class="heading-link" href="#componentes">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
 <ul>
-<li><strong>mov</strong>: This is the <em>move</em> register, used to copy data from one place to another. In x86 assembly, <code>mov</code> is used to load data from memory, or from another register, into a specific register.</li>
-<li><strong>eax</strong>: This is the destination register, meaning the place where the data will be copied.</li>
-<li><strong>[ebx]</strong>: This indicates the <strong>source operand</strong>. The brackets around <code>ebx</code> indicate that the value being accessed is not directly in the <code>ebx</code> register, but at the <strong>memory address</strong> stored in the <code>ebx</code> register. In other words, <code>ebx</code> contains a memory address, and the value at that address will be moved to the <code>eax</code> register.</li>
+<li><strong>mov</strong>: Este é o registrador <em>move</em> (mover), usado para copiar dados de um lugar para outro. No assembly x86, o <code>mov</code> é usado para carregar dados da memória, ou de outro registrador, para um registrador específico.</li>
+<li><strong>eax</strong>: Este é o registrador de destino, ou seja, o lugar onde os dados serão copiados.</li>
+<li><strong>[ebx]</strong>: Isso indica o <strong>operando de origem</strong>. Os colchetes ao redor do <code>ebx</code> indicam que o valor que será acessado não está diretamente no registrador <code>ebx</code>, mas sim no <strong>endereço de memória</strong> que está armazenado no registrador <code>ebx</code>. Ou seja, <code>ebx</code> contém um endereço de memória, e o valor que está nesse endereço será movido para o registrador <code>eax</code>.</li>
 </ul>
-<h2 id="advantages-of-cisc">
-  Advantages of CISC
-  <a class="heading-link" href="#advantages-of-cisc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="vantagens-do-cisc">
+  Vantagens do CISC
+  <a class="heading-link" href="#vantagens-do-cisc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
 <ul>
-<li><strong>Backward compatibility</strong>: CISC architectures like x86 maintain compatibility with older generations. This allowed older software to run on current systems.</li>
-<li><strong>Versatile performance</strong>: With the flexibility that CISC offers, it is ideal for general-purpose computing.</li>
+<li><strong>Compatibilidade com versões anteriores</strong>: A arquitetura CISC como x86 mantiveram a compatibilidade com outras gerações mais antigas. Isso permitiu que softwares mais antigos sejam executados nos sistemas atuais.</li>
+<li><strong>Desempenho versátil</strong>: Com a flexibilidade que o CISC tem, isso o torna ideal para computação de uso geral.</li>
 </ul>
-<p>CISC has its advantages for computers where resources are more abundant. However, it consumes more power and generates heat, which is unsuitable for mobile devices, where efficiency is key. Nowadays, CISC uses internal structures similar to RISC to improve efficiency.</p>
+<p>O CISC tem suas vantagens para computadores, onde os recursos são maiores. No entanto, isso consome mais energia e gera calor, o que é inadequado para dispositivos móveis, onde a eficiência é fundamental. Nos dias atuais, o CISC utiliza estruturas internas semelhantes às do RISC para melhorar a eficiência.</p>
 <hr>
 <h1 id="risc">
   RISC
   <a class="heading-link" href="#risc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p>RISC (<strong>Reduced Instruction Set Computer</strong>) is a processor architecture/design focused on simplicity and speed. In RISC architectures like <strong>ARM</strong> and <strong>RISC-V</strong>, instructions are designed to be executed in a single clock cycle, which increases execution speed and reduces power consumption. This makes RISC ideal for mobile devices, embedded systems, and efficient computing.</p>
-<h3 id="key-features-of-risc">
-  Key Features of RISC:
-  <a class="heading-link" href="#key-features-of-risc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>RISC (<em><strong>Reduced Instruction Set Computer</strong></em>, em português literal, &ldquo;<strong>Computador com um conjunto reduzido de instruções</strong>&rdquo;) É uma arquitetura/Design de processadores focados na simplicidade e velocidade. Em arquiteturas RISC como: <strong>ARM</strong> e <strong>RISC-V</strong>, as instruções são feitas para serem executadas em um único ciclo de clock, isso aumenta a velocidade da execução e diminui o consumo de energia. Tornando o RISC ideal para dispositivos moveis, sistemas embarcados e computação eficiente.</p>
+<h3 id="principais-características-do-risc">
+  Principais características do RISC:
+  <a class="heading-link" href="#principais-caracter%c3%adsticas-do-risc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
 <ol>
-<li><strong>Simple single-cycle instructions</strong>: RISC instructions are simple, allowing for fast execution.</li>
-<li><strong>Fixed-length instructions</strong>: Instructions have a fixed length, reducing decoding complexity, which results in increased execution speed.</li>
-<li><strong>Load/store architecture</strong>: RISC separates memory access and computation. It requires that data be loaded into registers first, and then operated on. This means that before performing any <strong>arithmetic or logical operation</strong> on data, the data <strong>must first be loaded (load) into a register</strong>. After manipulation, the result <strong>can be stored (store) back into memory</strong>.</li>
-<li><strong>Limited addressing modes</strong>: RISC has fewer addressing instructions, which reduces complexity. However, this requires additional instructions for more complex operations.</li>
+<li><strong>Instruções simples de ciclo único</strong>: As instruções RISC são simples, permitindo execução rápida.</li>
+<li><strong>Instruções de comprimento fixo</strong>: As instruções tem um comprimento fixo, sendo assim, a complexidade de decodificação diminui, resultando no aumento da velocidade da execução.</li>
+<li><strong>Arquitetura de carregamento/armazenamento</strong>: O RISC separa o acesso á memoria e a computação. exigindo que os dados sejam carregados primeiro nos registradores e depois, operado. Isso significa que antes de realizar qualquer tipo de <strong>operação aritmética ou lógica</strong> em um dado, o dado <strong>precisa ser carregado (load) primeiro para um registrador</strong>. Depois de manipulá-lo, o resultado <strong>pode ser armazenado (store) de volta na memória</strong>.</li>
+<li><strong>Modo de endereçamento limitados</strong>: o RISC tem menos instruções de endereçamento, isso reduz a complexidade. Mas por outro lado, isso exige instruções adicionais para operações mais complexas.</li>
 </ol>
-<h3 id="example-of-a-risc-instruction-sequence">
-  Example of a RISC instruction sequence
-  <a class="heading-link" href="#example-of-a-risc-instruction-sequence">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h3 id="exemplo-de-uma-sequência-de-instruções-risc">
+  Exemplo de uma sequência de instruções RISC
+  <a class="heading-link" href="#exemplo-de-uma-sequ%c3%aancia-de-instru%c3%a7%c3%b5es-risc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p>In ARM assembly, many instructions separate the loading and processing of data.</p>
-<h4 id="load-data-from-memory-to-registers">
-  Load Data from Memory to Registers
-  <a class="heading-link" href="#load-data-from-memory-to-registers">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>No assembly ARM, muitas instruções separam o carregamento e o processamento dos dados.</p>
+<h4 id="carregar-dados-da-memória-para-os-registradores">
+  Carregar Dados da Memória para os Registradores
+  <a class="heading-link" href="#carregar-dados-da-mem%c3%b3ria-para-os-registradores">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#447fcf">ldr</span> <span style="color:#40ffff">r0</span>, [<span style="color:#40ffff">r1</span>]    <span style="color:#999;font-style:italic">; Carrega o valor do endereço de memória armazenado em r1 para o registrador r0  
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#447fcf">add</span> <span style="color:#40ffff">r0</span>, <span style="color:#40ffff">r0</span>, <span style="color:#999;font-style:italic">#1  ; Adiciona 1 ao valor de r0  
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#447fcf">str</span> <span style="color:#40ffff">r0</span>, [<span style="color:#40ffff">r1</span>]    <span style="color:#999;font-style:italic">; Armazena o resultado da operação no endereço de memória indicado por r1
-</span></span></span></code></pre></div><p>Here, we load the value from memory into a register, perform the operation, and then store the result back into memory. It&rsquo;s simple and efficient.</p>
-<h3 id="advantages-of-risc">
-  Advantages of RISC
-  <a class="heading-link" href="#advantages-of-risc">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+</span></span></span></code></pre></div><p>Aqui, carregamos o valor da memória para um registrador, realizamos a operação, e em seguida, armazenamos o resultado de volta na memória. É simples e eficiente.</p>
+<h3 id="vantagens-do-risc">
+  Vantagens do RISC
+  <a class="heading-link" href="#vantagens-do-risc">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
 <ul>
 <li>
-<p><strong>Energy efficiency</strong>: Due to its simple instructions, the RISC architecture consumes less power, making it ideal for mobile devices and IoT (Internet of Things).</p>
+<p><strong>Eficiência de energia</strong>: Devido às suas instruções simples, a arquitetura RISC consome menos energia, tornando-a ideal para dispositivos móveis e IoT (Internet das Coisas).</p>
 </li>
 <li>
-<p><strong>Scalability and flexibility</strong>: RISC architectures, like ARM, can be used in a wide range of devices, from simple mobile devices to large data centers.</p>
+<p><strong>Escalabilidade e flexibilidade</strong>: Arquiteturas RISC, como a ARM, podem ser usadas em uma grande variedade de dispositivos, desde simples aparelhos móveis até grandes data centers.</p>
 </li>
 </ul>
 <hr>
-<h1 id="x86-architecture">
-  x86 Architecture
-  <a class="heading-link" href="#x86-architecture">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h1 id="arquitetura-x86">
+  Arquitetura x86
+  <a class="heading-link" href="#arquitetura-x86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p>The <strong>x86</strong> architecture originated with the <strong>8086</strong> microprocessor, developed by Intel. Due to its success, the company expanded the line, releasing new models such as <strong>80186, 80286, 80386</strong>, and so on.</p>
+<p>A arquitetura <strong>x86</strong> teve origem com o microprocessador <strong>8086</strong>, desenvolvido pela Intel. Devido ao seu sucesso, a empresa expandiu a linha, lançando novos modelos como <strong>80186, 80286, 80386</strong> e assim por diante.</p>
 <div style="text-align: center;">
   <img src="https://pwnbuffer.org/images/daemon/x86/gen.png" alt="intel-gen">
 </div>
-<p>Initially, the naming followed the <strong>80x86</strong> standard, where the &ldquo;x&rdquo; represented a variable number. Over time, for simplification, the name was shortened to <strong>x86</strong>, becoming the widely used term to this day. With the evolution of technology, the x86 architecture received various improvements and extensions, always preserving compatibility with previous generations. This principle allowed older software to continue running on more modern processors, ensuring a smooth transition between different hardware generations.</p>
-<p>One of the most significant changes came with <strong>AMD</strong>, which developed the <strong>x86-64</strong> architecture, introducing support for <strong>64-bit</strong>. This innovation allowed for greater processing power and support for more RAM, marking a significant advance in high-performance computing.</p>
-<p>Although Intel initially invested in its own 64-bit architecture, called <strong>IA-64</strong> (used in the Itanium line), it eventually adopted AMD&rsquo;s <strong>x86-64</strong> standard. This ensured that processors from both companies were compatible and followed the same instruction set, promoting a joint evolution of the architecture.</p>
-<p>Today, Intel and AMD continue to advance the <strong>x86-64</strong> architecture, incorporating new technologies, improving energy efficiency, and enhancing performance, while always maintaining compatibility.</p>
+<p>Inicialmente, a nomenclatura seguia o padrão <strong>80x86</strong>, onde o &ldquo;x&rdquo; representava um número variável. Com o tempo, para simplificação, o nome foi abreviado para <strong>x86</strong>, tornando-se o termo amplamente utilizado até hoje. Com a evolução da tecnologia, a arquitetura x86 recebeu diversas melhorias e extensões, sempre preservando a compatibilidade com gerações anteriores. Esse princípio permitiu que softwares antigos continuassem funcionando em processadores mais modernos, garantindo uma transição suave entre diferentes gerações de hardware.
+Uma das mudanças mais significativas veio com a <strong>AMD</strong>, que desenvolveu a arquitetura <strong>x86-64</strong>, introduzindo suporte a <strong>64 bits</strong>. Essa inovação permitiu maior capacidade de processamento e suporte a mais memória RAM, marcando um avanço significativo na computação de alto desempenho.
+Embora a Intel tenha inicialmente apostado em sua própria arquitetura de 64 bits, chamada <strong>IA-64</strong> (usada na linha Itanium), ela acabou adotando o padrão <strong>x86-64</strong> da AMD. Isso garantiu que processadores de ambas as empresas fossem compatíveis e seguissem um mesmo conjunto de instruções, promovendo uma evolução conjunta da arquitetura.
+Hoje, Intel e AMD continuam avançando na arquitetura <strong>x86-64</strong>, incorporando novas tecnologias, melhorando eficiência energética e desempenho, mas sempre mantendo a compatibilidade.</p>
 
 
 
@@ -583,10 +576,10 @@ See:</li>
   <table>
 <thead>
 <tr>
-<th>Official Name</th>
-<th>Alternative Name</th>
+<th>Nome Oficial</th>
+<th>Nome Alternativo</th>
 <th>Bit</th>
-<th>Instruction Set</th>
+<th>Conjunto de Instruções</th>
 <th>Design</th>
 </tr>
 </thead>
@@ -621,10 +614,10 @@ See:</li>
   <table>
 <thead>
 <tr>
-<th>Official Name</th>
-<th>Alternative Name</th>
+<th>Nome Oficial</th>
+<th>Nome Alternativo</th>
 <th>Bit</th>
-<th>Instruction Set</th>
+<th>Conjunto de Instruções</th>
 <th>Design</th>
 </tr>
 </thead>
@@ -659,10 +652,10 @@ See:</li>
   <table>
 <thead>
 <tr>
-<th>Official Name</th>
-<th>Alternative Name</th>
+<th>Nome Oficial</th>
+<th>Nome Alternativo</th>
 <th>Bit</th>
-<th>Instruction Set</th>
+<th>Conjunto de Instruções</th>
 <th>Design</th>
 </tr>
 </thead>
@@ -686,11 +679,11 @@ See:</li>
 
 
 
-<h1 id="frequently-asked-questions">
-  Frequently Asked Questions
-  <a class="heading-link" href="#frequently-asked-questions">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h1 id="perguntas-frequentes">
+  Perguntas frequentes
+  <a class="heading-link" href="#perguntas-frequentes">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 
@@ -716,21 +709,21 @@ See:</li>
 <div class="tab-content tab-content-1-0">
   <div class="notice question">
   <div class="notice-title">
-    <i class="fa-solid fa-question" aria-hidden="true"></i>Question
+    <i class="fa-solid fa-question" aria-hidden="true"></i>Pergunta
   </div>
-  <div class="notice-content"><h4 id="what-is-x86">
-  <strong>What is x86?</strong>
-  <a class="heading-link" href="#what-is-x86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+  <div class="notice-content"><h4 id="o-que-é-x86">
+  <strong>O que é x86?</strong>
+  <a class="heading-link" href="#o-que-%c3%a9-x86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="notice info">
   <div class="notice-title">
     <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>Info
   </div>
-  <div class="notice-content"><strong>Answer</strong>:
-x86 is an Instruction Set Architecture (ISA) developed by Intel and used in several processor architectures. The x86 architecture was introduced with the 8086 family of processors and has evolved over the years to be widely used in modern processors.</div>
+  <div class="notice-content"><strong>Resposta</strong>:<br>
+x86 é um conjunto de instruções (ISA - Instruction Set Architecture) desenvolvido pela Intel e usado em várias arquiteturas de processadores. A arquitetura x86 foi introduzida com os processadores da família 8086 e evoluiu ao longo dos anos, sendo amplamente utilizada em processadores modernos.</div>
 </div></div>
 </div>
 
@@ -755,21 +748,21 @@ x86 is an Instruction Set Architecture (ISA) developed by Intel and used in seve
 <div class="tab-content tab-content-1-1">
   <div class="notice question">
   <div class="notice-title">
-    <i class="fa-solid fa-question" aria-hidden="true"></i>Question
+    <i class="fa-solid fa-question" aria-hidden="true"></i>Pergunta
   </div>
-  <div class="notice-content"><h4 id="what-does-32-bit-mean-in-relation-to-a-processor-architecture">
-  <strong>What does &ldquo;32-bit&rdquo; mean in relation to a processor architecture?</strong>
-  <a class="heading-link" href="#what-does-32-bit-mean-in-relation-to-a-processor-architecture">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+  <div class="notice-content"><h4 id="o-que-significa-32-bits-em-relação-à-arquitetura-de-um-processador">
+  <strong>O que significa &ldquo;32 bits&rdquo; em relação à arquitetura de um processador?</strong>
+  <a class="heading-link" href="#o-que-significa-32-bits-em-rela%c3%a7%c3%a3o-%c3%a0-arquitetura-de-um-processador">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="notice info">
   <div class="notice-title">
     <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>Info
   </div>
-  <div class="notice-content"><strong>Answer</strong>:
-&ldquo;32-bit&rdquo; refers to the width of the processor, indicating that it can process data and memory addresses in 32-bit units. This means that the processor can handle 32-bit (or 4-byte) values ​​in each operation.</div>
+  <div class="notice-content"><strong>Resposta</strong>:<br>
+&ldquo;32 bits&rdquo; refere-se à largura do processador, indicando que ele pode processar dados e endereços de memória em unidades de 32 bits. Isso significa que o processador pode lidar com valores de 32 bits (ou 4 bytes) em cada operação.</div>
 </div></div>
 </div>
 
@@ -794,21 +787,21 @@ x86 is an Instruction Set Architecture (ISA) developed by Intel and used in seve
 <div class="tab-content tab-content-1-2">
   <div class="notice question">
   <div class="notice-title">
-    <i class="fa-solid fa-question" aria-hidden="true"></i>Question
+    <i class="fa-solid fa-question" aria-hidden="true"></i>Pergunta
   </div>
-  <div class="notice-content"><h4 id="does-x86-always-refer-to-32-bit">
-  <strong>Does x86 always refer to 32-bit?</strong>
-  <a class="heading-link" href="#does-x86-always-refer-to-32-bit">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+  <div class="notice-content"><h4 id="x86-sempre-se-refere-a-32-bits">
+  <strong>x86 sempre se refere a 32 bits?</strong>
+  <a class="heading-link" href="#x86-sempre-se-refere-a-32-bits">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="notice info">
   <div class="notice-title">
     <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>Info
   </div>
-  <div class="notice-content"><strong>Answer</strong>:
-Not necessarily. Although <strong>x86</strong> is often associated with the 32-bit architecture, the term &ldquo;x86&rdquo; originally referred to the Instruction Set, which covers both 32-bit and 64-bit. However, by custom, when someone mentions <strong>x86</strong>, they may be referring to the <strong>32-bit</strong> version.</div>
+  <div class="notice-content"><strong>Resposta</strong>:<br>
+Não necessariamente. Embora <strong>x86</strong> seja frequentemente associado à arquitetura de 32 bits, o termo &ldquo;x86&rdquo; originalmente se refere ao conjunto de instruções, que abrange tanto 32 bits quanto 64 bits. Porém, por costume, quando alguém menciona <strong>x86</strong>, pode estar se referindo à versão de <strong>32 bits</strong>.</div>
 </div></div>
 </div>
 
@@ -833,21 +826,21 @@ Not necessarily. Although <strong>x86</strong> is often associated with the 32-b
 <div class="tab-content tab-content-1-3">
   <div class="notice question">
   <div class="notice-title">
-    <i class="fa-solid fa-question" aria-hidden="true"></i>Question
+    <i class="fa-solid fa-question" aria-hidden="true"></i>Pergunta
   </div>
-  <div class="notice-content"><h4 id="what-is-the-difference-between-x86-and-x86-64">
-  <strong>What is the difference between x86 and x86-64?</strong>
-  <a class="heading-link" href="#what-is-the-difference-between-x86-and-x86-64">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+  <div class="notice-content"><h4 id="o-que-é-a-diferença-entre-x86-e-x86-64">
+  <strong>O que é a diferença entre x86 e x86-64?</strong>
+  <a class="heading-link" href="#o-que-%c3%a9-a-diferen%c3%a7a-entre-x86-e-x86-64">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="notice info">
   <div class="notice-title">
     <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>Info
   </div>
-  <div class="notice-content"><strong>Answer</strong>:
-<strong>x86-64</strong> (or <strong>AMD64</strong>) is the 64-bit version of the x86 architecture. The main difference is that while x86 is 32-bit, x86-64 allows 64-bit address and data manipulation, providing greater memory capacity and performance. The term <strong>x86</strong> is used to refer to both 32-bit and 64-bit, but <strong>x86-64</strong> specifies that the processor is using the 64-bit version.</div>
+  <div class="notice-content"><strong>Resposta</strong>:<br>
+<strong>x86-64</strong> (ou <strong>AMD64</strong>) é a versão de 64 bits da arquitetura x86. A principal diferença é que, enquanto x86 é de 32 bits, x86-64 permite a manipulação de endereços e dados em 64 bits, oferecendo maior capacidade de memória e desempenho. O termo <strong>x86</strong> é usado para se referir tanto a 32 bits quanto a 64 bits, mas <strong>x86-64</strong> especifica que o processador está usando a versão de 64 bits.</div>
 </div></div>
 </div>
 
@@ -872,21 +865,21 @@ Not necessarily. Although <strong>x86</strong> is often associated with the 32-b
 <div class="tab-content tab-content-1-4">
   <div class="notice question">
   <div class="notice-title">
-    <i class="fa-solid fa-question" aria-hidden="true"></i>Question
+    <i class="fa-solid fa-question" aria-hidden="true"></i>Pergunta
   </div>
-  <div class="notice-content"><h4 id="when-is-it-appropriate-to-use-the-term-x86">
-  <strong>When is it appropriate to use the term x86?</strong>
-  <a class="heading-link" href="#when-is-it-appropriate-to-use-the-term-x86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+  <div class="notice-content"><h4 id="quando-é-adequado-usar-o-termo-x86">
+  <strong>Quando é adequado usar o termo x86?</strong>
+  <a class="heading-link" href="#quando-%c3%a9-adequado-usar-o-termo-x86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="notice info">
   <div class="notice-title">
     <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>Info
   </div>
-  <div class="notice-content"><strong>Answer</strong>:
-The term <strong>x86</strong> can be used to refer to the traditional 32-bit architecture. However, it can also be used more generally to refer to the architecture as a whole, including the 64-bit version. Therefore, when we talk about <strong>x86</strong>, we are usually referring to the <strong>32-bit architecture</strong>, but it can also encompass the 64-bit version depending on the context.</div>
+  <div class="notice-content"><strong>Resposta</strong>: <br>
+O termo <strong>x86</strong> pode ser usado para se referir à arquitetura de 32 bits tradicional. No entanto, também pode ser utilizado de maneira geral para se referir à arquitetura como um todo, incluindo a versão de 64 bits. Por isso, quando falamos de <strong>x86</strong>, normalmente estamos nos referindo à <strong>arquitetura de 32 bits</strong>, mas ela também pode abranger a versão de 64 bits dependendo do contexto.</div>
 </div></div>
 </div>
 
@@ -911,21 +904,21 @@ The term <strong>x86</strong> can be used to refer to the traditional 32-bit arc
 <div class="tab-content tab-content-1-5">
   <div class="notice question">
   <div class="notice-title">
-    <i class="fa-solid fa-question" aria-hidden="true"></i>Question
+    <i class="fa-solid fa-question" aria-hidden="true"></i>Pergunta
   </div>
-  <div class="notice-content"><h4 id="how-do-we-know-if-we-are-dealing-with-64-bit-or-32-bit-x86">
-  <strong>How do we know if we are dealing with 64-bit or 32-bit x86?</strong>
-  <a class="heading-link" href="#how-do-we-know-if-we-are-dealing-with-64-bit-or-32-bit-x86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+  <div class="notice-content"><h4 id="como-sabemos-se-estamos-lidando-com-x86-de-64-bits-ou-32-bits">
+  <strong>Como sabemos se estamos lidando com x86 de 64 bits ou 32 bits?</strong>
+  <a class="heading-link" href="#como-sabemos-se-estamos-lidando-com-x86-de-64-bits-ou-32-bits">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="notice info">
   <div class="notice-title">
     <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>Info
   </div>
-  <div class="notice-content"><strong>Answer</strong>:
-If we are talking about <strong>x86</strong> and it is not specified, it is safest to assume that we are referring to the <strong>32-bit</strong> version. To explicitly indicate that we are talking about 64-bit, we use the terms <strong>x86-64</strong> or <strong>AMD64</strong>. These designations specify that the processor is capable of handling data and memory addresses in 64 bits.</div>
+  <div class="notice-content"><strong>Resposta</strong>:<br>
+Se estivermos falando sobre <strong>x86</strong> e não for especificado, é mais seguro assumir que estamos nos referindo à versão de <strong>32 bits</strong>. Para indicar explicitamente que se trata de 64 bits, usamos os termos <strong>x86-64</strong> ou <strong>AMD64</strong>. Essas denominações especificam que o processador é capaz de lidar com dados e endereços de memória em 64 bits.</div>
 </div></div>
 </div>
 
@@ -950,21 +943,21 @@ If we are talking about <strong>x86</strong> and it is not specified, it is safe
 <div class="tab-content tab-content-1-6">
   <div class="notice question">
   <div class="notice-title">
-    <i class="fa-solid fa-question" aria-hidden="true"></i>Question
+    <i class="fa-solid fa-question" aria-hidden="true"></i>Pergunta
   </div>
-  <div class="notice-content"><h4 id="what-is-the-main-advantage-of-x86-64-or-amd64-over-x86">
-  <strong>What is the main advantage of x86-64 (or AMD64) over x86?</strong>
-  <a class="heading-link" href="#what-is-the-main-advantage-of-x86-64-or-amd64-over-x86">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+  <div class="notice-content"><h4 id="qual-a-principal-vantagem-do-x86-64-ou-amd64-sobre-o-x86">
+  <strong>Qual a principal vantagem do x86-64 (ou AMD64) sobre o x86?</strong>
+  <a class="heading-link" href="#qual-a-principal-vantagem-do-x86-64-ou-amd64-sobre-o-x86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h4>
 <div class="notice info">
   <div class="notice-title">
     <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i>Info
   </div>
-  <div class="notice-content"><strong>Answer</strong>:
-The main advantage of <strong>x86-64</strong> (or <strong>AMD64</strong>) over <strong>x86</strong> is the ability to manipulate addresses and data in 64 bits, which allows access to a much larger amount of RAM (in addition to the 4GB that 32-bit x86 supports). In addition, <strong>x86-64</strong> processors generally have better performance, due to the ability to process more data at once.</div>
+  <div class="notice-content"><strong>Resposta</strong>:<br>
+A principal vantagem de <strong>x86-64</strong> (ou <strong>AMD64</strong>) sobre o <strong>x86</strong> é a capacidade de manipular endereços e dados em 64 bits, o que permite acessar uma quantidade muito maior de memória RAM (acima dos 4GB que o x86 de 32 bits suporta). Além disso, processadores <strong>x86-64</strong> geralmente têm desempenho melhor, devido à capacidade de processar mais dados de uma vez.</div>
 </div></div>
 </div>
 
@@ -1035,7 +1028,7 @@ The main advantage of <strong>x86-64</strong> (or <strong>AMD64</strong>) over <
      pwnbuffer 
     ·
     
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
     
   </section>
 </footer>

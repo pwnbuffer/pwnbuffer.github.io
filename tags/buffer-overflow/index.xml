@@ -5,15 +5,15 @@
     <link>https://pwnbuffer.org/tags/buffer-overflow/</link>
     <description>Recent content in Buffer Overflow on pwnbuffer</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>pt-br</language>
     <lastBuildDate>Fri, 07 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/tags/buffer-overflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>buffer overflow in practice</title>
+      <title>buffer overflow na prática</title>
       <link>https://pwnbuffer.org/posts/slayer/bof/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/bof/</guid>
-      <description>What is buffer overflow? Link to heading Buffer overflow (BOF) is one of the most wellknown and historically significant vulnerabilities in the world of cybersecurity. It occurs when a program writes more data to a buffer than it can hold, causing memory corruption. This flaw can be exploited by pentesters to execute arbitrary code, modify program behavior, or cause a crash.&#xA;Despite the introduction of modern security mechanisms such as ASLR and stack canaries, buffer overflow remains a critical topic in exploit development and pentesting.</description>
+      <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
     </item>
   </channel>
 </rss>

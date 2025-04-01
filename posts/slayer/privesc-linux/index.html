@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <title>
-  Privilege Escalation in Linux · pwnbuffer
+  Privilege Escalation no Linux · pwnbuffer
 </title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +13,20 @@
 
 
 <meta name="author" content="pwnbuffer">
-<meta name="description" content="An paper on privilege escalation techniques in Linux environments">
+<meta name="description" content="Um artigo sobre técnicas de escalonamento de privilégios em ambientes Linux">
 <meta name="keywords" content="team brazuca!">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Privilege Escalation in Linux">
-  <meta name="twitter:description" content="An paper on privilege escalation techniques in Linux environments">
+  <meta name="twitter:title" content="Privilege Escalation no Linux">
+  <meta name="twitter:description" content="Um artigo sobre técnicas de escalonamento de privilégios em ambientes Linux">
 
 <meta property="og:url" content="https://pwnbuffer.org/posts/slayer/privesc-linux/">
   <meta property="og:site_name" content="pwnbuffer">
-  <meta property="og:title" content="Privilege Escalation in Linux">
-  <meta property="og:description" content="An paper on privilege escalation techniques in Linux environments">
-  <meta property="og:locale" content="en">
+  <meta property="og:title" content="Privilege Escalation no Linux">
+  <meta property="og:description" content="Um artigo sobre técnicas de escalonamento de privilégios em ambientes Linux">
+  <meta property="og:locale" content="pt_br">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-03-22T00:00:00+00:00">
@@ -114,19 +114,19 @@
         
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/about/">About</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Posts</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categories</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link " href="https://pwnbuffer.org/members/">Members</a>
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
             </li>
           
             <li class="navigation-item">
@@ -146,7 +146,7 @@
                 
               
               <li class="navigation-item">
-                <a href="https://pwnbuffer.org/pt-br/posts/slayer/privesc-linux/">🇧🇷</a>
+                <a href="https://pwnbuffer.org/en/posts/slayer/privesc-linux/">🇺🇸</a>
               </li>
             
           
@@ -165,7 +165,7 @@
         <div class="post-title">
           <h1 class="title">
             <a class="title-link" href="https://pwnbuffer.org/posts/slayer/privesc-linux/">
-              Privilege Escalation in Linux
+              Privilege Escalation no Linux
             </a>
           </h1>
         </div>
@@ -174,12 +174,12 @@
             <span class="posted-on">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <time datetime="2025-03-22T00:00:00Z">
-                March 22, 2025
+                março 22, 2025
               </time>
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              13-minute read
+              14 minutos de leitura
             </span>
           </div>
           <div class="authors">
@@ -217,47 +217,47 @@
 
       <div class="post-content">
         
-        <p><strong>Hi, I&rsquo;m Slayer. In this paper, I will talk about privilege escalation in Linux. I recommend that, while reading this paper, also go testing the techniques in practice, as this will help to better understand the concepts and apply the knowledge acquired more effectively.</strong></p>
-<h1 id="introduction">
-  Introduction
-  <a class="heading-link" href="#introduction">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+        <p><strong>Olá, eu sou o Slayer. Neste paper, irei falar sobre a escalada de privilégios no Linux. Recomendo que, enquanto lê este paper, também vá testando as técnicas na prática, pois isso ajudará a entender melhor os conceitos e a aplicar os conhecimentos adquiridos de forma mais eficaz.</strong></p>
+<h1 id="introdução">
+  Introdução
+  <a class="heading-link" href="#introdu%c3%a7%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
-<p><strong>Privilege escalation is the process of gaining higher levels of access or control on a system than originally allowed. On Linux systems, this often involves elevating a common user to root privileges or exploiting poorly configured permissions to access restricted resources. This technique is widely used in attacks to compromise systems and extend the range of an invasion.</strong></p>
-<p><strong>Scaling privileges can occur in different ways, either to gain greater control within the same level of access or to achieve higher levels of privilege, such as root. In the next topic, we will detail the differences between horizontal and vertical scaling.</strong></p>
-<h2 id="horizontal-escalation-x-vertical-escalation">
-  Horizontal Escalation X Vertical Escalation
-  <a class="heading-link" href="#horizontal-escalation-x-vertical-escalation">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p><strong>Escalação de privilégios é o processo de obter níveis mais altos de acesso ou controle em um sistema do que o originalmente permitido. Em sistemas Linux, isso geralmente envolve a elevação de um usuário comum para privilégios de root ou a exploração de permissões mal configuradas para acessar recursos restritos. Essa técnica é amplamente utilizada em ataques para comprometer sistemas e estender o alcance de uma invasão.</strong></p>
+<p><strong>Escalar privilégios pode ocorrer de diferentes formas, seja para obter maior controle dentro do mesmo nível de acesso ou para atingir níveis mais altos de privilégio, como o root. No próximo tópico, vamos detalhar as diferenças entre a escalação horizontal e vertical.</strong></p>
+<h2 id="escalação-horizontal-x-escalação-vertical">
+  Escalação Horizontal X Escalação Vertical
+  <a class="heading-link" href="#escala%c3%a7%c3%a3o-horizontal-x-escala%c3%a7%c3%a3o-vertical">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>Horizontal escalation occurs when an attacker gains access to the accounts or permissions of another user at the same privilege level, such as a co-worker on a corporate network. Vertical scaling involves obtaining higher permissions, such as that of an administrator or root, allowing full control over the system. Both methods can be used together to explore different layers of an environment.</strong></p>
-<h2 id="fundamental-concepts">
-  Fundamental Concepts
-  <a class="heading-link" href="#fundamental-concepts">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+<p><strong>A escalação horizontal ocorre quando um atacante ganha acesso às contas ou permissões de outro usuário no mesmo nível de privilégio, como um colega de trabalho em uma rede corporativa. Já a escalação vertical envolve a obtenção de permissões mais altas, como a de um administrador ou root, permitindo controle total sobre o sistema. Ambos os métodos podem ser usados em conjunto para explorar diferentes camadas de um ambiente.</strong></p>
+<h2 id="conceitos-fundamentais">
+  Conceitos Fundamentais
+  <a class="heading-link" href="#conceitos-fundamentais">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>After the introduction, before you start scaling privileges, it is obvious that you should know at least the basic and fundamental concepts of Linux, such as the operation of file permissions, groups and users, folder structure, system configuration, etc. If you do not have this basic knowledge about Linux, do not waste your time reading this paper.</strong></p>
+<p><strong>Feita a introdução, antes de começar a escalar privilégios, é óbvio que você deve conhecer pelo menos os conceitos básicos e fundamentais do Linux, como o funcionamento de permissões de arquivos, grupos e usuários, estrutura de pastas, configuração do sistema, etc. Se você não tem esse conhecimento básico sobre Linux, não perca o seu tempo lendo este paper.</strong></p>
 <h1 id="privesc-techniques-misconfigs">
   PrivEsc Techniques (misconfigs)
   <a class="heading-link" href="#privesc-techniques-misconfigs">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <h3 id="suid-files">
   SUID Files
   <a class="heading-link" href="#suid-files">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Files with the SUID (Set User ID) permission allow the process generated by the file to run with the permissions of the owner, not the user running it. This can be a major vulnerability if SUID files are misconfigured, as any ordinary user can gain elevated privileges when running these files. A classic example would be a SUID file belonging to root that, if misconfigured or with vulnerabilities, could be exploited by an attacker to gain root access. Commands such as &ldquo;find&rdquo; can be used to locate SUID files on a system and check for vulnerable files.</strong></p>
+<p><strong>Arquivos com a permissão SUID (Set User ID) permitem que o processo gerado pelo arquivo seja executado com as permissões do proprietário, não do usuário que o executa. Isso pode ser uma grande vulnerabilidade se arquivos SUID forem mal configurados, pois qualquer usuário comum pode obter privilégios elevados ao executar esses arquivos. Um exemplo clássico seria um arquivo SUID pertencente ao root que, se mal configurado ou com vulnerabilidades, poderia ser explorado por um atacante para obter acesso de root. Comandos como &ldquo;find&rdquo; podem ser usadas para localizar arquivos SUID em um sistema e verificar se há arquivos vulneráveis.</strong></p>
 
 
 
@@ -289,15 +289,15 @@
 
 
 
-<p><strong>This command for example, searches from the root directory for files with the SUID permission enabled.</strong></p>
+<p><strong>Este comando por exemplo, busca a partir do diretório raiz arquivos com a permissão SUID ativada.</strong></p>
 <h3 id="sudo-with-misconfig">
   Sudo With Misconfig
   <a class="heading-link" href="#sudo-with-misconfig">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>The sudo configuration file defines who can run commands as root and which commands can be run. Incorrect configuration can allow a user to execute commands with elevated privileges without proper authentication. To check sudo configuration, use:</strong></p>
+<p><strong>O arquivo de configuração do sudo define quem pode executar comandos como root e quais comandos podem ser executados. Uma configuração incorreta pode permitir que um usuário execute comandos com privilégios elevados sem autenticação adequada. Para verificar a configuração de sudo, use:</strong></p>
 
 
 
@@ -329,15 +329,15 @@
 
 
 
-<p><strong>If the sudoers file allows execution of commands as root without password, or if an ordinary user has excessive permissions, this can be exploited to escalate privileges! (Note: Remembering that the file &ldquo;/etc/sudoers&rdquo; by default can only be modified and read by root!)</strong></p>
+<p><strong>Se o arquivo sudoers permitir a execução de comandos como root sem senha, ou se um usuário comum tiver permissões excessivas, isso pode ser explorado para escalar privilégios! (Obs: Lembrando que o arquivo &ldquo;/etc/sudoers&rdquo; por padrão só pode ser modificado e lido pelo root!)</strong></p>
 <h3 id="crontabs-with-misconfig">
   Crontabs With Misconfig
   <a class="heading-link" href="#crontabs-with-misconfig">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Crontabs are used to schedule automatic tasks. If a crontab is misconfigured, with excessive permissions, an attacker can modify the cron job to execute arbitrary commands with elevated privileges. To check crontabs, run:</strong></p>
+<p><strong>Crontabs são usados para agendar tarefas automáticas. Se um crontab for mal configurado, com permissões excessivas, um atacante pode modificar o cron job para executar comandos arbitrários com privilégios elevados. Para verificar crontabs, execute:</strong></p>
 
 
 
@@ -369,35 +369,35 @@
 
 
 
-<p><strong>In addition, checking system crontabs can be done by inspecting the files in /etc/cron.d/ and /var/spool/cron/crontabs!</strong></p>
+<p><strong>Além disso, a verificação de crontabs do sistema pode ser feita inspecionando os arquivos em /etc/cron.d/ e /var/spool/cron/crontabs!</strong></p>
 <h1 id="privesc-techniques-vulnerabilities">
   PrivEsc Techniques (Vulnerabilities)
   <a class="heading-link" href="#privesc-techniques-vulnerabilities">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <h3 id="kernel-exploits">
   Kernel exploits
   <a class="heading-link" href="#kernel-exploits">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Vulnerabilities in the Linux kernel allow attackers to elevate privileges by exploiting flaws in critical systems logic. Two of the most famous are:</strong></p>
-<p><strong><a href="https://www.hackthebox.com/blog/Dirty-Pipe-Explained-CVE-2022-0847"  class="external-link" target="_blank" rel="noopener">Dirty Pipe (CVE-2022-0847)</a>: This vulnerability occurs due to a race condition in the copy-on-write (Copy-On-Write) implementation in the Linux kernel. This allows an attacker with write access to a file, even if protected, to modify its contents. For example, a critical configuration file such as /etc/passwd can be changed to add a root user.</strong></p>
-<p><strong><a href="https://www.hackthebox.com/blog/Dirty-Pipe-Explained-CVE-2022-0847"  class="external-link" target="_blank" rel="noopener">Dirty Pipe (CVE-2022-0847)</a>: Similar to Dirty COW, but specific to systems with newer kernels. It exploits flaws in the handling of buffers in Linux pipelines. An attacker can inject data into read-only files, such as system logs, to execute malicious commands. The exploitation process involves manipulating data at the read buffer level.</strong></p>
-<p><strong>Both vulnerabilities require a specific exploit, which can be found on bases such as the <a href="https://www.exploit-db.com/"  class="external-link" target="_blank" rel="noopener">Exploit-DB</a>.</strong></p>
+<p><strong>Vulnerabilidades no kernel Linux permitem que atacantes elevem privilégios explorando falhas na lógica de sistemas críticos. Duas das mais famosas são:</strong></p>
+<p><strong><a href="https://www.hackthebox.com/blog/Dirty-Pipe-Explained-CVE-2022-0847"  class="external-link" target="_blank" rel="noopener">Dirty Pipe (CVE-2022-0847)</a>: Essa vulnerabilidade ocorre devido a uma condição de corrida na implementação de cópia sob gravação (Copy-On-Write) no kernel Linux. Isso permite que um atacante com acesso de gravação a um arquivo, mesmo que protegido, modifique seu conteúdo. Por exemplo, um arquivo de configuração crítico como /etc/passwd pode ser alterado para adicionar um usuário root.</strong></p>
+<p><strong><a href="https://www.hackthebox.com/blog/Dirty-Pipe-Explained-CVE-2022-0847"  class="external-link" target="_blank" rel="noopener">Dirty Pipe (CVE-2022-0847)</a>: Similar ao Dirty COW, mas específico a sistemas com kernels mais recentes. Ele explora falhas na manipulação de buffers em pipelines do Linux. Um atacante pode injetar dados em arquivos de leitura somente, como os logs do sistema, para executar comandos maliciosos. O processo de exploração envolve a manipulação de dados no nível do buffer de leitura.</strong></p>
+<p><strong>Ambas as vulnerabilidades requerem um exploit específico, que pode ser encontrado em bases como o <a href="https://www.exploit-db.com/"  class="external-link" target="_blank" rel="noopener">Exploit-DB</a>.</strong></p>
 <h3 id="root-services">
   Root Services
   <a class="heading-link" href="#root-services">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Services running as root pose one of the biggest security risks on Linux systems, as any vulnerability in these services can be exploited to gain elevated privileges. The fact that a service runs with root privileges means that it has unrestricted access to the system, being able to modify critical files, execute privileged commands and, in many cases, compromise the integrity of the entire system. Therefore, it is essential that only the services that are really necessary for the operation of the system run with these privileges, and that they are configured correctly.</strong></p>
-<p><strong>Many services, especially web servers, databases, and file servers, often run as root to perform specific operations that require access to restricted resources. A classic example is the nginx or apache web server, which may need to access directories or files with restricted permissions, such as logs or system configuration files. If one of these services is misconfigured, an attacker could exploit flaws to inject malicious code, gain access to the system, or even escalate privileges.</strong></p>
-<p><strong>One of the most common ways of exploiting services that run as root is RCE. This occurs when an attacker manages to have the service execute arbitrary commands on the system, often by taking advantage of vulnerabilities such as buffer overflows, input validation failures, or improper authentication. An attacker could, for example, send a malicious request to a web server that allows the execution of an arbitrary script. If this server is running as root, the attacker can gain full control over the system and can create backdoors for future access. To identify which processes are running as root, you can run:</strong></p>
+<p><strong>Serviços rodando como root representam um dos maiores riscos de segurança em sistemas Linux, pois qualquer vulnerabilidade nesses serviços pode ser explorada para obter privilégios elevados. O fato de um serviço rodar com privilégios de root significa que ele tem acesso irrestrito ao sistema, podendo modificar arquivos críticos, executar comandos privilegiados e, em muitos casos, comprometer a integridade do sistema inteiro. Por isso, é fundamental que apenas os serviços realmente necessários para o funcionamento do sistema sejam executados com esses privilégios, e que eles sejam configurados corretamente.</strong></p>
+<p><strong>Muitos serviços, especialmente servidores web, bancos de dados e servidores de arquivos, frequentemente rodam como root para realizar operações específicas que exigem acesso a recursos restritos. Um exemplo clássico é o servidor web nginx ou apache, que pode precisar acessar diretórios ou arquivos com permissões restritas, como logs ou arquivos de configuração do sistema. Se um desses serviços for mal configurado, um atacante pode explorar falhas para injetar código malicioso, obter acesso ao sistema ou até mesmo escalar privilégios.</strong></p>
+<p><strong>Uma das formas mais comuns de exploração de serviços que rodam como root é a RCE. Isso ocorre quando um atacante consegue fazer com que o serviço execute comandos arbitrários no sistema, geralmente aproveitando vulnerabilidades como buffer overflows, falhas de validação de entrada ou autenticação inadequada. Um atacante pode, por exemplo, enviar uma solicitação maliciosa para um servidor web que permita a execução de um script arbitrário. Se esse servidor estiver rodando como root, o atacante pode ganhar controle total sobre o sistema, podendo criar backdoors para acessos futuros. Para identificar quais processos estão rodando como root, você pode executar:</strong></p>
 
 
 
@@ -432,26 +432,26 @@
 <h3 id="dynamic-libraries">
   Dynamic Libraries
   <a class="heading-link" href="#dynamic-libraries">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Dynamic library exploitation is a technique used to change the behavior of legitimate programs by causing them to load and execute malicious code. This technique is based on the operation of the Linux system, which allows programs to load external libraries during their execution. The LD_PRELOAD and LD_LIBRARY_PATH environment variables are essential in this process because they control the order in which libraries are loaded.</strong></p>
-<p><strong>The most common scanning technique involves the LD_PRELOAD variable. When a program runs with this variable configured, the system loads a specified library before any other system library. This means that by manipulating this variable, you can have the program perform functions from a library other than the original. For example, you can replace functions such as system(), execve(), or setuid() to modify the behavior of the program, allowing unwanted actions to be performed, such as executing commands with elevated privileges.</strong></p>
-<p><strong>This type of exploitation happens when a program, especially those that have high permissions, does not properly validate environment variables. This allows, by manipulating the LD_PRELOAD variable, a malicious library to be loaded before the original program. From there, the library can overwrite important functions of the program, allowing, for example, the execution of commands on the system without the legitimate program noticing.</strong></p>
-<p><strong>As an example, imagine that a program uses the system() function to execute commands. If it doesn&rsquo;t clean up the environment variables before doing so, you can create a malicious library that modifies the execution of this function, causing commands to run with root privileges. This can be done by creating a library that replaces the setuid() function to change the program user ID and grant full access to the system.</strong></p>
-<p><strong>Another form of exploitation happens with the LD_LIBRARY_PATH variable, which specifies the directories where the system searches for libraries. If a program trusts this search path in an insecure way, it is possible to manipulate the variable to point to a malicious version of a library. This causes the program to use a compromised version of the library, which can perform actions that are harmful to the system.</strong></p>
-<p><strong>In addition, there is the possibility of library hijacking, where a malicious version of a library is placed in a directory where the system expects to find libraries. If the program searches for a library in this directory, it will end up using the modified version, which allows the malicious code to run.</strong></p>
-<p><strong>Nowadays, some security measures can make these attacks difficult, such as configuring ld.so to block the manipulation of LD_PRELOAD in programs with high permissions or the use of resources such as ASLR, which makes it more difficult for an attacker to predict where libraries will be loaded into memory. However, if the right precautions are not taken, dynamic library exploration can still be an effective technique for gaining root access to systems.</strong></p>
+<p><strong>A exploração de bibliotecas dinâmicas é uma técnica usada para alterar o comportamento de programas legítimos, fazendo com que eles carreguem e executem código malicioso. Essa técnica se baseia no funcionamento do sistema Linux, que permite que programas carreguem bibliotecas externas durante sua execução. As variáveis de ambiente LD_PRELOAD e LD_LIBRARY_PATH são essenciais nesse processo, pois controlam a ordem em que as bibliotecas são carregadas.</strong></p>
+<p><strong>A técnica mais comum de exploração envolve a variável LD_PRELOAD. Quando um programa é executado com essa variável configurada, o sistema carrega uma biblioteca especificada antes de qualquer outra biblioteca do sistema. Isso significa que, ao manipular essa variável, é possível fazer com que o programa execute funções de uma biblioteca diferente da original. Por exemplo, pode-se substituir funções como system(), execve() ou setuid() para modificar o comportamento do programa, permitindo que ações indesejadas sejam realizadas, como a execução de comandos com privilégios elevados.</strong></p>
+<p><strong>Esse tipo de exploração acontece quando um programa, especialmente aqueles que possuem permissões elevadas, não valida adequadamente as variáveis de ambiente. Isso permite que, ao manipular a variável LD_PRELOAD, uma biblioteca maliciosa seja carregada antes do programa original. A partir daí, a biblioteca pode sobrescrever funções importantes do programa, permitindo, por exemplo, a execução de comandos no sistema sem que o programa legítimo perceba.</strong></p>
+<p><strong>Como exemplo, imagine que um programa use a função system() para executar comandos. Se ele não limpar as variáveis de ambiente antes de fazer isso, você pode criar uma biblioteca maliciosa que modifica a execução dessa função, fazendo com que comandos sejam executados com privilégios de root. Isso pode ser feito criando uma biblioteca que substitui a função setuid() para alterar o ID de usuário do programa e conceder acesso total ao sistema.</strong></p>
+<p><strong>Outra forma de exploração acontece com a variável LD_LIBRARY_PATH, que especifica os diretórios onde o sistema procura por bibliotecas. Se um programa confiar nesse caminho de busca de maneira insegura, é possível manipular a variável para apontar para uma versão maliciosa de uma biblioteca. Isso faz com que o programa utilize uma versão comprometida da biblioteca, que pode executar ações prejudiciais ao sistema.</strong></p>
+<p><strong>Além disso, existe a possibilidade de library hijacking, onde uma versão maliciosa de uma biblioteca é colocada em um diretório onde o sistema espera encontrar bibliotecas. Se o programa procurar por uma biblioteca nesse diretório, acabará usando a versão modificada, o que permite que o código malicioso seja executado.</strong></p>
+<p><strong>Hoje em dia, algumas medidas de segurança podem dificultar esses ataques, como a configuração do ld.so para bloquear a manipulação de LD_PRELOAD em programas com permissões elevadas ou o uso de recursos como o ASLR, que torna mais difícil para um invasor prever onde as bibliotecas serão carregadas na memória. No entanto, se não forem tomadas as precauções corretas, a exploração de bibliotecas dinâmicas ainda pode ser uma técnica eficaz para obter acesso root a sistemas.</strong></p>
 <h3 id="command-injection">
   Command Injection
   <a class="heading-link" href="#command-injection">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Command injection occurs when a script, which runs with privileges such as root, does not properly validate the inputs it provides, allowing malicious commands to be entered and executed. This can happen in automation scripts, such as backups or file cleanup, that accept user inputs without proper verification.</strong></p>
-<p><strong>For example, a backup script that takes a directory as an argument can be manipulated to execute a malicious command, such as:</strong></p>
+<p><strong>O command injection ocorre quando um script, que é executado com privilégios como root, não valida adequadamente as entradas fornecidas, permitindo que comandos maliciosos sejam inseridos e executados. Isso pode acontecer em scripts de automação, como backups ou limpeza de arquivos, que aceitam entradas de usuários sem a devida verificação.</strong></p>
+<p><strong>Por exemplo, um script de backup que recebe um diretório como argumento pode ser manipulado para executar um comando malicioso, como:</strong></p>
 
 
 
@@ -483,16 +483,16 @@
 
 
 
-<p><strong>The main cause of this vulnerability is the use of functions such as eval or system, which execute commands directly, without validating the entries.</strong></p>
+<p><strong>A principal causa dessa vulnerabilidade é o uso de funções como eval ou system, que executam comandos diretamente, sem validar as entradas.</strong></p>
 <h3 id="path-hijacking">
   Path Hijacking
   <a class="heading-link" href="#path-hijacking">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Path Hijacking occurs when an attacker manipulates the search path for executables on the system (using the PATH environment variable) to force the system to execute a malicious file instead of a legitimate executable. This can be done by adding attacker-controlled directories to the beginning of the PATH variable, causing programs to search for and execute compromised versions of binaries or scripts.</strong></p>
-<p><strong>For example, if the attacker manages to change the PATH variable to include a directory where a malicious binary was placed, the system may end up running that binary instead of the original one. Assume that a script or command attempts to run a program such as ls or cat. If the directory containing a malicious binary of ls or cat is listed before the default directory, the system will run the malicious binary, or which may contain code to gain elevated privileges or execute malicious commands.</strong></p>
+<p><strong>O Path Hijacking ocorre quando um invasor manipula o caminho de busca de executáveis no sistema (usando a variável de ambiente PATH) para forçar o sistema a executar um arquivo malicioso em vez de um executável legítimo. Isso pode ser feito adicionando diretórios controlados pelo atacante ao início da variável PATH, fazendo com que os programas procurem e executem versões comprometidas de binários ou scripts.</strong></p>
+<p><strong>Por exemplo, se o atacante conseguir alterar a variável PATH para incluir um diretório onde um binário malicioso foi colocado, o sistema pode acabar executando esse binário ao invés do original. Suponha que um script ou comando tente rodar um programa como ls ou cat. Se o diretório contendo um binário malicioso de ls ou cat for listado antes do diretório padrão, o sistema irá executar o binário malicioso, que pode conter código para obter privilégios elevados ou executar comandos maliciosos.</strong></p>
 
 
 
@@ -524,24 +524,24 @@
 
 
 
-<p><strong>This can allow the attacker to execute commands without the system running legitimate versions of these programs.</strong></p>
+<p><strong>Isso pode permitir que o atacante execute comandos sem que o sistema execute as versões legítimas desses programas.</strong></p>
 <h1 id="privesc-techniques-credentialstokens">
   PrivEsc Techniques (Credentials/Tokens)
   <a class="heading-link" href="#privesc-techniques-credentialstokens">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <h3 id="theft-of-hashespasswords">
   Theft Of Hashes/Passwords
   <a class="heading-link" href="#theft-of-hashespasswords">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>The theft of hashes and passwords occurs when an attacker can access and extract the hashes of passwords stored in files such as /etc/shadow on Linux. The /etc/shadow file stores the encrypted passwords (in hashed form) of the system users. If an attacker manages to access this file, they can attempt to crack the hashes and obtain the original passwords.</strong></p>
-<p><strong>Typically, passwords in Linux are stored in encrypted form, using algorithms such as MD5, SHA-512, or bcrypt. However, these hashing algorithms are not reversible, that is, it is not possible to directly retrieve the original password from the hash. However, with hash extraction, an attacker can use techniques such as brute force or rainbow tables to try to guess the original password.</strong></p>
-<p><strong>For example, if the attacker can read the /etc/shadow file, which contains users&rsquo; passwords, they can use tools such as John the Rapist (John the Ripper) or Hashcat to try to crack the hashes and get the passwords. The following command can be used to extract passwords from a /etc/shadow: file</strong></p>
+<p><strong>O roubo de hashes e senhas ocorre quando um atacante consegue acessar e extrair os hashes de senhas armazenados em arquivos como o /etc/shadow no Linux. O arquivo /etc/shadow armazena as senhas criptografadas (em forma de hashes) dos usuários do sistema. Se um atacante conseguir acessar esse arquivo, ele pode tentar quebrar os hashes e obter as senhas originais.</strong></p>
+<p><strong>Normalmente, as senhas no Linux são armazenadas de forma criptografada, utilizando algoritmos como MD5, SHA-512 ou bcrypt. Porém, esses algoritmos de hash não são reversíveis, ou seja, não é possível recuperar diretamente a senha original a partir do hash. No entanto, com a extração do hash, um atacante pode usar técnicas como brute force ou rainbow tables para tentar adivinhar a senha original.</strong></p>
+<p><strong>Por exemplo, se o atacante conseguir ler o arquivo /etc/shadow, que contém as senhas dos usuários, ele pode usar ferramentas como o João o Estuprador (John the Ripper) ou Hashcat para tentar quebrar os hashes e obter as senhas. O comando abaixo pode ser usado para extrair as senhas de um arquivo /etc/shadow:</strong></p>
 
 
 
@@ -573,18 +573,18 @@
 
 
 
-<p><strong>This reveals the hash of the specified user password. From there, the attacker can try to guess the password through brute force attacks or using pre-computed tables! (Note: Again saying the obvious, /etc/shadow can usually only be accessed by root.)</strong></p>
+<p><strong>Isso revela o hash da senha do usuário especificado. A partir daí, o atacante pode tentar adivinhar a senha através de ataques de força bruta ou usando tabelas pré computadas! (Obs: Novamente dizendo o obvio, o /etc/shadow normalmente só pode ser acessado pelo root.)</strong></p>
 <h3 id="keyloggers--sniffers">
   Keyloggers &amp; Sniffers
   <a class="heading-link" href="#keyloggers--sniffers">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h3>
-<p><strong>Keyloggers and sniffers are tools used to capture credentials by exploiting different points of the system. While keyloggers monitor and record everything that is typed by the keyboard, sniffers intercept and analyze network traffic to extract sensitive information, such as usernames and passwords.</strong></p>
-<p><strong>Keyloggers can be implemented as software or hardware. In the case of software, they integrate with the S.O to record keyboard inputs. A keylogger can be installed on a compromised system through malware, social engineering, or physical access. Once active, it records everything the user types, including credentials used for login, access to banking services, and other sensitive data.</strong></p>
-<p><strong>For example, a simple keylogger can be implemented as an LKM that intercepts keyboard-related system calls. This can be done in Linux by manipulating devices such as /dev/input/ to capture keystrokes. The log generated by the keylogger can be stored locally or sent to a remote server.</strong></p>
-<p><strong>Sniffers work by intercepting packets of data that travel across the network. They are especially effective on unencrypted networks, where sensitive information such as credentials can be captured in plain text. Tools such as Wire Shark (Wireshark) or tcpdump are used to capture and analyze packets. For example, on an unprotected network, an attacker might use a command such as:</strong></p>
+<p><strong>Keyloggers e sniffers são ferramentas usadas para capturar credenciais, explorando diferentes pontos do sistema. Enquanto keyloggers monitoram e registram tudo o que é digitado pelo teclado, sniffers interceptam e analisam o tráfego de rede para extrair informações sensíveis, como nomes de usuários e senhas.</strong></p>
+<p><strong>Keyloggers podem ser implementados como software ou hardware. No caso de software, eles se integram ao S.O para registrar entradas do teclado. Um keylogger pode ser instalado em um sistema comprometido por meio de malwares, engenharia social ou acesso físico. Uma vez ativo, ele registra tudo o que o usuário digita, incluindo credenciais usadas para login, acessos a serviços bancários e outros dados sensíveis.</strong></p>
+<p><strong>Por exemplo, um keylogger simples pode ser implementado como um LKM que intercepta chamadas de sistema relacionadas ao teclado. Isso pode ser feito no Linux manipulando dispositivos como /dev/input/ para capturar as teclas pressionadas. O log gerado pelo keylogger pode ser armazenado localmente ou enviado para um servidor remoto.</strong></p>
+<p><strong>Já sniffers trabalham interceptando pacotes de dados que trafegam pela rede. Eles são especialmente eficazes em redes não criptografadas, onde as informações sensíveis, como credenciais, podem ser capturadas em texto puro. Ferramentas como Tubarão de Fio (Wireshark) ou tcpdump são usadas para capturar e analisar pacotes. Por exemplo, em uma rede desprotegida, um invasor pode usar um comando como:</strong></p>
 
 
 
@@ -616,53 +616,53 @@
 
 
 
-<p><strong>This command captures HTTP (not encrypted) traffic on the eth0 network interface, where credentials sent in forms can be intercepted.</strong></p>
+<p><strong>Esse comando captura tráfego HTTP (não criptografado) na interface de rede eth0, onde credenciais enviadas em formulários podem ser interceptadas.</strong></p>
 <h1 id="automatic-tools">
   Automatic Tools
   <a class="heading-link" href="#automatic-tools">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <h2 id="linpeashttpsgithubcompeass-ngpeass-ng">
   <a href="https://github.com/peass-ng/PEASS-ng"  class="external-link" target="_blank" rel="noopener">LinPEAS</a>
   <a class="heading-link" href="#linpeashttpsgithubcompeass-ngpeass-ng">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>LinPEAS (Linux Privilege Escalation Awesome Script) is an audit tool that automates the search for privilege escalation vectors on Linux systems. It scans the system for vulnerabilities such as unsafe settings, SUID files, incorrect permissions, misconfigured services, and more. LinPEAS is widely used for its detailed and comprehensive approach.</strong></p>
+<p><strong>O LinPEAS (Linux Privilege Escalation Awesome Script) é uma ferramenta de auditoria que automatiza a busca por vetores de escalação de privilégios em sistemas Linux. Ele analisa o sistema em busca de vulnerabilidades, como configurações inseguras, arquivos SUID, permissões incorretas, serviços mal configurados e muito mais. O LinPEAS é amplamente utilizado por sua abordagem detalhada e abrangente.</strong></p>
 <h2 id="linux-exploit-suggesterhttpsgithubcomthe-z-labslinux-exploit-suggester">
   <a href="https://github.com/The-Z-Labs/linux-exploit-suggester"  class="external-link" target="_blank" rel="noopener">Linux Exploit Suggester</a>
   <a class="heading-link" href="#linux-exploit-suggesterhttpsgithubcomthe-z-labslinux-exploit-suggester">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>Linux Exploit Suggester is a tool that identifies possible Linux kernel vulnerabilities on the target system. Based on the kernel version, it suggests known exploits that can be used to gain elevated privileges. It is especially useful for determining specific exploits that can be applied to the system.</strong></p>
+<p><strong>O Linux Exploit Suggester é uma ferramenta que identifica possíveis vulnerabilidades do kernel Linux no sistema alvo. Baseando-se na versão do kernel, ele sugere exploits conhecidos que podem ser usados para obter privilégios elevados. É especialmente útil para determinar exploits específicos que podem ser aplicados ao sistema.</strong></p>
 <h2 id="gtfobinshttpsgtfobinsgithubio">
   <a href="https://gtfobins.github.io/"  class="external-link" target="_blank" rel="noopener">GTFOBins</a>
   <a class="heading-link" href="#gtfobinshttpsgtfobinsgithubio">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>GTFOBins is a collection of Unix binaries that can be exploited to scale privileges, execute commands, or escape from restricted environments such as chroot or containers. The platform offers an online database and allows you to search for specific binaries and the associated exploitation methods. It is an indispensable tool for pentesters and security researchers.</strong></p>
+<p><strong>O GTFOBins é uma coleção de binários Unix que podem ser explorados para escalar privilégios, executar comandos, ou escapar de ambientes restritos, como chroot ou containers. A plataforma oferece uma base de dados online e permite buscar por binários específicos e os métodos de exploração associados. É uma ferramenta indispensável para pentesters e pesquisadores de segurança.</strong></p>
 <h1 id="useful-tools">
   Useful Tools
   <a class="heading-link" href="#useful-tools">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <h2 id="strace">
   Strace
   <a class="heading-link" href="#strace">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>Strace is a tool that allows you to track syscalls made by a running process. It is widely used for debugging and behavior analysis of programs. By looking at syscalls, you can identify interactions with files, networks, or even vulnerabilities in poorly designed binaries.</strong></p>
+<p><strong>O strace é uma ferramenta que permite rastrear syscalls feitas por um processo em execução. Ele é amplamente utilizado para depuração e análise de comportamento de programas. Ao observar as syscalls, é possível identificar interações com arquivos, redes, ou até vulnerabilidades em binários mal projetados.</strong></p>
 
 
 
@@ -697,11 +697,11 @@
 <h2 id="ltrace">
   Ltrace
   <a class="heading-link" href="#ltrace">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>Ltrace is similar to strace, but focuses on tracking calls to dynamic libraries (such as libc). It is useful for observing interactions with functions such as printf, malloc, or specific calls to external libraries, which can reveal vulnerabilities or unexpected behaviors.</strong></p>
+<p><strong>O ltrace é semelhante ao strace, mas foca no rastreamento de chamadas a bibliotecas dinâmicas (como libc). Ele é útil para observar interações com funções como printf, malloc, ou chamadas específicas a bibliotecas externas, que podem revelar vulnerabilidades ou comportamentos inesperados.</strong></p>
 
 
 
@@ -736,11 +736,11 @@
 <h2 id="gdb">
   Gdb
   <a class="heading-link" href="#gdb">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>Gdb (GNU Debugger) is a powerful tool for debugging programs. It allows you to analyze the execution of a binary in real time, inspect memory, modify registers, or even exploit vulnerabilities such as buffer overflows.</strong></p>
+<p><strong>O gdb (GNU Debugger) é uma ferramenta poderosa para depuração de programas. Ele permite analisar a execução de um binário em tempo real, inspecionar a memória, modificar registradores, ou até mesmo explorar vulnerabilidades como buffer overflows.</strong></p>
 
 
 
@@ -772,40 +772,40 @@
 
 
 
-<p><strong>With this, you enter the interactive environment of gdb, where you can define breakpoints, analyze the flow of the program and exploit vulnerabilities.</strong></p>
+<p><strong>Com isso, você entra no ambiente interativo do gdb, onde pode definir breakpoints, analisar o fluxo do programa e explorar vulnerabilidades.</strong></p>
 <h1 id="task-automation">
   Task automation
   <a class="heading-link" href="#task-automation">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h1>
 <h2 id="lineumhttpsgithubcomrebootuserlinenum">
   <a href="https://github.com/rebootuser/LinEnum"  class="external-link" target="_blank" rel="noopener">LinEum</a>
   <a class="heading-link" href="#lineumhttpsgithubcomrebootuserlinenum">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>LinEnum is a script that automates the collection of information from Linux systems to identify possible privilege escalation vectors. It checks permissions, sensitive files, SUID binaries, crontabs and more, saving time on manual audits.</strong></p>
+<p><strong>O LinEnum é um script que automatiza a coleta de informações de sistemas Linux para identificar possíveis vetores de escalação de privilégios. Ele verifica permissões, arquivos sensíveis, binários SUID, crontabs e muito mais, economizando tempo em auditorias manuais.</strong></p>
 <h2 id="pspyhttpsgithubcomdominicbreukerpspy">
   <a href="https://github.com/DominicBreuker/pspy"  class="external-link" target="_blank" rel="noopener">PSPY</a>
   <a class="heading-link" href="#pspyhttpsgithubcomdominicbreukerpspy">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>Pspy is a lightweight tool that monitors processes running on the system without requiring elevated permissions. It is useful for identifying scripts, cron tasks, or running services that can be exploited.</strong></p>
+<p><strong>O pspy é uma ferramenta leve que monitora processos em execução no sistema sem precisar de permissões elevadas. Ele é útil para identificar scripts, tarefas cron ou serviços sendo executados que podem ser explorados.</strong></p>
 <h2 id="chiselhttpsgithubcomjpillorachisel">
   <a href="https://github.com/jpillora/chisel"  class="external-link" target="_blank" rel="noopener">Chisel</a>
   <a class="heading-link" href="#chiselhttpsgithubcomjpillorachisel">
-    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
-    <span class="sr-only">Link to heading</span>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
   </a>
 </h2>
-<p><strong>Chisel is a reverse tunneling and port forwarding tool. It is useful for establishing connections between compromised machines and the attacker, especially in environments where network access is restricted.</strong></p>
-<p><strong>Example usage:</strong></p>
-<p><em>On the attacker (server mode):</em></p>
+<p><strong>O Chisel é uma ferramenta de tunelamento reverso e redirecionamento de portas. Ele é útil para estabelecer conexões entre máquinas comprometidas e o atacante, especialmente em ambientes onde o acesso à rede é restrito.</strong></p>
+<p><strong>Exemplo de uso:</strong></p>
+<p><em>No atacante (modo servidor):</em></p>
 
 
 
@@ -837,7 +837,7 @@
 
 
 
-<p><em>On the compromised machine (client mode):</em></p>
+<p><em>Na máquina comprometida (modo cliente):</em></p>
 
 
 
@@ -869,7 +869,7 @@
 
 
 
-<p><strong>This command redirects port 22 (usually SSH) of the compromised machine to the attacker!</strong></p>
+<p><strong>Esse comando redireciona a porta 22 (normalmente a SSH) da máquina comprometida para o atacante!</strong></p>
 
       </div>
 
@@ -917,7 +917,7 @@
      pwnbuffer 
     ·
     
-    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
     
   </section>
 </footer>

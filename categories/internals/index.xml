@@ -5,15 +5,15 @@
     <link>https://pwnbuffer.org/categories/internals/</link>
     <description>Recent content in Internals on pwnbuffer</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>pt-br</language>
     <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/categories/internals/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Defense Evasion</title>
+      <title>Evasão de Defesa</title>
       <link>https://pwnbuffer.org/posts/mount/edr-bypass/</link>
       <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/mount/edr-bypass/</guid>
-      <description>1. Introduction Link to heading EDR solutions a.k.a (Endpoint Detection and Response) are an evolution of the security software we know as antivirus. Modern EDRs use advanced techniques to detect threats, hooking APIs, isolating the host from the internet, analyzing behavior, and classifying detections based on Indicator of Compromise (IOC) rules classified by MITRE ATT&amp;amp;CK.&#xA;In this article, I will demonstrate how to bypass EDRs using evasive techniques.&#xA;2. Technical Analysis Link to heading In a real attack, it is common to use &amp;ldquo;Loaders&amp;rdquo; and &amp;ldquo;Droppers&amp;rdquo; that load the main malware, going through stages.</description>
+      <description>1. Introdução Link para o cabeçalho Soluções EDR a.k.a (Endpoint Detection and Response) são uma evolução dos softwares de segurança que conhecemos como antivírus. EDRs modernos usam técnicas avançadas para detectar ameaças, hookando APIs, isolando o host da internet, analisando comportamento e classificando a detecção por regra de Indicador de Compromisso (IOC) classificadas pelo MITRE ATT&amp;amp;CK.&#xA;Neste artigo, demonstrarei como burlar EDRs usando técnicas evasivas.&#xA;2. Analise Técnica Link para o cabeçalho Em um ataque real, é comum o uso de &amp;ldquo;Loaders&amp;rdquo; e &amp;ldquo;Droppers&amp;rdquo; que carregam o malware principal, passando por estágios.</description>
     </item>
   </channel>
 </rss>

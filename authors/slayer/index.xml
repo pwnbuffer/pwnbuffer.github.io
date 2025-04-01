@@ -5,43 +5,43 @@
     <link>https://pwnbuffer.org/authors/slayer/</link>
     <description>Recent content in Slayer on pwnbuffer</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>pt-br</language>
     <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/authors/slayer/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Privilege Escalation in Linux</title>
+      <title>Privilege Escalation no Linux</title>
       <link>https://pwnbuffer.org/posts/slayer/privesc-linux/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/privesc-linux/</guid>
-      <description>Hi, I&amp;rsquo;m Slayer. In this paper, I will talk about privilege escalation in Linux. I recommend that, while reading this paper, also go testing the techniques in practice, as this will help to better understand the concepts and apply the knowledge acquired more effectively.&#xA;Introduction Link to heading Privilege escalation is the process of gaining higher levels of access or control on a system than originally allowed. On Linux systems, this often involves elevating a common user to root privileges or exploiting poorly configured permissions to access restricted resources.</description>
+      <description>Olá, eu sou o Slayer. Neste paper, irei falar sobre a escalada de privilégios no Linux. Recomendo que, enquanto lê este paper, também vá testando as técnicas na prática, pois isso ajudará a entender melhor os conceitos e a aplicar os conhecimentos adquiridos de forma mais eficaz.&#xA;Introdução Link para o cabeçalho Escalação de privilégios é o processo de obter níveis mais altos de acesso ou controle em um sistema do que o originalmente permitido.</description>
     </item>
     <item>
       <title>Writeup THM - Dragon Byte</title>
       <link>https://pwnbuffer.org/posts/slayer/writeup-dragonbyte/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/writeup-dragonbyte/</guid>
-      <description>https://tryhackme.com/room/dragonbyte&#xA;In this paper, I&amp;rsquo;m going to take you step by step through the Dragon Byte room, made by brother NullByte! From recon to root!&#xA;Reconnaissance Link to heading After starting the machine and obtaining the IP, the first thing we have to do is port scanning. In this CTF I used the RustScan tool to do the port scanning:&#xA;This scan revealed that we have 3 open ports, namely:</description>
+      <description>https://tryhackme.com/room/dragonbyte&#xA;Neste paper, irei fazer o passo a passo para a room Dragon Byte, feita pelo mano NullByte! Desde o recon até o root!&#xA;Reconhecimento Link para o cabeçalho Após iniciar a maquina e obter o IP, a primeira coisa que devemos fazer é o port scanning. Neste CTF utilizei a ferramenta RustScan para fazer o port scanning:&#xA;Esse scan revelou que temos 3 portas abertas, sendo elas:&#xA;9000 - http 6048 - x11 65200 - ?</description>
     </item>
     <item>
-      <title>Rootkits in Firmware</title>
+      <title>Rootkits em Firmware</title>
       <link>https://pwnbuffer.org/posts/slayer/rootkits-firmware/</link>
       <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/rootkits-firmware/</guid>
-      <description>What is a Rootkit? Link to heading A rootkit is a type of malware designed to gain and maintain privileged access to a system while hiding its presence. The term comes from the combination of &amp;ldquo;root&amp;rdquo;, which refers to the user with maximum privileges on Linux systems, and &amp;ldquo;kit&amp;rdquo; which represents a set of tools used to control the compromised system&#xA;The main purpose of a rootkit is to ensure persistence, allowing an attacker to continue accessing the system even after reboots or removal attempts.</description>
+      <description>O que é um Rootkit? Link para o cabeçalho Um rootkit é um tipo de malware projetado para obter e manter acesso privilegiado a um sistema, ao mesmo tempo em que oculta sua presença. O termo vem da junção de &amp;ldquo;root&amp;rdquo;, que se refere ao usuário com privilégios máximos em sistemas linux, e &amp;ldquo;kit&amp;rdquo; que representa um conjunto de ferramentas utilizadas para controlar o sistema comprometido&#xA;O principal objetivo de um rootkit é garantir persistência, permitindo que um atacante continue acessando o sistema mesmo após reinicializações ou tentativas de remoção.</description>
     </item>
     <item>
-      <title>Windows Architecture</title>
+      <title>Arquitetura do Windows</title>
       <link>https://pwnbuffer.org/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/tteuw/windows_architecture/</guid>
-      <description>Prerequisites: Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.&#xA;So what is actually Windows Architecture? It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</description>
+      <description>Pré-requisitos: Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&#xA;Então, o que é realmente Arquitetura do Windows? É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</description>
     </item>
     <item>
-      <title>buffer overflow in practice</title>
+      <title>buffer overflow na prática</title>
       <link>https://pwnbuffer.org/posts/slayer/bof/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/bof/</guid>
-      <description>What is buffer overflow? Link to heading Buffer overflow (BOF) is one of the most wellknown and historically significant vulnerabilities in the world of cybersecurity. It occurs when a program writes more data to a buffer than it can hold, causing memory corruption. This flaw can be exploited by pentesters to execute arbitrary code, modify program behavior, or cause a crash.&#xA;Despite the introduction of modern security mechanisms such as ASLR and stack canaries, buffer overflow remains a critical topic in exploit development and pentesting.</description>
+      <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
     </item>
   </channel>
 </rss>

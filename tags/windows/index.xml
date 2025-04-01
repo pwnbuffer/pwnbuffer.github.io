@@ -5,29 +5,29 @@
     <link>https://pwnbuffer.org/tags/windows/</link>
     <description>Recent content in Windows on pwnbuffer</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>pt-br</language>
     <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Defense Evasion</title>
+      <title>Evasão de Defesa</title>
       <link>https://pwnbuffer.org/posts/mount/edr-bypass/</link>
       <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/mount/edr-bypass/</guid>
-      <description>1. Introduction Link to heading EDR solutions a.k.a (Endpoint Detection and Response) are an evolution of the security software we know as antivirus. Modern EDRs use advanced techniques to detect threats, hooking APIs, isolating the host from the internet, analyzing behavior, and classifying detections based on Indicator of Compromise (IOC) rules classified by MITRE ATT&amp;amp;CK.&#xA;In this article, I will demonstrate how to bypass EDRs using evasive techniques.&#xA;2. Technical Analysis Link to heading In a real attack, it is common to use &amp;ldquo;Loaders&amp;rdquo; and &amp;ldquo;Droppers&amp;rdquo; that load the main malware, going through stages.</description>
+      <description>1. Introdução Link para o cabeçalho Soluções EDR a.k.a (Endpoint Detection and Response) são uma evolução dos softwares de segurança que conhecemos como antivírus. EDRs modernos usam técnicas avançadas para detectar ameaças, hookando APIs, isolando o host da internet, analisando comportamento e classificando a detecção por regra de Indicador de Compromisso (IOC) classificadas pelo MITRE ATT&amp;amp;CK.&#xA;Neste artigo, demonstrarei como burlar EDRs usando técnicas evasivas.&#xA;2. Analise Técnica Link para o cabeçalho Em um ataque real, é comum o uso de &amp;ldquo;Loaders&amp;rdquo; e &amp;ldquo;Droppers&amp;rdquo; que carregam o malware principal, passando por estágios.</description>
     </item>
     <item>
-      <title>Exploring Active Directory</title>
+      <title>Explorando o Active Directory</title>
       <link>https://pwnbuffer.org/posts/mount/adxpl/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/mount/adxpl/</guid>
-      <description>1. introduction Link to heading Active Directory (AD) is a tool for network administrators, enabling the creation and management of domains, users and objects within a corporate network. Through AD, it is possible to connect all machines to a DC (Domain Controler) server. to a DC (Domain Controler) server which authenticates users using the kerberos protocol.&#xA;For example, an administrator can create a group of users within the corp.local domain and grant them specific privileges to access folders or internal systems.</description>
+      <description>1. Introdução Link para o cabeçalho O Active Directory (AD) é uma ferramenta para administradores de redes, permitindo a criação e gerenciamento de domínios, usuários e objetos dentro de uma rede corporativa. Por meio do AD, é possível conectar todas as maquinas em um servidor DC (Domain Controler) ele que autentifica os usuários por meio do protocolo kerberos.&#xA;Por exemplo, um administrador pode criar um grupo de usuários dentro do domínio corp.</description>
     </item>
     <item>
-      <title>Windows Architecture</title>
+      <title>Arquitetura do Windows</title>
       <link>https://pwnbuffer.org/posts/tteuw/windows_architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/tteuw/windows_architecture/</guid>
-      <description>Prerequisites: Requirements for the users that are planning to learn Malware Development are first of all basics of programming, since mostly deals with the C programming lanaguage, it is a requirement that you are familiar with fundamentals of C.&#xA;So what is actually Windows Architecture? It is what happens under the hood of Windows processes and applications, the internal structure of the Windows operating system, envolves layers like hardware, kernel, executive services, and subsystem DLLs.</description>
+      <description>Pré-requisitos: Os requisitos para os usuários que planejam aprender Desenvolvimento de Malware são, primeiro de tudo, os fundamentos de programação, já que a maioria das vezes é lidado com a linguagem de programação C. É um requisito que você esteja familiarizado com os fundamentos de C.&#xA;Então, o que é realmente Arquitetura do Windows? É o que acontece por trás dos processos e aplicativos do Windows, a estrutura interna do sistema operacional Windows, envolvendo camadas como hardware, kernel, serviços executivos e DLLs de subsistema.</description>
     </item>
   </channel>
 </rss>

