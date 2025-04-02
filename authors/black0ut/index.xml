@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Black0ut on pwnbuffer</title>
+    <link>https://pwnbuffer.org/authors/black0ut/</link>
+    <description>Recent content in Black0ut on pwnbuffer</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 02 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.org/authors/black0ut/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bypass nas defesas do Kernel Linux</title>
+      <link>https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/</link>
+      <pubDate>Wed, 02 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/</guid>
+      <description>lights off &amp;amp; black0ut on&#xA;1- Introdução Link para o cabeçalho Olá, Sejam bem vindos!!! Nesse artigo vou abordar como as proteções modernas no Kernel Linux atrapalham e mitigam as funções de rootkits e claro como ocorre o seu bypass.&#xA;2-Kernel Address Space Layout Randomization (KASLR) Link para o cabeçalho Sendo uma das principais formas de defesa do Kernel e em outros sistemas, ocorre a randomização dos endereços de memória do kernel em cada boot dificultando assim a exploração do atacante.</description>
+    </item>
+  </channel>
+</rss>

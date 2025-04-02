@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://pwnbuffer.org/authors/</loc>
-    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -15,8 +15,34 @@
                 href="https://pwnbuffer.org/authors/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.org/authors/black0ut/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/authors/black0ut/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/authors/black0ut/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/posts/black0ut/kernel_linux_bypass/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.org/categories/</loc>
-    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -26,6 +52,136 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/categories/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/categories/hacking/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/categories/hacking/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/categories/hacking/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/tags/kernel/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/tags/kernel/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/tags/kernel/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/categories/kernel/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/categories/kernel/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/categories/kernel/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/tags/linux/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/tags/linux/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/tags/linux/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/categories/low-level/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/categories/low-level/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/categories/low-level/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/tags/maldev/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/tags/maldev/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/tags/maldev/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/posts/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/posts/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/tags/programming/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/tags/programming/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/tags/programming/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/tags/</loc>
+    <lastmod>2025-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/tags/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/authors/daemon/</loc>
@@ -54,45 +210,6 @@
                 href="https://pwnbuffer.org/tags/low-level/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/categories/low-level/</loc>
-    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/categories/low-level/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/categories/low-level/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/posts/</loc>
-    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/posts/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/</loc>
-    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/"
-                />
-  </url><url>
     <loc>https://pwnbuffer.org/series/</loc>
     <lastmod>2025-03-30T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -104,19 +221,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/series/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/tags/</loc>
-    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/tags/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/categories/x86/</loc>
@@ -286,32 +390,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/tags/exploitation/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/categories/hacking/</loc>
-    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/categories/hacking/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/categories/hacking/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/tags/linux/</loc>
-    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/tags/linux/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/tags/linux/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/categories/linux/</loc>
@@ -613,19 +691,6 @@
                 href="https://pwnbuffer.org/posts/tteuw/windows_architecture/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/tags/maldev/</loc>
-    <lastmod>2025-02-08T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/tags/maldev/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/tags/maldev/"
-                />
-  </url><url>
     <loc>https://pwnbuffer.org/series/maldev-tteuw-slayer/</loc>
     <lastmod>2025-02-08T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -754,16 +819,16 @@
                 href="https://pwnbuffer.org/m/daemon/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/m/blackout/</loc>
+    <loc>https://pwnbuffer.org/m/black0ut/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/en/m/blackout/"
+                href="https://pwnbuffer.org/en/m/black0ut/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/m/blackout/"
+                href="https://pwnbuffer.org/m/black0ut/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/m/kz0x/</loc>
