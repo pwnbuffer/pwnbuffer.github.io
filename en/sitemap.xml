@@ -879,18 +879,6 @@
                 href="https://pwnbuffer.org/en/m/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/en/m/nullbyte/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/m/nullbyte/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/m/nullbyte/"
-                />
-  </url><url>
     <loc>https://pwnbuffer.org/en/m/raidboy/</loc>
     <xhtml:link
                 rel="alternate"
@@ -937,6 +925,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://pwnbuffer.org/en/wallpapers/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/en/m/zack/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/m/zack/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/m/zack/"
                 />
   </url>
 </urlset>
