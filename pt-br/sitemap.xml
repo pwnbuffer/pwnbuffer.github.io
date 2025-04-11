@@ -879,6 +879,18 @@
                 href="https://pwnbuffer.org/m/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.org/m/nullbyte/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/m/nullbyte/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/m/nullbyte/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.org/m/raidboy/</loc>
     <xhtml:link
                 rel="alternate"
