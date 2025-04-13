@@ -44,34 +44,6 @@
       <description></description>
     </item>
     <item>
-      <title>Edr-Evasion</title>
-      <link>https://pwnbuffer.org/en/tags/edr-evasion/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/tags/edr-evasion/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Loader</title>
-      <link>https://pwnbuffer.org/en/tags/loader/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/tags/loader/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Malware</title>
-      <link>https://pwnbuffer.org/en/tags/malware/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/tags/malware/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows</title>
-      <link>https://pwnbuffer.org/en/tags/windows/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/tags/windows/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Exploitation</title>
       <link>https://pwnbuffer.org/en/tags/exploitation/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
@@ -90,27 +62,6 @@
       <link>https://pwnbuffer.org/en/tags/privilege-escalation/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/en/tags/privilege-escalation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Activedirectory</title>
-      <link>https://pwnbuffer.org/en/tags/activedirectory/</link>
-      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/tags/activedirectory/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Networks</title>
-      <link>https://pwnbuffer.org/en/tags/networks/</link>
-      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/tags/networks/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vulnerability-Exploitation</title>
-      <link>https://pwnbuffer.org/en/tags/vulnerability-exploitation/</link>
-      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/tags/vulnerability-exploitation/</guid>
       <description></description>
     </item>
     <item>
@@ -163,10 +114,24 @@
       <description></description>
     </item>
     <item>
+      <title>Malware</title>
+      <link>https://pwnbuffer.org/en/tags/malware/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/tags/malware/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Memory</title>
       <link>https://pwnbuffer.org/en/tags/memory/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/en/tags/memory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>https://pwnbuffer.org/en/tags/windows/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/tags/windows/</guid>
       <description></description>
     </item>
     <item>

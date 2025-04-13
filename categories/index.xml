@@ -37,27 +37,6 @@
       <description></description>
     </item>
     <item>
-      <title>Internals</title>
-      <link>https://pwnbuffer.org/categories/internals/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/categories/internals/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Maldev</title>
-      <link>https://pwnbuffer.org/categories/maldev/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/categories/maldev/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows</title>
-      <link>https://pwnbuffer.org/categories/windows/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/categories/windows/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Linux</title>
       <link>https://pwnbuffer.org/categories/linux/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
@@ -72,24 +51,24 @@
       <description></description>
     </item>
     <item>
-      <title>Networks</title>
-      <link>https://pwnbuffer.org/categories/networks/</link>
-      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/categories/networks/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Protocols</title>
-      <link>https://pwnbuffer.org/categories/protocols/</link>
-      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/categories/protocols/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Web</title>
       <link>https://pwnbuffer.org/categories/web/</link>
       <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/categories/web/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Maldev</title>
+      <link>https://pwnbuffer.org/categories/maldev/</link>
+      <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/categories/maldev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>https://pwnbuffer.org/categories/windows/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/categories/windows/</guid>
       <description></description>
     </item>
     <item>
