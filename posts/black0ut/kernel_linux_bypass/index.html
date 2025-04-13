@@ -742,30 +742,24 @@ Uma das formas de contornar esses sistemas é por meio ret2dir, dessa forma o at
 <p>é um mecanismo de segurança que é configurado para proteger programas e sistemas contra explorações que descarrilam o fluxo de execução legítimo, como <strong>Programação Orientada a Retorno</strong> (ROP) e Programação Orientada a Salto (JOP). Ele garante que o fluxo de controle (chamadas de função, retornos, saltos) tome apenas caminhos predefinidos válidos, evitando assim que invasores sequestrem a execução para código malicioso. Para contornar esse sistema existem as seguintes tecnicas:</p>
 <ul>
 <li>
-<p>A. Type Confusion (Confusão de Tipos)
-<strong>Mecanismo</strong>: Enganar verificações de tipo do CFI usando objetos de tipos diferentes com assinaturas compatíveis.
-<strong>Exemplo</strong>: Substituir um ponteiro de função void (*)(int) por outro de tipo similar, mas com comportamento malicioso.
-<strong>Exemplo Real</strong>: CVE-2021-22555 (Linux Netfilter) explorou confusão de tipos para contornar CFI.</p>
-</li>
-<li>
-<p>B. Ataques a Implementações &ldquo;Coarse-Grained&rdquo;
+<p>A. Ataques a Implementações &ldquo;Coarse-Grained&rdquo;
 <strong>Problema</strong>: CFI &ldquo;coarse-grained&rdquo; agrupa muitos destinos válidos em categorias amplas.
 <strong>Exemplo</strong>: Se todas as funções que retornam int forem consideradas válidas, um atacante pode redirecionar para qualquer uma delas.
 Ferramentas Afetadas: Versões antigas do Clang CFI e Microsoft CFG.</p>
 </li>
 <li>
-<p>C. Memory Corruption Primitive + CFI Weakening
+<p>B. Memory Corruption Primitive + CFI Weakening
 <strong>Mecanismo</strong>: Combinar corrupção de memória (ex: buffer overflow) com falhas no CFI.
 <strong>Exemplo</strong>: Corromper uma estrutura de dados (ex: struct file_operations) para redirecionar fluxo para gadgets permitidos pelo CFI.
 <strong>Caso</strong>: WarpAttack usou double-fetches (acessos duplos à memória) para criar condições de corrida e burlar verificações.</p>
 </li>
 <li>
-<p>D. ROP/JOP Dentro de Limites Permitidos
+<p>C. ROP/JOP Dentro de Limites Permitidos
 <strong>Mecanismo</strong>: Construir cadeias ROP/JOP usando apenas gadgets em regiões marcadas como válidas pelo CFI.
 <strong>Exemplo</strong>: Counterfeit Object-Oriented Programming (COOP) usa chamadas legítimas de objetos para atingir fins maliciosos.</p>
 </li>
 <li>
-<p>E. Abuso de APIs ou Funções Legítimas
+<p>D. Abuso de APIs ou Funções Legítimas
 <strong>Mecanismo</strong>: Chamar funções válidas do sistema com argumentos manipulados.
 <strong>Exemplo</strong>: Usar system() ou execve() com parâmetros controlados pelo atacante.
 Desta forma podemos fazer nosso rootkit  ficar mais sofisticado e robusto.</p>

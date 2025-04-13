@@ -23,25 +23,11 @@
       <description>Essa série de artigos aborda conceitos básicos de baixo nível em computadores, com foco específico na exploração de binários e engenharia reversa. Alguns pontos podem parecer confusos à primeira vista, mas lembre-se: tudo segue uma definição. Não se prenda a uma sequência infinita de &amp;ldquo;porquês!?&amp;rdquo; — apenas compreenda cada conceito e seu propósito. Você vai usar esses conceitos em engenharia reversa, exploração de binários e até no desenvolvimento de malware no futuro.</description>
     </item>
     <item>
-      <title>Evasão de Defesa</title>
-      <link>https://pwnbuffer.org/posts/mount/edr-bypass/</link>
-      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/posts/mount/edr-bypass/</guid>
-      <description>1. Introdução Link para o cabeçalho Soluções EDR a.k.a (Endpoint Detection and Response) são uma evolução dos softwares de segurança que conhecemos como antivírus. EDRs modernos usam técnicas avançadas para detectar ameaças, hookando APIs, isolando o host da internet, analisando comportamento e classificando a detecção por regra de Indicador de Compromisso (IOC) classificadas pelo MITRE ATT&amp;amp;CK.&#xA;Neste artigo, demonstrarei como burlar EDRs usando técnicas evasivas.&#xA;2. Analise Técnica Link para o cabeçalho Em um ataque real, é comum o uso de &amp;ldquo;Loaders&amp;rdquo; e &amp;ldquo;Droppers&amp;rdquo; que carregam o malware principal, passando por estágios.</description>
-    </item>
-    <item>
       <title>Privilege Escalation no Linux</title>
       <link>https://pwnbuffer.org/posts/slayer/privesc-linux/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/posts/slayer/privesc-linux/</guid>
       <description>Olá, eu sou o Slayer. Neste paper, irei falar sobre a escalada de privilégios no Linux. Recomendo que, enquanto lê este paper, também vá testando as técnicas na prática, pois isso ajudará a entender melhor os conceitos e a aplicar os conhecimentos adquiridos de forma mais eficaz.&#xA;Introdução Link para o cabeçalho Escalação de privilégios é o processo de obter níveis mais altos de acesso ou controle em um sistema do que o originalmente permitido.</description>
-    </item>
-    <item>
-      <title>Explorando o Active Directory</title>
-      <link>https://pwnbuffer.org/posts/mount/adxpl/</link>
-      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/posts/mount/adxpl/</guid>
-      <description>1. Introdução Link para o cabeçalho O Active Directory (AD) é uma ferramenta para administradores de redes, permitindo a criação e gerenciamento de domínios, usuários e objetos dentro de uma rede corporativa. Por meio do AD, é possível conectar todas as maquinas em um servidor DC (Domain Controler) ele que autentifica os usuários por meio do protocolo kerberos.&#xA;Por exemplo, um administrador pode criar um grupo de usuários dentro do domínio corp.</description>
     </item>
     <item>
       <title>Writeup THM - Dragon Byte</title>

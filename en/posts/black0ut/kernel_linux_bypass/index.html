@@ -179,7 +179,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              11-minute read
+              10-minute read
             </span>
           </div>
           <div class="authors">
@@ -741,30 +741,24 @@ One way to bypass these systems is through <strong>ret2dir</strong>, where the a
 <p>Control Flow Integrity (CFI) is a security mechanism designed to protect programs and systems from exploits that derail the legitimate execution flow, such as <strong>Return-Oriented Programming</strong> (ROP) and <strong>Jump-Oriented Programming</strong> (JOP). It ensures that control flow (function calls, returns, jumps) follows only predefined valid paths, thus preventing attackers from hijacking execution for malicious code. The following techniques exist to bypass this system:</p>
 <ul>
 <li>
-<p>A. Type Confusion<br>
-<strong>Mechanism</strong>: Deceiving CFI type checks by using objects of different types with compatible signatures.<br>
-<strong>Example</strong>: Replacing a function pointer <code>void (*)(int)</code> with another of a similar type but malicious behavior.<br>
-<strong>Real-World Example</strong>: CVE-2021-22555 (Linux Netfilter) exploited type confusion to bypass CFI.</p>
-</li>
-<li>
-<p>B. Attacks on &ldquo;Coarse-Grained&rdquo; Implementations<br>
+<p>A. Attacks on &ldquo;Coarse-Grained&rdquo; Implementations<br>
 <strong>Problem</strong>: Coarse-grained CFI groups many valid destinations into broad categories.<br>
 <strong>Example</strong>: If all functions returning <code>int</code> are considered valid, an attacker can redirect execution to any of them.<br>
 <strong>Affected Tools</strong>: Older versions of Clang CFI and Microsoft CFG.</p>
 </li>
 <li>
-<p>C. Memory Corruption Primitive + CFI Weakening<br>
+<p>B. Memory Corruption Primitive + CFI Weakening<br>
 <strong>Mechanism</strong>: Combining memory corruption (e.g., buffer overflow) with flaws in CFI.<br>
 <strong>Example</strong>: Corrupting a data structure (e.g., <code>struct file_operations</code>) to redirect flow to gadgets permitted by CFI.<br>
 <strong>Case</strong>: WarpAttack used double-fetches (double memory accesses) to create race conditions and bypass checks.</p>
 </li>
 <li>
-<p>D. ROP/JOP Within Allowed Boundaries<br>
+<p>C. ROP/JOP Within Allowed Boundaries<br>
 <strong>Mechanism</strong>: Constructing ROP/JOP chains using only gadgets in regions marked as valid by CFI.<br>
 <strong>Example</strong>: Counterfeit Object-Oriented Programming (COOP) uses legitimate object calls to achieve malicious goals.</p>
 </li>
 <li>
-<p>E. Abuse of APIs or Legitimate Functions<br>
+<p>D. Abuse of APIs or Legitimate Functions<br>
 <strong>Mechanism</strong>: Calling valid system functions with manipulated arguments.<br>
 <strong>Example</strong>: Using <code>system()</code> or <code>execve()</code> with attacker-controlled parameters.<br>
 This allows for a more sophisticated and robust rootkit.</p>
