@@ -14,7 +14,7 @@
 
 <meta name="author" content="pwnbuffer">
 <meta name="description" content="The article describes the architecture of the 32-bit x86 CPU, highlighting its main components, such as registers, buses, and the control unit, as well as how it executes instructions and manages memory.">
-<meta name="keywords" content="team brazuca!">
+<meta name="keywords" content="hack the planet!">
 
 
 
@@ -462,7 +462,7 @@ The other memory spaces are used for hardware management, <strong>input/output (
 <li>Arithmetic (calculations)<br>
 See:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#447fcf">mov</span> <span style="color:#40ffff">eax</span>, [<span style="color:#40ffff">ebx</span>]
+<div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#5f5fff">mov</span> <span style="color:#008900">eax</span>, [<span style="color:#008900">ebx</span>]
 </span></span></code></pre></div><p>This single line moves (loads) the value from the memory address contained in <code>ebx</code> to the <code>eax</code> register.</p>
 <h3 id="components">
   Components:
@@ -525,10 +525,10 @@ See:</li>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#447fcf">ldr</span> <span style="color:#40ffff">r0</span>, [<span style="color:#40ffff">r1</span>]    <span style="color:#999;font-style:italic">; Carrega o valor do endereço de memória armazenado em r1 para o registrador r0  
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#447fcf">add</span> <span style="color:#40ffff">r0</span>, <span style="color:#40ffff">r0</span>, <span style="color:#999;font-style:italic">#1  ; Adiciona 1 ao valor de r0  
-</span></span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"></span><span style="color:#447fcf">str</span> <span style="color:#40ffff">r0</span>, [<span style="color:#40ffff">r1</span>]    <span style="color:#999;font-style:italic">; Armazena o resultado da operação no endereço de memória indicado por r1
-</span></span></span></code></pre></div><p>Here, we load the value from memory into a register, perform the operation, and then store the result back into memory. It&rsquo;s simple and efficient.</p>
+<div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#5f5fff">ldr</span> <span style="color:#008900">r0</span>, [<span style="color:#008900">r1</span>]    ; Carrega o valor do endereço de memória armazenado em r1 para o registrador r0  
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">add</span> <span style="color:#008900">r0</span>, <span style="color:#008900">r0</span>, #1  ; Adiciona 1 ao valor de r0  
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">str</span> <span style="color:#008900">r0</span>, [<span style="color:#008900">r1</span>]    ; Armazena o resultado da operação no endereço de memória indicado por r1
+</span></span></code></pre></div><p>Here, we load the value from memory into a register, perform the operation, and then store the result back into memory. It&rsquo;s simple and efficient.</p>
 <h3 id="advantages-of-risc">
   Advantages of RISC
   <a class="heading-link" href="#advantages-of-risc">
