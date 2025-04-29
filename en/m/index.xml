@@ -8,13 +8,6 @@
     <language>en</language>
     <atom:link href="https://pwnbuffer.org/en/m/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>86daemon</title>
-      <link>https://pwnbuffer.org/en/m/daemon/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/en/m/daemon/</guid>
-      <description> github: 86daemon&#xA;Angel of i386 Link to heading Note _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
-    </item>
-    <item>
       <title>black0ut</title>
       <link>https://pwnbuffer.org/en/m/black0ut/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -64,11 +57,18 @@
       <description> github: tteuw00111111&#xA;Note Software Dev, Maldev and Analysis, short reverse engineering as well. And a little bit of web (not enough) </description>
     </item>
     <item>
+      <title>voiiid</title>
+      <link>https://pwnbuffer.org/en/m/void/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/m/void/</guid>
+      <description> github: 0xvoiiid&#xA;Angel of i386&#xA;Cheat developer&#xA;Note _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
+    </item>
+    <item>
       <title>zack</title>
       <link>https://pwnbuffer.org/en/m/zack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/en/m/zack/</guid>
-      <description> github: Zack0x3&#xA;Note Malware development and windows internals, addicted to lain.. </description>
+      <description> github: Zack0x3&#xA;Note Web / Malware development and windows internals, addicted to lain.. </description>
     </item>
   </channel>
 </rss>

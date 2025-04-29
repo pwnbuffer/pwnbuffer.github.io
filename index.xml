@@ -17,9 +17,9 @@
     </item>
     <item>
       <title>x86 Part. 1 — CPU</title>
-      <link>https://pwnbuffer.org/posts/daemon/x86/</link>
+      <link>https://pwnbuffer.org/posts/void/x86/</link>
       <pubDate>Sun, 30 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/posts/daemon/x86/</guid>
+      <guid>https://pwnbuffer.org/posts/void/x86/</guid>
       <description>Essa série de artigos aborda conceitos básicos de baixo nível em computadores, com foco específico na exploração de binários e engenharia reversa. Alguns pontos podem parecer confusos à primeira vista, mas lembre-se: tudo segue uma definição. Não se prenda a uma sequência infinita de &amp;ldquo;porquês!?&amp;rdquo; — apenas compreenda cada conceito e seu propósito. Você vai usar esses conceitos em engenharia reversa, exploração de binários e até no desenvolvimento de malware no futuro.</description>
     </item>
     <item>
@@ -65,13 +65,6 @@
       <description>🇧🇷 Somos uma equipe brasileira de entusiastas de tecnologia e hacking.&#xA;Discord: server&#xA;Youtube: youtube channel&#xA;X(Twitter): twitter&#xA;Github: github&#xA;&amp;ldquo;Acreditamos que o conhecimento deve ser livre&amp;rdquo; Link para o cabeçalho </description>
     </item>
     <item>
-      <title>86daemon</title>
-      <link>https://pwnbuffer.org/m/daemon/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/m/daemon/</guid>
-      <description> github: 86daemon&#xA;Angel of i386 Link para o cabeçalho Nota _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
-    </item>
-    <item>
       <title>black0ut</title>
       <link>https://pwnbuffer.org/m/black0ut/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -90,7 +83,7 @@
       <link>https://pwnbuffer.org/members/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/members/</guid>
-      <description> daemon slayer kz0x raidboy tteuw愛 black0ut nullbyte </description>
+      <description> voiiid slayer kz0x zack tteuw愛 black0ut nullbyte </description>
     </item>
     <item>
       <title>mount</title>
@@ -128,18 +121,25 @@
       <description> github: tteuw00111111&#xA;Nota software dev, maldev e analysis, curto engenharia reversa também. E um pouco de web (não o suficiente) </description>
     </item>
     <item>
+      <title>voiiid</title>
+      <link>https://pwnbuffer.org/m/void/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/m/void/</guid>
+      <description> github: 0xvoiiid&#xA;Angel of i386&#xA;Cheat developer&#xA;Nota _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
+    </item>
+    <item>
       <title>wallpapers</title>
       <link>https://pwnbuffer.org/wallpapers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/wallpapers/</guid>
-      <description> ▄▄▄·▄▄▌ ▐ ▄▌ ▐ ▄ ▄▄▄▄· ▄• ▄▌·▄▄▄·▄▄▄▄▄▄ .▄▄▄ ▐█ ▄███· █▌▐█•█▌▐█▐█ ▀█▪█▪██▌▐▄▄·▐▄▄·▀▄.▀·▀▄ █· ██▀·██▪▐█▐▐▌▐█▐▐▌▐█▀▀█▄█▌▐█▌██▪ ██▪ ▐▀▀▪▄▐▀▀▄ ▐█▪·•▐█▌██▐█▌██▐█▌██▄▪▐█▐█▄█▌██▌.██▌.▐█▄▄▌▐█•█▌ .▀ ▀▀▀▀ ▀▪▀▀ █▪·▀▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀ .▀ ▀ 1 2 3 4 5 6 7 8 9 </description>
+      <description> ▄▄▄·▄▄▌ ▐ ▄▌ ▐ ▄ ▄▄▄▄· ▄• ▄▌·▄▄▄·▄▄▄▄▄▄ .▄▄▄ ▐█ ▄███· █▌▐█•█▌▐█▐█ ▀█▪█▪██▌▐▄▄·▐▄▄·▀▄.▀·▀▄ █· ██▀·██▪▐█▐▐▌▐█▐▐▌▐█▀▀█▄█▌▐█▌██▪ ██▪ ▐▀▀▪▄▐▀▀▄ ▐█▪·•▐█▌██▐█▌██▐█▌██▄▪▐█▐█▄█▌██▌.██▌.▐█▄▄▌▐█•█▌ .▀ ▀▀▀▀ ▀▪▀▀ █▪·▀▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀ .▀ ▀ 1 2 3 4 5 6 7 8 9 10 </description>
     </item>
     <item>
       <title>zack</title>
       <link>https://pwnbuffer.org/m/zack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/m/zack/</guid>
-      <description> github: Zack0x3&#xA;Nota Desenvolvimento de malware e internals do Windows, viciado em Lain. </description>
+      <description> github: Zack0x3&#xA;Nota Web / Desenvolvimento de malware e internals do Windows, viciado em Lain. </description>
     </item>
   </channel>
 </rss>
