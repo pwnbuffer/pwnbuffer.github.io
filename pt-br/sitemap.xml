@@ -184,19 +184,6 @@
                 href="https://pwnbuffer.org/tags/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/authors/daemon/</loc>
-    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/authors/daemon/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/authors/daemon/"
-                />
-  </url><url>
     <loc>https://pwnbuffer.org/tags/low-level/</loc>
     <lastmod>2025-03-30T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -223,6 +210,19 @@
                 href="https://pwnbuffer.org/series/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.org/authors/void/</loc>
+    <lastmod>2025-03-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/authors/void/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/authors/void/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.org/categories/x86/</loc>
     <lastmod>2025-03-30T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -236,30 +236,30 @@
                 href="https://pwnbuffer.org/categories/x86/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/posts/daemon/x86/</loc>
+    <loc>https://pwnbuffer.org/posts/void/x86/</loc>
     <lastmod>2025-03-30T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/en/posts/daemon/x86/"
+                href="https://pwnbuffer.org/en/posts/void/x86/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/posts/daemon/x86/"
+                href="https://pwnbuffer.org/posts/void/x86/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/series/x86-daemon/</loc>
+    <loc>https://pwnbuffer.org/series/x86-void/</loc>
     <lastmod>2025-03-30T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/en/series/x86-daemon/"
+                href="https://pwnbuffer.org/en/series/x86-void/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/series/x86-daemon/"
+                href="https://pwnbuffer.org/series/x86-void/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/tags/exploitation/</loc>
@@ -664,18 +664,6 @@
                 href="https://pwnbuffer.org/authors/86daemon/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/m/daemon/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/m/daemon/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/m/daemon/"
-                />
-  </url><url>
     <loc>https://pwnbuffer.org/m/black0ut/</loc>
     <xhtml:link
                 rel="alternate"
@@ -782,6 +770,18 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/m/tteuw/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/m/void/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/m/void/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/m/void/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/wallpapers/</loc>
