@@ -65,11 +65,11 @@
       <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
     </item>
     <item>
-      <title>Contribua com seu artigo!</title>
+      <title>Contribua com seu Paper!</title>
       <link>https://pwnbuffer.org/contribute/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/contribute/</guid>
-      <description>▄████▄ ▒█████ ███▄ █ ▄▄▄█████▓ ██▀███ ██▓ ▄▄▄▄ █ ██ ▄▄▄█████▓▓█████ ▒██▀ ▀█ ▒██▒ ██▒ ██ ▀█ █ ▓ ██▒ ▓▒▓██ ▒ ██▒▓██▒▓█████▄ ██ ▓██▒▓ ██▒ ▓▒▓█ ▀ ▒▓█ ▄ ▒██░ ██▒▓██ ▀█ ██▒▒ ▓██░ ▒░▓██ ░▄█ ▒▒██▒▒██▒ ▄██▓██ ▒██░▒ ▓██░ ▒░▒███ ▒▓▓▄ ▄██▒▒██ ██░▓██▒ ▐▌██▒░ ▓██▓ ░ ▒██▀▀█▄ ░██░▒██░█▀ ▓▓█ ░██░░ ▓██▓ ░ ▒▓█ ▄ ▒ ▓███▀ ░░ ████▓▒░▒██░ ▓██░ ▒██▒ ░ ░██▓ ▒██▒░██░░▓█ ▀█▓▒▒█████▓ ▒██▒ ░ ░▒████▒ ░ ░▒ ▒ ░░ ▒░▒░▒░ ░ ▒░ ▒ ▒ ▒ ░░ ░ ▒▓ ░▒▓░░▓ ░▒▓███▀▒░▒▓▒ ▒ ▒ ▒ ░░ ░░ ▒░ ░ ░ ▒ ░ ▒ ▒░ ░ ░░ ░ ▒░ ░ ░▒ ░ ▒░ ▒ ░▒░▒ ░ ░░▒░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ▒ ░ ░ ░ ░ ░░ ░ ▒ ░ ░ ░ ░░░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ Você tem um artigo sobre hacking ou cibersegurança e quer compartilhá-lo com nosso público?</description>
+      <description>▄████▄ ▒█████ ███▄ █ ▄▄▄█████▓ ██▀███ ██▓ ▄▄▄▄ █ ██ ▄▄▄█████▓▓█████ ▒██▀ ▀█ ▒██▒ ██▒ ██ ▀█ █ ▓ ██▒ ▓▒▓██ ▒ ██▒▓██▒▓█████▄ ██ ▓██▒▓ ██▒ ▓▒▓█ ▀ ▒▓█ ▄ ▒██░ ██▒▓██ ▀█ ██▒▒ ▓██░ ▒░▓██ ░▄█ ▒▒██▒▒██▒ ▄██▓██ ▒██░▒ ▓██░ ▒░▒███ ▒▓▓▄ ▄██▒▒██ ██░▓██▒ ▐▌██▒░ ▓██▓ ░ ▒██▀▀█▄ ░██░▒██░█▀ ▓▓█ ░██░░ ▓██▓ ░ ▒▓█ ▄ ▒ ▓███▀ ░░ ████▓▒░▒██░ ▓██░ ▒██▒ ░ ░██▓ ▒██▒░██░░▓█ ▀█▓▒▒█████▓ ▒██▒ ░ ░▒████▒ ░ ░▒ ▒ ░░ ▒░▒░▒░ ░ ▒░ ▒ ▒ ▒ ░░ ░ ▒▓ ░▒▓░░▓ ░▒▓███▀▒░▒▓▒ ▒ ▒ ▒ ░░ ░░ ▒░ ░ ░ ▒ ░ ▒ ▒░ ░ ░░ ░ ▒░ ░ ░▒ ░ ▒░ ▒ ░▒░▒ ░ ░░▒░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ▒ ░ ░ ░ ░ ░░ ░ ▒ ░ ░ ░ ░░░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ Você tem um paper sobre hacking ou cibersegurança e quer compartilhá-lo com nosso público?</description>
     </item>
     <item>
       <title>Sobre</title>
