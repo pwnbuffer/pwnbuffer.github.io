@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>
+  Review sobre assembly · pwnbuffer
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="pwnbuffer">
+<meta name="description" content="Um artigo simples e direto sobre os fundamentos básicos de assembly!">
+<meta name="keywords" content="hack the planet!">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Review sobre assembly">
+  <meta name="twitter:description" content="Um artigo simples e direto sobre os fundamentos básicos de assembly!">
+
+<meta property="og:url" content="https://pwnbuffer.org/posts/slayer/assembly-review/">
+  <meta property="og:site_name" content="pwnbuffer">
+  <meta property="og:title" content="Review sobre assembly">
+  <meta property="og:description" content="Um artigo simples e direto sobre os fundamentos básicos de assembly!">
+  <meta property="og:locale" content="pt_br">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-30T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-30T00:00:00+00:00">
+    <meta property="article:tag" content="Assembly">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="Low Level">
+
+
+
+
+<link rel="canonical" href="https://pwnbuffer.org/posts/slayer/assembly-review/">
+
+
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="https://pwnbuffer.org/css/coder.min.b886fe0d9034709648f91f4ce178f51dd367d9350f82dd1132d54fd69bfca66f.css" integrity="sha256-uIb&#43;DZA0cJZI&#43;R9M4Xj1HdNn2TUPgt0RMtVP1pv8pm8=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="https://pwnbuffer.org/css/coder-dark.min.165f5fe7c98269a5cfc54f81472e0f84ebc32d92bbe6c9db1f06962b0817bda1.css" integrity="sha256-Fl9f58mCaaXPxU&#43;BRy4PhOvDLZK75snbHwaWKwgXvaE=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://pwnbuffer.org/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-32x32.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-16x16.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+
+<link rel="manifest" href="https://pwnbuffer.org/site.webmanifest">
+<link rel="mask-icon" href="https://pwnbuffer.org/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://pwnbuffer.org/">
+      pwnbuffer
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/contribute/">Contribua</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/wallpapers/">Wallpapers</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://pwnbuffer.org/en/posts/slayer/assembly-review/">🇺🇸</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://pwnbuffer.org/posts/slayer/assembly-review/">
+              Review sobre assembly
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-04-30T00:00:00Z">
+                abril 30, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              6 minutos de leitura
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/authors/slayer/">Slayer</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/categories/programming/">Programming</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/categories/assembly/">Assembly</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/categories/low-level/">Low-Level</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/assembly/">Assembly</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/programming/">Programming</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/low-level/">Low Level</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="o-que-é-assembly">
+  O que é assembly?
+  <a class="heading-link" href="#o-que-%c3%a9-assembly">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h1>
+<p><strong>Assembly é uma linguagem de programação de baixo nivel, ela é escrita para se comunicar diretamente com o hardware do processador. Ao contrário das linguagens de alto nivel, como o famoso python, o assembly opera próximo ao código de máquina, o famoso binário! Cada instrução em assembly geralmente representa uma única operação da CPU, como mover dados entre registradores, realizar operações aritméticas ou controlar o fluxo de execução.</strong></p>
+<p><strong>Assembly não é universal!! Ele depende diretamente da arquitetura do processador. Por exemplo, um código em assembly feito para processadores x86 não funcionará em uma arquitetura ARM, isso significa que aprender assembly é também aprender sobre a estrutura interna e o funcionamento da cpu em questão. Então, se você quer aprender assembly, papers como o do nosso membro voiiid podem te ajudar bastante nessa jornada! <a href="https://pwnbuffer.org/en/posts/void/x86/"  class="external-link" target="_blank" rel="noopener">https://pwnbuffer.org/en/posts/void/x86/</a></strong></p>
+<p><strong>Aqui está uma tabela dos registradores x86 e x86_64, mostrando EAX, EBX&hellip; e seus equivalentes, RAX, RBX&hellip;</strong></p>
+<div style="text-align: center;">
+  <img src="https://pwnbuffer.org/images/slayer/review-asm/register-table.png" alt="2">
+</div>
+<p><strong>Assembly é uma linguagem bem antiga, surgindo em meados dos anos 50, mas mesmo assim, ela é muito relevante, mas, por que ainda é relevante?</strong></p>
+<p><strong>Simplesmente porque ela é uma ferramenta essencial em várias áreas da computação, como na engenharia reversa, para analisar binários e entender softwares sem acesso ao código fonte.</strong></p>
+<p><strong>Assembly NÃO é uma linguagem genérica! Ela reflete a arquitetura do processador que está sendo usado. Isso significa que os registradores, instruçõees e modos de endereçamento variam entre arquiteturas como x86, x86_64, ARM &amp; MIPS. Aprender assembly é aprender a linguagem interna do processador. Essa ligação direta torna assembly indnispensável para compreender como um código em C se transforma em instruções binárias e como o sistema realmente executa cada linha do código. Ele revela o que está &ldquo;por baixo do tapete&rdquo;.</strong></p>
+<p><img alt="2" src="https://pwnbuffer.org/images/slayer/review-asm/architecture_block.svg"></p>
+<hr>
+<h2 id="arquitetura-x86x86_64">
+  Arquitetura x86/x86_64
+  <a class="heading-link" href="#arquitetura-x86x86_64">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>A principal diferença entre as arquiteturas de 32 bits e de 64 bits está na largura dos registradores, ou seja, na quantidade de dados que o processador pode manipular de uma vez:</strong></p>
+<ul>
+<li><strong>32 bits &ndash;&gt; os registradores e os endereços são limitados a 4GB</strong></li>
+<li><strong>64 bits &ndash;&gt; os registradores e os endereços podem acessar até 16 exabytes, teoricamente (2⁶⁴) embora o limite na pratica seja muito menor</strong></li>
+</ul>
+<p><strong>Além do aumento da capacidade, a arquitetura x86_64 traz mais registradores, o que melhora o desempenho e reduz a necessidade de acessar a memória constantemente.</strong></p>
+<hr>
+<h3 id="registradores-principais">
+  Registradores principais
+  <a class="heading-link" href="#registradores-principais">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<h4 id="x86">
+  x86
+  <a class="heading-link" href="#x86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h4>
+<ul>
+<li><strong>EAX, EBX, ECX, EDX &ndash;&gt; registradores gerais</strong></li>
+<li><strong>ESP &ndash;&gt; stack pointer</strong></li>
+<li><strong>EBP &ndash;&gt; base pointer</strong></li>
+<li><strong>ESI/EDI &ndash;&gt; cópia &amp; manipulação de memória</strong></li>
+</ul>
+<p><strong>Cada registrador tem 32 bits (ou seja, 4 bytes) eles também podem ser acessados parcialmente como AX, AH, AL (16 e 8 bits)</strong></p>
+<hr>
+<h4 id="x86_64">
+  x86_64
+  <a class="heading-link" href="#x86_64">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h4>
+<ul>
+<li><strong>todos os registradores de 32 bits foram expandidos: EAX &ndash;&gt; RAX, EBX &ndash;&gt; RBX e etc..</strong></li>
+<li><strong>adição de novos registradores R8 até R15</strong></li>
+<li><strong>stack pointer e base pointer também mudaram: ESP &ndash;&gt; RSP &amp; EBP &ndash;&gt; RBP</strong></li>
+</ul>
+<p><strong>Cada registrador agora armazena 64 bits (8 bytes) e também pode ser acessado em porções, por exemplo: RAX (64 bits), EAX (32 bits), AX (16 bits), AL (8 bits)</strong></p>
+<hr>
+<h2 id="estrutura-de-um-programa-em-assembly">
+  Estrutura de um Programa em Assembly
+  <a class="heading-link" href="#estrutura-de-um-programa-em-assembly">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>Um programa em assembly geralmente é dividido em seções que organizam os dados e o código, por exemplo:</strong></p>
+<ul>
+<li><strong><code>.data</code> &ndash;&gt; onde ficam os dados inicializados (como as strings e variáveis com valor definido)</strong></li>
+<li><strong><code>.bss</code> &ndash;&gt; para dados não inicializados (variáveis reservadas, mas sem valor inicial)</strong></li>
+<li><strong><code>.text</code> &ndash;&gt; contém o código executável do programa</strong></li>
+</ul>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-0-0:checked ~ .tab-content-0-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-0" id="tab-0-0" checked/>
+<label for="tab-0-0" class="tab-label">Assembly</label>
+<div class="tab-content tab-content-0-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#5f5fff">section</span> <span style="color:#008900">.data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">msg</span> <span style="color:#008900">db</span> <span style="color:#ec0000">&#34;</span><span style="color:#008900">Olá</span>, <span style="color:#008900">Mundo</span>!<span style="color:#ec0000">&#34;</span>, <span style="color:#008900">0</span><span style="color:#008900">Ah</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">section</span> <span style="color:#008900">.text</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">global</span> <span style="color:#008900">_start</span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">_start:</span>
+</span></span><span style="display:flex;"><span>    ;sys write
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">eax</span>, <span style="color:#008900">4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">ebx</span>, <span style="color:#008900">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">ecx</span>, <span style="color:#008900">msg</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">edx</span>, <span style="color:#008900">13</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">int</span> <span style="color:#008900">0x80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ;sys exit
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">eax</span>, <span style="color:#008900">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">xor</span> <span style="color:#008900">ebx</span>, <span style="color:#008900">ebx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">int</span> <span style="color:#008900">0x80</span>
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>Esse exemplo usa chamadas de sistema do linux com <code>int 0x80</code>, válidas em sistemas de 32 bits. Ele simplesmente imprime <code>&quot;Olá, Mundo!&quot;</code> no terminal e depois finaliza o programa.</strong></p>
+<hr>
+<h2 id="conceitos-chave">
+  Conceitos Chave
+  <a class="heading-link" href="#conceitos-chave">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p><strong>Intruções comuns:</strong></p>
+</li>
+<li>
+<p><strong><code>MOV</code> &ndash;&gt; move dados entre registradores e memória</strong></p>
+</li>
+<li>
+<p><strong><code>ADD</code>, <code>SUB</code> &ndash;&gt; soma e subtração</strong></p>
+</li>
+<li>
+<p><strong><code>CMP</code> &ndash;&gt; compara valores (usado antes de <code>JMP</code>)</strong></p>
+</li>
+<li>
+<p><strong><code>JMP</code>, <code>JE</code>, <code>JNE</code>, etc. &ndash;&gt; saltos (condicionais ou não)</strong></p>
+</li>
+<li>
+<p><strong>Flags:</strong></p>
+<ul>
+<li><strong><code>ZF</code> (Zero Flag) &ndash;&gt; setada se o resultado for zero</strong></li>
+<li><strong><code>CF</code> (Carry Flag) &ndash;&gt; indica overflow em operações sem sinal</strong></li>
+<li><strong><code>SF</code> (Sign Flag) &ndash;&gt; indica se o resultado é negativo</strong></li>
+<li><strong><code>OF</code> (Overflow Flag) &ndash;&gt; indica overflow em operações com sinal</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Stack:</strong></p>
+<ul>
+<li><strong><code>PUSH</code> &ndash;&gt; coloca um valor na stack</strong></li>
+<li><strong><code>POP</code> &ndash;&gt; remove o topo da stack</strong></li>
+<li><strong><code>CALL</code> &ndash;&gt; empilha o endereço de retorno e salta para a função</strong></li>
+<li><strong><code>RET</code> &ndash;&gt; retorna da função para o endereço salvo</strong></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-1-0:checked ~ .tab-content-1-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-1" id="tab-1-0" checked/>
+<label for="tab-1-0" class="tab-label">Assembly</label>
+<div class="tab-content tab-content-1-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#5f5fff">section</span> <span style="color:#008900">.data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">msg</span> <span style="color:#008900">db</span> <span style="color:#ec0000">&#34;</span><span style="color:#008900">exec</span> <span style="color:#008900">func</span>!<span style="color:#ec0000">&#34;</span>, <span style="color:#008900">0</span><span style="color:#008900">Ah</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">len</span> <span style="color:#008900">equ</span> <span style="color:#008900">$</span> - <span style="color:#008900">msg</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">section</span> <span style="color:#008900">.text</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">global</span> <span style="color:#008900">_start</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">_start:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">call</span> <span style="color:#008900">message</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">eax</span>, <span style="color:#008900">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">xor</span> <span style="color:#008900">ebx</span>, <span style="color:#008900">ebx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">int</span> <span style="color:#008900">0x80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">message:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">push</span> <span style="color:#008900">eax</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">push</span> <span style="color:#008900">ebx</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">eax</span>, <span style="color:#008900">4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">ebx</span>, <span style="color:#008900">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">ecx</span>, <span style="color:#008900">msg</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">mov</span> <span style="color:#008900">edx</span>, <span style="color:#008900">len</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">int</span> <span style="color:#008900">0x80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">pop</span> <span style="color:#008900">ebx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">pop</span> <span style="color:#008900">eax</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">ret</span>
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>Nesse exemplo, o programa chama a função <code>message</code> usando <code>CALL</code>, que automaticamente faz um <code>PUSH</code> do endereço de retorno.</strong></p>
+<p><strong>Dentro da função:</strong></p>
+<ul>
+<li><strong>Os registradores <code>eax</code> &amp; <code>ebx</code> são salvos com <code>PUSH</code></strong></li>
+<li><strong>A syscall <code>write</code> imprime <code>&quot;exec func!&quot;</code></strong></li>
+<li><strong>Depois, <code>POP</code> restaura os registradores originais</strong></li>
+<li><strong>E o <code>RET</code> volta para depois do <code>CALL</code>, onde o programa continua</strong></li>
+</ul>
+<hr>
+<h2 id="calling-conventions">
+  Calling Conventions
+  <a class="heading-link" href="#calling-conventions">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>As calling conventions definem como funções recebem argumentos, retornam valores e manipulam a stack, são essas as regras que garantem compatibilidade entre codigos assembly e outras linguagens como C!</strong></p>
+<h3 id="main-conventions">
+  Main Conventions
+  <a class="heading-link" href="#main-conventions">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p><strong><code>cdecl</code> &ndash;&gt; C declaration, comum no linux 32 bits</strong></p>
+<ul>
+<li><strong>argumentos: passados na stack, da direita pra esquerda</strong></li>
+<li><strong>responsável por limpar a stack: quem chama a função <code>caller</code></strong></li>
+<li><strong>retorno: via <code>EAX</code></strong></li>
+<li><strong>muito usada com: GCC, linguagens C/C++</strong></li>
+</ul>
+</li>
+<li>
+<p><strong><code>stdcall</code> &ndash;&gt; Comum no windows 32 bits</strong></p>
+<ul>
+<li><strong>argumentos: passados na stack, da direita pra esquerda</strong></li>
+<li><strong>responsável por limpar a stack: a função chamada <code>callee</code></strong></li>
+<li><strong>retorno: via <code>EAX</code></strong></li>
+<li><strong>muito usada com: APIs do windows</strong></li>
+</ul>
+</li>
+<li>
+<p><strong><code>sycv</code> &ndash;&gt; System V AMD64 ABI, padrão no linux 64 bits</strong></p>
+<ul>
+<li><strong>argumentos: via registradores, nesta ordem:</strong>
+<ul>
+<li><strong><code>RDI</code>, <code>RSI</code>, <code>RDX</code>, <code>RCX</code>, <code>R8</code>, <code>R9</code></strong></li>
+<li><strong>extras vão para a stack</strong></li>
+</ul>
+</li>
+<li><strong>retorno: via <code>RAX</code></strong></li>
+<li><strong>responsável por salvar registradores temporários: <code>caller</code></strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="resumão-visual">
+  Resumão visual:
+  <a class="heading-link" href="#resum%c3%a3o-visual">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>Convenção</th>
+<th>Plataforma</th>
+<th>Argumentos via</th>
+<th>Retorno</th>
+<th>Quem limpa a pilha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cdecl</code></td>
+<td>Linux 32bit</td>
+<td>Pilha (dir → esq)</td>
+<td>EAX</td>
+<td>Quem chama</td>
+</tr>
+<tr>
+<td><code>stdcall</code></td>
+<td>Windows 32b</td>
+<td>Pilha (dir → esq)</td>
+<td>EAX</td>
+<td>Função chamada</td>
+</tr>
+<tr>
+<td><code>sysv</code></td>
+<td>Linux 64bit</td>
+<td>Registradores + pilha</td>
+<td>RAX</td>
+<td>Quem chama</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bom, chegamos ao final de mais um paper, muito obrigado por ler até aqui! Espero ter te ajudado em algo, e segue as fontes que utilizei para criar este artigo! ;)</strong></p>
+<hr>
+<p><strong>Fontes usadas para a construção deste artigo:</strong></p>
+<ul>
+<li><strong><a href="https://en.wikipedia.org/wiki/Assembly_language"  class="external-link" target="_blank" rel="noopener">Assembly Language - Wikipedia</a></strong></li>
+<li><strong><a href="https://tecnoblog.net/responde/processador-64-bits-vs-32-bits-diferencas/"  class="external-link" target="_blank" rel="noopener">Processador 64 bits vs 32 bits - Tecnoblog</a></strong></li>
+<li><strong><a href="https://cs.lmu.edu/~ray/notes/x86overview/"  class="external-link" target="_blank" rel="noopener">x86 overview - cs.lmu.edu</a></strong></li>
+<li><strong><a href="https://www.tutorialspoint.com/assembly_programming/assembly_quick_guide.htm"  class="external-link" target="_blank" rel="noopener">Assembly quick guide - tutorialspoint</a></strong></li>
+<li><strong><a href="https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html"  class="external-link" target="_blank" rel="noopener">Intel® 64 and IA-32 Architectures Developer Manuals (PDFs oficiais)</a></strong></li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Calling_convention"  class="external-link" target="_blank" rel="noopener">Calling Conventions - Wikipedia</a></strong></li>
+<li><strong><a href="https://www.nasm.us/doc/"  class="external-link" target="_blank" rel="noopener">NASM Documentation</a></strong></li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     pwnbuffer 
+    ·
+    
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="https://pwnbuffer.org/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
