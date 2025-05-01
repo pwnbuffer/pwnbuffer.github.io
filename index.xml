@@ -6,8 +6,15 @@
     <description>Recent content on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 02 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review sobre assembly</title>
+      <link>https://pwnbuffer.org/posts/slayer/assembly-review/</link>
+      <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/posts/slayer/assembly-review/</guid>
+      <description>O que é assembly? Link para o cabeçalho Assembly é uma linguagem de programação de baixo nivel, ela é escrita para se comunicar diretamente com o hardware do processador. Ao contrário das linguagens de alto nivel, como o famoso python, o assembly opera próximo ao código de máquina, o famoso binário! Cada instrução em assembly geralmente representa uma única operação da CPU, como mover dados entre registradores, realizar operações aritméticas ou controlar o fluxo de execução.</description>
+    </item>
     <item>
       <title>Bypass nas defesas do Kernel Linux</title>
       <link>https://pwnbuffer.org/posts/black0ut/kernel_linux_bypass/</link>
@@ -58,6 +65,13 @@
       <description>O que é buffer overflow? Link para o cabeçalho Buffer overflow (BOF) é uma das vulnerabilidades mais conhecidas e historicamente significativas no mundo da cibersegurança. Ele ocorre quando um programa escreve mais dados em um buffer do que ele pode armazenar, causando corrupção de memória. Essa falha pode ser explorada por pentesters para executar código arbitrário, modificar o comportamento do programa ou causar um crash.&#xA;Apesar da introdução de mecanismos modernos de segurança, como ASLR e stack canaries, o buffer overflow continua sendo um tópico crítico no desenvolvimento de exploits e pentesting.</description>
     </item>
     <item>
+      <title>Contribua com seu artigo!</title>
+      <link>https://pwnbuffer.org/contribute/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/contribute/</guid>
+      <description>▄████▄ ▒█████ ███▄ █ ▄▄▄█████▓ ██▀███ ██▓ ▄▄▄▄ █ ██ ▄▄▄█████▓▓█████ ▒██▀ ▀█ ▒██▒ ██▒ ██ ▀█ █ ▓ ██▒ ▓▒▓██ ▒ ██▒▓██▒▓█████▄ ██ ▓██▒▓ ██▒ ▓▒▓█ ▀ ▒▓█ ▄ ▒██░ ██▒▓██ ▀█ ██▒▒ ▓██░ ▒░▓██ ░▄█ ▒▒██▒▒██▒ ▄██▓██ ▒██░▒ ▓██░ ▒░▒███ ▒▓▓▄ ▄██▒▒██ ██░▓██▒ ▐▌██▒░ ▓██▓ ░ ▒██▀▀█▄ ░██░▒██░█▀ ▓▓█ ░██░░ ▓██▓ ░ ▒▓█ ▄ ▒ ▓███▀ ░░ ████▓▒░▒██░ ▓██░ ▒██▒ ░ ░██▓ ▒██▒░██░░▓█ ▀█▓▒▒█████▓ ▒██▒ ░ ░▒████▒ ░ ░▒ ▒ ░░ ▒░▒░▒░ ░ ▒░ ▒ ▒ ▒ ░░ ░ ▒▓ ░▒▓░░▓ ░▒▓███▀▒░▒▓▒ ▒ ▒ ▒ ░░ ░░ ▒░ ░ ░ ▒ ░ ▒ ▒░ ░ ░░ ░ ▒░ ░ ░▒ ░ ▒░ ▒ ░▒░▒ ░ ░░▒░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ▒ ░ ░ ░ ░ ░░ ░ ▒ ░ ░ ░ ░░░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ Você tem um artigo sobre hacking ou cibersegurança e quer compartilhá-lo com nosso público?</description>
+    </item>
+    <item>
       <title>Sobre</title>
       <link>https://pwnbuffer.org/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
@@ -100,18 +114,11 @@
       <description> github: NullByte-7w7&#xA;Nota Codenome NullByte, web, infra, baixo nível. Eu realmente gosto de maldev e adoro entender como o windows sysinternal funciona. </description>
     </item>
     <item>
-      <title>raidboy</title>
-      <link>https://pwnbuffer.org/m/raidboy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/m/raidboy/</guid>
-      <description> github: 0xb0y426&#xA;Nota Olá, meu nome é RAIDBOY e estou na área de programação e segurança cibernética há 4 anos. Gosto de programação de baixo nível, sistemas operacionais, física e Pokémon. </description>
-    </item>
-    <item>
       <title>sl4yer</title>
       <link>https://pwnbuffer.org/m/slayer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/m/slayer/</guid>
-      <description>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢤⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠿⢿⡀⠀⠀⠀⠀⣠⣶⣿⣷⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣦⣴⣿⡋⠀⠀⠈⢳⡄⠀⢠⣾⣿⠁⠈⣿⡆⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⠿⠛⠉⠉⠁⠀⠀⠀⠹⡄⣿⣿⣿⠀⠀⢹⡇⠀⠀⠀ ⠀⠀⠀⠀⠀⣠⣾⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⣰⣏⢻⣿⣿⡆⠀⠸⣿⠀⠀⠀ ⠀⠀⠀⢀⣴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣆⠹⣿⣷⠀⢘⣿⠀⠀⠀ ⠀⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⠋⠉⠛⠂⠹⠿⣲⣿⣿⣧⠀⠀ ⠀⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣿⣿⣿⣷⣾⣿⡇⢀⠀⣼⣿⣿⣿⣧⠀ ⠰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⡘⢿⣿⣿⣿⠀ ⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣷⡈⠿⢿⣿⡆ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠁⢙⠛⣿⣿⣿⣿⡟⠀⡿⠀⠀⢀⣿⡇ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣶⣤⣉⣛⠻⠇⢠⣿⣾⣿⡄⢻⡇ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣦⣤⣾⣿⣿⣿⣿⣆⠁ github: slayerkkkk&#xA;Nota Olá, me chamo slayer. Estou na área de segurança cibernética há 3 anos e atualmente estou estudando mais sobre low level </description>
+      <description> github: slayerkkkk&#xA;Nota Olá, me chamo slayer. Estou na área de segurança cibernética há 3 anos e atualmente estou estudando mais sobre low level </description>
     </item>
     <item>
       <title>tteuw愛</title>

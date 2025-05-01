@@ -6,8 +6,15 @@
     <description>Recent content in Low Level on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/en/tags/low-level/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review of assembly</title>
+      <link>https://pwnbuffer.org/en/posts/slayer/assembly-review/</link>
+      <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/posts/slayer/assembly-review/</guid>
+      <description>What is assembly? Link to heading Assembly is a low-level programming language, it is written to communicate directly with the processor hardware. Unlike high-level languages, such as the famous Python, assembly operates close to machine code, the famous binary! Each assembly instruction generally represents a single CPU operation, such as moving data between registers, performing arithmetic operations or controlling the flow of execution.&#xA;Assembly is not universal!! It depends directly on the processor architecture.</description>
+    </item>
     <item>
       <title>x86 Part. 1 — CPU</title>
       <link>https://pwnbuffer.org/en/posts/void/x86/</link>
