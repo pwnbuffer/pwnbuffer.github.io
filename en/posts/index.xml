@@ -6,8 +6,15 @@
     <description>Recent content in Posts on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>x86 Part. 2 — Number System</title>
+      <link>https://pwnbuffer.org/en/posts/void/x86-2/</link>
+      <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/posts/void/x86-2/</guid>
+      <description>Welcome to the second part of our series of articles on Basic Reverse Engineering! Link to heading ██ ██ █████ ██████ ██ ██ ██ ██ ██ ███ █████ ███████ ██ ██ ██ ██ ██ ██ ██ ██ █████ ██████ Now that we&amp;rsquo;ve explored the fundamental concepts of CPU in the first article, it&amp;rsquo;s time to understand how data is represented and manipulated internally by computers. Let&amp;rsquo;s talk about numbering systems, with a focus on hexadecimal, which is crucial for those working with low-level reverse engineering.</description>
+    </item>
     <item>
       <title>Review of assembly</title>
       <link>https://pwnbuffer.org/en/posts/slayer/assembly-review/</link>
