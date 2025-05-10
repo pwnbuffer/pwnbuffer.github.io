@@ -6,8 +6,15 @@
     <description>Recent content in Categories on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 04 May 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Malware-Analysis</title>
+      <link>https://pwnbuffer.org/categories/malware-analysis/</link>
+      <pubDate>Thu, 08 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/categories/malware-analysis/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Low-Level</title>
       <link>https://pwnbuffer.org/categories/low-level/</link>

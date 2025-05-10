@@ -6,8 +6,22 @@
     <description>Recent content in Tags on pwnbuffer</description>
     <generator>Hugo</generator>
     <language>pt-br</language>
-    <lastBuildDate>Sun, 04 May 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pwnbuffer.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Malware</title>
+      <link>https://pwnbuffer.org/tags/malware/</link>
+      <pubDate>Thu, 08 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/tags/malware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Techniques</title>
+      <link>https://pwnbuffer.org/tags/techniques/</link>
+      <pubDate>Thu, 08 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/tags/techniques/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Low Level</title>
       <link>https://pwnbuffer.org/tags/low-level/</link>
@@ -118,13 +132,6 @@
       <link>https://pwnbuffer.org/tags/architecture/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/tags/architecture/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Malware</title>
-      <link>https://pwnbuffer.org/tags/malware/</link>
-      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/tags/malware/</guid>
       <description></description>
     </item>
     <item>

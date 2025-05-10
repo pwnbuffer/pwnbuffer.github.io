@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Techniques on pwnbuffer</title>
+    <link>https://pwnbuffer.org/tags/techniques/</link>
+    <description>Recent content in Techniques on pwnbuffer</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Thu, 08 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.org/tags/techniques/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Análise de malware - Kimsuky (NORTH KOREAN APT)</title>
+      <link>https://pwnbuffer.org/posts/c/exploring-kimsuky-malware/</link>
+      <pubDate>Thu, 08 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/posts/c/exploring-kimsuky-malware/</guid>
+      <description>SUMÁRIO: Link para o cabeçalho Introdução Análise técnica&#xA;2.1. Injeção de C# com Add-Type&#xA;2.2. Ocultação de processos via ShowWindow&#xA;2.3. Ofuscação Base64 e execução dinâmica&#xA;2.4. PDF de distração e engenharia social&#xA;2.5. Ferramentas Externas para Extração de Payload&#xA;2.6. Execução de Payload em Múltiplas Etapas&#xA;2.7. Execução do Script da Etapa Final Mapeamento MITRE ATT&amp;amp;CK Considerações Finais 1. INTRODUÇÃO Link para o cabeçalho APT refere-se a grupos de Ameaça Persistente Avançada (Advanced Persistent Threat), conhecidos por desenvolverem malwares altamente avançados e furtivos.</description>
+    </item>
+  </channel>
+</rss>

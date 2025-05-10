@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Techniques on pwnbuffer</title>
+    <link>https://pwnbuffer.org/en/tags/techniques/</link>
+    <description>Recent content in Techniques on pwnbuffer</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pwnbuffer.org/en/tags/techniques/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Malware analysis - Kimsuky (NORTH KOREAN APT)</title>
+      <link>https://pwnbuffer.org/en/posts/c/exploring-kimsuky-malware/</link>
+      <pubDate>Thu, 08 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/en/posts/c/exploring-kimsuky-malware/</guid>
+      <description>SUMMARY: Link to heading Introduction Technical Analysis 2.1. C# Injection with Add-Type 2.2. Process Hiding via ShowWindow 2.3. Base64 Obfuscation and Dynamic Execution 2.4. Distraction PDF and Social Engineering 2.5. External Tools and Payload Extraction 2.6. Multi-stage Payload Execution 2.7. Final Stage Script Execution MITRE ATT&amp;amp;CK Mapping Final Thoughts 1. INTRODUCTION Link to heading APT refers to Advanced Persistent Threat groups known for highly advanced and stealthy malware. The sample analyzed here is tagged as APT, Kimsuky, and written in PowerShell (.</description>
+    </item>
+  </channel>
+</rss>
