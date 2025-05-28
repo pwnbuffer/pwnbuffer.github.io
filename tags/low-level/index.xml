@@ -10,9 +10,9 @@
     <atom:link href="https://pwnbuffer.org/tags/low-level/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>x86 Part. 2 — Number System</title>
-      <link>https://pwnbuffer.org/posts/void/x86-2/</link>
+      <link>https://pwnbuffer.org/posts/neurosys/x86-2/</link>
       <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/posts/void/x86-2/</guid>
+      <guid>https://pwnbuffer.org/posts/neurosys/x86-2/</guid>
       <description>Bem-vindo à segunda parte da nossa série de artigos sobre Engenharia Reversa Básica! Link para o cabeçalho ██ ██ █████ ██████ ██ ██ ██ ██ ██ ███ █████ ███████ ██ ██ ██ ██ ██ ██ ██ ██ █████ ██████ Agora que já exploramos os conceitos fundamentais de CPU no primeiro artigo, chegou a hora de entender como os dados são representados e manipulados internamente pelos computadores. Vamos falar sobre sistemas de numeração, com foco em hexadecimal, que é crucial para quem trabalha com engenharia reversa em baixo nível.</description>
     </item>
     <item>
@@ -24,9 +24,9 @@
     </item>
     <item>
       <title>x86 Part. 1 — CPU</title>
-      <link>https://pwnbuffer.org/posts/void/x86/</link>
+      <link>https://pwnbuffer.org/posts/neurosys/x86/</link>
       <pubDate>Sun, 30 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/posts/void/x86/</guid>
+      <guid>https://pwnbuffer.org/posts/neurosys/x86/</guid>
       <description>Essa série de artigos aborda conceitos básicos de baixo nível em computadores, com foco específico na exploração de binários e engenharia reversa. Alguns pontos podem parecer confusos à primeira vista, mas lembre-se: tudo segue uma definição. Não se prenda a uma sequência infinita de &amp;ldquo;porquês!?&amp;rdquo; — apenas compreenda cada conceito e seu propósito. Você vai usar esses conceitos em engenharia reversa, exploração de binários e até no desenvolvimento de malware no futuro.</description>
     </item>
     <item>
