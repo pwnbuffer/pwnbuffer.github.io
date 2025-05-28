@@ -22,11 +22,11 @@
       <description> ╱|、 (˚ˎ 。7 |、˜〵 じしˍ,)ノ github: Kz0x-337&#xA;Nota Web hacking, desenvolvedor de exploit e Maldev </description>
     </item>
     <item>
-      <title>mount</title>
-      <link>https://pwnbuffer.org/m/mount/</link>
+      <title>neurosys</title>
+      <link>https://pwnbuffer.org/m/neurosys/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/m/mount/</guid>
-      <description> Nota Desenvolvedor de malware, windows internals, active directory, low-level lover </description>
+      <guid>https://pwnbuffer.org/m/neurosys/</guid>
+      <description> github: n3ur0sys&#xA;Miserable&#xA;Nota _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
     </item>
     <item>
       <title>nullbyte</title>
@@ -34,6 +34,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/m/nullbyte/</guid>
       <description> github: NullByte-7w7&#xA;Nota Codenome NullByte, web, infra, baixo nível. Eu realmente gosto de maldev e adoro entender como o windows sysinternal funciona. </description>
+    </item>
+    <item>
+      <title>raidboy</title>
+      <link>https://pwnbuffer.org/m/raidboy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pwnbuffer.org/m/raidboy/</guid>
+      <description> github: 0xb0y426&#xA;Nota Olá, meu nome é RAIDBOY e estou na área de programação e segurança cibernética há 4 anos. Gosto de programação de baixo nível, sistemas operacionais, física e Pokémon. </description>
     </item>
     <item>
       <title>sl4yer</title>
@@ -48,13 +55,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pwnbuffer.org/m/tteuw/</guid>
       <description> github: tteuw00111111&#xA;Nota software dev, maldev e analysis, curto engenharia reversa também. E um pouco de web (não o suficiente) </description>
-    </item>
-    <item>
-      <title>voiiid</title>
-      <link>https://pwnbuffer.org/m/void/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pwnbuffer.org/m/void/</guid>
-      <description> github: 0xvoiiid&#xA;Angel of i386&#xA;Cheat developer&#xA;Nota _._ _,-&amp;#39;&amp;#34;&amp;#34;`-._ (,-.`._,&amp;#39;( |\`-/| `-.-&amp;#39; \ )-`( , o o) `- \`_`&amp;#34;&amp;#39;- </description>
     </item>
     <item>
       <title>zack</title>

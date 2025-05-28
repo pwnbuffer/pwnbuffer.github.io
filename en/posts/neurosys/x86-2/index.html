@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  x86 Part. 2 — Number System · pwnbuffer
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="pwnbuffer">
+<meta name="description" content="The paper describes the number systems used in modern systems, with a focus on binary and hexadecimal systems.">
+<meta name="keywords" content="hack the planet!">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="x86 Part. 2 — Number System">
+  <meta name="twitter:description" content="The paper describes the number systems used in modern systems, with a focus on binary and hexadecimal systems.">
+
+<meta property="og:url" content="https://pwnbuffer.org/en/posts/neurosys/x86-2/">
+  <meta property="og:site_name" content="pwnbuffer">
+  <meta property="og:title" content="x86 Part. 2 — Number System">
+  <meta property="og:description" content="The paper describes the number systems used in modern systems, with a focus on binary and hexadecimal systems.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-05-04T00:00:00+00:00">
+    <meta property="article:tag" content="Low Level">
+      <meta property="og:see_also" content="https://pwnbuffer.org/en/posts/neurosys/x86/">
+
+
+
+
+<link rel="canonical" href="https://pwnbuffer.org/en/posts/neurosys/x86-2/">
+
+
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="https://pwnbuffer.org/css/coder.min.b886fe0d9034709648f91f4ce178f51dd367d9350f82dd1132d54fd69bfca66f.css" integrity="sha256-uIb&#43;DZA0cJZI&#43;R9M4Xj1HdNn2TUPgt0RMtVP1pv8pm8=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="https://pwnbuffer.org/css/coder-dark.min.165f5fe7c98269a5cfc54f81472e0f84ebc32d92bbe6c9db1f06962b0817bda1.css" integrity="sha256-Fl9f58mCaaXPxU&#43;BRy4PhOvDLZK75snbHwaWKwgXvaE=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://pwnbuffer.org/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-32x32.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-16x16.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+
+<link rel="manifest" href="https://pwnbuffer.org/site.webmanifest">
+<link rel="mask-icon" href="https://pwnbuffer.org/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://pwnbuffer.org/en/">
+      pwnbuffer
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/posts/">Articles</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/categories/">Categories</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/members/">Members</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/contribute/">Contribute</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/en/wallpapers/">Wallpapers</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://pwnbuffer.org/posts/neurosys/x86-2/">🇧🇷</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://pwnbuffer.org/en/posts/neurosys/x86-2/">
+              x86 Part. 2 — Number System
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-05-04T00:00:00Z">
+                May 4, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              7-minute read
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/en/authors/neurosys/">Neurosys</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/en/categories/low-level/">Low-Level</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/en/categories/x86/">X86</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/en/tags/low-level/">Low Level</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h3 id="welcome-to-the-second-part-of-our-series-of-articles-on-basic-reverse-engineering">
+  <strong>Welcome to the second part of our series of articles on Basic Reverse Engineering!</strong>
+  <a class="heading-link" href="#welcome-to-the-second-part-of-our-series-of-articles-on-basic-reverse-engineering">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div style="color: #9b0000;">
+<pre tabindex="0"><code>██   ██  █████   ██████  
+ ██ ██  ██   ██ ██       
+  ███    █████  ███████  
+ ██ ██  ██   ██ ██    ██ 
+██   ██  █████   ██████  
+                         
+</code></pre></div>
+<p>Now that we&rsquo;ve explored the fundamental concepts of CPU in the first article, it&rsquo;s time to understand how data is represented and manipulated internally by computers. Let&rsquo;s talk about <strong>numbering systems</strong>, with a focus on <strong>hexadecimal</strong>, which is crucial for those working with low-level reverse engineering.</p>
+<p>In our first article, I said - Don&rsquo;t get bogged down in an endless string of “whys!?”.
+And I&rsquo;ll say it again: Don&rsquo;t worry about understanding all the details at once. The aim here is to understand the <strong>essence</strong> of the concepts and how each one contributes to the functioning of the computer system. The idea is not to get lost in technical explanations, but to understand how everything fits together, and this will become very clear in practice in the future.</p>
+<h3 id="binary-system">
+  Binary System
+  <a class="heading-link" href="#binary-system">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The binary system is the language of computers. It is a numbering system that uses only two symbols as switch states: <strong>0 -&gt; off</strong> and <strong>1 -&gt; on</strong>. It is the basis of computing, and the reason for this is that: computers, at their deepest level, work with <strong>electrical circuits</strong> that can be in two distinct states: <strong>on</strong> or <strong>off</strong>. The <strong>0</strong> and <strong>1</strong> are the way to represent these binary states.
+Under the hood, that&rsquo;s what the system is:</p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-0-0:checked ~ .tab-content-0-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-0" id="tab-0-0" checked/>
+<label for="tab-0-0" class="tab-label">bin</label>
+<div class="tab-content tab-content-0-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>0001010101011010101011100101010010101010...
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p>But obviously, we don&rsquo;t have direct contact with it and we don&rsquo;t even see this binary. This is processed by the layers of abstraction, <strong>such as</strong>: circuits, CPU, operating system and various other parts that make up the computer, which handle the binary for us.</p>
+<p>To form characters and numbers, the bits are repeated, just like in any other number system.</p>
+<ul>
+<li>1 bit can represent 2 values: <strong>0</strong> or <strong>1</strong>.</li>
+<li>2 bits can represent 4 values: <strong>00</strong>, <strong>01</strong>, <strong>10</strong> e <strong>11</strong>.</li>
+<li>3 bits can represent 8 values: <strong>000</strong>, <strong>001</strong>, <strong>010</strong>, <strong>011</strong>, <strong>100</strong>, <strong>101</strong>, <strong>110</strong> e <strong>111</strong>. And so on&hellip;</li>
+</ul>
+<p>In the operating system, <strong>everything</strong> is represented by binaries. Each binary sequence can represent something specific: it can be an escape key, a space key, an input, an output, a number, a letter, and so on. Everything has a meaning encoded in binary.</p>
+<p>You can see in the ASCII table how text outputs are represented in binary.</p>
+<ul>
+<li><a href="https://www.ascii-code.com/"  class="external-link" target="_blank" rel="noopener">Here</a> is an example of such a table.</li>
+</ul>
+<h3 id="characteristics-of-the-binary-system">
+  Characteristics of the Binary System
+  <a class="heading-link" href="#characteristics-of-the-binary-system">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li>Base 2**: The binary system is made up of two symbols: <strong>0</strong> e <strong>1</strong>.
+<ul>
+<li>Just like any other number system, such as <strong>decimal</strong> (0, 1, 2, 3, 4, 5, 6, 7, 8, 9), the binary system uses two digits. With just these two symbols, we can represent infinite numbers, just by rearranging them in different ways.</li>
+</ul>
+</li>
+<li>Positional: Each digit has a value that depends on its position in the sequence. This is because the system is <strong>positional</strong> and <strong>base 2</strong>, i.e. the position of each bit defines its value.</li>
+<li>Data storage: Hard disks, SSDs, RAM and other storage devices use the binary system to store information. Each bit is a string, which represents data, and this data is interpreted by the operating system.</li>
+<li>Data representation: All data and instructions on a computer are represented in binary. This includes text, images, videos, programs and any other type of information. Even the instructions that the CPU executes are represented in binary, and are interpreted according to context.</li>
+<li><strong>Representation</strong>: In the operating system, it is represented by <strong>0b</strong>, i.e.: <strong>0b1100110</strong>.</li>
+</ul>
+<h3 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Although the binary system is fundamental to computing, you probably won&rsquo;t need to come into contact with it directly in your day-to-day life. However, understanding how it works is important, because in the future you may need some basic knowledge of binaries to understand other concepts related to reverse engineering.</p>
+<h3 id="auxiliary-resources">
+  Auxiliary resources
+  <a class="heading-link" href="#auxiliary-resources">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li><a href="https://www.rapidtables.org/convert/number/binary-to-decimal.html"  class="external-link" target="_blank" rel="noopener">Binary to Decimal</a> – Play with binary numbers and see how they work.</li>
+<li><a href="https://mentebinaria.gitbook.io/engenharia-reversa/numeros/calculos-com-binarios"  class="external-link" target="_blank" rel="noopener">Mente Binária - Cálculos com Binários</a> – Learn to do binary calculations if you want to go deeper (recommended).</li>
+</ul>
+<h1 id="hexadecimal">
+  Hexadecimal
+  <a class="heading-link" href="#hexadecimal">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>Well, now we&rsquo;re going to talk about hexadecimal. I believe it&rsquo;s the most widely used number system for reverse engineering. When dealing with memory addresses and low-level data manipulation, the hexadecimal system is much more compact and readable than the binary system.</p>
+<p>The <strong>hexadecimal system</strong> is <strong>base 16</strong>, which means that it uses <strong>16 different symbols</strong> to represent values. These symbols are:</p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-1-0:checked ~ .tab-content-1-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-1" id="tab-1-0" checked/>
+<label for="tab-1-0" class="tab-label">0xHex</label>
+<div class="tab-content tab-content-1-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p>Numbers from 10 to 15 are represented by letters:</p>
+<ul>
+<li>A = 10</li>
+<li>B = 11</li>
+<li>C = 12</li>
+<li>D = 13</li>
+<li>E = 14</li>
+<li>F = 15</li>
+</ul>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-2-0:checked ~ .tab-content-2-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-2" id="tab-2-0" checked/>
+<label for="tab-2-0" class="tab-label">0x</label>
+<div class="tab-content tab-content-2-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>... 8, 9, A, B, C, D, E, F, 10, 11, 12...
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>10</strong> equals <strong>16</strong> and so on&hellip;</p>
+<h2 id="how-hexadecimal-numbering-works">
+  How Hexadecimal Numbering Works
+  <a class="heading-link" href="#how-hexadecimal-numbering-works">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Just as in the decimal system, where each position represents a power of 10, in hexadecimal the power corresponds to the position of each number in the hexadecimal system.</p>
+<h5 id="powers-of-16-from-0-to-5">
+  Powers of <strong>16</strong> from <strong>0 to 5</strong>:
+  <a class="heading-link" href="#powers-of-16-from-0-to-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h5>
+<table>
+<thead>
+<tr>
+<th>(16⁰)<br></th>
+<th>(16¹)</th>
+<th>(16²)</th>
+<th>(16³)</th>
+<th>(16⁴)</th>
+<th>(16⁵)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>16</td>
+<td>256</td>
+<td>4.096</td>
+<td>65.536</td>
+<td>1.048.576</td>
+</tr>
+</tbody>
+</table>
+<p>**Let&rsquo;s take an example:<br>
+In the number <strong>2F</strong> (hexadecimal):</p>
+<ul>
+<li><strong>2</strong> occupies the second position from the left:
+<ul>
+<li>2 x 16¹ = 2 x 16 = 32</li>
+</ul>
+</li>
+<li><strong>F</strong> occupies the first position on the left:
+<ul>
+<li><strong>F</strong> represents 15 in decimal, so:</li>
+<li>15 x 16⁰ = 15 x 1 = 15</li>
+</ul>
+</li>
+</ul>
+<p>Therefore, <strong>2F</strong> (hexadecimal) is equal to <strong>32 + 15 = 47</strong> in decimal.</p>
+<p>Let&rsquo;s take another example, the number: <code>0x543210</code>.</p>
+<ul>
+<li>5(16⁵) x 1.048.576 = 5.242.880</li>
+<li>4(16⁴) x 65.536 = 262.144</li>
+<li>3(16³) x 4.096 = 12.288</li>
+<li>2(16²) x 256 = 512</li>
+<li>1(16¹) x 16 = 16</li>
+<li>0(16⁰) x 1 = 0</li>
+</ul>
+<p>The power of each number indicates how many times it must be multiplied by the corresponding value of the position.</p>
+<h3 id="result">
+  Result
+  <a class="heading-link" href="#result">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Now let&rsquo;s add these values together to get the decimal number <strong>0x543210</strong>:</p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-3-0:checked ~ .tab-content-3-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-3" id="tab-3-0" checked/>
+<label for="tab-3-0" class="tab-label">sum</label>
+<div class="tab-content tab-content-3-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>5.242.880+262.144+12.288+512+16+0 <span style="color:#ec0000">=</span> 5.517.840
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p>So <code>0x543210</code> is equal to <code>5,517,840</code> in decimal.</p>
+<h3 id="inserting-letters">
+  Inserting letters
+  <a class="heading-link" href="#inserting-letters">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>we can also insert letters into hexadecimal numbers. we learned above that the letters <strong>A to F</strong> represent the values from 10 to 15, so let&rsquo;s use the number <code>0xAB2345</code> as an example, and convert it from hexadecimal to decimal:</p>
+<blockquote>
+<p>Don&rsquo;t forget:
+A =10
+B = 11</p>
+</blockquote>
+<ul>
+<li>A(16⁵) x 1.048.576 = 10.485.760</li>
+<li>B(16⁴) x 65.536 = 720.896</li>
+<li>2(16³) x 4.096 = 8.192</li>
+<li>3(16²) x 256 = 768</li>
+<li>4(16¹) x 16 = 64</li>
+<li>5(16⁰)x 1 = 5</li>
+</ul>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-4-0:checked ~ .tab-content-4-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-4" id="tab-4-0" checked/>
+<label for="tab-4-0" class="tab-label">sum</label>
+<div class="tab-content tab-content-4-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ec0000">(</span>AB2345<span style="color:#ec0000">)</span>₁₆ <span style="color:#ec0000">=</span> <span style="color:#ec0000">(</span><span style="color:#008900">10</span> × 16⁵<span style="color:#ec0000">)</span> + <span style="color:#ec0000">(</span><span style="color:#008900">11</span> × 16⁴<span style="color:#ec0000">)</span> + <span style="color:#ec0000">(</span><span style="color:#008900">2</span> × 16³<span style="color:#ec0000">)</span> + <span style="color:#ec0000">(</span><span style="color:#008900">3</span> × 16²<span style="color:#ec0000">)</span> + <span style="color:#ec0000">(</span><span style="color:#008900">4</span> × 16¹<span style="color:#ec0000">)</span> + <span style="color:#ec0000">(</span><span style="color:#008900">5</span> × 16⁰<span style="color:#ec0000">)</span> <span style="color:#ec0000">=</span> <span style="color:#ec0000">(</span>11215685<span style="color:#ec0000">)</span>₁₀
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p>add up the result, and we get <code>11,215,685</code>.
+So <code>0xAB2345</code> is <code>11,215,685</code> in decimal.<br>
+Cool, right?</p>
+<h2 id="additional-features">
+  Additional Features:
+  <a class="heading-link" href="#additional-features">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li><a href="https://www.rapidtables.com/convert/number/hex-to-decimal.html?x=AB2345"  class="external-link" target="_blank" rel="noopener">Hex To Decimal</a></li>
+<li><a href="https://www.freecodecamp.org/news/ascii-table-hex-to-ascii-value-character-code-chart-2/"  class="external-link" target="_blank" rel="noopener">Table Hex</a></li>
+</ul>
+<h2 id="hexadecimal-in-modern-operating-systems">
+  Hexadecimal in Modern Operating Systems
+  <a class="heading-link" href="#hexadecimal-in-modern-operating-systems">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Well, all that math behind hexadecimals won&rsquo;t be necessary, since it&rsquo;s the operating system that handles it. But there are a few things you should know/remember when programming, reverse engineering or the like.
+<strong>Here they are</strong>:</p>
+<ul>
+<li>In a modern operating system, 1 number in hexadecimal is equivalent to a 4-digit binary number (4 bits).
+For example:</li>
+</ul>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-5-0:checked ~ .tab-content-5-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-5" id="tab-5-0" checked/>
+<label for="tab-5-0" class="tab-label">hex</label>
+<div class="tab-content tab-content-5-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ec0000">1101</span> <span style="color:#ec0000">=</span> D
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">0001</span> <span style="color:#ec0000">=</span> <span style="color:#008900">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">0110</span> <span style="color:#ec0000">=</span> <span style="color:#008900">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">0011</span> <span style="color:#ec0000">=</span> <span style="color:#008900">3</span>
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<ul>
+<li>
+<p>In modern systems such as <strong>windows</strong> and <strong>linux</strong>, we use the prefix <strong>0x</strong>, for example <code>0xD163</code>.</p>
+</li>
+<li>
+<p>Dynamic memory addresses are represented in hexadecimal.</p>
+</li>
+</ul>
+<div style="text-align: center;">
+  <img src="https://pwnbuffer.org/images/neurosys/x86-2/address.png" alt="intel-gen">
+</div>
+<ul>
+<li>Static addresses/memory offsets are represented in hexadecimal</li>
+</ul>
+<div style="text-align: center;">
+  <img src="https://pwnbuffer.org/images/neurosys/x86-2/offset.png" alt="intel-gen">
+</div>
+<ul>
+<li>Data is represented in hexadecimal.</li>
+</ul>
+<div style="text-align: center;">
+  <img src="https://pwnbuffer.org/images/neurosys/x86-2/dump.png" alt="intel-gen">
+</div>
+<ul>
+<li>When we reverse engineer, we&rsquo;ll be dealing with hexadecimal numbers.</li>
+</ul>
+<div style="text-align: center;">
+  <img src="https://pwnbuffer.org/images/neurosys/x86-2/asm.png" alt="intel-gen">
+</div>
+<p>In short, hexadecimal is very important because it is present in everything.</p>
+<h3 id="x86-byte-word-double-word">
+  x86 Byte, Word, Double Word
+  <a class="heading-link" href="#x86-byte-word-double-word">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Bom, essas são as nomenclaturas para a quantidade de dados que um determinado segmento armazena.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Measure</strong></th>
+<th><strong>Size (Intel)</strong></th>
+<th><strong>Intel Nomenclature</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Byte</td>
+<td>8 bits</td>
+<td><code>BYTE</code></td>
+</tr>
+<tr>
+<td>Word</td>
+<td>16 bits</td>
+<td><code>WORD</code></td>
+</tr>
+<tr>
+<td>Double Word</td>
+<td>32 bits</td>
+<td><code>DWORD</code></td>
+</tr>
+<tr>
+<td>Quad Word</td>
+<td>64 bits</td>
+<td><code>QWORD</code></td>
+</tr>
+</tbody>
+</table>
+<p>When we program or analyze a malware <em>source code</em>, we will deal with these nomenclatures, especially when dealing with WINAPI.
+It&rsquo;s important because, for example, if you declare a variable of size <code>DWORD</code>, you&rsquo;ll be storing a 32-bit value:</p>
+<div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>DWORD procid <span style="color:#ec0000">=</span> <span style="color:#ec0000">NULL</span>;
+</span></span></code></pre></div><p>The registers are equivalent to these sizes too. <strong>See</strong>:</p>
+<ul>
+<li><code>AX</code> = 16 bits (WORD)</li>
+<li><code>EAX</code> = 32 bits (DWORD)</li>
+<li><code>RAX</code> = 64 bits (QWORD)</li>
+</ul>
+<p>Well, that&rsquo;s it from here. The rest we learn with practice. So practice as much as you can, and these concepts will sink into your mind.<br>
+<strong>Thank you for reading this far!</strong></p>
+<div style="color: #380085;">
+<pre tabindex="0"><code> ▌ ▐·      ▪  ▪  ·▄▄▄▄  
+▪█·█▌▪     ██ ██ ██▪ ██ 
+▐█▐█• ▄█▀▄ ▐█·▐█·▐█· ▐█▌
+ ███ ▐█▌.▐▌▐█▌▐█▌██. ██ 
+. ▀   ▀█▄▀▪▀▀▀▀▀▀▀▀▀▀▀• 
+</code></pre></div>
+
+      </div>
+
+
+      <footer>
+        
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="see-also-in-x86-by-neurosys">
+        See also in x86-by-neurosys
+        <a class="heading-link" href="#see-also-in-x86-by-neurosys">
+          <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+          <span class="sr-only">Link to heading</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+        
+          
+            <li>
+              <a href="https://pwnbuffer.org/en/posts/neurosys/x86/">x86 Part. 1 — CPU</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     pwnbuffer 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="https://pwnbuffer.org/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

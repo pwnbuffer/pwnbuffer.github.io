@@ -158,6 +158,19 @@
                 href="https://pwnbuffer.org/categories/low-level/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.org/authors/neurosys/</loc>
+    <lastmod>2025-05-04T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/authors/neurosys/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/authors/neurosys/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.org/series/</loc>
     <lastmod>2025-05-04T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -169,19 +182,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/series/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/authors/void/</loc>
-    <lastmod>2025-05-04T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/authors/void/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/authors/void/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/categories/x86/</loc>
@@ -197,30 +197,30 @@
                 href="https://pwnbuffer.org/categories/x86/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/posts/void/x86-2/</loc>
+    <loc>https://pwnbuffer.org/posts/neurosys/x86-2/</loc>
     <lastmod>2025-05-04T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/en/posts/void/x86-2/"
+                href="https://pwnbuffer.org/en/posts/neurosys/x86-2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/posts/void/x86-2/"
+                href="https://pwnbuffer.org/posts/neurosys/x86-2/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/series/x86-by-void/</loc>
+    <loc>https://pwnbuffer.org/series/x86-by-neurosys/</loc>
     <lastmod>2025-05-04T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/en/series/x86-by-void/"
+                href="https://pwnbuffer.org/en/series/x86-by-neurosys/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/series/x86-by-void/"
+                href="https://pwnbuffer.org/series/x86-by-neurosys/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/tags/assembly/</loc>
@@ -392,17 +392,17 @@
                 href="https://pwnbuffer.org/tags/maldev/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/posts/void/x86/</loc>
+    <loc>https://pwnbuffer.org/posts/neurosys/x86/</loc>
     <lastmod>2025-03-30T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pwnbuffer.org/en/posts/void/x86/"
+                href="https://pwnbuffer.org/en/posts/neurosys/x86/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://pwnbuffer.org/posts/void/x86/"
+                href="https://pwnbuffer.org/posts/neurosys/x86/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/tags/exploitation/</loc>
@@ -830,18 +830,6 @@
                 href="https://pwnbuffer.org/members/"
                 />
   </url><url>
-    <loc>https://pwnbuffer.org/m/mount/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/m/mount/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/m/mount/"
-                />
-  </url><url>
     <loc>https://pwnbuffer.org/m/</loc>
     <xhtml:link
                 rel="alternate"
@@ -854,6 +842,18 @@
                 href="https://pwnbuffer.org/m/"
                 />
   </url><url>
+    <loc>https://pwnbuffer.org/m/neurosys/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/m/neurosys/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/m/neurosys/"
+                />
+  </url><url>
     <loc>https://pwnbuffer.org/m/nullbyte/</loc>
     <xhtml:link
                 rel="alternate"
@@ -864,6 +864,18 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/m/nullbyte/"
+                />
+  </url><url>
+    <loc>https://pwnbuffer.org/m/raidboy/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pwnbuffer.org/en/m/raidboy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://pwnbuffer.org/m/raidboy/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/m/slayer/</loc>
@@ -888,18 +900,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://pwnbuffer.org/m/tteuw/"
-                />
-  </url><url>
-    <loc>https://pwnbuffer.org/m/void/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pwnbuffer.org/en/m/void/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://pwnbuffer.org/m/void/"
                 />
   </url><url>
     <loc>https://pwnbuffer.org/wallpapers/</loc>
